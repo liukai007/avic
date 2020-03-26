@@ -41,6 +41,16 @@
     + created (date) - 创建时间
     + modified (date) - 修改时间
     + equipmentCommandList -设备命令列表
+        + ID (long) 设备命令表ID 
+        + equipmentId (long) 设备ID
+        + commandId (long) 分类命令ID
+        + commandFormat  (String) 命令格式
+        + feedbackFormat (String) 反馈格式
+        + enabled (int)  - 使能  0禁止 1启用
+        + creator (long) - 创建人
+        + modifier (long) - 修改人
+        + created (date) - 创建时间
+        + modified (date) - 修改时间
 
    
 ### 新增设备 [POST] /equipment
@@ -315,6 +325,7 @@
     + modifier (long) - 修改人
     + created (date) - 创建时间
     + modified (date) - 修改时间 
+    + controlProtocolName (String) 控制协议名
     + equipment (Equipment) - 设备
         + equipmentName (String) 设备名
         + model (String)  设备型号

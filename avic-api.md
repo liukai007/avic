@@ -12,6 +12,12 @@
     + 修改设备资产
     + 查询设备资产详情
     + 查询设备资产列表
++ 2020年3月26日
+    + 新增分类
+    + 删除分类
+    + 修改分类
+    + 查询分类详情
+    + 查询分类列表
 
 ## 设备管理
 + Data
@@ -610,3 +616,180 @@
                 }
               ]
             }
+            
+
+
+## 分类管理
++ Data
+    + id (Long) ID
+    + categoryName (String) 分类名
+    + parentId (long) 上级分类ID
+    + picture (String) 图片链接
+    + description (String) 描述
+    + displayOrder (int) 排序id
+    + primaryCategoryName  (String) 一级分类名
+    + enabled (int)  - 使能  0禁止 1启用
+    + creator (long) - 创建人
+    + modifier (long) - 修改人
+    + created (date) - 创建时间
+    + modified (date) - 修改时间
+
+   
+### 新增分类 [POST] /category
+
++ Description
+
++ Request (application/json)
+
+        {
+          "data": {
+            "parentId": 1,
+            "categoryName": "中控分类2",
+            "picture": "http://static.budee.com/cms/upload/image/20200322/1584862487761035082.png",
+            "description": "http://static.budee.com/cms/upload/image/20200322/1584862487761035082.png",
+            "displayOrder": 100
+          }
+        }
++ Response 200
+
+        {
+          "data": {
+            "id": 3,
+            "type": "category"
+          }
+        }
+
++ Response 400
+
+        {
+          "errors": [
+            {
+              "status": "400",
+              "title": "Bad Request",
+              "detail": "上级分类不存在"
+            }
+          ]
+        }
+
+        
+### 删除分类 [DEL] /category/{id}
++ Description
+
++ Response 200  
+
+        
+### 修改分类 [PATCH] /category/{id}
+
++ Description
+
+
++ Request (application/json)
+    
+        {
+          "data": {
+            "id": 3,
+            "parentId": 0,
+            "categoryName": "中控分类2",
+            "picture": "http://static.budee.com/cms/upload/image/20200322/1584862487761035082.png",
+            "description": "http://static.budee.com/cms/upload/image/20200322/1584862487761035082.png",
+            "displayOrder": 100
+          }
+        }
++ Response 200
++ Response 400
+
+### 查询分类详情 [GET] /category/{id}
++ Description
+
++ Response 200
+    
+        {
+          "data": {
+            "id": 3,
+            "enabled": 1,
+            "creator": 0,
+            "modifier": 0,
+            "created": "2020-03-26 13:33:24",
+            "modified": "2020-03-26 13:33:24",
+            "parentId": 0,
+            "categoryName": "中控分类2",
+            "picture": "http://static.budee.com/cms/upload/image/20200322/1584862487761035082.png",
+            "description": "http://static.budee.com/cms/upload/image/20200322/1584862487761035082.png",
+            "displayOrder": 100
+          }
+        }
+
+### 查询分类列表 [GET] /category
++ Description
+
++ Parameters
+    + page[number] (int)  页码  -非必填
+    + page[size]  (int)   页尺  -非必填
+    + filter[brandId] (long) 品牌ID
+    + filter[primaryCategoryid] (long) 一级分类ID
+    + filter[categoryId] (long) 二级分类ID
+    + filter[communicationId] (int) 通信方式ID
+    + filter[equipmentName] (string)  设备名字
+    + filter[equipmentModel] (string) 设备型号 
+    
++ Response 200
+
+        {
+          "meta": {
+            "totalPages": 1,
+            "totalElements": 3,
+            "size": 10,
+            "number": 1,
+            "numberOfElements": 3,
+            "first": true,
+            "last": true,
+            "sort": null
+          },
+          "links": {
+            "self": "/category?page[number]=1&page[size]=10",
+            "first": "/category?page[number]=1&page[size]=10",
+            "last": "/category?page[number]=1&page[size]=10"
+          },
+          "data": [
+            {
+              "id": 1,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2020-03-24 13:38:04",
+              "modified": "2020-03-24 13:38:02",
+              "parentId": 0,
+              "categoryName": "中控",
+              "picture": "http://static.budee.com/cms/upload/image/20200322/1584862487761035082.png",
+              "description": "http://static.budee.com/cms/upload/image/20200322/1584862487761035082.png",
+              "displayOrder": 100
+            },
+            {
+              "id": 2,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "parentId": 1,
+              "categoryName": "中控分类1",
+              "picture": "http://static.budee.com/cms/upload/image/20200322/1584862487761035082.png",
+              "description": "http://static.budee.com/cms/upload/image/20200322/1584862487761035082.png",
+              "displayOrder": 100,
+              "primaryCategoryName": "中控"
+            },
+            {
+              "id": 3,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2020-03-26 13:33:24",
+              "modified": "2020-03-26 13:33:24",
+              "parentId": 0,
+              "categoryName": "中控分类2",
+              "picture": "http://static.budee.com/cms/upload/image/20200322/1584862487761035082.png",
+              "description": "http://static.budee.com/cms/upload/image/20200322/1584862487761035082.png",
+              "displayOrder": 100
+            }
+          ]
+        }
+
+    

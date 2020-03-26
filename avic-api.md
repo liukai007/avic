@@ -1,1 +1,281 @@
-1
+# AVIC管理端接口文档
+
++ 2020年3月25日
+    + 新增设备
+    + 删除设备
+    + 修改设备
+    + 查询设备详情
+    + 查询设备列表
+
+## 设备管理
++ Data
+    + equipmentName (String) 设备名
+    + model (String)  设备型号
+    + picture (String) 图片链接
+    + categoryId (Long) 分类ID
+    + brandId (Long) 品牌ID
+    + controllable (int) 是否可控(1为可控 0为不可控)
+    + readable (int)  是否可读 0不可读 1可读
+    + communicationMode (int) 通信方式，0：单向，1：双向
+    + lifeType (int) 寿命类型，0：时长，1：次数
+    + recommendedLife (int) 建议寿命
+    + warrantyPeriod (int) 质保期限
+    + maintenanceFrequency (int) 保养频率，单位：月
+    + webLink (String) 产品链接
+    + centerControlUnit (int)  是否是中控  0非中控 1是中控
+    + enabled (int)  - 使能  0禁止 1启用
+    + creator (long) - 创建人
+    + modifier (long) - 修改人
+    + created (date) - 创建时间
+    + modified (date) - 修改时间
+    
+### 新增设备 [POST] /equipment
++ Description
+
++ Request (application/json)
+
+        {
+          "data": {
+            "brandId": 1,
+            "categoryId": 1,
+            "centerControlUnit": 0,
+            "communicationMode": 0,
+            "controllable": 0,
+            "equipmentCommandList": [
+              {
+                "commandFormat": "commandFormat1",
+                "commandId": 1,
+                "feedbackFormat": "feedbackFormat1"
+              }
+            ],
+            "equipmentName": "string1111",
+            "lifeType": 0,
+            "maintenanceFrequency": 0,
+            "model": "string111",
+            "modifier": 0,
+            "picture": "string111",
+            "readable": 0,
+            "recommendedLife": 0,
+            "warrantyPeriod": 0,
+            "webLink": "string"
+          }
+        }
++ Response 200
+
++ Response 400
+
+        
+### 删除设备 [DEL] /equipment/{id}
++ Description
+
++ Response 200  
+
+        
+### 修改设备 [PATCH] /equipment/{id}
+
++ Description
+
+
++ Request (application/json)
+    
+        {
+          "data": {
+            "brandId": 1,
+            "categoryId": 1,
+            "centerControlUnit": 0,
+            "communicationMode": 0,
+            "controllable": 0,
+            "equipmentCommandList": [
+              {
+                "id":1,
+                "commandFormat": "commandFormat1",
+                "commandId": 1,
+                "equipmentId": 1,
+                "feedbackFormat": "feedbackFormat1"
+              }
+            ],
+            "equipmentName": "string1111",
+            "lifeType": 0,
+            "maintenanceFrequency": 0,
+            "model": "string111",
+            "modifier": 0,
+            "picture": "string111",
+            "readable": 0,
+            "recommendedLife": 0,
+            "warrantyPeriod": 0,
+            "webLink": "string"
+          }
+        }
++ Response 200
++ Response 400
+
+### 查询设备详情 [GET] /equipment/{id}
++ Description
+
++ Response 200
+    
+        {
+          "data": {
+            "id": 3,
+            "enabled": 1,
+            "creator": 0,
+            "modifier": 0,
+            "created": "2020-03-25 18:41:07",
+            "modified": "2020-03-25 18:57:56",
+            "equipmentName": "string1111",
+            "model": "string111",
+            "picture": "string111",
+            "categoryId": 1,
+            "brandId": 1,
+            "controllable": 0,
+            "readable": 0,
+            "communicationMode": 0,
+            "lifeType": 0,
+            "recommendedLife": 0,
+            "warrantyPeriod": 0,
+            "maintenanceFrequency": 0,
+            "webLink": "string",
+            "centerControlUnit": 0,
+            "brandName": "brand1",
+            "primaryCategoryId": 0,
+            "categoryName": "中控",
+            "equipmentCommandList": [
+              {
+                "id": 1,
+                "enabled": 0,
+                "creator": 0,
+                "modifier": 0,
+                "created": "2020-03-25 18:57:56",
+                "modified": "2020-03-25 18:57:56",
+                "equipmentId": 3,
+                "commandId": 1,
+                "commandFormat": "commandFormat1",
+                "feedbackFormat": "feedbackFormat1"
+              }
+            ]
+          }
+        }
+
+### 查询设备列表 [GET] /equipment
++ Description
+    + [MUST] authenticated
+
++ Parameters
+    + page[number] (int)  页码  -非必填
+    + page[size]  (int)   页尺  -非必填
+    + filter[brandId] (long) 品牌ID
+    + filter[primaryCategoryid] (long) 一级分类ID
+    + filter[categoryId] (long) 二级分类ID
+    + filter[communicationId] (int) 通信方式ID
+    + filter[equipmentName] (string)  设备名字
+    + filter[equipmentModel] (string) 设备型号 
+    
++ Response 200
+
+        {
+      "meta": {
+        "totalPages": 1,
+        "totalElements": 3,
+        "size": 10,
+        "number": 1,
+        "numberOfElements": 3,
+        "first": true,
+        "last": true,
+        "sort": null
+      },
+      "links": {
+        "self": "/equipment?page[number]=1&page[size]=10",
+        "first": "/equipment?page[number]=1&page[size]=10",
+        "last": "/equipment?page[number]=1&page[size]=10"
+      },
+          "data": [
+            {
+              "id": 1,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2020-03-23 16:43:27",
+              "modified": "2020-03-23 16:43:30",
+              "equipmentName": "灯",
+              "model": "001",
+              "picture": "http://static.budee.com/cms/upload/image/20200322/1584862487761035082.png",
+              "categoryId": 2,
+              "brandId": 1,
+              "controllable": 0,
+              "readable": 0,
+              "communicationMode": 0,
+              "lifeType": 0,
+              "centerControlUnit": 0,
+              "brandName": "brand1",
+              "primaryCategoryId": 1,
+              "primaryCategoryName": "中控",
+              "categoryName": "中控分类1",
+              "equipmentCommandList": []
+            },
+            {
+              "id": 2,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2020-03-23 16:43:59",
+              "modified": "2020-03-23 16:44:01",
+              "equipmentName": "extron中控",
+              "model": "112",
+              "picture": "http://static.budee.com/cms/upload/image/20200322/1584862487761035082.png",
+              "categoryId": 2,
+              "brandId": 2,
+              "controllable": 0,
+              "readable": 0,
+              "communicationMode": 0,
+              "lifeType": 0,
+              "centerControlUnit": 0,
+              "brandName": "brand2",
+              "primaryCategoryId": 1,
+              "primaryCategoryName": "中控",
+              "categoryName": "中控分类1",
+              "equipmentCommandList": []
+            },
+            {
+              "id": 3,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2020-03-25 18:41:07",
+              "modified": "2020-03-25 18:57:56",
+              "equipmentName": "string1111",
+              "model": "string111",
+              "picture": "string111",
+              "categoryId": 1,
+              "brandId": 1,
+              "controllable": 0,
+              "readable": 0,
+              "communicationMode": 0,
+              "lifeType": 0,
+              "recommendedLife": 0,
+              "warrantyPeriod": 0,
+              "maintenanceFrequency": 0,
+              "webLink": "string",
+              "centerControlUnit": 0,
+              "brandName": "brand1",
+              "primaryCategoryId": 0,
+              "categoryName": "中控",
+              "equipmentCommandList": [
+                {
+                  "id": 1,
+                  "enabled": 0,
+                  "creator": 0,
+                  "modifier": 0,
+                  "created": "2020-03-25 18:57:56",
+                  "modified": "2020-03-25 18:57:56",
+                  "equipmentId": 3,
+                  "commandId": 1,
+                  "commandFormat": "commandFormat1",
+                  "feedbackFormat": "feedbackFormat1"
+                }
+              ]
+            }
+          ]
+        }
+
+
+                

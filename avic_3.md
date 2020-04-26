@@ -11,6 +11,9 @@
     + 新增或者修改智能场景设备命令详情
     + 查询智能场景设备命令详情
 
++ 2020年4月26日
+    + 新增或者修改智能场景条件集
+    + 查询智能场景条件集
 
 ## 智能场景
 + Data
@@ -30,7 +33,7 @@
 ### 新增智能场景 [POST] /intelligentScene
 
 + Description
-
+    + Author Liukai
 + Request (application/json)
 
         {
@@ -65,14 +68,14 @@
         
 ### 删除智能场景 [DEL] /intelligentScene/{id}
 + Description
-
+    + Author Liukai
 + Response 204 
 
         
 ### 修改智能场景 [PATCH] /intelligentScene/{id}
 
 + Description
-
+    + Author Liukai
 
 + Request (application/json)
     
@@ -96,7 +99,7 @@
 
 ### 查询智能场景详情 [GET] /intelligentScene/{id}
 + Description
-
+    + Author Liukai
 + Response 200
     
         {
@@ -129,6 +132,7 @@
 ### 查询智能场景列表 [GET] /intelligentScene
 
 + Description
+    + Author Liukai
 
     比如：http://127.0.0.1:8080/intelligentScene?page[number]=1&page[size]=10&filter[sceneName:like]=%%E8%87%AA%
 
@@ -204,19 +208,18 @@
     + secondCategoryId (long) 二级分类ID （如果为0，这一级分类则为null,一级分类名，二级分类名都为null）
     + equipmentName  (string) 设备名
     + equipmentModel  (string) 设备型号
-    
 
    
 ### 新增或者修改智能场景设备命令详情 [POST] /intelligentSceneDetails
 
 + Description
+    + Author Liukai
 
 + Request (application/json)
 
         {
           "data": {
             "intelligentSceneDetailsList": [
-             
               {
                 "sceneId": 1,
                 "equipmentassetId": 1,
@@ -262,7 +265,8 @@
 
 ### 查询智能场景设备命令详情 [GET] /intelligentSceneDetails/{intelligentSceneId}
 + Description
-
+    + Author Liukai
+    
 + Parameters
     + intelligentSceneId (long) 智能场景ID
 
@@ -319,4 +323,145 @@
               }
             ]
           }
-        }        
+        }   
+
+
+## 智能场景条件集
+
+
+    
++ Data
+    + conditionalRelation (int) 条件关系（0 与， 1或 ）
+    + conditionalRelationName  (string)  条件关系名
+    + intelligentSceneConditionList (list) 条件关系集合
+        + id (long) ID
+        + enabled (int)  - 使能  0禁止 1启用
+        + creator (long) - 创建人
+        + modifier (long) - 修改人
+        + created (date) - 创建时间
+        + modified (date) - 修改时间
+        + sceneId  (long)
+        + equipmentassetId  (long) 资产设备ID
+        + readTypeId (long) 读数类型ID
+        + readTypeName (string) 读数类型名称
+        + conditionalRelation  (int)  所有条件关系ID
+        + conditionalRelationName (string)  所有条件关系名
+        + judgeCondition  (int) 判断符号ID
+        + judgeConditionName (string) 判断符号名
+        + readValue (string) 对应值（进行判断的值）
+        + equipmentName  (string) 设备名称
+        + equipmentModel (string) 设备型号
+
+
+   
+### 新增或者修改智能场景条件集 [POST]  /intelligentSceneCondition
+
++ Description
+    + Author Liukai
++ Request (application/json)
+
+        {
+          "data": {
+            "intelligentSceneConditionList": [
+              {
+                "sceneId": 1,
+                "equipmentassetId": 1,
+                "readTypeId": 1,
+                "conditionalRelation": 0,
+                "judgeCondition": 0,
+                "readValue": "18.0"
+              },
+              {
+                "sceneId": 1,
+                "equipmentassetId": 1,
+                "readTypeId": 2,
+                "conditionalRelation": 0,
+                "judgeCondition": 0,
+                "readValue": "on"
+              }
+            ]
+          }
+        }
+        
++ Response 201(添加)
+
+        {
+          "data": {
+            "type": "IntelligentSceneCondition"
+          }
+        }
+
++ Response 200 (修改)
+
+
++ Response 400
+
+        {
+          "errors": [
+            {
+              "status": "400",
+              "code": "命令ID不能为空",
+              "title": "Bad Request",
+              "detail": "命令ID不能为空",
+              "source": {
+                "pointer": "IntelligentSceneDetails -> equipmentCmdId"
+              }
+            }
+          ]
+        }
+        
+
+### 查询智能场景条件集 [GET] /intelligentSceneCondition/{intelligentSceneId}
++ Description
+    + Author Liukai
++ Parameters
+    + intelligentSceneId (long) 智能场景ID
+
++ Response 200
+    
+        {
+          "data": {
+            "conditionalRelation": 0,
+            "conditionalRelationName": "与",
+            "intelligentSceneConditionList": [
+              {
+                "id": 1,
+                "enabled": 1,
+                "creator": 0,
+                "modifier": 0,
+                "created": "2020-04-26 18:02:15",
+                "modified": "2020-04-26 18:02:13",
+                "sceneId": 1,
+                "equipmentassetId": 1,
+                "readTypeId": 1,
+                "conditionalRelation": 0,
+                "judgeCondition": 0,
+                "readValue": "18.0",
+                "equipmentName": "吊顶大音响",
+                "equipmentModel": "CS-1",
+                "readTypeName": "co2",
+                "conditionalRelationName": "与",
+                "judgeConditionName": "等于"
+              },
+              {
+                "id": 2,
+                "enabled": 1,
+                "creator": 0,
+                "modifier": 0,
+                "created": "2020-04-26 18:06:55",
+                "modified": "2020-04-26 18:06:58",
+                "sceneId": 1,
+                "equipmentassetId": 1,
+                "readTypeId": 2,
+                "conditionalRelation": 0,
+                "judgeCondition": 0,
+                "readValue": "on",
+                "equipmentName": "吊顶大音响",
+                "equipmentModel": "CS-1",
+                "readTypeName": "是否占用",
+                "conditionalRelationName": "与",
+                "judgeConditionName": "等于"
+              }
+            ]
+          }
+        } 

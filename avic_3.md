@@ -7,6 +7,10 @@
     + 查询智能场景详情
     + 查询智能场景列表
 
++ 2020年4月26日
+    + 新增或者修改智能场景设备命令详情
+    + 查询智能场景设备命令详情
+
 
 ## 智能场景
 + Data
@@ -123,8 +127,10 @@
         }
 
 ### 查询智能场景列表 [GET] /intelligentScene
-比如：http://127.0.0.1:8080/intelligentScene?page[number]=1&page[size]=10&filter[sceneName:like]=%%E8%87%AA%
+
 + Description
+
+    比如：http://127.0.0.1:8080/intelligentScene?page[number]=1&page[size]=10&filter[sceneName:like]=%%E8%87%AA%
 
 + Parameters
     + page[number] (int)  页码  -非必填
@@ -179,6 +185,138 @@
           ]
         }
 
+## 智能场景设备命令详情
 
- 
++ Data
+    + id (long) ID
+    + enabled (int)  - 使能  0禁止 1启用
+    + creator (long) - 创建人
+    + modifier (long) - 修改人
+    + created (date) - 创建时间
+    + modified (date) - 修改时间
+    + sceneId  (long)
+    + equipmentassetId  (long) 资产设备ID
+    + equipmentCmdId  (long) 设备命令ID
+    + cmdName  (string)  命令名称
+    + primaryCategoryName  (string) 一级分类名称
+    + primaryCategoryId (string) 一级分类ID
+    + secondCategoryName  (string)  二级分类名称
+    + secondCategoryId (long) 二级分类ID （如果为0，这一级分类则为null,一级分类名，二级分类名都为null）
+    + equipmentName  (string) 设备名
+    + equipmentModel  (string) 设备型号
+    
 
+   
+### 新增或者修改智能场景设备命令详情 [POST] /intelligentSceneDetails
+
++ Description
+
++ Request (application/json)
+
+        {
+          "data": {
+            "intelligentSceneDetailsList": [
+             
+              {
+                "sceneId": 1,
+                "equipmentassetId": 1,
+                "equipmentCmdId": 2
+              },
+              {
+                "sceneId": 1,
+                "equipmentassetId": 1,
+                "equipmentCmdId": 3
+              }
+            ]
+          }
+        }
+
+        
++ Response 201(添加)
+
+        {
+          "data": {
+            "type": "IntelligentSceneDetails"
+          }
+        }
+
++ Response 200 (修改)
+
+
++ Response 400
+
+        {
+          "errors": [
+            {
+              "status": "400",
+              "code": "命令ID不能为空",
+              "title": "Bad Request",
+              "detail": "命令ID不能为空",
+              "source": {
+                "pointer": "IntelligentSceneDetails -> equipmentCmdId"
+              }
+            }
+          ]
+        }
+        
+
+### 查询智能场景设备命令详情 [GET] /intelligentSceneDetails/{intelligentSceneId}
++ Description
+
++ Parameters
+    + intelligentSceneId (long) 智能场景ID
+
++ Response 200
+    
+        {
+          "data": {
+            "intelligentSceneDetailsList": [
+              {
+                "id": 1,
+                "enabled": 1,
+                "creator": 0,
+                "modifier": 0,
+                "created": "2020-04-26 15:33:29",
+                "modified": "2020-04-26 15:33:32",
+                "sceneId": 1,
+                "equipmentassetId": 1,
+                "equipmentCmdId": 1,
+                "secondCategoryId": 0,
+                "equipmentName": "吊顶大音响",
+                "equipmentModel": "CS-1"
+              },
+              {
+                "id": 2,
+                "enabled": 1,
+                "creator": 0,
+                "modifier": 0,
+                "created": "2020-04-26 15:58:38",
+                "modified": "2020-04-26 15:58:40",
+                "sceneId": 1,
+                "equipmentassetId": 1,
+                "equipmentCmdId": 2,
+                "secondCategoryId": 0,
+                "equipmentName": "吊顶大音响",
+                "equipmentModel": "CS-1"
+              },
+              {
+                "id": 3,
+                "enabled": 1,
+                "creator": 0,
+                "modifier": 0,
+                "created": "2020-04-26 15:58:52",
+                "modified": "2020-04-26 15:58:55",
+                "sceneId": 1,
+                "equipmentassetId": 1,
+                "equipmentCmdId": 3,
+                "primaryCategoryName": "音频",
+                "primaryCategoryId": 1,
+                "secondCategoryName": "01音箱",
+                "secondCategoryId": 12,
+                "equipmentName": "吊顶大音响",
+                "equipmentModel": "CS-1",
+                "cmdName": "01音箱"
+              }
+            ]
+          }
+        }        

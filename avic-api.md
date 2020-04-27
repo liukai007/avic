@@ -51,6 +51,15 @@
         + modifier (long) - 修改人
         + created (date) - 创建时间
         + modified (date) - 修改时间
+    + equipmentReadtypeList -设备读数类型关联表
+        + ID (long) 设备命令表ID 
+        + enabled (int)  - 使能  0禁止 1启用
+        + creator (long) - 创建人
+        + modifier (long) - 修改人
+        + created (date) - 创建时间
+        + modified (date) - 修改时间
+        + equipmentId (long) 设备ID
+        + readTypeId (long) 读数类型ID
 
    
 ### 新增设备 [POST] /equipment
@@ -73,6 +82,11 @@
                 "feedbackFormat": "feedbackFormat1"
               }
             ],
+             "equipmentReadtypeList": [
+              {
+                "readTypeId": 1
+              }
+            ]
             "equipmentName": "string1111",
             "lifeType": 0,
             "maintenanceFrequency": 0,
@@ -119,6 +133,18 @@
                 "feedbackFormat": "feedbackFormat1"
               }
             ],
+            "equipmentReadtypeList": [
+                          {
+                            "id": 1,
+                            "enabled": 1,
+                            "creator": 0,
+                            "modifier": 0,
+                            "created": "2020-04-26 18:04:46",
+                            "modified": "2020-04-26 18:04:48",
+                            "equipmentId": 1,
+                            "readTypeId": 1
+                          }
+                        ]，
             "equipmentName": "string1111",
             "lifeType": 0,
             "maintenanceFrequency": 0,
@@ -141,41 +167,93 @@
     
         {
           "data": {
-            "id": 3,
+            "id": 1,
             "enabled": 1,
             "creator": 0,
-            "modifier": 0,
-            "created": "2020-03-25 18:41:07",
-            "modified": "2020-03-25 18:57:56",
-            "equipmentName": "string1111",
-            "model": "string111",
-            "picture": "string111",
-            "categoryId": 1,
+            "modifier": 43,
+            "created": "2020-04-15 13:57:12",
+            "modified": "2020-04-22 18:20:47",
+            "equipmentName": "吊顶大音响",
+            "model": "CS-1",
+            "picture": "/api/static/image/1587382574498.jpg",
+            "categoryId": 12,
             "brandId": 1,
-            "controllable": 0,
-            "readable": 0,
-            "communicationMode": 0,
+            "controllable": 1,
+            "readable": 1,
+            "communicationMode": 1,
             "lifeType": 0,
-            "recommendedLife": 0,
-            "warrantyPeriod": 0,
-            "maintenanceFrequency": 0,
-            "webLink": "string",
-            "centerControlUnit": 0,
-            "brandName": "brand1",
-            "primaryCategoryId": 0,
-            "categoryName": "中控",
+            "recommendedLife": 1752000,
+            "warrantyPeriod": 6,
+            "maintenanceFrequency": 3,
+            "webLink": "www.extron",
+            "centerControlUnit": 1,
+            "brandName": "Extron",
+            "primaryCategoryId": 1,
+            "primaryCategoryName": "音频",
+            "categoryName": "01音箱",
             "equipmentCommandList": [
               {
                 "id": 1,
-                "enabled": 0,
+                "enabled": 1,
                 "creator": 0,
                 "modifier": 0,
-                "created": "2020-03-25 18:57:56",
-                "modified": "2020-03-25 18:57:56",
-                "equipmentId": 3,
+                "created": "2020-04-22 18:20:47",
+                "modified": "2020-04-22 18:20:47",
+                "equipmentId": 1,
                 "commandId": 1,
-                "commandFormat": "commandFormat1",
-                "feedbackFormat": "feedbackFormat1"
+                "commandFormat": "3E"
+              },
+              {
+                "id": 2,
+                "enabled": 1,
+                "creator": 0,
+                "modifier": 0,
+                "created": "2020-04-22 18:20:47",
+                "modified": "2020-04-22 18:20:47",
+                "equipmentId": 1,
+                "commandId": 2
+              },
+              {
+                "id": 3,
+                "enabled": 1,
+                "creator": 0,
+                "modifier": 0,
+                "created": "2020-04-22 18:20:47",
+                "modified": "2020-04-22 18:20:47",
+                "equipmentId": 1,
+                "commandId": 3
+              },
+              {
+                "id": 19,
+                "enabled": 1,
+                "creator": 0,
+                "modifier": 0,
+                "created": "2020-04-22 18:20:47",
+                "modified": "2020-04-22 18:20:47",
+                "equipmentId": 1,
+                "commandId": 9
+              }
+            ],
+            "equipmentReadtypeList": [
+              {
+                "id": 1,
+                "enabled": 1,
+                "creator": 0,
+                "modifier": 0,
+                "created": "2020-04-26 18:04:46",
+                "modified": "2020-04-26 18:04:48",
+                "equipmentId": 1,
+                "readTypeId": 1
+              },
+              {
+                "id": 2,
+                "enabled": 1,
+                "creator": 0,
+                "modifier": 0,
+                "created": "2020-04-26 18:04:56",
+                "modified": "2020-04-26 18:04:59",
+                "equipmentId": 1,
+                "readTypeId": 2
               }
             ]
           }

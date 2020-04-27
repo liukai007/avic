@@ -172,7 +172,8 @@
               "sceneName": "空调自动场景",
               "sceneType": 1,
               "collaborationId": 1,
-              "opened": 1
+              "opened": 1，
+              "collaborationName": "中会"
             },
             {
               "id": 2,
@@ -184,7 +185,8 @@
               "sceneName": "空调自动",
               "sceneType": 1,
               "collaborationId": 1,
-              "opened": 1
+              "opened": 1，
+              "collaborationName": "中会"
             }
           ]
         }

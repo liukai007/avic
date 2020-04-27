@@ -15,6 +15,13 @@
     + 新增或者修改智能场景条件集
     + 查询智能场景条件集
 
++ 2020年4月27日
+    + 新增读数类型
+    + 删除读数类型
+    + 修改读数类型
+    + 查询读数类型景详情
+    + 查询读数类型列表
+
 ## 智能场景
 + Data
     + id (long) ID
@@ -467,3 +474,152 @@
             ]
           }
         } 
+
+
+
+## 读数类型(主要是设备的其他返回值，在数据库中固定下来)
++ Data
+    + id (long) ID
+    + readtypeName  (string) "是否占用",
+    + readValueType  (int) 读数值返回的类型(0 字符串类型 1 整数型 2 float型)
+    + returnValue  (string) 返回值组(用英文逗号隔开不同的返回值)
+    + enabled (int)  - 使能  0禁止 1启用
+    + creator (long) - 创建人
+    + modifier (long) - 修改人
+    + created (date) - 创建时间
+    + modified (date) - 修改时间
+
+   
+### 新增读数类型 [POST] /readType
+
++ Description
+    + Author Liukai
++ Request (application/json)
+
+        {
+          "data": {
+            "readtypeName": "是否占用1",
+              "readValueType": 0,
+              "returnValue": "on,off1"
+          }
+        }
++ Response 200
+
+        {
+          "data": {
+            "id": 3,
+            "type": "readType"
+          }
+        }
+
++ Response 400
+
+        {
+          "errors": [
+            {
+              "status": "400",
+              "code": "读数类型名不能为空",
+              "title": "Bad Request",
+              "detail": "读数类型名不能为空",
+              "source": {
+                "pointer": "ReadType -> readtypeName"
+              }
+            }
+          ]
+        }
+
+        
+### 删除读数类型 [DEL] /readType{id}
++ Description
+    + Author Liukai
++ Response 204 
+
+        
+### 修改读数类型 [PATCH] /readType{id}
+
++ Description
+    + Author Liukai
+
++ Request (application/json)
+    
+        {
+          "data": {
+
+            "readtypeName": "是否占用1",
+              "readValueType": 0,
+              "returnValue": "on,off1"
+          }
+        }
++ Response 200
++ Response 400
+
+### 查询读数类型详情 [GET] /readType/{id}
++ Description
+    + Author Liukai
++ Response 200
+    
+        {
+          "data": {
+            "id": 1,
+            "enabled": 1,
+            "creator": 0,
+            "modifier": 0,
+            "created": "2020-04-26 18:04:19",
+            "modified": "2020-04-26 18:04:26",
+            "readtypeName": "co2",
+            "readValueType": 2
+          }
+        }
+
+
+### 查询读数类型列表 [GET] /readType
+
++ Description
+    + Author Liukai
+
++ Parameters
+    + page[number] (int)  页码  -非必填
+    + page[size]  (int)   页尺  -非必填
+
++ Response 200
+
+        {
+          "meta": {
+            "totalPages": 1,
+            "totalElements": 2,
+            "size": 10,
+            "number": 1,
+            "numberOfElements": 2,
+            "first": true,
+            "last": true,
+            "sort": null
+          },
+          "links": {
+            "self": "/readType?page[number]=1&page[size]=10",
+            "first": "/readType?page[number]=1&page[size]=10",
+            "last": "/readType?page[number]=1&page[size]=10"
+          },
+          "data": [
+            {
+              "id": 1,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2020-04-26 18:04:19",
+              "modified": "2020-04-26 18:04:26",
+              "readtypeName": "co2",
+              "readValueType": 2
+            },
+            {
+              "id": 2,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2020-04-26 18:04:17",
+              "modified": "2020-04-26 18:04:22",
+              "readtypeName": "是否占用",
+              "readValueType": 0,
+              "returnValue": "on,off"
+            }
+          ]
+        }

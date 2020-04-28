@@ -480,7 +480,7 @@
 ## 读数类型(主要是设备的其他返回值，在数据库中固定下来)
 + Data
     + id (long) ID
-    + readtypeName  (string) "是否占用",
+    + readtypeName  (string) 读数类型名
     + readValueType  (int) 读数值返回的类型(0 字符串类型 1 整数型 2 float型)
     + returnValue  (string) 返回值组(用英文逗号隔开不同的返回值)
     + enabled (int)  - 使能  0禁止 1启用
@@ -533,6 +533,17 @@
 + Description
     + Author Liukai
 + Response 204 
++ Response 400
+
+        {
+          "errors": [
+            {
+              "status": "400",
+              "title": "Bad Request",
+              "detail": "内置读数类型不能删除"
+            }
+          ]
+        }
 
         
 ### 修改读数类型 [PATCH] /readType{id}

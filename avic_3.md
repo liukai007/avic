@@ -591,6 +591,8 @@
 + Parameters
     + page[number] (int)  页码  -非必填
     + page[size]  (int)   页尺  -非必填
+    + filter[readtypeName:like] (string)  读数类型名称
+    + filter[readValueType] (int)  读数返回值类型读数值返回的类型 (0 字符串类型 1 整数型 2 float型)
 
 + Response 200
 

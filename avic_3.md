@@ -22,6 +22,9 @@
     + 查询读数类型景详情
     + 查询读数类型列表
 
++ 2020年4月30日
+    + 环境数据分析接口
+
 ## 智能场景
 + Data
     + id (long) ID
@@ -636,3 +639,139 @@
             }
           ]
         }
+
+## 环境数据分析接口  [GET]  GET /logEnvironment
+
++ Description
+    + Author Liukai
+
++ Parameters
+    + collaborationSpaceId (long)  协作空间ID  
+    + dateType  (int)   时间类型 1：月，2：周，3：日
+    + dateMinStr (string)  开始日期 格式：yyyy-MM-dd HH:mm:ss
+    + dateMaxStr (string)  结束日期 格式：yyyy-MM-dd HH:mm:ss
+
++ ReturnData
+    + created (date) 创建日期
+    + equipmentassetId (long) 资产设备ID
+    + collaborationId (long)  协作空间ID
+    + temperature (float)  温度  
+    + humidity (float)   湿度
+    + co2 (float)   co2
+    + pm25 (float)   pm2.5
+    + pm10 (float)   pm10
+    + tvoc (float)   总挥发性有机化合物
+    + ch2o (float)   甲醛
+              
++ Response 200
+
+        {
+          "data": [
+            {
+              "created": "2020-04-28 00:00:00",
+              "equipmentassetId": 14,
+              "collaborationId": 1,
+              "temperature": 26.1,
+              "humidity": 25.7,
+              "co2": 698,
+              "pm25": 97,
+              "pm10": 173,
+              "tvoc": 188,
+              "ch2o": 52
+            },
+            {
+              "created": "2020-04-28 00:00:00",
+              "equipmentassetId": 14,
+              "collaborationId": 1,
+              "temperature": 25.8,
+              "humidity": 23.9,
+              "co2": 611,
+              "pm25": 44,
+              "pm10": 79,
+              "tvoc": 133,
+              "ch2o": 37
+            },
+            {
+              "created": "2020-04-29 00:00:00",
+              "equipmentassetId": 14,
+              "collaborationId": 1,
+              "temperature": 26.6,
+              "humidity": 28.2,
+              "co2": 742,
+              "pm25": 59,
+              "pm10": 105,
+              "tvoc": 215,
+              "ch2o": 60
+            },
+            {
+              "created": "2020-04-29 00:00:00",
+              "equipmentassetId": 14,
+              "collaborationId": 1,
+              "temperature": 26.6,
+              "humidity": 28.1,
+              "co2": 715,
+              "pm25": 53,
+              "pm10": 95,
+              "tvoc": 198,
+              "ch2o": 56
+            },
+            {
+              "created": "2020-04-30 00:00:00",
+              "equipmentassetId": 14,
+              "collaborationId": 1,
+              "temperature": 26.7,
+              "humidity": 28.5,
+              "co2": 703,
+              "pm25": 49,
+              "pm10": 88,
+              "tvoc": 191,
+              "ch2o": 53
+            },
+            {
+              "created": "2020-04-30 00:00:00",
+              "equipmentassetId": 14,
+              "collaborationId": 1,
+              "temperature": 26.7,
+              "humidity": 28.5,
+              "co2": 703,
+              "pm25": 49,
+              "pm10": 88,
+              "tvoc": 191,
+              "ch2o": 53
+            }
+          ]
+        }
+
+## 当前协作空间环境数据  [GET] /logEnvironment/currentEnvironment
+
++ Description
+    + Author Liukai
+
++ Parameters
+    + collaborationSpaceId (long)  协作空间ID (必填)
+    + equipmentAssetId (long) 非必填 （最好填入不然自动选择一个）
+
++ ReturnData
+    + temperature (float)  温度  
+    + humidity (float)   湿度
+    + co2 (float)   co2
+    + pm25 (float)   pm2.5
+    + pm10 (float)   pm10
+    + tvoc (float)   总挥发性有机化合物
+    + ch2o (float)   甲醛
+              
++ Response 200
+    
+        {
+          "data": {
+            "temperature": 26.8,
+            "humidity": 28.7,
+            "co2": 706,
+            "pm25": 54,
+            "pm10": 96,
+            "tvoc": 192,
+            "ch2o": 54
+          }
+        }
+        
+

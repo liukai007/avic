@@ -493,6 +493,7 @@
     + modifier (long) - 修改人
     + created (date) - 创建时间
     + modified (date) - 修改时间
+    + returnValueList (List) 返回值数组 （针对字符串类型，方便用户选择，不用手动填写）
 
    
 ### 新增读数类型 [POST] /readType
@@ -577,18 +578,23 @@
     
         {
           "data": {
-            "id": 1,
+            "id": 8,
             "enabled": 1,
-            "creator": 0,
-            "modifier": 0,
-            "created": "2020-04-26 18:04:19",
-            "modified": "2020-04-26 18:04:26",
-            "readtypeName": "co2",
-            "readValueType": 2
-            "readtypeNameChinese"："占用"
+            "creator": 55,
+            "modifier": 55,
+            "created": "2020-04-30 14:49:24",
+            "modified": "2020-04-30 14:49:24",
+            "readtypeNameChinese": "占用",
+            "readtypeName": "OccupyState",
+            "readValueType": 0,
+            "returnValue": "Occupy,Idle",
+            "builtIn": 0,
+            "returnValueList": [
+              "Occupy",
+              "Idle"
+            ]
           }
         }
-
 
 ### 查询读数类型列表 [GET] /readType
 

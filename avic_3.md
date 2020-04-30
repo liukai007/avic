@@ -484,7 +484,8 @@
 ## 读数类型(主要是设备的其他返回值，在数据库中固定下来)
 + Data
     + id (long) ID
-    + readtypeName  (string) 读数类型名
+    + readtypeNameChinese  (string) 读数类型中文名
+    + readtypeName  (string) 读数类型英文名
     + readValueType  (int) 读数值返回的类型(0 字符串类型 1 整数型 2 float型)
     + returnValue  (string) 返回值组(用英文逗号隔开不同的返回值)
     + enabled (int)  - 使能  0禁止 1启用
@@ -502,7 +503,8 @@
 
         {
           "data": {
-            "readtypeName": "是否占用1",
+            "readtypeNameChinese"："占用",
+            "readtypeName": "ocuppy",
               "readValueType": 0,
               "returnValue": "on,off1"
           }
@@ -559,7 +561,7 @@
     
         {
           "data": {
-
+            "readtypeNameChinese"："占用",
             "readtypeName": "是否占用1",
               "readValueType": 0,
               "returnValue": "on,off1"
@@ -583,6 +585,7 @@
             "modified": "2020-04-26 18:04:26",
             "readtypeName": "co2",
             "readValueType": 2
+            "readtypeNameChinese"："占用"
           }
         }
 
@@ -600,13 +603,13 @@
 
 + Response 200
 
-        {
+            {
           "meta": {
             "totalPages": 1,
-            "totalElements": 2,
+            "totalElements": 8,
             "size": 10,
             "number": 1,
-            "numberOfElements": 2,
+            "numberOfElements": 8,
             "first": true,
             "last": true,
             "sort": null
@@ -624,8 +627,10 @@
               "modifier": 0,
               "created": "2020-04-26 18:04:19",
               "modified": "2020-04-26 18:04:26",
+              "readtypeNameChinese": "CO2",
               "readtypeName": "co2",
-              "readValueType": 2
+              "readValueType": 2,
+              "builtIn": 1
             },
             {
               "id": 2,
@@ -634,9 +639,84 @@
               "modifier": 0,
               "created": "2020-04-26 18:04:17",
               "modified": "2020-04-26 18:04:22",
-              "readtypeName": "是否占用",
+              "readtypeNameChinese": "PM2.5",
+              "readtypeName": "pm25",
+              "readValueType": 2,
+              "returnValue": "",
+              "builtIn": 1
+            },
+            {
+              "id": 3,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2020-04-27 17:43:56",
+              "modified": "2020-04-27 17:46:33",
+              "readtypeNameChinese": "PM10",
+              "readtypeName": "pm10",
+              "readValueType": 2,
+              "returnValue": "",
+              "builtIn": 1
+            },
+            {
+              "id": 4,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "modified": "2020-04-27 18:48:34",
+              "readtypeNameChinese": "总挥发性有机化合物",
+              "readtypeName": "tvoc",
+              "readValueType": 2,
+              "builtIn": 1
+            },
+            {
+              "id": 5,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2020-04-27 18:48:31",
+              "modified": "2020-04-27 18:48:38",
+              "readtypeNameChinese": "甲醛",
+              "readtypeName": "ch2o",
+              "readValueType": 2,
+              "builtIn": 1
+            },
+            {
+              "id": 6,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2020-04-30 10:39:54",
+              "modified": "2020-04-30 10:39:57",
+              "readtypeNameChinese": "温度",
+              "readtypeName": "temperature",
+              "readValueType": 2,
+              "builtIn": 1
+            },
+            {
+              "id": 7,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2020-04-30 10:40:36",
+              "modified": "2020-04-30 10:40:39",
+              "readtypeNameChinese": "湿度",
+              "readtypeName": "humidity",
+              "readValueType": 2,
+              "builtIn": 1
+            },
+            {
+              "id": 8,
+              "enabled": 1,
+              "creator": 55,
+              "modifier": 55,
+              "created": "2020-04-30 14:49:24",
+              "modified": "2020-04-30 14:49:24",
+              "readtypeNameChinese": "占用",
+              "readtypeName": "OccupyState",
               "readValueType": 0,
-              "returnValue": "on,off"
+              "returnValue": "Occupy,Idle",
+              "builtIn": 0
             }
           ]
         }

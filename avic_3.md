@@ -24,6 +24,7 @@
 
 + 2020年4月30日
     + 环境数据分析接口
+    + 当前协作空间环境数据
 
 ## 智能场景
 + Data
@@ -640,7 +641,7 @@
           ]
         }
 
-## 环境数据分析接口  [GET]  GET /logEnvironment
+## 环境数据分析接口  [GET]  /logEnvironment
 
 + Description
     + Author Liukai

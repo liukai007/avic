@@ -30,7 +30,14 @@
     + 数据总览-协作空间使用次数接口
     + 数据总览-协作空间使用电量接口
 
-
++ 2020年5月04日
+    + 机构统计接口
+    + 楼宇统计接口
+    + 协作空间统计接口
+    + 受控情况接口
+    + 品牌统计接口
+    + 分类统计接口
+    + 控制协议统计接口
 ## 智能场景
 + Data
     + id (long) ID
@@ -948,3 +955,295 @@
           ]
         }
 
+## 数据总览-机构统计（机构详情接口）  [GET]  /Organization
+
+
++ ReturnData
+    + id (long)  机构ID  
+    + enabled (long)   是否开启
+    + creator (long)   创建人
+    + created (Date)   创建时间
+    + modified (long)   修改人
+    + parentId (long)  父ID  
+    + fullName (string)   机构名
+    + logo (string)   logo
+    + abbreviation (string)   简称
+    + park (string)   园区
+    + address (string)   地址
+    + contactNumber (string)   联系电话
+    + displayOrder (long)   排序
++ Response 200
+
+
+
+          {
+          "data": [
+                {
+                  "id": 1,
+                  "enabled": 1,
+                  "creator": 0,
+                  "modifier": 55,
+                  "created": "2020-04-09 17:07:25",
+                  "modified": "2020-04-28 10:29:56",
+                  "parentId": 0,
+                  "fullName": "北京太平宝迪-真实数据(请勿删)",
+                  "logo": "/api/static/image/1586423198264.jpg",
+                  "abbreviation": "北京太平宝迪-真实数据(请勿删)",
+                  "park": "北京太平宝迪-真实数据(请勿删)",
+                  "address": "北京太平宝迪-真实数据(请勿删)",
+                  "contactNumber": "010606055653",
+                  "displayOrder": 100
+                }
+          ]
+        }
+        
+        
+        
+        
+## 数据总览-楼宇统计  [GET]  /building/info
+
++ ReturnData
+    + organizationId (long)  机构ID  
+    + organizationName (string)   机构名称
+    + total (Integer)   数量
+    + id (long)   楼宇ID
+    + enabled (long)   是否开启
+    + creator (long)  创建人 
+    + modifier (long)   修改人
+    + created (date)   创建时间
+    + modified (date)   修改时间
+    + organizationId (long)   机构ID
+    + buildingName (string)   楼宇名称
+    + displayOrder (Integer)   排序
++ Response 200
+
+
+
+
+       {
+       "data": [
+                {
+                  "organizationId": 1,
+                  "organizationName": "北京太平宝迪-真实数据(请勿删)",
+                  "total": 1,
+                  "data": [
+                    {
+                      "id": 1,
+                      "enabled": 1,
+                      "creator": 0,
+                      "modifier": 0,
+                      "created": "2020-04-09 17:27:44",
+                      "modified": "2020-04-09 18:46:45",
+                      "organizationId": 1,
+                      "buildingName": "北京云谷电子商务产业园2号楼",
+                      "displayOrder": 100
+                    }
+                  ]
+                }
+          ]
+        }
+        
+        
+
+## 数据总览-协作空间统计  [GET]  /collaborationSpace/info
+
++ ReturnData
+    + organizationId (long)  机构ID  
+    + organizationName (string)   机构名称
+    + total (Integer)   数量
+    + id (long)   楼宇ID
+    + enabled (long)   是否开启
+    + creator (long)  创建人 
+    + modifier (long)   修改人
+    + created (date)   创建时间
+    + modified (date)   修改时间
+    + fullName (string)   协作空间名称
+    + logo (string)   logo
+    + floorId (long)   楼层ID
+    + displayOrder (Integer)   排序
++ Response 200
+
+
+
+     {
+       "data": [
+                   {
+              "organizationId": 7,
+              "organizationName": "耐克运动鞋",
+              "total": 2,
+              "data": [
+                {
+                  "id": 4,
+                  "enabled": 1,
+                  "creator": 51,
+                  "modifier": 51,
+                  "created": "2020-04-22 10:43:04",
+                  "modified": "2020-04-22 10:43:04",
+                  "fullName": "中央会议是",
+                  "logo": "/api/static/image/1587523378847.png",
+                  "floorId": 10,
+                  "displayOrder": 100
+                },
+                {
+                  "id": 5,
+                  "enabled": 1,
+                  "creator": 51,
+                  "modifier": 51,
+                  "created": "2020-04-22 10:43:40",
+                  "modified": "2020-04-22 10:44:02",
+                  "fullName": "多媒体会议室3",
+                  "logo": "/api/static/image/1587523414134.png",
+                  "floorId": 12,
+                  "displayOrder": 100
+                }
+              ]
+            }
+      ]
+    }
+
+
+
+## 数据总览-受控情况统计  [GET]/equipmentasset/info
+
++ Parameters
+    + id (long)  机构ID
+   
+
++ ReturnData
+    + organizationId (long) 机构ID  
+    + organizationName (string)   机构名称
+    + controlled (Integer)   可控设备
+    + uncontrollable (Integer)   不可控设备
+              
++ Response 200
+
+
+
+
+        {
+          "data": [
+            {
+              "organizationId": null,
+              "organizationName": null,
+              "controlled": 12,
+              "uncontrollable": 0
+            }
+          ]
+        }
+        
+        
+        
+## 数据总览-品牌统计  [GET]/brand/info
+
++ Parameters
+    + id (long)  机构ID
+   
+
++ ReturnData
+    + id (long) 品牌ID  
+    + enabled (Integer)   是否可用
+    + creator (Long)    创建人
+    + modifier (long)   修改人
+    + modified (date) 修改时间
+    + created(date)  创建时间
+    + brandName (string)   品牌名称
+    + logo (string)   logo
+    + description (string)   描述
+    + website (string) 网址  
+    + displayOrder (Integer)   排序
+    + total (Integer)   数量
+              
++ Response 200
+
+
+
+
+    {
+      "data": [
+        {
+          "id": 1,
+          "enabled": 1,
+          "creator": 0,
+          "modifier": 0,
+          "created": "2020-04-08 10:05:31",
+          "modified": "2020-04-09 10:05:21",
+          "brandName": "Extron",
+          "logo": "/api//static/image/1586311163195.png",
+          "description": "每天都会有数百万的人们感受着 Extron 视音频信号处理、分配和控制产品所带来的极致体验。我们先进的技术创造了更加清晰的图像、更高品质的声音、更便捷的控制以及更可靠的系统。我们功能强大的资产管理工具也能够帮助技术专家们有效地管理企事业单位中部署的大量视音频系统。",
+          "website": "https://www.extron.cn/",
+          "displayOrder": 5,
+          "total": 9
+        }
+        ]
+        }
+        
+        
+## 数据总览-分类统计  [GET]/category/info
+
++ Parameters
+    + id (long)  机构ID
+   
+
++ ReturnData
+    + id (long) 品牌ID  
+    + enabled (Integer)   是否可用
+    + creator (Long)    创建人
+    + modifier (long)   修改人
+    + modified (date) 修改时间
+    + created(date)  创建时间
+    + parentId (long)   父ID
+    + categoryName (string)   分类名称
+    + description (string)   描述
+    + picture (string) 图片  
+    + displayOrder (Integer)   排序
+    + equipmentAssetTotal (Integer)   数量
+              
++ Response 200
+
+
+
+        {
+          "data": [
+            {
+              "id": 3,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2020-04-09 13:56:08",
+              "modified": "2020-04-09 13:56:08",
+              "parentId": 0,
+              "categoryName": "控制",
+              "picture": "/api/static/image/1586411757375.png",
+              "description": "控制相关设备",
+              "displayOrder": 5,
+              "equipmentAssetTotal": 0
+            }]}
+            
+            
+            
+## 数据总览-控制协议统计  [GET]/controlprotocol/info
+
++ Parameters
+    + id (long)  机构ID
+   
+
++ ReturnData
+    + id (long) 协议ID  
+    + protocolName (String)   协议名称
+    + description (String)    描述
+    + equipmentAssetTotal (long)   数量
+              
++ Response 200
+
+
+
+
+
+        {
+          "data": [
+            {
+              "id": 1,
+              "protocolName": "网络协议",
+              "description": "网络协议1",
+              "equipmentAssetTotal": 5
+            }]}

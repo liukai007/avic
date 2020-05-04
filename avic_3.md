@@ -26,6 +26,11 @@
     + 环境数据分析接口
     + 当前协作空间环境数据
 
++ 2020年5月04日
+    + 数据总览-协作空间使用次数接口
+    + 数据总览-协作空间使用电量接口
+
+
 ## 智能场景
 + Data
     + id (long) ID
@@ -861,4 +866,85 @@
           }
         }
         
+
+
+## 数据总览-协作空间使用次数接口  [GET] /logUsedTimesElectric/times
+
++ Description
+    + Author Liukai
+    + 已经自动排好序了
+
++ Parameters
+    + dateMaxStr (long)  结束日期（格式：yyyy-MM-dd HH:mm:ss）
+    + dateMinStr (long) 开始日期 （格式：yyyy-MM-dd HH:mm:ss）
+    + organizationId  (long) 机构ID
+
++ ReturnData
+    + collaborationSpaceName (string)  协作空间名  
+    + collaborationSpaceId (long)   协作空间id
+    + times (int)   次数
+    + organizationName (string)   机构名
+    + organizationId (long)   机构ID
+
+              
++ Response 200
+    
+        {
+          "data": [
+            {
+              "collaborationSpaceName": "大会",
+              "collaborationSpaceId": 2,
+              "times": 34,
+              "organizationName": "北京太平宝迪-真实数据(请勿删)",
+              "organizationId": 1
+            },
+            {
+              "collaborationSpaceName": "中会",
+              "collaborationSpaceId": 1,
+              "times": 9,
+              "organizationName": "北京太平宝迪-真实数据(请勿删)",
+              "organizationId": 1
+            }
+          ]
+        }
+
+
+## 数据总览-协作空间使用电量接口  [GET]  /logUsedTimesElectric/energy
+
++ Description
+    + Author Liukai
+    + 已经自动排好序了
+
++ Parameters
+    + dateMaxStr (long)  结束日期（格式：yyyy-MM-dd HH:mm:ss）
+    + dateMinStr (long) 开始日期 （格式：yyyy-MM-dd HH:mm:ss）
+    + organizationId  (long) 机构ID
+
++ ReturnData
+    + collaborationSpaceName (string)  协作空间名  
+    + collaborationSpaceId (long)   协作空间id
+    + powerConsumption (double)   电量合计
+    + organizationName (string)   机构名
+    + organizationId (long)   机构ID
+              
++ Response 200
+    
+        {
+          "data": [
+            {
+              "collaborationSpaceName": "中会",
+              "collaborationSpaceId": 1,
+              "powerConsumption": 18.08999,
+              "organizationName": "北京太平宝迪-真实数据(请勿删)",
+              "organizationId": 1
+            },
+            {
+              "collaborationSpaceName": "大会",
+              "collaborationSpaceId": 2,
+              "powerConsumption": 3,
+              "organizationName": "北京太平宝迪-真实数据(请勿删)",
+              "organizationId": 1
+            }
+          ]
+        }
 

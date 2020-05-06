@@ -38,6 +38,9 @@
     + 品牌统计接口
     + 分类统计接口
     + 控制协议统计接口
+
++ 2020年5月06日
+    + 协作空间统计-次数&电量统计
     
 ## 智能场景
 + Data
@@ -1251,3 +1254,89 @@
               "description": "网络协议1",
               "equipmentAssetTotal": 5
             }]}
+
+## 协作空间统计-次数&电量统计  [GET] /logUsedTimesElectric/energyAndTimesCollaboration
++ Description
+    + Author Liukai
+
++ Parameters
+    + dateStr (string) 日期  格式：yyyy-MM-dd
+    + collaborationId (long) 协作空间ID
+    + dateType (int)  日期类型 时间类型 0：年， 1：月，2：周
+
++ ReturnData
+    + weekYearMonth (int)  哪周/哪月/哪年
+    + eneryValueSum (double) 本月/本年/本周电量
+    + times (int)  本月/本年/本周 使用次数
+    + timesTb (double)    次数同比率
+    + eneryValueTb (double)  电量同比率
+    + timesHb (double)     次数环比率
+    + eneryValueHb (double) 电量环比率
+    + logUsedTimesElectricList
+        +  created  (date) 时间
+        +  times (int)  次数
+        +  powerConsumption  (double)
+              
++ Response 200
+
+        {
+          "data": {
+            "weekYearMonth": 5,
+            "eneryValueSum": 12.32,
+            "times": 6,
+            "timesTb": 0,
+            "eneryValueTb": 120.00000000000001,
+            "timesHb": 500,
+            "eneryValueHb": 1132,
+            "logUsedTimesElectricList": [
+              {
+                "id": 2,
+                "created": "2020-05-02 00:00:00",
+                "organizationId": 1,
+                "collaborationId": 1,
+                "times": 0,
+                "powerConsumption": 6.96
+              },
+              {
+                "id": 3,
+                "created": "2020-05-01 00:00:00",
+                "organizationId": 1,
+                "collaborationId": 1,
+                "times": 0,
+                "powerConsumption": 0
+              },
+              {
+                "id": 4,
+                "created": "2020-05-03 00:00:00",
+                "organizationId": 1,
+                "collaborationId": 1,
+                "times": 2,
+                "powerConsumption": 1.13001
+              },
+              {
+                "id": 5,
+                "created": "2020-05-04 00:00:00",
+                "organizationId": 1,
+                "collaborationId": 1,
+                "times": 1,
+                "powerConsumption": 2.11
+              },
+              {
+                "id": 6,
+                "created": "2020-05-05 00:00:00",
+                "organizationId": 1,
+                "collaborationId": 1,
+                "times": 0,
+                "powerConsumption": 2.11999
+              },
+              {
+                "id": 7,
+                "created": "2020-05-06 00:00:00",
+                "organizationId": 1,
+                "collaborationId": 1,
+                "times": 3,
+                "powerConsumption": 0
+              }
+            ]
+          }
+        }

@@ -42,6 +42,9 @@
 + 2020年5月06日
     + 协作空间统计-次数&电量统计
     
++ 2020年5月09日
+    + 协作空间统计-使用次数排名(协作空间)&故障报警排名(协作空间)
+    
 ## 智能场景
 + Data
     + id (long) ID
@@ -1336,6 +1339,98 @@
                 "collaborationId": 1,
                 "times": 3,
                 "powerConsumption": 0
+              }
+            ]
+          }
+        }
+
+## 协作空间统计-使用次数排名(协作空间)&故障报警排名(协作空间) [GET] /logEquipmentMalfunction/timesAndMalfunction
++ Description
+    + Author Liukai
+
++ Parameters
+    + dateStr (string) 日期  格式：yyyy-MM-dd
+    + collaborationId (long) 协作空间ID
+    + dateType (int)  日期类型 时间类型 0：年， 1：月，2：周
+    + rankId (int) 排序 :0 次数 1 故障, 默认值是次数0
+
++ ReturnData
+    + logEquipmentMalfunctionList
+        +  equipmentassetId (long)  资产设备ID
+        +  malfunctionTimes (int)  故障次数
+        +  useTimes  (int)  使用次数
+        +  equipmentName  (string)  设备名字
+        +  equipmentModel (string) 设备型号
+        +  categoryName (string)  分类名字
+        +  categoryId (long)  分类ID
+              
++ Response 200
+
+        {
+          "data": {
+            "logEquipmentMalfunctionList": [
+              {
+                "equipmentassetId": 1,
+                "malfunctionTimes": 5,
+                "useTimes": 55,
+                "equipmentName": "中控设备1",
+                "equipmentModel": "zk1",
+                "categoryName": "extron中控",
+                "categoryId": 20
+              },
+              {
+                "equipmentassetId": 3,
+                "malfunctionTimes": 2,
+                "useTimes": 4,
+                "equipmentName": "黑色摄像头",
+                "equipmentModel": "1566-78",
+                "categoryName": "圆形摄像头",
+                "categoryId": 16
+              },
+              {
+                "equipmentassetId": 4,
+                "malfunctionTimes": 0,
+                "useTimes": 0,
+                "equipmentName": "ex投影幕布",
+                "equipmentModel": "884823-985",
+                "categoryName": "投影幕布",
+                "categoryId": 17
+              },
+              {
+                "equipmentassetId": 20,
+                "malfunctionTimes": 0,
+                "useTimes": 0,
+                "equipmentName": "法拉利2020",
+                "equipmentModel": "2020",
+                "categoryName": "01音箱",
+                "categoryId": 12
+              },
+              {
+                "equipmentassetId": 7,
+                "malfunctionTimes": 0,
+                "useTimes": 0,
+                "equipmentName": "ex投影幕布",
+                "equipmentModel": "884823-985",
+                "categoryName": "投影幕布",
+                "categoryId": 17
+              },
+              {
+                "equipmentassetId": 9,
+                "malfunctionTimes": 0,
+                "useTimes": 0,
+                "equipmentName": "海林空调",
+                "equipmentModel": "HL-1525",
+                "categoryName": "空调",
+                "categoryId": 23
+              },
+              {
+                "equipmentassetId": 13,
+                "malfunctionTimes": 0,
+                "useTimes": 0,
+                "equipmentName": "圆筒灯",
+                "equipmentModel": "IS-10023",
+                "categoryName": "筒灯",
+                "categoryId": 15
               }
             ]
           }

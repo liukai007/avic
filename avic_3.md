@@ -1443,7 +1443,7 @@
 ## 协作空间统计-使用年限统计[GET] /equipmentasset/ageLimitInfo
 
 + ReturnData
-    + ageLimit (int) 使用年限(1,2,3,4,5,6)
+    + ageLimit (int) 使用年限(1年,2年,3年,4年,5年,6大于5年)
     + category
         +  id (long)  分类ID
         +  enabled (int)  是否启用
@@ -1527,3 +1527,97 @@
             }
              ]
             }
+        
+        
+
+## 协作空间统计-寿命统计[GET] /equipmentasset/ageLimitInfo
+
+
++ ReturnData
+    + ageLimit (int) 使用寿命(1全新,2良好,3一般,4可用,5极限,6更换)
+    + category
+        +  id (long)  分类ID
+        +  enabled (int)  是否启用
+        +  creator  (Long)  创建人
+        +  modifier  (long)  修改人
+        +  created (date) 创建日期
+        +  modified (date)  修改日期
+        +  parentId (long)  父ID
+        +  categoryName  (string)  分类名字
+        +  picture (string) 图片
+        +  description (string)  描述
+        +  displayOrder (long)  排序
+    + equipment
+        +  id (long)  设备ID
+        +  enabled (int)  是否启用
+        +  creator  (Long)  创建人
+        +  modifier  (long)  修改人
+        +  created (date) 创建日期
+        +  modified (date)  修改日期
+        +  equipmentName (string)  设备名称
+        +  model  (string)  设备型号
+        +  picture (string) 图片
+        +  categoryId (int)  设备分类ID
+        +  brandId (int)  品牌id
+        +  controllable  (int)  是否可控
+        +  readable (int) 是否可读 0不可读 1可读
+        +  communicationMode (int)  通信方式，0：单向，1：双向
+        +  lifeType (int)  寿命类型，0：时长，1：次数'
+        +  recommendedLife  (int)  建议寿命
+        +  warrantyPeriod (int) 质保期限
+        +  maintenanceFrequency (int)  保养频率，单位：月'
+        +  webLink (string)  产品链接
+        +  centerControlUnit (int)  是否是中控  0非中控 1是中控
+     + total (int) 数量
+              
++ Response 200
+
+
+    
+        {
+          "data": [
+            {
+              "ageLimit": 1,
+              "category": [
+                {
+                  "id": 12,
+                  "enabled": 1,
+                  "creator": 0,
+                  "modifier": 0,
+                  "created": "2020-04-09 14:19:11",
+                  "modified": "2020-04-09 14:19:11",
+                  "parentId": 1,
+                  "categoryName": "01音箱",
+                  "picture": "/api/static/image/1586413141274.png",
+                  "description": "音箱",
+                  "displayOrder": 1
+                  ....
+                }],
+                "equipment": [
+                {
+                  "id": 1,
+                  "enabled": 1,
+                  "creator": 0,
+                  "modifier": 55,
+                  "created": "2020-04-15 13:57:12",
+                  "modified": "2020-04-27 19:04:50",
+                  "equipmentName": "中控设备1",
+                  "model": "zk1",
+                  "picture": "string111",
+                  "categoryId": 20,
+                  "brandId": 1,
+                  "controllable": 0,
+                  "readable": 0,
+                  "communicationMode": 0,
+                  "lifeType": 0,
+                  "recommendedLife": 3,
+                  "warrantyPeriod": 0,
+                  "maintenanceFrequency": 1,
+                  "webLink": "string",
+                  "centerControlUnit": 1
+                  ....
+                }],
+                "total": 19
+            }
+            ]
+        }

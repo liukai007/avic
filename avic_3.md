@@ -1443,6 +1443,10 @@
 
 ## 协作空间统计-使用年限统计[GET] /equipmentasset/ageLimitInfo
 
++ Parameters
+    + id (long) 协作空间id 
+
+
 + ReturnData
     + ageLimit (int) 使用年限(1：1年，2：2年，3：3年，4：4年，5：5年，6：大于5年)
     + category
@@ -1532,6 +1536,9 @@
         
 
 ## 协作空间统计-寿命统计[GET] /equipmentasset/ageLimitInfo
+
++ Parameters
+    + id (long) 协作空间id 
 
 
 + ReturnData

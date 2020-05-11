@@ -1634,6 +1634,12 @@
 
 ## 个人中心-信息列表[GET] /logEquipment/information
 
++ Parameters
+    + page[number] (int)  页码  -非必填
+    + page[size]  (int)   页尺  -非必填
+    + sort (String[])  排序 -不用填
+
+
 + ReturnData
     +  id (long)  设备日志ID
     +  creator  (Long)  创建人
@@ -1654,181 +1660,119 @@
     +  equipmentName (string)  设备型号名称
     +  equipmentModel (string)  设备型号
     +  userName (string) 用户名
+    +  floorNum (int) 楼层
               
 + Response 200
 
 
-        {
-          "data": [
             {
-              "id": 43,
-              "creator": 55,
-              "created": "2020-04-28 13:21:27",
-              "logLevel": 1,
-              "equipmentAssetId": 14,
-              "randomCode": "18edd846-0ed7-4645-a47e-06bf68ca0c4b",
-              "operateType": 0,
-              "operateId": 0,
-              "eventContent": "中会七合一传感器(设备)执行了-查看7合1设备的状态-命令",
-              "collaborationSpaceId": 1,
-              "collaborationSpaceName": "中会",
-              "buildingId": 1,
-              "buildingName": "北京云谷电子商务产业园2号楼",
-              "organizationId": 1,
-              "organizationName": "北京太平宝迪-真实数据(请勿删)",
-              "logLevelName": "警告",
-              "equipmentName": "7合一传感器",
-              "equipmentModel": "SM300D2MOD",
-              "userName": "lk"
+        "meta": {
+            "totalPages": 1,
+            "totalElements": 9,
+            "size": 10,
+            "number": 1,
+            "numberOfElements": 9,
+            "first": true,
+            "last": true,
+            "sort": null
+        },
+        "links": {
+            "self": "/logEquipment?page[number]=1&page[size]=10",
+            "first": "/logEquipment?page[number]=1&page[size]=10",
+            "last": "/logEquipment?page[number]=1&page[size]=10"
+        },
+        "data": [
+            {
+                "id": 43,
+                "creator": 55,
+                "created": "2020-04-28 13:21:27",
+                "logLevel": 1,
+                "equipmentAssetId": 14,
+                "randomCode": "18edd846-0ed7-4645-a47e-06bf68ca0c4b",
+                "operateType": 0,
+                "operateId": 0,
+                "eventContent": "中会七合一传感器(设备)执行了-查看7合1设备的状态-命令",
+                "collaborationSpaceId": 1,
+                "collaborationSpaceName": "中会",
+                "buildingId": 1,
+                "buildingName": "北京云谷电子商务产业园2号楼",
+                "organizationId": 1,
+                "organizationName": "北京太平宝迪-真实数据(请勿删)",
+                "logLevelName": "警告",
+                "floorNum": 5,
+                "userName": "lk",
+                "equipmentName": "7合一传感器",
+                "equipmentModel": "SM300D2MOD"
             },
             {
-              "id": 44,
-              "creator": 55,
-              "created": "2020-04-28 15:49:42",
-              "logLevel": 0,
-              "equipmentAssetId": 14,
-              "randomCode": "479e43cd-988c-47e8-8866-20ac97d3a590",
-              "operateType": 0,
-              "operateId": 0,
-              "eventContent": "中会七合一传感器(设备)执行了-查看7合1设备的状态-命令",
-              "collaborationSpaceId": 1,
-              "collaborationSpaceName": "中会",
-              "buildingId": 1,
-              "buildingName": "北京云谷电子商务产业园2号楼",
-              "organizationId": 1,
-              "organizationName": "北京太平宝迪-真实数据(请勿删)",
-              "logLevelName": "错误",
-              "equipmentName": "7合一传感器",
-              "equipmentModel": "SM300D2MOD",
-              "userName": "lk"
+                "id": 46,
+                "creator": 55,
+                "created": "2020-04-28 15:49:50",
+                "logLevel": 0,
+                "equipmentAssetId": 14,
+                "randomCode": "974369f7-7817-4ae2-a7ab-bd2f7f6aa5a3",
+                "operateType": 0,
+                "operateId": 0,
+                "eventContent": "中会七合一传感器(设备)执行了-查看7合1设备的状态-命令",
+                "collaborationSpaceId": 1,
+                "collaborationSpaceName": "中会",
+                "buildingId": 1,
+                "buildingName": "北京云谷电子商务产业园2号楼",
+                "organizationId": 1,
+                "organizationName": "北京太平宝迪-真实数据(请勿删)",
+                "logLevelName": "错误",
+                "floorNum": 5,
+                "userName": "lk",
+                "equipmentName": "7合一传感器",
+                "equipmentModel": "SM300D2MOD"
             },
             {
-              "id": 45,
-              "creator": 55,
-              "created": "2020-04-28 15:49:48",
-              "logLevel": 0,
-              "equipmentAssetId": 14,
-              "randomCode": "ed2e52ef-d144-4b4e-b0f3-452856c471f4",
-              "operateType": 0,
-              "operateId": 0,
-              "eventContent": "中会七合一传感器(设备)执行了-查看7合1设备的状态-命令",
-              "collaborationSpaceId": 1,
-              "collaborationSpaceName": "中会",
-              "buildingId": 1,
-              "buildingName": "北京云谷电子商务产业园2号楼",
-              "organizationId": 1,
-              "organizationName": "北京太平宝迪-真实数据(请勿删)",
-              "logLevelName": "错误",
-              "equipmentName": "7合一传感器",
-              "equipmentModel": "SM300D2MOD",
-              "userName": "lk"
+                "id": 47,
+                "creator": 55,
+                "created": "2020-04-28 15:49:51",
+                "logLevel": 0,
+                "equipmentAssetId": 14,
+                "randomCode": "d49bf1e8-3fce-4e5b-964a-d384a4b00c54",
+                "operateType": 0,
+                "operateId": 0,
+                "eventContent": "中会七合一传感器(设备)执行了-查看7合1设备的状态-命令",
+                "collaborationSpaceId": 1,
+                "collaborationSpaceName": "中会",
+                "buildingId": 1,
+                "buildingName": "北京云谷电子商务产业园2号楼",
+                "organizationId": 1,
+                "organizationName": "北京太平宝迪-真实数据(请勿删)",
+                "logLevelName": "错误",
+                "floorNum": 5,
+                "userName": "lk",
+                "equipmentName": "7合一传感器",
+                "equipmentModel": "SM300D2MOD"
             },
             {
-              "id": 46,
-              "creator": 55,
-              "created": "2020-04-28 15:49:50",
-              "logLevel": 0,
-              "equipmentAssetId": 14,
-              "randomCode": "974369f7-7817-4ae2-a7ab-bd2f7f6aa5a3",
-              "operateType": 0,
-              "operateId": 0,
-              "eventContent": "中会七合一传感器(设备)执行了-查看7合1设备的状态-命令",
-              "collaborationSpaceId": 1,
-              "collaborationSpaceName": "中会",
-              "buildingId": 1,
-              "buildingName": "北京云谷电子商务产业园2号楼",
-              "organizationId": 1,
-              "organizationName": "北京太平宝迪-真实数据(请勿删)",
-              "logLevelName": "错误",
-              "equipmentName": "7合一传感器",
-              "equipmentModel": "SM300D2MOD",
-              "userName": "lk"
+                "created": "2020-04-15 19:01:44",
+                "collaborationSpaceId": 2,
+                "collaborationSpaceName": "大会",
+                "buildingId": 1,
+                "buildingName": "北京云谷电子商务产业园2号楼",
+                "organizationId": 1,
+                "organizationName": "北京太平宝迪-真实数据(请勿删)",
+                "logLevelName": "保养",
+                "floorNum": 5,
+                "equipmentName": "黑色摄像头",
+                "equipmentModel": "1566-78"
             },
             {
-              "id": 47,
-              "creator": 55,
-              "created": "2020-04-28 15:49:51",
-              "logLevel": 0,
-              "equipmentAssetId": 14,
-              "randomCode": "d49bf1e8-3fce-4e5b-964a-d384a4b00c54",
-              "operateType": 0,
-              "operateId": 0,
-              "eventContent": "中会七合一传感器(设备)执行了-查看7合1设备的状态-命令",
-              "collaborationSpaceId": 1,
-              "collaborationSpaceName": "中会",
-              "buildingId": 1,
-              "buildingName": "北京云谷电子商务产业园2号楼",
-              "organizationId": 1,
-              "organizationName": "北京太平宝迪-真实数据(请勿删)",
-              "logLevelName": "错误",
-              "equipmentName": "7合一传感器",
-              "equipmentModel": "SM300D2MOD",
-              "userName": "lk"
-            },
-            {
-              "id": 48,
-              "creator": 55,
-              "created": "2020-04-28 16:02:59",
-              "logLevel": 0,
-              "equipmentAssetId": 14,
-              "randomCode": "f3eb07ba-2e20-452c-849f-e3b6338d71ee",
-              "operateType": 0,
-              "operateId": 0,
-              "eventContent": "中会七合一传感器(设备)执行了-查看7合1设备的状态-命令",
-              "collaborationSpaceId": 1,
-              "collaborationSpaceName": "中会",
-              "buildingId": 1,
-              "buildingName": "北京云谷电子商务产业园2号楼",
-              "organizationId": 1,
-              "organizationName": "北京太平宝迪-真实数据(请勿删)",
-              "logLevelName": "错误",
-              "equipmentName": "7合一传感器",
-              "equipmentModel": "SM300D2MOD",
-              "userName": "lk"
-            },
-            {
-              "created": "2019-06-01 13:58:56",
-              "collaborationSpaceId": 2,
-              "collaborationSpaceName": "大会",
-              "buildingId": 1,
-              "buildingName": "北京云谷电子商务产业园2号楼",
-              "organizationId": 1,
-              "organizationName": "北京太平宝迪-真实数据(请勿删)",
-              "logLevelName": "保养",
-              "equipmentName": "中会中控设备"
-            },
-            {
-              "created": "2018-09-01 18:29:17",
-              "collaborationSpaceId": 2,
-              "collaborationSpaceName": "大会",
-              "buildingId": 1,
-              "buildingName": "北京云谷电子商务产业园2号楼",
-              "organizationId": 1,
-              "organizationName": "北京太平宝迪-真实数据(请勿删)",
-              "logLevelName": "保养",
-              "equipmentName": "黑色圆筒灯"
-            },
-            {
-              "created": "2020-04-15 19:01:44",
-              "collaborationSpaceId": 2,
-              "collaborationSpaceName": "大会",
-              "buildingId": 1,
-              "buildingName": "北京云谷电子商务产业园2号楼",
-              "organizationId": 1,
-              "organizationName": "北京太平宝迪-真实数据(请勿删)",
-              "logLevelName": "保养",
-              "equipmentName": "黑色摄像头"
-            },
-            {
-              "created": "2020-04-14 14:12:14",
-              "collaborationSpaceId": 2,
-              "collaborationSpaceName": "大会",
-              "buildingId": 1,
-              "buildingName": "北京云谷电子商务产业园2号楼",
-              "organizationId": 1,
-              "organizationName": "北京太平宝迪-真实数据(请勿删)",
-              "logLevelName": "保养",
-              "equipmentName": "白色投影幕布"
+                "created": "2020-04-14 14:12:14",
+                "collaborationSpaceId": 2,
+                "collaborationSpaceName": "大会",
+                "buildingId": 1,
+                "buildingName": "北京云谷电子商务产业园2号楼",
+                "organizationId": 1,
+                "organizationName": "北京太平宝迪-真实数据(请勿删)",
+                "logLevelName": "保养",
+                "floorNum": 5,
+                "equipmentName": "ex投影幕布",
+                "equipmentModel": "884823-985"
             }
-          ]
-        }
+        ]
+    }

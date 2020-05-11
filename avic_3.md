@@ -1456,7 +1456,7 @@
         +  picture (string) 图片
         +  description (string)  描述
         +  displayOrder (long)  排序
-      + equipment
+    + equipment
         +  id (long)  设备ID
         +  enabled (int)  是否启用
         +  creator  (Long)  创建人

@@ -44,6 +44,8 @@
     
 + 2020年5月09日
     + 协作空间统计-使用次数排名(协作空间)&故障报警排名(协作空间)
+    + 使用年限统计
+    + 寿命统计
     
 ## 智能场景
 + Data
@@ -1435,3 +1437,93 @@
             ]
           }
         }
+
+
+
+## 协作空间统计-使用年限统计[GET] /equipmentasset/ageLimitInfo
+
++ ReturnData
+    + ageLimit (int) 使用年限(1,2,3,4,5,6)
+    + category
+        +  id (long)  分类ID
+        +  enabled (int)  是否启用
+        +  creator  (Long)  创建人
+        +  modifier  (long)  修改人
+        +  created (date) 创建日期
+        +  modified (date)  修改日期
+        +  parentId (long)  父ID
+        +  categoryName  (string)  分类名字
+        +  picture (string) 图片
+        +  description (string)  描述
+        +  displayOrder (long)  排序
+      + equipment
+        +  id (long)  设备ID
+        +  enabled (int)  是否启用
+        +  creator  (Long)  创建人
+        +  modifier  (long)  修改人
+        +  created (date) 创建日期
+        +  modified (date)  修改日期
+        +  equipmentName (string)  设备名称
+        +  model  (string)  设备型号
+        +  picture (string) 图片
+        +  categoryId (int)  设备分类ID
+        +  brandId (int)  品牌id
+        +  controllable  (int)  是否可控
+        +  readable (int) 是否可读 0不可读 1可读
+        +  communicationMode (int)  通信方式，0：单向，1：双向
+        +  lifeType (int)  寿命类型，0：时长，1：次数'
+        +  recommendedLife  (int)  建议寿命
+        +  warrantyPeriod (int) 质保期限
+        +  maintenanceFrequency (int)  保养频率，单位：月'
+        +  webLink (string)  产品链接
+        +  centerControlUnit (int)  是否是中控  0非中控 1是中控
+     + total (int) 数量
+              
++ Response 200
+
+            {
+            "data": [
+                "ageLimit": 2,
+              "category": [
+                {
+                  "id": 15,
+                  "enabled": 1,
+                  "creator": 43,
+                  "modifier": 43,
+                  "created": "2020-04-17 19:13:30",
+                  "modified": "2020-04-17 19:13:30",
+                  "parentId": 14,
+                  "categoryName": "筒灯",
+                  "picture": "/api/static/image/1587121999040.jpg",
+                  "description": "圆形灯具",
+                  "displayOrder": 100
+                }
+              ],
+              "equipment": [
+                {
+                  "id": 2,
+                  "enabled": 1,
+                  "creator": 43,
+                  "modifier": 43,
+                  "created": "2020-04-17 18:27:26",
+                  "modified": "2020-04-22 18:25:06",
+                  "equipmentName": "圆筒灯",
+                  "model": "IS-10023",
+                  "picture": "/api/static/image/1587119209780.jpg",
+                  "categoryId": 15,
+                  "brandId": 1,
+                  "controllable": 1,
+                  "readable": 0,
+                  "communicationMode": 0,
+                  "lifeType": 1,
+                  "recommendedLife": 1,
+                  "warrantyPeriod": 3,
+                  "maintenanceFrequency": 6,
+                  "webLink": "www.budee.com",
+                  "centerControlUnit": 0
+                }
+              ],
+              "total": 1
+            }
+             ]
+            }

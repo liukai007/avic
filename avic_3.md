@@ -61,6 +61,13 @@
     + created (date) - 创建时间
     + modified (date) - 修改时间
     + collaborationName  (string) 协作空间名称
+    + 后面新增字段
+    + floorId  (long)  楼层ID
+    + buildingId (long) 楼宇ID
+    + organizationId  (long) 机构ID
+    + floorName  (string)  楼层号
+    + buildingName  (string)  楼宇名
+    + organizationName  (string)  机构名
 
    
 ### 新增智能场景 [POST] /intelligentScene
@@ -135,19 +142,26 @@
     + Author Liukai
 + Response 200
     
-        {
+            {
           "data": {
             "id": 1,
             "enabled": 1,
             "creator": 0,
             "modifier": 0,
             "created": "2020-04-24 17:21:33",
-            "modified": "2020-04-24 17:21:37",
+            "modified": "2020-05-09 16:21:18",
             "sceneName": "空调自动场景",
-            "sceneType": 1,
+            "sceneType": 0,
             "collaborationId": 1,
             "opened": 1,
-            "collaborationName": "中会"
+            "running": 1,
+            "collaborationName": "中会",
+            "floorId": 4,
+            "buildingId": 1,
+            "organizationId": 1,
+            "floorName": "5",
+            "buildingName": "北京云谷电子商务产业园2号楼",
+            "organizationName": "北京太平宝迪-真实数据(请勿删)"
           }
         }
 
@@ -172,27 +186,31 @@
 + Parameters
     + page[number] (int)  页码  -非必填
     + page[size]  (int)   页尺  -非必填
-    + filter[sceneName:like] (string)  场景名称
+    + filter[sceneName] (string)  场景名称
     + filter[sceneType] (int)  场景类型 场景类型 (0为触发类，1为条件类)
-    + filter[collaborationId] (long) 协作空间ID
+    + filter[collaborationSpaceid] (long) 协作空间ID
+    + filter[floorid] 楼层ID
+    + filter[buildingid] (long) 楼宇ID
+    + filter[organizationid] 机构id
+    + sort (String[]) 排序 (智能场景固有字段可以参与排序)
 
 + Response 200
 
         {
           "meta": {
             "totalPages": 1,
-            "totalElements": 2,
+            "totalElements": 3,
             "size": 10,
             "number": 1,
-            "numberOfElements": 2,
+            "numberOfElements": 3,
             "first": true,
             "last": true,
             "sort": null
           },
           "links": {
-            "self": "/intelligentScene?page[number]=1&page[size]=10",
-            "first": "/intelligentScene?page[number]=1&page[size]=10",
-            "last": "/intelligentScene?page[number]=1&page[size]=10"
+            "self": "/intelligentScene?filter[collaborationSpaceid]=1&filter[organizationid]=2&page[number]=1&page[size]=10",
+            "first": "/intelligentScene?filter[collaborationSpaceid]=1&filter[organizationid]=2&page[number]=1&page[size]=10",
+            "last": "/intelligentScene?filter[collaborationSpaceid]=1&filter[organizationid]=2&page[number]=1&page[size]=10"
           },
           "data": [
             {
@@ -201,25 +219,38 @@
               "creator": 0,
               "modifier": 0,
               "created": "2020-04-24 17:21:33",
-              "modified": "2020-04-24 17:21:37",
+              "modified": "2020-05-09 16:21:18",
               "sceneName": "空调自动场景",
-              "sceneType": 1,
+              "sceneType": 0,
               "collaborationId": 1,
-              "opened": 1，
-              "collaborationName": "中会"
+              "opened": 1,
+              "running": 1
             },
             {
               "id": 2,
               "enabled": 1,
               "creator": 55,
-              "modifier": 55,
+              "modifier": 47,
               "created": "2020-04-24 17:42:14",
-              "modified": "2020-04-24 17:42:14",
+              "modified": "2020-05-11 16:08:57",
               "sceneName": "空调自动",
               "sceneType": 1,
               "collaborationId": 1,
-              "opened": 1，
-              "collaborationName": "中会"
+              "opened": 0,
+              "running": 1
+            },
+            {
+              "id": 3,
+              "enabled": 1,
+              "creator": 55,
+              "modifier": 55,
+              "created": "2020-04-24 17:43:28",
+              "modified": "2020-04-24 17:44:33",
+              "sceneName": "空调自动1",
+              "sceneType": 0,
+              "collaborationId": 1,
+              "opened": 1,
+              "running": 0
             }
           ]
         }

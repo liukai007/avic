@@ -47,7 +47,11 @@
     + 协作空间统计-使用年限统计
     + 协作空间统计-寿命统计
     + 个人中心-信息列表
+
++ 2020年5月12日
+    + 已读未读
     
+
 ## 智能场景
 + Data
     + id (long) ID
@@ -1822,3 +1826,11 @@
                 }
             ]
         }
+
+
+
+## 信息列表-已读未读[PATCH] /logEquipment/information
+
++ Parameters
+    + equipmentAssetId (long)  设备资产id  -非必填
+    + logEquipmentId  (long)   设备日志id  -非必填

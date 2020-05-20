@@ -927,9 +927,9 @@
     + 已经自动排好序了
 
 + Parameters
-    + dateMaxStr (long)  结束日期（格式：yyyy-MM-dd HH:mm:ss）
-    + dateMinStr (long) 开始日期 （格式：yyyy-MM-dd HH:mm:ss）
     + organizationId  (long) 机构ID
+    + dateStr (string) 日期  格式：yyyy-MM-dd
+    + dateType (int)  日期类型 时间类型 0：年， 1：月，2：周
 
 + ReturnData
     + collaborationSpaceName (string)  协作空间名  
@@ -968,9 +968,9 @@
     + 已经自动排好序了
 
 + Parameters
-    + dateMaxStr (long)  结束日期（格式：yyyy-MM-dd HH:mm:ss）
-    + dateMinStr (long) 开始日期 （格式：yyyy-MM-dd HH:mm:ss）
     + organizationId  (long) 机构ID
+    + dateStr (string) 日期  格式：yyyy-MM-dd
+    + dateType (int)  日期类型 时间类型 0：年， 1：月，2：周
 
 + ReturnData
     + collaborationSpaceName (string)  协作空间名  
@@ -1002,7 +1002,6 @@
 
 ## 数据总览-机构统计（机构详情接口）  [GET]  /Organization
 
-
 + ReturnData
     + id (long)  机构ID  
     + enabled (long)   是否开启
@@ -1018,8 +1017,6 @@
     + contactNumber (string)   联系电话
     + displayOrder (long)   排序
 + Response 200
-
-
 
           {
           "data": [
@@ -1042,9 +1039,6 @@
           ]
         }
         
-        
-        
-        
 ## 数据总览-楼宇统计  [GET]  /building/info
 
 + ReturnData
@@ -1061,9 +1055,6 @@
     + buildingName (string)   楼宇名称
     + displayOrder (Integer)   排序
 + Response 200
-
-
-
 
        {
        "data": [
@@ -1089,7 +1080,6 @@
         }
         
         
-
 ## 数据总览-协作空间统计  [GET]  /collaborationSpace/info
 
 + ReturnData
@@ -1107,8 +1097,6 @@
     + floorId (long)   楼层ID
     + displayOrder (Integer)   排序
 + Response 200
-
-
 
         {
            "data": [
@@ -1147,7 +1135,6 @@
         }
 
 
-
 ## 数据总览-受控情况统计  [GET]/equipmentasset/info
 
 + Parameters
@@ -1161,8 +1148,6 @@
     + uncontrollable (Integer)   不可控设备
               
 + Response 200
-
-
 
 
         {

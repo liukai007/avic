@@ -51,6 +51,9 @@
 + 2020年5月12日
     + 已读未读
     
++ 2020年5月20日
+    + 视频链接获取
+    
 
 ## 智能场景
 + Data
@@ -1813,9 +1816,35 @@
         }
 
 
-
 ## 信息列表-已读未读[PATCH] /logEquipment/information
 
 + Parameters
     + equipmentAssetId (long)  设备资产id  -非必填
     + logEquipmentId  (long)   设备日志id  -非必填
+
+## 视频链接获取
++ Description
+    + Author Liukai
+
++ Parameters
+    + filter[collaborationSpaceid]  (long) 协作空间id (必填)
+
++ ReturnData
+    + id (long)  ID  
+    + collaborationSpaceId (long)   协作空间id
+    + privateUrl (string)   内网视频链接
+    + publicUrl (string)   外网视频链接
+
+              
++ Response 200
+
+        {
+          "data": [
+            {
+              "id": 1,
+              "collaborationId": 2,
+              "privateUrl": "http://192.168.2.10:8081/live/livestream.flv",
+              "publicUrl": "http://avic.budee.com:8081/live/livestream.flv"
+            }
+          ]
+        }

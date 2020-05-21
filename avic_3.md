@@ -53,7 +53,14 @@
     
 + 2020年5月20日
     + 视频链接获取
-    
+
++ 2020年5月21日
+    + 会议预约添加
+    + 预约日历-协作空间列表
+    + 预约日历
+    + 会议详情（查一）
+    + 预约修改
+    + 预约取消
 
 ## 智能场景
 + Data
@@ -1848,3 +1855,246 @@
             }
           ]
         }
+
+
+
+## 预约会议室-会议预约添加[post] /ConferenceReservation
+
++ Parameters
+     + data
+        +  theme (String)  会议主题
+        +  collaborationSpaceId  (Long)  协作空间id
+        +  otherServices (String) 会议服务
+        +  remindTime (Integer)  提醒时间按照分钟数算
+        +  startTime (Date)  会议开始时间
+        +  endTime  (Date)  会议结束时间
+        +  expense (BigDecimal) 费用
+        +  creator (Long)  召集人
+        +  userId (Long[])  用户id
+ 
+
++ Response 200
+
+
+## 预约日历-协作空间列表[get] /ConferenceReservation/meeting
+
++ Parameters
+    + filter[buildingId] (long)  楼宇id  -非必填
+    + filter[floorId]  (long)   楼层id  -非必填
+    + filter[organizationId] (long) 机构id -必填
+
+
++ ReturnData
+    + id (long)  协作空间id 
+    + enabled (Integer)   是否可用
+    + creator (Long)   创建人
+    + modifier (Long)   修改人
+    + created (Date)  创建时间
+    + modified (Date) 修改时间
+    + fullName (String) 协作空间名称
+    + logo (String) logo
+    + floorId (Long) 楼层id
+    + unitPrice (BigDecimal) 计费单价
+    + seatingCapacity (Integer) 可容纳人数
+    + displayOrder (Integer) 排序
+
+              
++ Response 200
+
+        {
+              "data": [
+                {
+                  "id": 1,
+                  "enabled": 1,
+                  "creator": 1,
+                  "modifier": 55,
+                  "created": "2020-04-09 18:45:52",
+                  "modified": "2020-05-19 09:40:34",
+                  "fullName": "中会(勿删)",
+                  "logo": "/api/static/image/1586429142132.png",
+                  "floorId": 9,
+                  "unitPrice": 0,
+                  "seatingCapacity": 0,
+                  "displayOrder": 1
+                }
+              ]
+            }
+            
+            
+
+## 预约日历[get] /ConferenceReservation/meetingCalendar
+
++ Parameters
+    + collaborationSpaceId (long)  协作空间id  -必填
+    + dateMaxStr  (string)   结束日期，格式：yyyy-MM-dd HH:mm:ss  -必填
+    + dateMinStr (string) 开始日期，格式：yyyy-MM-dd HH:mm:ss -必填
+    + dateType (Integer) 时间类型 1：月，2：周，3：日 -必填
+
+
++ ReturnData
+    + id (long)  协作空间id 
+    + enabled (Integer)   是否可用
+    + creator (Long)   创建人
+    + modifier (Long)   修改人
+    + created (Date)  创建时间
+    + modified (Date) 修改时间
+    + theme (String) 会议主题
+    + collaborationSpaceId (Long) 协作空间id
+    + otherServices (string) 会议服务
+    + remindTime (Integer) 提醒时间按照分钟数算
+    + startTime (date) 会议开始时间
+    + endTime (date) 会议结束时间
+    + expense (BigDecimal) 费用
+
+              
++ Response 200
+
+                 {
+              "data": [
+                {
+                  "id": 1,
+                  "enabled": 0,
+                  "creator": 45,
+                  "modifier": 0,
+                  "created": "2020-05-20 10:57:23",
+                  "modified": "2020-05-21 17:39:54",
+                  "theme": "打算刚发的",
+                  "collaborationSpaceId": 1,
+                  "otherServices": "瓜子",
+                  "remindTime": 15,
+                  "startTime": "2019-12-12 09:00:00",
+                  "endTime": "2019-12-12 10:00:00",
+                  "expense": 80
+                }
+                ]
+               }
+               
+               
+
+## 取消预约[delete] /ConferenceReservation/{id}
+
++ Parameters
+    + id (long)  会议id  -必填
+
+
++ Response 200
+
+
+## 会议详情（查一）[get] /ConferenceReservation/{id}
+
++ Parameters
+    + id (long)  会议id  -必填
+    + include  (Array[string])   文件  -非必填
+  
+
+
++ ReturnData
+    + id (long)  协作空间id 
+    + enabled (Integer)   是否可用
+    + creator (Long)   创建人
+    + modifier (Long)   修改人
+    + created (Date)  创建时间
+    + modified (Date) 修改时间
+    + theme (String) 会议主题
+    + collaborationSpaceId (Long) 协作空间id
+    + otherServices (string) 会议服务
+    + remindTime (Integer) 提醒时间按照分钟数算
+    + startTime (date) 会议开始时间
+    + endTime (date) 会议结束时间
+    + expense (BigDecimal) 费用
+    + department (string) 部门
+    + convener (string) 召集人
+    + participant (List<string>) 参与人
+    + conferenceReservation  (List<ConferenceReservation>) 已选择时间段
+        + id (long)  协作空间id 
+        + enabled (Integer)   是否可用
+        + creator (Long)   创建人
+        + modifier (Long)   修改人
+        + created (Date)  创建时间
+        + modified (Date) 修改时间
+        + theme (String) 会议主题
+        + collaborationSpaceId (Long) 协作空间id
+        + otherServices (string) 会议服务
+        + remindTime (Integer) 提醒时间按照分钟数算
+        + startTime (date) 会议开始时间
+        + endTime (date) 会议结束时间
+        + expense (BigDecimal) 费用
+
+              
++ Response 200
+
+                       {
+              "data": {
+                "id": 12,
+                "enabled": 1,
+                "creator": 45,
+                "modifier": 0,
+                "created": "2020-05-20 15:32:05",
+                "modified": "2020-05-21 16:36:53",
+                "theme": "人民代表会议",
+                "collaborationSpaceId": 2,
+                "otherServices": "瓜子+果盘+饮料",
+                "remindTime": 30,
+                "startTime": "2020-05-22 15:00:00",
+                "endTime": "2020-05-22 17:00:00",
+                "expense": 180,
+                "department": "IT",
+                "convener": "yhz",
+                "participant": [
+                  "yhz",
+                  "ztl",
+                  "www"
+                ],
+                "conferenceReservation": [
+                  {
+                    "id": 12,
+                    "enabled": 1,
+                    "creator": 45,
+                    "modifier": 0,
+                    "created": "2020-05-20 15:32:05",
+                    "modified": "2020-05-21 16:36:53",
+                    "theme": "人民代表会议",
+                    "collaborationSpaceId": 2,
+                    "otherServices": "瓜子+果盘+饮料",
+                    "remindTime": 30,
+                    "startTime": "2020-05-22 15:00:00",
+                    "endTime": "2020-05-22 17:00:00",
+                    "expense": 180
+                  },
+                  {
+                    "id": 13,
+                    "enabled": 1,
+                    "creator": 45,
+                    "modifier": 0,
+                    "created": "2020-05-21 17:47:12",
+                    "modified": "2020-05-21 17:47:12",
+                    "theme": "人代会议",
+                    "collaborationSpaceId": 2,
+                    "otherServices": "瓜子+果盘+饮料",
+                    "remindTime": 30,
+                    "startTime": "2020-05-22 15:00:00",
+                    "endTime": "2020-05-22 17:00:00",
+                    "expense": 180
+                  }
+                ]
+              }
+            }
+             
+             
+             
+## 预约会议室-预约修改[patch] /ConferenceReservation/{id}
+
++ Parameters
+     + data
+        +  theme (String)  会议主题
+        +  collaborationSpaceId  (Long)  协作空间id
+        +  otherServices (String) 会议服务
+        +  remindTime (Integer)  提醒时间按照分钟数算
+        +  startTime (Date)  会议开始时间
+        +  endTime  (Date)  会议结束时间
+        +  expense (BigDecimal) 费用
+        +  creator (Long)  召集人
+        +  userId (Long[])  用户id
+ 
+
++ Response 200

@@ -62,6 +62,11 @@
     + 预约修改
     + 预约取消
 
++ 2020年5月25日
+    + 个人中心-信息提示
+    + 个人中心-我的预约
+
+
 ## 智能场景
 + Data
     + id (long) ID
@@ -2099,3 +2104,133 @@
  
 
 + Response 200
+
+
+## 个人中心-信息提示[get] /ConferenceReservation/meetingReminder
+
+
+
++ ReturnData
+    + id (long)  协作空间id 
+    + enabled (Integer)   是否可用
+    + creator (Long)   创建人
+    + modifier (Long)   修改人
+    + created (Date)  创建时间
+    + modified (Date) 修改时间
+    + theme (String) 会议主题
+    + collaborationSpaceId (Long) 协作空间id
+    + otherServices (string) 会议服务
+    + remindTime (Integer) 提醒时间按照分钟数算
+    + startTime (date) 会议开始时间
+    + endTime (date) 会议结束时间
+    + expense (BigDecimal) 费用
+
+              
++ Response 200
+
+                {
+                  "data": [
+                    {
+                      "id": 13,
+                      "enabled": 1,
+                      "creator": 45,
+                      "modifier": 0,
+                      "created": "2020-05-21 17:47:12",
+                      "modified": "2020-05-21 17:47:12",
+                      "theme": "人代会议",
+                      "collaborationSpaceId": 2,
+                      "otherServices": "瓜子+果盘+饮料",
+                      "remindTime": 30,
+                      "startTime": "2020-05-25 16:20:00",
+                      "endTime": "2020-05-25 17:00:00",
+                      "expense": 180
+                    }
+                  ]
+                }
+                
+
+
+## 个人中心-我的预约[get] /ConferenceReservation/meetingCalendar
+
++ Parameters
+     + dateMinStr (string)  开始日期 格式：yyyy-MM-dd HH:mm:ss -非必填
+    + dateMaxStr (string)  结束日期 格式：yyyy-MM-dd HH:mm:ss -非必填
+    + filter[collaborationSpaceId] (Long) 协作空间id  -非必填
+    + page[number] (Integer) 页码 -必填
+    + page[size] (Integer) 条数 -必填
+    + state (Integer) 状态（1：未开始  2：进行中 3：已结束）
+
+
++ ReturnData
+    + meta
+        +  totalPages (int)  总页数
+        +  totalElements (long)  总条数
+        +  size  (int)  条数
+        +  number  (int)  页码
+        +  sort  (string[])  排序
+    + data
+        + id (long)  协作空间id 
+        + enabled (Integer)   是否可用
+        + creator (Long)   创建人
+        + modifier (Long)   修改人
+        + created (Date)  创建时间
+        + modified (Date) 修改时间
+        + theme (String) 会议主题
+        + collaborationSpaceId (Long) 协作空间id
+        + otherServices (string) 会议服务
+        + remindTime (Integer) 提醒时间按照分钟数算
+        + startTime (date) 会议开始时间
+        + endTime (date) 会议结束时间
+        + expense (BigDecimal) 费用
+              
++ Response 200
+
+                           {
+              "meta": {
+                "totalPages": 1,
+                "totalElements": 2,
+                "size": 10,
+                "number": 1,
+                "numberOfElements": 2,
+                "first": true,
+                "last": true,
+                "sort": null
+              },
+              "links": {
+                "self": "/ConferenceReservation?filter[collaborationSpaceId]=2&page[number]=1&page[size]=10",
+                "first": "/ConferenceReservation?filter[collaborationSpaceId]=2&page[number]=1&page[size]=10",
+                "last": "/ConferenceReservation?filter[collaborationSpaceId]=2&page[number]=1&page[size]=10"
+              },
+              "data": [
+                {
+                  "id": 12,
+                  "enabled": 1,
+                  "creator": 45,
+                  "modifier": 0,
+                  "created": "2020-05-20 15:32:05",
+                  "modified": "2020-05-21 16:36:53",
+                  "theme": "人民代表会议",
+                  "collaborationSpaceId": 2,
+                  "otherServices": "瓜子+果盘+饮料",
+                  "remindTime": 15,
+                  "startTime": "2020-05-22 18:10:00",
+                  "endTime": "2020-05-22 22:00:00",
+                  "expense": 180
+                },
+                {
+                  "id": 13,
+                  "enabled": 1,
+                  "creator": 45,
+                  "modifier": 0,
+                  "created": "2020-05-21 17:47:12",
+                  "modified": "2020-05-21 17:47:12",
+                  "theme": "人代会议",
+                  "collaborationSpaceId": 2,
+                  "otherServices": "瓜子+果盘+饮料",
+                  "remindTime": 30,
+                  "startTime": "2020-05-25 16:20:00",
+                  "endTime": "2020-05-25 17:00:00",
+                  "expense": 180
+                }
+              ]
+            }

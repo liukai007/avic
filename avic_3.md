@@ -2182,6 +2182,8 @@
         + startTime (date) 会议开始时间
         + endTime (date) 会议结束时间
         + expense (BigDecimal) 费用
+        + collaborationSpaceName (string) 协作空间名称
+        + state (int) 状态 （1：未开始  2：进行中 3：已结束）
               
 + Response 200
 
@@ -2202,35 +2204,39 @@
                 "last": "/ConferenceReservation?filter[collaborationSpaceId]=2&page[number]=1&page[size]=10"
               },
               "data": [
-                {
-                  "id": 12,
-                  "enabled": 1,
-                  "creator": 45,
-                  "modifier": 0,
-                  "created": "2020-05-20 15:32:05",
-                  "modified": "2020-05-21 16:36:53",
-                  "theme": "人民代表会议",
-                  "collaborationSpaceId": 2,
-                  "otherServices": "瓜子+果盘+饮料",
-                  "remindTime": 15,
-                  "startTime": "2020-05-22 18:10:00",
-                  "endTime": "2020-05-22 22:00:00",
-                  "expense": 180
-                },
-                {
-                  "id": 13,
-                  "enabled": 1,
-                  "creator": 45,
-                  "modifier": 0,
-                  "created": "2020-05-21 17:47:12",
-                  "modified": "2020-05-21 17:47:12",
-                  "theme": "人代会议",
-                  "collaborationSpaceId": 2,
-                  "otherServices": "瓜子+果盘+饮料",
-                  "remindTime": 30,
-                  "startTime": "2020-05-25 16:20:00",
-                  "endTime": "2020-05-25 17:00:00",
-                  "expense": 180
-                }
+                                   {
+                        "id": 12,
+                        "enabled": 1,
+                        "creator": 60,
+                        "modifier": 0,
+                        "created": "2020-05-20 15:32:05",
+                        "modified": "2020-05-21 16:36:53",
+                        "theme": "人民代表会议",
+                        "collaborationSpaceId": 2,
+                        "otherServices": "瓜子+果盘+饮料",
+                        "remindTime": 15,
+                        "startTime": "2020-05-22 18:10:00",
+                        "endTime": "2020-05-22 22:00:00",
+                        "expense": 180,
+                        "collaborationSpaceName": "大会",
+                        "state": 3
+                    },
+                    {
+                        "id": 13,
+                        "enabled": 1,
+                        "creator": 60,
+                        "modifier": 0,
+                        "created": "2020-05-21 17:47:12",
+                        "modified": "2020-05-21 17:47:12",
+                        "theme": "人代会议",
+                        "collaborationSpaceId": 2,
+                        "otherServices": "瓜子+果盘+饮料",
+                        "remindTime": 30,
+                        "startTime": "2020-05-25 17:20:00",
+                        "endTime": "2020-05-25 21:00:00",
+                        "expense": 180,
+                        "collaborationSpaceName": "大会",
+                        "state": 2
+                    }
               ]
             }

@@ -816,6 +816,7 @@
     + pm10 (float)   pm10
     + tvoc (float)   总挥发性有机化合物
     + ch2o (float)   甲醛
+    + highLow (int)  1表示高  0表示低 （在周、日两个时间类型中不起作用）
               
 + Response 200
 

@@ -65,7 +65,7 @@
 + 2020年5月25日
     + 个人中心-信息提示
     + 个人中心-我的预约
-
+    + 查询已选择日期
 
 ## 智能场景
 + Data
@@ -2239,4 +2239,71 @@
                         "state": 2
                     }
               ]
+            }
+
+
+
+
+
+
+## 查询已选择日期[get] /ConferenceReservation/queryTime
+
++ Parameters
+     + dateMinStr (string)  开始日期 格式：yyyy-MM-dd HH:mm:ss -必填
+    + dateMaxStr (string)  结束日期 格式：yyyy-MM-dd HH:mm:ss -必填
+
+
+
++ ReturnData
+
+    + data
+        + id (long)  协作空间id 
+        + enabled (Integer)   是否可用
+        + creator (Long)   创建人
+        + modifier (Long)   修改人
+        + created (Date)  创建时间
+        + modified (Date) 修改时间
+        + theme (String) 会议主题
+        + collaborationSpaceId (Long) 协作空间id
+        + otherServices (string) 会议服务
+        + remindTime (Integer) 提醒时间按照分钟数算
+        + startTime (date) 会议开始时间
+        + endTime (date) 会议结束时间
+        + expense (BigDecimal) 费用
+              
++ Response 200
+
+             {
+                "data": [
+                    {
+                        "id": 13,
+                        "enabled": 1,
+                        "creator": 60,
+                        "modifier": 0,
+                        "created": "2020-05-21 17:47:12",
+                        "modified": "2020-05-21 17:47:12",
+                        "theme": "人代会议",
+                        "collaborationSpaceId": 2,
+                        "otherServices": "瓜子+果盘+饮料",
+                        "remindTime": 30,
+                        "startTime": "2020-05-25 17:20:00",
+                        "endTime": "2020-05-25 21:00:00",
+                        "expense": 180
+                    },
+                    {
+                        "id": 20,
+                        "enabled": 1,
+                        "creator": 45,
+                        "modifier": 0,
+                        "created": "2020-05-26 10:16:01",
+                        "modified": "2020-05-26 10:16:01",
+                        "theme": "测试5",
+                        "collaborationSpaceId": 3,
+                        "otherServices": "茶水",
+                        "remindTime": 10,
+                        "startTime": "2020-05-25 19:00:00",
+                        "endTime": "2020-05-25 19:30:00",
+                        "expense": 0
+                    }
+                ]
             }

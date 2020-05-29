@@ -1938,7 +1938,7 @@
 
 
 + ReturnData
-    + id (long)  协作空间id 
+    + id (long)  会议预约id 
     + enabled (Integer)   是否可用
     + creator (Long)   创建人
     + modifier (Long)   修改人

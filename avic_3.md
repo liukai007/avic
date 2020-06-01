@@ -2108,45 +2108,67 @@
 
 ## 个人中心-信息提示[get] /ConferenceReservation/meetingReminder
 
++ Parameters
+    + page[number] (int)  页码  -非必填
+    + page[size]  (int)   条数  -非必填
+    + sort (String[])  排序  -非必填
+    + filter[readed]  (Integer)   未读  -非必填
+  
+  
 
 
 + ReturnData
-    + id (long)  协作空间id 
-    + enabled (Integer)   是否可用
-    + creator (Long)   创建人
-    + modifier (Long)   修改人
-    + created (Date)  创建时间
-    + modified (Date) 修改时间
-    + theme (String) 会议主题
-    + collaborationSpaceId (Long) 协作空间id
-    + otherServices (string) 会议服务
-    + remindTime (Integer) 提醒时间按照分钟数算
-    + startTime (date) 会议开始时间
-    + endTime (date) 会议结束时间
-    + expense (BigDecimal) 费用
+    + totalPages (int) 总页数
+    + totalElements (int) 总条数
+    + size (int) 页码
+    + number (int) 条数
+    + logEquipmentDtos
+    + conferenceReservations 会议参数
+        + id (long)  协作空间id 
+        + enabled (Integer)   是否可用
+        + creator (Long)   创建人
+        + modifier (Long)   修改人
+        + created (Date)  创建时间
+        + modified (Date) 修改时间
+        + theme (String) 会议主题
+        + collaborationSpaceId (Long) 协作空间id
+        + otherServices (string) 会议服务
+        + remindTime (Integer) 提醒时间按照分钟数算
+        + startTime (date) 会议开始时间
+        + endTime (date) 会议结束时间
+        + expense (BigDecimal) 费用
 
               
 + Response 200
 
-                {
-                  "data": [
+                  {
+                "data": [
                     {
-                      "id": 13,
-                      "enabled": 1,
-                      "creator": 45,
-                      "modifier": 0,
-                      "created": "2020-05-21 17:47:12",
-                      "modified": "2020-05-21 17:47:12",
-                      "theme": "人代会议",
-                      "collaborationSpaceId": 2,
-                      "otherServices": "瓜子+果盘+饮料",
-                      "remindTime": 30,
-                      "startTime": "2020-05-25 16:20:00",
-                      "endTime": "2020-05-25 17:00:00",
-                      "expense": 180
+                        "totalPages": 1,
+                        "totalElements": 1,
+                        "size": 10,
+                        "number": 1,
+                        "logEquipmentDtos": null,
+                        "conferenceReservations": [
+                            {
+                                "id": 32,
+                                "enabled": 1,
+                                "creator": 51,
+                                "modifier": 0,
+                                "created": "2020-06-01 14:04:50",
+                                "modified": "2020-06-01 14:04:50",
+                                "theme": "ceshi123",
+                                "collaborationSpaceId": 3,
+                                "remindTime": 5,
+                                "startTime": "2020-06-01 18:00:00",
+                                "endTime": "2020-06-01 14:45:00",
+                                "expense": 3,
+                                "readed": 0
+                            }
+                        ]
                     }
-                  ]
-                }
+                ]
+            }
                 
 
 
@@ -2307,3 +2329,14 @@
                     }
                 ]
             }
+
+
+
+
+## 个人中心-会议（已读未读）[post] /ConferenceReservation/readed
+
++ Parameters
+     + ids (list<long>)  会议id
+     
++ Response 200
+  

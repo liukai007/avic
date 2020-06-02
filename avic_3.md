@@ -67,6 +67,13 @@
     + 个人中心-我的预约
     + 查询已选择日期
 
++ 2020年6月2日
+    + 计划任务添加
+    + 计划任务修改
+    + 计划任务删除
+    + 计划任务详情
+    + 计划任务列表
+
 ## 智能场景
 + Data
     + id (long) ID
@@ -2339,4 +2346,262 @@
      + ids (list<long>)  会议id
      
 + Response 200
-  
+
+
+
+
+## 计划任务添加[post] /ScheduledTask
+
++ Parameters
+    + data
+        + taskName (string)  任务名称
+        + taskYear (string) 年
+        + taskMonth (string) 月
+        + taskWeekbymonth (string) 日
+        + taskWeek (string) 每月的第几周(1,2,3,4,5)
+        + taskDay (string) 周(1,2,3,4,5,6,7)
+        + taskHour (string) 时(1,2,23)
+        + taskMinute (string) 分(1,2,3,59)
+        + taskSecond (string) 秒
+        + scheduledTaskAssets 智能场景资产
+            + assetId 设备资产id
+            + cmdId 命令id
+
+
++ Response 201
+
+        {
+        	"data": {
+        		"taskName": "计划任务",
+        		"taskYear": "2020",
+        		"taskMonth": "6",
+        		"taskWeekbymonth": "7",
+        		"taskWeek": "3",
+        		"taskDay": "5",
+        		"taskHour": "12",
+        		"taskMinute": "30",
+        		"taskSecond": "0",
+        		"scheduledTaskAssets": [{
+        			"assetId": 1,
+        			"cmdId": 1
+        		}]
+        
+        	}
+        }
+        
+        
+        
+        
+        
+## 计划任务列表[get] /ScheduledTask
+
++ Parameters
+    + filter[collaborationSpaceid] (long)  协作空间ID   -非必填
+    + include (string)   -非必填
+    + page[number] (integer) 页码 -非必填
+    + page[size] (integer) 条数 -非必填
+    + sort (Array[string]) 排序 -非必填
+    + taskName (string) 任务名称 -非必填
+
+
+
++ ReturnData
+
+    + data
+        + id (long)  协作空间id 
+        + enabled (Integer)   是否可用
+        + creator (Long)   创建人
+        + modifier (Long)   修改人
+        + created (Date)  创建时间
+        + modified (Date) 修改时间
+        + taskName (String) 会议主题
+        + taskYear (string) 年
+        + taskMonth (string) 月
+        + taskWeekbymonth (string) 日
+        + taskWeek (string) 每月的第几周(1,2,3,4,5)
+        + taskDay (string) 周(1,2,3,4,5,6,7)
+        + taskHour (string) 时(1,2,23)
+        + taskMinute (string) 分(1,2,3,59)
+        + taskSecond (string) 秒
+        + collaborationSpace
+            + id (LOng) 协作空间id
+            + fullName (string) 协作空间名称
+              
++ Response 200
+
+                            {
+                  "meta": {
+                    "totalPages": 1,
+                    "totalElements": 2,
+                    "size": 10,
+                    "number": 1,
+                    "numberOfElements": 2,
+                    "first": true,
+                    "last": true,
+                    "sort": null
+                  },
+                  "links": {
+                    "self": "/ScheduledTask?filter[collaborationSpaceid]=1&page[number]=1&page[size]=10",
+                    "first": "/ScheduledTask?filter[collaborationSpaceid]=1&page[number]=1&page[size]=10",
+                    "last": "/ScheduledTask?filter[collaborationSpaceid]=1&page[number]=1&page[size]=10"
+                  },
+                  "data": [
+                    {
+                      "id": 4,
+                      "enabled": 1,
+                      "creator": 0,
+                      "modifier": 0,
+                      "created": "2020-05-28 11:46:37",
+                      "modified": "2020-05-28 16:53:47",
+                      "taskName": "计划任务2",
+                      "taskYear": "2021",
+                      "taskMonth": "6",
+                      "taskWeekbymonth": "7",
+                      "taskWeek": "3",
+                      "taskDay": "5",
+                      "taskHour": "12",
+                      "taskMinute": "30",
+                      "taskSecond": "10",
+                       "collaborationSpace": [
+                                {
+                                    "fullName": "全部"
+                                }
+                            ]
+                    },
+                    {
+                      "id": 5,
+                      "enabled": 1,
+                      "creator": 0,
+                      "modifier": 0,
+                      "taskName": "计划任务3",
+                      "taskYear": "2020",
+                      "taskMonth": "6",
+                      "taskWeekbymonth": "7",
+                      "taskWeek": "2",
+                      "taskDay": "8",
+                      "taskHour": "6",
+                      "taskMinute": "6",
+                      "taskSecond": "5",
+                       "collaborationSpace": [
+                                {
+                                    "id": 1,
+                                    "fullName": "中会(勿删)"
+                                }
+                            ]
+                    }
+                  ]
+                }
+                
+                
+                
+## 计划任务删除[delete] /ScheduledTask/{id}
+
++ Parameters
+    + id (long)  计划任务ID   -必填
+              
++ Response 200
+
+
+## 计划任务修改[patch] /ScheduledTask/{id}
+
++ Parameters
+    + id (long)  计划任务ID   -必填
+    + data (Data<ScheduledTask>)      计划任务内容
+
+
+        {
+    	"data": {
+    		"taskName": "计划任务",
+    		"taskYear": "2020",
+    		"taskMonth": "6",
+    		"taskWeekbymonth": "7",
+    		"taskWeek": "3",
+    		"taskDay": "5",
+    		"taskHour": "12",
+    		"taskMinute": "30",
+    		"taskSecond": "0",
+    		"scheduledTaskAssets": [{
+    			"assetId": 1,
+    			"cmdId": 1
+    		}]
+    
+    	}
+              
++ Response 200
+
+
+
+
+        
+## 计划任务详情[get] /ScheduledTask/{scheduledTaskId}
+
++ Parameters
+    + scheduledTaskId (long)  计划任务ID   -必填
+
+
+
++ ReturnData
+
+    + data
+        + id (long)  协作空间id 
+        + enabled (Integer)   是否可用
+        + creator (Long)   创建人
+        + modifier (Long)   修改人
+        + created (Date)  创建时间
+        + modified (Date) 修改时间
+        + taskName (String) 会议主题
+        + taskYear (string) 年
+        + taskMonth (string) 月
+        + taskWeekbymonth (string) 日
+        + taskWeek (string) 每月的第几周(1,2,3,4,5)
+        + taskDay (string) 周(1,2,3,4,5,6,7)
+        + taskHour (string) 时(1,2,23)
+        + taskMinute (string) 分(1,2,3,59)
+        + taskSecond (string) 秒
+        + armamentarium (int) 全部设备（1 是 0 否）
+        + scheduledTaskAssets
+            + collaborationSpaceName (string) 协作空间名称
+            + collaborationSpaceId (Long) 协作空间id
+            + primaryCategoryName (string) 一级分类名称
+            + primaryCategoryId (Long) 一级分类id
+            + secondCategoryName (string) 二级分类名称
+            + secondCategoryId (Long) 二级分类id
+            + equipmentName (string) 设备名称
+            + equipmentModel (Long) 设备型号
+            + cmdName (string) 命令名称
+              
++ Response 200
+
+                             {
+              "data": {
+                "id": 14,
+                "enabled": 1,
+                "creator": 0,
+                "modifier": 0,
+                "created": "2020-06-02 17:55:35",
+                "modified": "2020-06-02 17:55:35",
+                "taskName": "计划任务6",
+                "taskYear": "2020",
+                "taskMonth": "6",
+                "taskWeekbymonth": "7",
+                "taskWeek": "3",
+                "taskDay": "5",
+                "taskHour": "12",
+                "taskMinute": "30",
+                "taskSecond": "0",
+                "armamentarium": 1,
+                "scheduledTaskAssets": [
+                  {
+                    "collaborationSpaceName": "中会(勿删)",
+                    "collaborationSpaceId": 1,
+                    "primaryCategoryName": "控制",
+                    "primaryCategoryId": 3,
+                    "secondCategoryName": "中控(勿删)",
+                    "secondCategoryId": 20,
+                    "equipmentName": "IPCP Pro550(勿删)",
+                    "equipmentModel": "550",
+                    "cmdName": "commandFormat1"
+                  }
+                ]
+              }
+            }

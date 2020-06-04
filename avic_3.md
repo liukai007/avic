@@ -73,6 +73,10 @@
     + 计划任务删除
     + 计划任务详情
     + 计划任务列表
+    
++ 2020年6月4日
+    + 计划任务日志
+    + 计划任务设备执行情况
 
 ## 智能场景
 + Data
@@ -2604,4 +2608,148 @@
                   }
                 ]
               }
+            }
+
+
+
+
+
+## 计划任务日志[get] /ScheduledTask/log
+
++ Parameters
+    + filter[collaborationSpaceid] (long)  协作空间ID   -非必填
+    + include (string)   -非必填
+    + page[number] (integer) 页码 -非必填
+    + page[size] (integer) 条数 -非必填
+    + sort (Array[string]) 排序 -非必填
+    + taskName (string) 任务名称 -非必填
+    + dateMinStr (string) 开始日期，格式：yyyy-MM-dd HH:mm:ss -必填
+    + dateMaxStr (string) 结束日期，格式：yyyy-MM-dd HH:mm:ss -必填
+    + taskResult (string) 执行结果（执行完毕   执行失败）
+
+
+
++ ReturnData
+
+    + data
+        + id (long)  任务日志id 
+        + created (date)   创建时间
+        + taskId (Long)   任务id
+        + taskContent (string)  事件内容
+        + taskResult (string)  执行结果
+        + taskName (string) 任务名称
+        + fullName (String) 协作空间名称
+              
++ Response 200
+
+                         {
+            "meta": {
+                "totalPages": 1,
+                "totalElements": 8,
+                "size": 10,
+                "number": 1,
+                "numberOfElements": 8,
+                "first": true,
+                "last": true,
+                "sort": null
+            },
+            "links": {
+                "self": "/ScheduledTask?dateMinStr=2020-5-4 12:12:00&dateMaxStr=2020-6-4 12:12:00&taskResult=执行完毕&page[number]=1&page[size]=10",
+                "first": "/ScheduledTask?dateMinStr=2020-5-4 12:12:00&dateMaxStr=2020-6-4 12:12:00&taskResult=执行完毕&page[number]=1&page[size]=10",
+                "last": "/ScheduledTask?dateMinStr=2020-5-4 12:12:00&dateMaxStr=2020-6-4 12:12:00&taskResult=执行完毕&page[number]=1&page[size]=10"
+            },
+            "data": [
+                {
+                    "id": 259,
+                    "created": "2020-06-03 18:33:00",
+                    "taskId": 9,
+                    "taskContent": "执行了计划任务5计划任务",
+                    "taskResult": "执行完毕",
+                    "taskName": "计划任务5",
+                    "fullName": "中会(勿删)"
+                },
+                {
+                    "id": 260,
+                    "created": "2020-06-03 18:33:00",
+                    "taskId": 14,
+                    "taskContent": "执行了计划任务6计划任务",
+                    "taskResult": "执行完毕",
+                    "taskName": "计划任务6",
+                    "fullName": "中会(勿删)"
+                }
+        
+            ]
+        }
+
+
+
+
+## 计划任务设备执行情况[get] /ScheduledTask/execute
+
++ Parameters
+    + id (long)  任务日志ID   -必填
+
+
+
++ ReturnData
+
+    + data
+        + id (long)  操作设备id 
+        + creator (long)   创建人    
+        + created (date)   任务id
+        + logLevel (int)  日志级别
+        + equipmentAssetId (long) 设备资产ID
+        + categoryCmdId (long) 命令id
+        + randomCode (string) 事件随机码
+        + operateType (int) '0 常规操作 1是场景操作 2是计划任务'
+        + operateId (long) 实际操作id就是场景日志的id或者计划任务的ID
+        + eventContent (string) 事件内容
+        + eventResult (string) 事件执行结果
+        + readed (int) 0未读，1已读',
+        + logLevelName (string) 日志级别   0:错误       1:警告    2:信息    3:调试
+        + equipmentModel (string) 设备型号 
+        + collaborationSpaceName (string) 协作空间名称
+        + equipmentName (string) 设备名称
+              
++ Response 200
+
+                       {
+                "data": [
+                    {
+                        "id": 2138,
+                        "creator": 0,
+                        "created": "2020-05-08 16:20:04",
+                        "logLevel": 2,
+                        "equipmentAssetId": 14,
+                        "categoryCmdId": 33,
+                        "randomCode": "10cb47d8-4dfc-4ec0-a420-ecc59b60db8e",
+                        "operateType": 1,
+                        "operateId": 260,
+                        "eventContent": "中会七合一传感器(设备)执行了-查看设备的状态-命令",
+                        "eventResult": "执行完毕",
+                        "readed": 0,
+                        "logLevelName": "信息",
+                        "equipmentModel": "SM300D2MOD",
+                        "collaborationSpaceName": "中会(勿删)",
+                        "equipmentName": "7合一传感器(勿删)"
+                    },
+                    {
+                        "id": 6452,
+                        "creator": 0,
+                        "created": "2020-06-03 18:33:00",
+                        "logLevel": 2,
+                        "equipmentAssetId": 1,
+                        "categoryCmdId": 1,
+                        "randomCode": "003bfb53-8fdd-427d-8003-2aea344b01de",
+                        "operateType": 2,
+                        "operateId": 260,
+                        "eventContent": "中会中控设备(设备)执行了-开-命令",
+                        "eventResult": "执行完毕",
+                        "readed": 0,
+                        "logLevelName": "信息",
+                        "equipmentModel": "550",
+                        "collaborationSpaceName": "中会(勿删)",
+                        "equipmentName": "IPCP Pro550(勿删)"
+                    }
+                ]
             }

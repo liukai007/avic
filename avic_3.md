@@ -78,6 +78,9 @@
     + 计划任务日志
     + 计划任务设备执行情况
 
++ 2020年6月05日
+    + 权限组列表
+    
 ## 智能场景
 + Data
     + id (long) ID
@@ -2753,3 +2756,47 @@
                     }
                 ]
             }
+
+### 权限组列表 [GET]  /permission/findPermissionsGroup
+
++ Description
+    + Author Liukai
+    
++ Parameters
+    
++ ReturnData
+    + id (long)  
+    + nameEn (long)   权限组英文名   
+    + nameCh (date)   权限组中文名
+    
++ Response 200
+
+        {
+          "data": [
+            {
+              "id": 1,
+              "nameEn": "BRAND",
+              "nameCh": "品牌"
+            },
+            {
+              "id": 2,
+              "nameEn": "CATEGORY",
+              "nameCh": "分类"
+            }，
+            {
+              "id": 20,
+              "nameEn": "VIDEOLINK",
+              "nameCh": "视频链接"
+            },
+            {
+              "id": 21,
+              "nameEn": "SCHEDULEDTASK",
+              "nameCh": "计划任务"
+            },
+            {
+              "id": 100,
+              "nameEn": "OTHER",
+              "nameCh": "其他"
+            }
+          ]
+        }

@@ -2559,9 +2559,9 @@
         + taskName (String) 会议主题
         + taskYear (string) 年
         + taskMonth (string) 月
-        + taskWeekbymonth (string) 日
-        + taskWeek (string) 每月的第几周(1,2,3,4,5)
-        + taskDay (string) 周(1,2,3,4,5,6,7)
+        + taskWeekbymonth (string) 每月的第几周(1,2,3,4,5)
+        + taskWeek (string) '周(1,2,3,4,5,6,7)',
+        + taskDay (string) 日(1,2,3,4,5,6,7)
         + taskHour (string) 时(1,2,23)
         + taskMinute (string) 分(1,2,3,59)
         + taskSecond (string) 秒

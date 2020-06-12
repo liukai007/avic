@@ -80,6 +80,9 @@
 
 + 2020年6月05日
     + 权限组列表
+
++ 2020年6月12日
+    + 设备资产诊断接口
     
 ## 智能场景
 + Data
@@ -2800,3 +2803,25 @@
             }
           ]
         }
+
+### 设备资产诊断接口 [GET] /equipmentasset/diagnose/{id}
+
++ Description
+    + Author Liukai
+    
++ Parameters
+    + id (long)  设备资产id
++ ReturnData
+    + id (long)  设备资产id
+    + runningStatus (string) 运行状态 （关闭，运行，警告，故障，其他）
+    
++ Response 200
+
+        {
+          "data": {
+            "runningStatus": "运行",
+            "id": 1
+          }
+        }
+
+        

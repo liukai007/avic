@@ -83,6 +83,10 @@
 
 + 2020年6月12日
     + 设备资产诊断接口
+
++ 2020年8月4日
+    + 资产命令别称保存以及修改
+    + 资产命令别名列表
     
 ## 智能场景
 + Data
@@ -2824,4 +2828,83 @@
           }
         }
 
-        
+
+### 资产命令别称保存以及修改 [PATCH]  /assetCmdAlias/saveOrUpdate
+
++ Description
+    + Author Liukai
+    
++ Data
+    + assetId (long) 设备资产ID
+    + equipmentId (long) 设备命令id(英文名有误)
+    + assetCmdAlias (string) 资产命令别称
+
++ Parameters
++ ReturnData
+
++ Request (application/json)
+
+        {
+          "data": [
+            {
+              "assetId": 2,
+              "equipmentId": 73,
+              "assetCmdAlias": "113322开"
+            },
+            {
+              "assetId": 2,
+              "equipmentId": 74,
+              "assetCmdAlias": "北灯关12"
+            }
+          ]
+        }
+
++ Response 200
+
+### 资产命令别名列表 [GET]   /assetCmdAlias/asset/{assetId}
+
++ Description
+    + Author Liukai
+    
++ Parameters
+    + assetId (long)  设备资产id
++ ReturnData
+    + id (long)  资产命令ID
+    + assetId (long)  设备资产id
+    + equipmentId (long) 设备命令ID (英文名字错了) 
+    + command (string) 命令名
+    + assetCmdAlias  (string)  资产命令别称
+    + description (string)  命令描述
+
++ Response 200 
+
+        {
+          "data": [
+            {
+              "id": 5,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2020-08-04 14:52:40",
+              "modified": "2020-08-04 14:52:43",
+              "assetId": 2,
+              "equipmentId": 73,
+              "assetCmdAlias": "113322开",
+              "command": "on",
+              "description": "开"
+            },
+            {
+              "id": 4,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2020-08-04 14:10:17",
+              "modified": "2020-08-04 14:10:22",
+              "assetId": 2,
+              "equipmentId": 74,
+              "assetCmdAlias": "北灯关12",
+              "command": "off",
+              "description": "关"
+            }
+          ]
+        }

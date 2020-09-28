@@ -85,7 +85,7 @@
     + 设备资产诊断接口
 
 + 2020年8月4日
-    + 资产命令别称保存以及修改
+    + 资产命令别称保存以及修改（新增了禁用命令）
     + 资产命令别名列表
 + 2020年9月28日
     + 资产按钮组详情
@@ -97,7 +97,7 @@
     + 资产组详情
     + 资产按钮组删除
     + 资产按钮组修改
-    
+
 ## 智能场景
 + Data
     + id (long) ID
@@ -2848,6 +2848,7 @@
     + assetId (long) 设备资产ID
     + equipmentId (long) 设备命令id(英文名有误)
     + assetCmdAlias (string) 资产命令别称
+    + forbidden (int) 是否禁用 1表示禁用 0表示不禁用，默认为0
 
 + Parameters
 + ReturnData
@@ -2859,12 +2860,14 @@
             {
               "assetId": 2,
               "equipmentId": 73,
-              "assetCmdAlias": "113322开"
+              "assetCmdAlias": "113322开",
+              "forbidden":1
             },
             {
               "assetId": 2,
               "equipmentId": 74,
-              "assetCmdAlias": "北灯关12"
+              "assetCmdAlias": "北灯关12",
+              "forbidden":0
             }
           ]
         }
@@ -2899,6 +2902,7 @@
               "modified": "2020-08-04 14:52:43",
               "assetId": 2,
               "equipmentId": 73,
+              "forbidden": 1,
               "assetCmdAlias": "113322开",
               "command": "on",
               "description": "开"
@@ -2912,6 +2916,7 @@
               "modified": "2020-08-04 14:10:22",
               "assetId": 2,
               "equipmentId": 74,
+              "forbidden": 0,
               "assetCmdAlias": "北灯关12",
               "command": "off",
               "description": "关"

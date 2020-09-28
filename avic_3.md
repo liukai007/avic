@@ -87,6 +87,16 @@
 + 2020年8月4日
     + 资产命令别称保存以及修改
     + 资产命令别名列表
++ 2020年9月28日
+    + 资产按钮组详情
+    + 资产按钮组添加
+    + 资产按钮组详情
+    + 资产按钮组列表
+    + 组和按钮组合添加
+    + 资产组列表
+    + 资产组详情
+    + 资产按钮组删除
+    + 资产按钮组修改
     
 ## 智能场景
 + Data
@@ -2908,3 +2918,599 @@
             }
           ]
         }
+    
+
+ ## 资产按钮组详情 [get] /assetBtnGroup/{id}
+
++ Parameters
+    + ip (long)  资产按钮组id   -必填
+
+
+
+
++ ReturnData
+
+    + data
+        + id (long)  资产按钮组id 
+        + assetId (long)   实际资产id
+        + groupNameAlias (string)   组别称
+        + groupName (string)   组名
+        + groupType (Integer) 组类型（1 开关组 2 输入组 3 输出组 4 预设组 5编组组）
+        + cmdBtnGroupList 
+            + assetBtnGroupId (long) 资产按钮组id
+            + equipmentCmdId (long) 资产命令id
+            + equipmentCommand  
+                + id (long) 资产命令id
+                + equipmentCmdAlias (string) 资产命令别名
+                + commandCode (string) 资产命令core
+                + equipmentId (long) 资产id
+                + commandId (long) 命令id
+                + commandFormat (string) 命令名称
+                + isStatusCommand (int) 1为状态命令，0为非状态命令
+                + cmdName (string) 命令名称
+                + description (string) 描述
+        
+        
++ Request (application/json)
+
++ Response 200
+
+            {
+              "data": {
+                "id": 1,
+                "assetId": 2,
+                "groupNameAlias": "开关",
+                "groupName": "开关组",
+                "groupType": 1,
+                "cmdBtnGroupList": [
+                  {
+                    "assetBtnGroupId": 1,
+                    "equipmentCmdId": 73,
+                    "equipmentCommand": {
+                      "id": 73,
+                      "equipmentCmdAlias": "113322开",
+                      "commandCode": "Btn_Jl_Kai",
+                      "equipmentId": 23,
+                      "commandId": 1,
+                      "commandFormat": "on",
+                      "isStatusCommand": 0,
+                      "cmdName": "on",
+                      "description": "开"
+                    }
+                  },
+                  {
+                    "assetBtnGroupId": 1,
+                    "equipmentCmdId": 74,
+                    "equipmentCommand": {
+                      "id": 74,
+                      "equipmentCmdAlias": "北灯关12",
+                      "commandCode": "Btn_Jl_Guan",
+                      "equipmentId": 23,
+                      "commandId": 2,
+                      "commandFormat": "off",
+                      "isStatusCommand": 0,
+                      "cmdName": "off",
+                      "description": "关"
+                    }
+                  }
+                ]
+              }
+            }
+
+
+### 资产按钮组添加 [post] /assetBtnGroup
++ Parameters
+    + data
+        + groupAndGroup (string)  这个是编组，不同的编组默认使用逗号隔开。（目前只支持2个组编组，同时出发的第二个组才触发命令） 
+        + assetId (long)   实际资产id
+        + groupNameAlias (string)   组别称
+        + groupName (string)   组名
+        + groupType (Integer) 组类型（1 开关组 2 输入组 3 输出组 4 预设组 5编组组）
+
+
+
++ ReturnData
+ 
+
++ Request (application/json)
+
+            {
+              "data": {
+                "assetId": 2,
+                "groupAndGroup":"1,2",
+                "groupName": "组6",
+                "groupNameAlias": "组6",
+                "groupType": 5
+              }
+            }
+               
+               
++ Response 200
+
+                {
+                  "data": {
+                    "id": 13,
+                    "type": "assetBtnGroup"
+                  }
+                }
+                
+### 资产按钮组详情 [get] /assetBtnGroup/DeviceButtonDetails
++ Parameters
+    + data
+        + id (long)  资产id  必填
+        + include (string)   非必填
+
+比如：http://localhost:8080/assetBtnGroup/DeviceButtonDetails?id=2
+
++ ReturnData
+
+
++ Request (application/json)
+    + data
+        + id (long)  资产按钮组id 
+        + assetId (long)   实际资产id
+        + groupNameAlias (string)   组别称
+        + groupName (string)   组名
+        + groupType (Integer) 组类型（1 开关组 2 输入组 3 输出组 4 预设组 5编组组）
+        + cmdBtnGroupList 
+            + assetBtnGroupId (long) 资产按钮组id
+            + equipmentCmdId (long) 资产命令id
+            + visible (int) 是否显示
+            + equipmentCommand  
+                + id (long) 资产命令id
+                + equipmentCmdAlias (string) 资产命令别名
+                + commandCode (string) 资产命令core
+                + equipmentId (long) 资产id
+                + commandId (long) 命令id
+                + commandFormat (string) 命令名称
+                + isStatusCommand (int) 1为状态命令，0为非状态命令
+                + cmdName (string) 命令名称
+                + description (string) 描述
+            + assetBtnGroupList
+                + id (long)  资产按钮组id 
+                + assetId (long)   实际资产id
+                + groupNameAlias (string)   组别称
+                + groupName (string)   组名
+                + groupType (Integer) 组类型（1 开关组 2 输入组 3 输出组 4 预设组 5编组组）
+                + cmdBtnGroupList 
+                    + assetBtnGroupId (long) 资产按钮组id
+                    + equipmentCmdId (long) 资产命令id
+                    + visible (int) 是否显示
+                    + equipmentCommand  
+                        + equipmentCmdAlias (string) 资产命令别名
+                        + commandCode (string) 资产命令core
+                        + description (string) 描述
+               
+               
++ Response 200
+
+        {
+          "data": [
+            {
+              "id": 1,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2020-09-21 18:16:37",
+              "modified": "2020-09-21 18:16:39",
+              "assetId": 2,
+              "groupNameAlias": "开关",
+              "groupName": "开关组",
+              "groupType": 1,
+              "cmdBtnGroupList": [
+                {
+                  "id": 1,
+                  "enabled": 1,
+                  "creator": 0,
+                  "modifier": 0,
+                  "created": "2020-09-21 18:16:57",
+                  "modified": "2020-09-21 18:17:00",
+                  "assetBtnGroupId": 1,
+                  "equipmentCmdId": 73,
+                  "visible": 1,
+                  "equipmentCommand": {
+                    "equipmentCmdAlias": "113322开",
+                    "commandCode": "Btn_Jl_Kai",
+                    "description": "开"
+                  }
+                },
+                {
+                  "id": 2,
+                  "enabled": 1,
+                  "creator": 0,
+                  "modifier": 0,
+                  "created": "2020-09-21 18:18:40",
+                  "modified": "2020-09-21 18:18:42",
+                  "assetBtnGroupId": 1,
+                  "equipmentCmdId": 74,
+                  "visible": 1,
+                  "equipmentCommand": {
+                    "equipmentCmdAlias": "北灯关12",
+                    "commandCode": "Btn_Jl_Guan",
+                    "description": "关"
+                  }
+                }
+              ]
+            },
+            {
+              "id": 3,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2020-09-22 13:52:09",
+              "modified": "2020-09-22 13:52:11",
+              "assetId": 2,
+              "groupNameAlias": "输入2",
+              "groupName": "输入2",
+              "groupType": 2,
+              "cmdBtnGroupList": []
+            },
+            {
+              "id": 8,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2020-09-22 13:55:21",
+              "modified": "2020-09-22 13:55:24",
+              "assetId": 2,
+              "groupNameAlias": "编组1",
+              "groupName": "编组1",
+              "groupType": 5,
+              "groupAndGroup": "6,7",
+              "assetBtnGroupList": [
+                {
+                  "id": 6,
+                  "enabled": 1,
+                  "creator": 0,
+                  "modifier": 0,
+                  "created": "2020-09-22 13:54:09",
+                  "modified": "2020-09-22 13:54:12",
+                  "assetId": 2,
+                  "groupNameAlias": "输入3",
+                  "groupName": "输入3",
+                  "groupType": 2,
+                  "cmdBtnGroupList": [
+                    {
+                      "id": 3,
+                      "enabled": 1,
+                      "creator": 0,
+                      "modifier": 0,
+                      "created": "2020-09-24 14:53:46",
+                      "modified": "2020-09-24 14:53:46",
+                      "assetBtnGroupId": 6,
+                      "equipmentCmdId": 73,
+                      "visible": 1,
+                      "equipmentCommand": {
+                        "equipmentCmdAlias": "113322开",
+                        "commandCode": "Btn_Jl_Kai",
+                        "description": "开"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "id": 7,
+                  "enabled": 1,
+                  "creator": 0,
+                  "modifier": 0,
+                  "created": "2020-09-22 13:54:40",
+                  "modified": "2020-09-22 13:54:43",
+                  "assetId": 2,
+                  "groupNameAlias": "输出3",
+                  "groupName": "输出3",
+                  "groupType": 3,
+                  "cmdBtnGroupList": [
+                    {
+                      "id": 4,
+                      "enabled": 1,
+                      "creator": 0,
+                      "modifier": 0,
+                      "created": "2020-09-24 15:00:56",
+                      "modified": "2020-09-24 15:00:56",
+                      "assetBtnGroupId": 7,
+                      "equipmentCmdId": 73,
+                      "visible": 1,
+                      "equipmentCommand": {
+                        "equipmentCmdAlias": "113322开",
+                        "commandCode": "Btn_Jl_Kai",
+                        "description": "开"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }       
+### 资产按钮组列表 [get] /assetBtnGroup
++ Parameters
+    + page (int)  页码   -非必填
+    + size (int)  条数 -非必填
+    + sort (string[]) 通道编号 -非必填
+    + include (string) -非必填
+
+
+
++ ReturnData
+    + data
+        + id (long)  资产按钮组id 
+        + assetId (long)   实际资产id
+        + groupNameAlias (string)   组别称
+        + groupName (string)   组名
+        + groupType (Integer) 组类型（1 开关组 2 输入组 3 输出组 4 预设组 5编组组）
+        + groupAndGroup (string) 这个是编组，不同的编组默认使用逗号隔开。（目前只支持2个组编组
+        + cmdBtnGroupList 
+            + assetBtnGroupId (long) 资产按钮组id
+            + equipmentCmdId (long) 资产命令id
+            + equipmentCommand  
+                + id (long) 资产命令id
+                + equipmentCmdAlias (string) 资产命令别名
+                + commandCode (string) 资产命令core
+                + equipmentId (long) 资产id
+                + commandId (long) 命令id
+                + commandFormat (string) 命令名称
+                + isStatusCommand (int) 1为状态命令，0为非状态命令
+                + cmdName (string) 命令名称
+                + description (string) 描述。
+
++ Request (application/json)
+
+ 比如：http://localhost:8080/assetBtnGroup?page[number]=1&page[size]=10
++ Response 200
+
+        {
+          "data": [
+            {
+              "id": 1,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2020-09-21 18:16:37",
+              "modified": "2020-09-21 18:16:39",
+              "assetId": 2,
+              "groupNameAlias": "开关",
+              "groupName": "开关组",
+              "groupType": 1,
+              "cmdBtnGroupList": [
+                {
+                  "assetBtnGroupId": 1,
+                  "equipmentCmdId": 73,
+                  "equipmentCommand": {
+                    "id": 73,
+                    "equipmentCmdAlias": "113322开",
+                    "commandCode": "Btn_Jl_Kai",
+                    "equipmentId": 23,
+                    "commandId": 1,
+                    "commandFormat": "on",
+                    "isStatusCommand": 0,
+                    "cmdName": "on",
+                    "description": "开"
+                  }
+                },
+                {
+                  "assetBtnGroupId": 1,
+                  "equipmentCmdId": 74,
+                  "equipmentCommand": {
+                    "id": 74,
+                    "equipmentCmdAlias": "北灯关12",
+                    "commandCode": "Btn_Jl_Guan",
+                    "equipmentId": 23,
+                    "commandId": 2,
+                    "commandFormat": "off",
+                    "isStatusCommand": 0,
+                    "cmdName": "off",
+                    "description": "关"
+                  }
+                }
+              ]
+            },
+            {
+              "id": 8,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2020-09-22 13:55:21",
+              "modified": "2020-09-22 13:55:24",
+              "assetId": 2,
+              "groupNameAlias": "编组1",
+              "groupName": "编组1",
+              "groupType": 5,
+              "groupAndGroup": "6,7",
+              "cmdBtnGroupList": []
+            }
+          ]
+        }
+
+### 组和按钮组合添加 [post] /assetBtnGroup/DisplayGroup
++ Parameters
+    + data
+        + groupAndGroup (string)  这个是编组，不同的编组默认使用逗号隔开。（目前只支持2个组编组，同时出发的第二个组才触发命令） 
+        + assetId (long)   实际资产id
+        + groupNameAlias (string)   组别称
+        + groupName (string)   组名
+        + groupType (Integer) 组类型（1 开关组 2 输入组 3 输出组 4 预设组 5编组组）
+        + cmdBtnGroupList
+            + equipmentCmdId (long) 资产命令id
+            + visible (int) 是否显示  1为显示  0为不显示
+
+
++ ReturnData
+ 
+
++ Request (application/json)
+
+            {
+              "data": {
+                "assetId": 2,
+                "cmdBtnGroupList": [
+                  {
+                    "equipmentCmdId": 73,
+                    "visible": 1
+                  }
+                ],
+                "groupName": "组合1",
+                "groupNameAlias": "组合1",
+                "groupType": 2
+              }
+            }
+               
+               
++ Response 200
+
+
+
+### 资产组列表 [get] /assetBtnGroup/assetGroup
++ Parameters
+
+ 比如：http://localhost:8080/assetBtnGroup/assetGroup?groupType=2
+
+
++ ReturnData
+    + data
+        + id (long)  资产按钮组id 
+        + assetId (long)   实际资产id
+        + groupNameAlias (string)   组别称
+        + groupName (string)   组名
+        + groupType (Integer) 组类型（1 开关组 2 输入组 3 输出组 4 预设组 5编组组）
+
++ Request (application/json)
+
+ 
++ Response 200
+
+        {
+          "data": [
+            {
+              "id": 2,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2020-09-22 13:51:34",
+              "modified": "2020-09-22 13:51:38",
+              "assetId": 2,
+              "groupNameAlias": "输入1",
+              "groupName": "输入1",
+              "groupType": 2
+            },
+            {
+              "id": 6,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2020-09-22 13:54:09",
+              "modified": "2020-09-22 13:54:12",
+              "assetId": 2,
+              "groupNameAlias": "输入3",
+              "groupName": "输入3",
+              "groupType": 2
+            }
+          ]
+        }
+        
+### 资产组详情 [get] /assetBtnGroup
++ Parameters
+
+如  ：http://localhost:8080/assetBtnGroup/6
+
++ ReturnData
+ 
+
++ Request (application/json)
+    + data
+        + id (long)  资产按钮组id 
+        + assetId (long)   实际资产id
+        + groupNameAlias (string)   组别称
+        + groupName (string)   组名
+        + groupType (Integer) 组类型（1 开关组 2 输入组 3 输出组 4 预设组 5编组组）
+        + cmdBtnGroupList 
+            + assetBtnGroupId (long) 资产按钮组id
+            + equipmentCmdId (long) 资产命令id
+            + equipmentCommand  
+                + id (long) 资产命令id
+                + equipmentCmdAlias (string) 资产命令别名
+                + commandCode (string) 资产命令core
+                + equipmentId (long) 资产id
+                + commandId (long) 命令id
+                + commandFormat (string) 命令名称
+                + isStatusCommand (int) 1为状态命令，0为非状态命令
+                + cmdName (string) 命令名称
+                + description (string) 描述
+               
+               
++ Response 200
+
+            {
+              "data": {
+                "id": 6,
+                "assetId": 2,
+                "groupNameAlias": "输入3",
+                "groupName": "输入3",
+                "groupType": 2,
+                "cmdBtnGroupList": [
+                  {
+                    "assetBtnGroupId": 6,
+                    "equipmentCmdId": 73,
+                    "equipmentCommand": {
+                      "id": 73,
+                      "equipmentCmdAlias": "113322开",
+                      "commandCode": "Btn_Jl_Kai",
+                      "equipmentId": 23,
+                      "commandId": 1,
+                      "commandFormat": "on",
+                      "isStatusCommand": 0,
+                      "cmdName": "on",
+                      "description": "开"
+                    }
+                  }
+                ]
+              }
+            }
+            
+### 资产按钮组删除 [DELETE] /assetBtnGroup
++ Parameters
+
+如：http://localhost:8080/assetBtnGroup/3
+
+
++ ReturnData
+ 
+
++ Request (application/json)
+               
++ Response 204
+
+### 资产按钮组修改 [PATCH] /assetBtnGroup
++ Parameters
+
+如：http://localhost:8080/assetBtnGroup/3
+
+
++ ReturnData
+    + data
+        + groupAndGroup (string)  这个是编组，不同的编组默认使用逗号隔开。（目前只支持2个组编组，同时出发的第二个组才触发命令） 
+        + assetId (long)   实际资产id
+        + groupNameAlias (string)   组别称
+        + groupName (string)   组名
+        + groupType (Integer) 组类型（1 开关组 2 输入组 3 输出组 4 预设组 5编组组）
+        + cmdBtnGroupList
+            + equipmentCmdId (long) 资产命令id
+            + visible (int) 是否显示  1为显示  0为不显示
+
++ Request (application/json)
+
+        {
+          "data": {
+            "assetId": 3,
+            "cmdBtnGroupList": [
+              {
+                "equipmentCmdId": 74,
+                "visible": 1
+              }
+            ],
+            "groupName": "组合5",
+            "groupNameAlias": "组合5",
+            "groupType": 5
+          }
+        }
+               
++ Response 200

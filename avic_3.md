@@ -231,7 +231,7 @@
 + Description
     + Author Liukai
 
-    比如：http://127.0.0.1:8080/intelligentScene?page[number]=1&page[size]=10&filter[sceneName:like]=%%E8%87%AA%
+    比如：http://127.0.0.1:8080/intelligentScene?page[number]=1&page[size]=10&filter[sceneName]=%%E8%87%AA%
 
 + Parameters
     + page[number] (int)  页码  -非必填

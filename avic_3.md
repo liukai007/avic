@@ -3471,10 +3471,12 @@
               }
             }
             
-### 资产按钮组删除 [DELETE] /assetBtnGroup
+### 资产按钮组删除 [DELETE] /assetBtnGroup/delete
 + Parameters
+    + assetId(long) 资产id (必填) 
+    + id (long) 资产按钮组id (必填)
 
-如：http://localhost:8080/assetBtnGroup/3
+如：http://localhost:8080/assetBtnGroup/delete?assetId=44&id=166
 
 
 + ReturnData
@@ -3483,6 +3485,19 @@
 + Request (application/json)
                
 + Response 204
+
++ Response 400
+
+        {
+          "errors": [
+            {
+              "status": "400",
+              "title": "Bad Request",
+              "detail": "资产按钮组已经关联了编组组,请先删除"
+            }
+          ]
+        }
+
 
 ### 资产按钮组修改 [PATCH] /assetBtnGroup
 + Parameters

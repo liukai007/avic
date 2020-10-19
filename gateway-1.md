@@ -3,6 +3,11 @@
 + 2020年4月24日
     + 网关基本信息修改
     + 网关基本信息详情
+    + 物理端口添加
+    + 物理端口删除
+    + 物理端口详情
+    + 物理端口修改
+    + 物理端口列表
 
 ## 网关基本信息
 + Data
@@ -110,3 +115,275 @@
             }
           ]
         }
+
+
+
+### 物理端口添加 [POST] /physicalPort
+
++ Description
+    
+
++ Parameters
+    + data
+        + address (string) 物理地址
+        + builtIn （int） 默认是内置的0  1表示内置  0表示非内置
+        + creator （long） 创建人
+        + equipmentId （long）设备id
+        + modifier （long）修改人
+        + occupy （int）占用空闲（0空闲 1占用）
+        + portName （string）物理端口名 com1 com2
+        + portTypeId （long）端口类型id
+    
++ Request (application/json)
+
+            {
+              "data": {
+                "address": "天津",
+                "builtIn": 1,
+                "creator": 0,
+                "equipmentId": 1,
+                "modifier": 0,
+                "occupy": 1,
+                "portName": "COM2",
+                "portTypeId": 2
+              }
+            }
++ Response 201
+
+        {
+          "data": {
+            "id": 3,
+            "type": "PhysicalPort"
+          }
+        }
+
+
+### 物理端口删除 [DELETE] /physicalPort/{id}
+
++ Description
+    + Author Liukai
+    
++ Parameters
+    + id (long) 物理端口ID
+    
++ Request (application/json)
+
++ Response 204
+
++ Response 400
+
+            {
+              "errors": [
+                {
+                  "status": "400",
+                  "title": "Bad Request",
+                  "detail": "该物理端口为内置端口，不可删除"
+                }
+              ]
+            }
+
+
+### 物理端口详情 [GET] /physicalPort/{id}
+
++ Description
+    + Author Liukai
+    
++ Parameters
+    + id (long) 物理端口ID
+
++ ReturnData
+
+    + data
+        + id (long) 物理端口id
+        + portName （string） 物理端口名 com1 com2
+        + address （string）物理地址
+        + portType
+            + id （long） 端口类型id
+            + enabled （int）是否启用
+            + creator （long）创建人
+            + modifier （long）修改人
+            + updateVersionId （long）跟云端同步使用
+            + typeName （string）端口类型名/属性名 
+            类型名字：串口
+            属性名：属性名比如波特率 
+            + parentId （long） 父id
+            + valueType （int）0 字符串类型 1 整数型 2 FLOAT型 等多种类型
+            + probableValueList （string） 返回值
+    
++ Request (application/json)
+
+
++ Response 200
+
+        {
+          "data": {
+            "id": 1,
+            "portName": "网口",
+            "address": "北京",
+            "portType": {
+              "id": 1,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "updateVersionId": 0,
+              "typeName": "RS-485",
+              "parentId": 0,
+              "valueType": 0,
+              "probableValueList": "ON"
+            }
+          }
+        }
+
+### 物理端口修改 [POST] /physicalPort/{id}
+
++ Description
+    
+
++ Parameters
+    + data
+        + address (string) 物理地址
+        + builtIn （int） 默认是内置的0  1表示内置  0表示非内置
+        + creator （long） 创建人
+        + equipmentId （long）设备id
+        + modifier （long）修改人
+        + occupy （int）占用空闲（0空闲 1占用）
+        + portName （string）物理端口名 com1 com2
+        + portTypeId （long）端口类型id
+    
++ Request (application/json)
+
+            {
+              "data": {
+                "address": "天津",
+                "builtIn": 1,
+                "creator": 0,
+                "equipmentId": 1,
+                "modifier": 0,
+                "occupy": 1,
+                "portName": "COM2",
+                "portTypeId": 2
+              }
+            }
++ Response 200
+
+
+### 物理端口列表 [GET] /physicalPort
++ Description
+    + Author Liukai
+
++ ReturnData
+
+    + data
+        + id (long) 物理端口id
+        + portName （string） 物理端口名 com1 com2
+        + address （string）物理地址
+        + equipmentId （long）设备id
+        + portTypeId （long）端口类型id
+        + occupy （int）使用空闲（0 空闲 1使用）
+        + builtIn （int）是否内置（1内置 0非内置）
+        + portType
+            + id （long） 端口类型id
+            + enabled （int）是否启用
+            + creator （long）创建人
+            + modifier （long）修改人
+            + updateVersionId （long）跟云端同步使用
+            + typeName （string）端口类型名/属性名 
+            类型名字：串口
+            属性名：属性名比如波特率 
+            + parentId （long） 父id
+            + valueType （int）0 字符串类型 1 整数型 2 FLOAT型 等多种类型
+            + probableValueList （string） 返回值
+        + equipment
+            + id （long）设备id
+            + cloudEquipmentId （long）云端id
+            + updateVersionId （long）同步id
+            + equipmentName （string）设备资产名称  必须唯一在同一个网关中
+            + equipmentNameEn （string）唯一码
+            + online （int）是否在线 0 离线 1在线 2未知
+            + runningStatus （int） 运行状态：0关闭 1运行 2警告    3故障  4其他
+            + serialNumber （string）设备序列号
+            + purchaseDate （datatime） 采购日期
+            + maintenanceTelephone （string） 维修电话
+            + gatewayId （long）网关id 如果当前设备是网关则这个值为0
+            + driveId （long）驱动id
+            + ispdu （int）0 非pdu 1是pdu
+            + controllable （int）是否可控 1 可控  0 不可控
+            + builtIn （int）是否内置 1为内置 0为非内置
++ Response 200
+    
+        {
+          "meta": {
+            "totalPages": 1,
+            "totalElements": 3,
+            "size": 10,
+            "number": 1,
+            "numberOfElements": 3,
+            "first": true,
+            "last": true,
+            "sort": null
+          },
+          "links": {
+            "self": "/PhysicalPort?page[number]=1&page[size]=10",
+            "first": "/PhysicalPort?page[number]=1&page[size]=10",
+            "last": "/PhysicalPort?page[number]=1&page[size]=10"
+          },
+          "data": [
+            {
+              "id": 1,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "equipmentId": 1,
+              "portName": "网口",
+              "portTypeId": 1,
+              "address": "北京",
+              "occupy": 1,
+              "builtIn": 1,
+              "portType": {
+                "id": 1,
+                "enabled": 1,
+                "creator": 0,
+                "modifier": 0,
+                "updateVersionId": 0,
+                "typeName": "RS-485",
+                "parentId": 0,
+                "valueType": 0,
+                "probableValueList": "ON"
+              },
+              "equipment": {
+                "id": 1,
+                "enabled": 1,
+                "creator": 0,
+                "modifier": 0,
+                "created": "2020-10-18 09:18:51",
+                "modified": "2020-10-18 09:18:56",
+                "cloudEquipmentId": 1,
+                "updateVersionId": 0,
+                "equipmentName": "中会中控",
+                "equipmentNameEn": "zhz",
+                "online": 0,
+                "runningStatus": 0,
+                "serialNumber": "122",
+                "purchaseDate": "2020-10-18T01:18:13.000+0000",
+                "maintenanceTelephone": "13126822398",
+                "gatewayId": 0,
+                "driveId": 0,
+                "ispdu": 0,
+                "controllable": 1,
+                "builtIn": 0
+              }
+            }
+          ]
+        }
+
++ Response 400
+    
+        {
+          "errors": [
+            {
+              "status": "400",
+              "title": "Bad Request"
+            }
+          ]
+        }
+

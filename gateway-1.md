@@ -1,6 +1,6 @@
 # AVIC网关 接口文档
 
-+ 2020年4月24日
++ 2020年10月19日
     + 网关基本信息修改(登录页面使用该接口)
     + 网关基本信息详情
     + 物理端口添加
@@ -8,6 +8,8 @@
     + 物理端口详情
     + 物理端口修改
     + 物理端口列表
++ 2020年10月20日
+    + 云端地址访问测试
 
 ## 网关基本信息
 + Data
@@ -117,6 +119,15 @@
         }
 
 
+### 云端地址访问测试 [GET] /gatewayInfo/accessCloudTest
+
++ Description
+    + Author Liukai
++ Parameters
+    + cloudAddress (string)  云地址
++ Response 200  //测试成功
++ Response 400  //测试失败
+    
 
 ### 物理端口添加 [POST] /physicalPort
 

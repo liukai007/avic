@@ -1,7 +1,7 @@
 # AVIC网关 接口文档
 
 + 2020年4月24日
-    + 网关基本信息修改
+    + 网关基本信息修改(登录页面使用该接口)
     + 网关基本信息详情
     + 物理端口添加
     + 物理端口删除
@@ -34,7 +34,7 @@
     + modified (date) - 修改时间
 
    
-### 网关基本信息修改 [PATCH] /gatewayInfo/baseInfo
+### 网关基本信息修改(登录页面使用该接口) [PATCH] /gatewayInfo/baseInfo
 
 + Description
     + Author Liukai

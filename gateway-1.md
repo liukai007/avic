@@ -34,13 +34,13 @@
     + modified (date) - 修改时间
 
    
-### 网关基本信息修改 [PATCH] /gatewayInfo/{id}
+### 网关基本信息修改 [PATCH] /gatewayInfo/baseInfo
 
 + Description
     + Author Liukai
     
 + Parameters
-    + id (long) 网关设备ID
+    + data (string) 网关内容 （使用json数据）
     
 + Request (application/json)
 

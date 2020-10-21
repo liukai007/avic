@@ -10,6 +10,8 @@
     + 物理端口列表
 + 2020年10月20日
     + 云端地址访问测试
++ 2020年10月21日
+    + 端口类型列表
 
 ## 网关基本信息
 + Data
@@ -398,3 +400,76 @@
           ]
         }
 
+### 端口类型列表 [GET] /portType
++ Description
+    + Author Liukai
+
++ ReturnData
+
+    + data
+        + id （long） 端口类型id
+        + enabled （int）是否启用
+        + creator （long）创建人
+        + modifier （long）修改人
+        + updateVersionId （long）跟云端同步使用
+        + typeName （string）端口类型名/属性名 
+            类型名字：串口
+            属性名：属性名比如波特率 
+        + parentId （long） 父id
+        + valueType （int）0 字符串类型 1 整数型 2 FLOAT型 等多种类型
+        + probableValueList （string） 返回值
++ Response 200
+    
+        {
+          "data": [
+            {
+              "id": 1,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2020-10-19 18:10:04",
+              "modified": "2020-10-19 18:10:08",
+              "updateVersionId": 0,
+              "typeName": "RS-485",
+              "parentId": 0,
+              "valueType": 0,
+              "probableValueList": ""
+            },
+            {
+              "id": 2,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2020-10-19 13:51:17",
+              "modified": "2020-10-19 13:51:17",
+              "updateVersionId": 0,
+              "typeName": "RS-232",
+              "parentId": 0,
+              "valueType": 0,
+              "defaultValue": "",
+              "probableValueList": ""
+            },
+            {
+              "id": 7,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2020-10-19 18:14:15",
+              "modified": "2020-10-19 18:14:17",
+              "updateVersionId": 0,
+              "typeName": "NetWork",
+              "parentId": 0,
+              "valueType": 0
+            }
+          ]
+        }
++ Response 400
+    
+        {
+          "errors": [
+            {
+              "status": "400",
+              "title": "Bad Request"
+            }
+          ]
+        }

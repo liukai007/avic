@@ -15,6 +15,9 @@
 + 2020年10月22日
     + 环境数据分析接口
     + 当前协作空间环境数据
+    + 设备使用次数
+    + 品牌设备统计
+    + 分类设备统计
 
 ## 网关基本信息
 + Data
@@ -581,4 +584,114 @@
             "ch2o": 0.109,
             "environmentLevel": 3
           }
+        }
+
+## 设备使用次数  [GET]  /timesMalfunction/timesAndMalfunction
+
++ Description
+
+
++ Parameters
+    + dateMinStr (string)  开始日期 格式：yyyy-MM-dd HH:mm:ss
+
++ ReturnData
+    + equipmentId (long) 设备id
+    + useTimes (int) 使用次数
+    + malfunctionTimes (int)  故障次数  
+    + equipmentName (string)   设备名称
+    + model (string)   设备型号
+    + timesHb (Double)   环比（周）
+
++ Response 200
+
+        {
+          "data": [
+            {
+              "equipmentId": 1,
+              "useTimes": 20,
+              "malfunctionTimes": 4,
+              "equipmentName": "中会中控",
+              "model": "SM300D2MOD",
+              "timesHb": 33.33
+            },
+            {
+              "equipmentId": 2,
+              "useTimes": 5,
+              "malfunctionTimes": 1,
+              "equipmentName": "七合一环境传感器",
+              "model": "SM300D2MOD"
+            }
+          ]
+        }
+
+## 品牌设备统计  [GET]  /equipment/brandStatistics
+
++ Description
+
+
++ Parameters
+
++ ReturnData
+    + id (long) 品牌id
+    + enabled (int) 是否使用
+    + creator (long)  创建人  
+    + modifier (long)   修改人
+    + brandName (string)   品牌名称
+    + website (string)   网址
+    + displayOrder （int） 排序
+    + total （int）数量
+
++ Response 200
+
+        {
+          "data": [
+            {
+              "id": 1,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "brandName": "extron",
+              "website": "www。",
+              "displayOrder": 100,
+              "total": 1
+            }
+          ]
+        }
+        
+## 分类设备统计  [GET]  /equipment/categoryStatistics
+
++ Description
+
+
++ Parameters
+
++ ReturnData
+    + id (long) 分类id
+    + enabled (int) 是否使用
+    + creator (long)  创建人  
+    + modifier (long)   修改人
+    + categoryName (string)   分类名称
+    + displayOrder （int） 排序
+    + total （int）数量
+    + created （data）创建时间
+    + modified （data）修改时间
+    + parentId （long）父id
+
++ Response 200
+
+        {
+          "data": [
+            {
+              "id": 2,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2020-10-20 14:09:44",
+              "modified": "2020-10-20 14:09:41",
+              "parentId": 1,
+              "categoryName": "环境传感器",
+              "displayOrder": 100,
+              "total": 1
+            }
+          ]
         }

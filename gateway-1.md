@@ -12,6 +12,9 @@
     + 云端地址访问测试
 + 2020年10月21日
     + 端口类型列表
++ 2020年10月22日
+    + 环境数据分析接口
+    + 当前协作空间环境数据
 
 ## 网关基本信息
 + Data
@@ -472,4 +475,110 @@
               "title": "Bad Request"
             }
           ]
+        }
+
+
+## 环境数据分析接口  [GET]  /logEnvironment
+
++ Description
+    + Author Liukai
+
++ Parameters
+    + dateType  (int)   时间类型 1：月，2：周，3：日
+    + dateMinStr (string)  开始日期 格式：yyyy-MM-dd HH:mm:ss
+    + dateMaxStr (string)  结束日期 格式：yyyy-MM-dd HH:mm:ss
+
++ ReturnData
+    + created (date) 创建日期
+    + equipmentassetId (long) 资产设备ID
+    + temperature (float)  温度  
+    + humidity (float)   湿度
+    + co2 (float)   co2
+    + pm25 (float)   pm2.5
+    + pm10 (float)   pm10
+    + tvoc (float)   总挥发性有机化合物
+    + ch2o (float)   甲醛
+    + highLow (int)  1表示高  0表示低 （在周、日两个时间类型中不起作用）
+              
++ Response 200
+
+        {
+          "data": [
+            {
+              "created": "2020-10-20 14:00:00",
+              "equipmentassetId": 2,
+              "temperature": 26,
+              "humidity": 33.9,
+              "co2": 1228,
+              "pm25": 90,
+              "pm10": 0.107,
+              "tvoc": 0.6,
+              "ch2o": 0.149
+            },
+            {
+              "created": "2020-10-20 15:00:00",
+              "equipmentassetId": 2,
+              "temperature": 23,
+              "humidity": 33.8,
+              "co2": 1111,
+              "pm25": 90,
+              "pm10": 0.101,
+              "tvoc": 0.6,
+              "ch2o": 0.111
+            },
+            {
+              "created": "2020-10-20 16:00:00",
+              "equipmentassetId": 2,
+              "temperature": 23,
+              "humidity": 33.8,
+              "co2": 1111,
+              "pm25": 90,
+              "pm10": 0.101,
+              "tvoc": 0.6,
+              "ch2o": 0.111
+            },
+            {
+              "created": "2020-10-20 17:00:00",
+              "equipmentassetId": 2,
+              "temperature": 23,
+              "humidity": 33.8,
+              "co2": 1111,
+              "pm25": 90,
+              "pm10": 0.101,
+              "tvoc": 0.6,
+              "ch2o": 0.111
+            }
+          ]
+        }
+
+## 当前协作空间环境数据  [GET] /logEnvironment/currentEnvironment
+
++ Description
+    + Author Liukai
+
++ Parameters
+
++ ReturnData
+    + temperature (float)  温度  
+    + humidity (float)   湿度
+    + co2 (float)   co2
+    + pm25 (float)   pm2.5
+    + pm10 (float)   pm10
+    + tvoc (float)   总挥发性有机化合物
+    + ch2o (float)   甲醛
+    + environmentLevel (int) 环境级别 4表示差，3表示中 2表示良 1表示优  0无评级
+              
++ Response 200
+    
+        {
+          "data": {
+            "temperature": 25.7,
+            "humidity": 19.3,
+            "co2": 1018,
+            "pm25": 32,
+            "pm10": 0.057,
+            "tvoc": 0.388,
+            "ch2o": 0.109,
+            "environmentLevel": 3
+          }
         }

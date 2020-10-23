@@ -18,6 +18,9 @@
     + 设备使用次数
     + 品牌设备统计
     + 分类设备统计
++ 2020年10月23日
+    + 健康状况
+
 
 ## 网关基本信息
 + Data
@@ -694,4 +697,90 @@
               "total": 1
             }
           ]
+        }
+
+## 健康状况  [GET]  /GatewayManagement
+
++ Description
+
+
++ Parameters
+
++ ReturnData
+    + id (long) id
+    + enabled (int) 是否使用
+    + creator (long)  创建人  
+    + modifier (long)   修改人
+    + created （data）创建时间
+    + modified （data）修改时间
+    + equipmentId （long）本地设备id
+    + onlyCode （string）序列号
+    + ipAddress （string）网关IP地址
+    + gatewayName （string）网关名字
+    + cloudAddress （string）云地址
+    + location （string）地址 （手动填入的地址）
+    + organizationName （string）所属机构
+    + collaborationSpace （string）协作空间
+    + cpuId （string）cpuid
+    + diskId （string）硬盘唯一码
+    + mainboardId （string）主板唯一号
+    + realLocation （string）实时的位置
+    + versionNo （string）版本
+    + serviceConfReg （int）配置和注册（1正常 0异常）
+    + serviceCoreData （int）核心数据服务（1正常 0 异常）
+    + serviceMetadata （int）元数据服务（1正常 0 异常）
+    + serviceCommand （int）命令服务（1正常 0异常）
+    + cloudCommunicateTime （data）上次云通讯时间
+    + runningStatus （int）
+    + cpuUsage （float）cpu使用率（%）
+    + totalMem （float）总内存（gb）
+    + totalhd   （float）硬盘大小（gb）
+    + usedhd （float）已用硬盘（gb）
+    + ioUsage （float）硬盘使用率（%）
+    + running （int）运行状态
+    + equipmentNumber （long）设备数量
+    + loadAverage （float）cup负载
+    + memUsage （float）内存使用率（%）
+    + beenUsed （float） 已使用内存（Gb）
+
++ Response 200
+
+        {
+          "data": {
+            "id": 2,
+            "enabled": 1,
+            "creator": 0,
+            "modifier": 0,
+            "created": "2020-10-19 11:39:50",
+            "modified": "2020-10-23 14:20:01",
+            "equipmentId": 1,
+            "onlyCode": "YzhjOWNmMmEyMzMxNGU0M2M4OWE3OTMxOWRlZTIyYWU=",
+            "ipAddress": "192.168.2.43",
+            "gatewayName": "中会网关1",
+            "cloudAddress": "budee.com:9094",
+            "location": "中国  北京 北京市 联通",
+            "organizationName": "宝迪",
+            "collaborationSpace": "中会议室",
+            "cpuId": "51060400FFFBEBBF",
+            "diskId": "L3MLCHC21213062",
+            "mainboardId": "TOBEFILLEDBYO.E.M.",
+            "realLocation": "中国  北京 北京市 联通",
+            "versionNo": "1",
+            "serviceConfReg": 1,
+            "serviceCoreData": 1,
+            "serviceMetadata": 1,
+            "serviceCommand": 1,
+            "cloudCommunicateTime": "2020-10-19 13:52:16",
+            "runningStatus": 1,
+            "cpuUsage": 61,
+            "totalMem": 7.67,
+            "totalhd": 916,
+            "usedhd": 13,
+            "ioUsage": 1,
+            "running": 1,
+            "equipmentNumber": 3,
+            "loadAverage": 1.11,
+            "memUsage": 71,
+            "beenUsed": 5.44
+          }
         }

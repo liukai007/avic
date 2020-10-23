@@ -20,6 +20,7 @@
     + 分类设备统计
 + 2020年10月23日
     + 健康状况
+    + 会议室使用情况统计/能耗统计
 
 
 ## 网关基本信息
@@ -783,4 +784,48 @@
             "memUsage": 71,
             "beenUsed": 5.44
           }
+        }
+
+
+### 会议室使用情况统计/能耗统计 [GET] /logUsedTimesElectric/energyAndTimes
++ Description
+    + Author Liukai
+
++ Parameters
+    + dateStr (string)  日期，格式：yyyy-MM-dd
+    + dateType (int)  时间类型  0：年，1：月，2：周
+
++ ReturnData
+    + id (long) ID
+    + gatewayEquipmentId (long) 网关设备ID
+    + times  (long)  次数
+    + powerConsumption (float) 能耗量
+    + created （data）创建时间
+              
++ Response 200
+    
+        {
+          "data": [
+            {
+              "id": 233,
+              "created": "2020-10-19 00:00:00",
+              "gatewayEquipmentId": 1,
+              "times": 4,
+              "powerConsumption": 0.98
+            },
+            {
+              "id": 228,
+              "created": "2020-10-20 00:00:00",
+              "gatewayEquipmentId": 1,
+              "times": 1,
+              "powerConsumption": 9
+            },
+            {
+              "id": 229,
+              "created": "2020-10-21 00:00:00",
+              "gatewayEquipmentId": 1,
+              "times": 0,
+              "powerConsumption": 61
+            }
+          ]
         }

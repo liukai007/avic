@@ -22,6 +22,9 @@
     + 健康状况
     + 会议室使用情况统计/能耗统计
     + 上周设备耗能排行
+    + Email配置详情
+    + Email配置添加
+    + Email配置修改
 
 
 ## 网关基本信息
@@ -860,3 +863,89 @@
             }
           ]
         }
+
+## Email配置
++ Data
+    + id (long) ID
+    + emailAddress (string) Email地址
+    + emailServerAddress (string) Email服务器地址
+    + smtpUsername (string) smtp用户名
+    + smtpPassword (string) smtp密码
+    + smtpDomain (string) smtp域名
+    + sslSwitch  (int)  SSL是否开启 1为SSL 0为非ssl
+    + smtpPort (int) smtp端口
+    + enabled (int)  - 使能  0禁止 1启用
+    + creator (long) - 创建人
+    + modifier (long) - 修改人
+    + created (date) - 创建时间
+    + modified (date) - 修改时间
+
+
+### Email配置详情 [GET] /emailSmtpConfig
++ Description
+    + Author Liukai
++ Parameters
++ 
++ ReturnData
+    + id (long) ID
+    + emailAddress (string) Email地址
+    + emailServerAddress (string) Email服务器地址
+    + smtpUsername (string) smtp用户名
+    + smtpPassword (string) smtp密码
+    + smtpDomain (string) smtp域名
+    + sslSwitch  (int)  SSL是否开启 1为SSL 0为非ssl
+    + smtpPort (int) smtp端口
+    + enabled (int)  - 使能  0禁止 1启用
+    + creator (long) - 创建人
+    + modifier (long) - 修改人
+    + created (date) - 创建时间
+    + modified (date) - 修改时间
+              
++ Response 200
+
+### Email配置添加 [POST] /emailSmtpConfig
++ Description
+    + Author Liukai
+
++ Parameters
+    + data
+        + emailAddress (string) Email地址
+        + emailServerAddress (string) Email服务器地址
+        + smtpUsername (string) smtp用户名
+        + smtpPassword (string) smtp密码
+        + smtpDomain (string) smtp域名
+        + sslSwitch  (int)  SSL是否开启 1为SSL 0为非ssl
+        + smtpPort (int) smtp端口
+      
++ ReturnData
+    + id (long) ID
+    + type (string) emailSmtpConfig
+
+              
++ Response 200
+
+        {
+          "data": {
+            "id": 1,
+            "type": "emailSmtpConfig"
+          }
+        } 
+
+### Email配置修改 [PATCH] /emailSmtpConfig/{id}
++ Description
+    + Author Liukai
+
++ Parameters
+    + id (long) ID 
+    + data
+        + emailAddress (string) Email地址
+        + emailServerAddress (string) Email服务器地址
+        + smtpUsername (string) smtp用户名
+        + smtpPassword (string) smtp密码
+        + smtpDomain (string) smtp域名
+        + sslSwitch  (int)  SSL是否开启 1为SSL 0为非ssl
+        + smtpPort (int) smtp端口
+    
++ Response 200
+    
+    

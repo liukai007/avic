@@ -15,12 +15,13 @@
 + 2020年10月22日
     + 环境数据分析接口
     + 当前协作空间环境数据
-    + 设备使用次数
+    + 上周设备使用次数
     + 品牌设备统计
     + 分类设备统计
 + 2020年10月23日
     + 健康状况
     + 会议室使用情况统计/能耗统计
+    + 上周设备耗能排行
 
 
 ## 网关基本信息
@@ -590,7 +591,7 @@
           }
         }
 
-## 设备使用次数  [GET]  /timesMalfunction/timesAndMalfunction
+## 上周设备使用次数  [GET]  /timesMalfunction/timesAndMalfunction
 
 + Description
 
@@ -826,6 +827,36 @@
               "gatewayEquipmentId": 1,
               "times": 0,
               "powerConsumption": 61
+            }
+          ]
+        }
+
+
+## 上周设备耗能排行  [GET]  /timesMalfunction/energy
+
++ Description
+
+
++ Parameters
+    + dateMinStr (string)  开始日期 格式：yyyy-MM-dd HH:mm:ss
+
++ ReturnData
+    + equipmentId (long) 设备id
+    + electricValueSum (Double) 耗电量
+    + equipmentName (string)   设备名称
+    + model (string)   设备型号
+    + eneryValueHb (Double)   环比（周）
+
++ Response 200
+
+        {
+          "data": [
+            {
+              "equipmentId": 2,
+              "equipentName": "七合一环境传感器",
+              "electricValueSum": 2.2,
+              "eneryValueHb": -12,
+              "model": "SM300D2MOD"
             }
           ]
         }

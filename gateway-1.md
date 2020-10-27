@@ -640,30 +640,54 @@
 + Parameters
 
 + ReturnData
-    + id (long) 品牌id
-    + enabled (int) 是否使用
-    + creator (long)  创建人  
-    + modifier (long)   修改人
-    + brandName (string)   品牌名称
-    + website (string)   网址
-    + displayOrder （int） 排序
-    + total （int）数量
+    + equipmentsum （int）设备总数
+        + id (long) 品牌id
+        + enabled (int) 是否使用
+        + creator (long)  创建人  
+        + modifier (long)   修改人
+        + brandName (string)   品牌名称
+        + website (string)   网址
+        + displayOrder （int） 排序
+        + total （int）数量
 
 + Response 200
 
         {
-          "data": [
-            {
-              "id": 1,
-              "enabled": 1,
-              "creator": 0,
-              "modifier": 0,
-              "brandName": "extron",
-              "website": "www。",
-              "displayOrder": 100,
-              "total": 1
-            }
-          ]
+          "data": {
+            "equipmentsum": 3,
+            "brands": [
+              {
+                "id": 1,
+                "enabled": 1,
+                "creator": 0,
+                "modifier": 0,
+                "brandName": "extron",
+                "website": "www。",
+                "displayOrder": 100,
+                "total": 1
+              },
+              {
+                "id": 2,
+                "enabled": 1,
+                "creator": 0,
+                "modifier": 0,
+                "brandName": "baidu",
+                "website": "www.baidu.com",
+                "displayOrder": 100,
+                "total": 2
+              },
+              {
+                "id": 3,
+                "enabled": 1,
+                "creator": 0,
+                "modifier": 0,
+                "brandName": "企鹅",
+                "website": "www.qie",
+                "displayOrder": 100,
+                "total": 0
+              }
+            ]
+          }
         }
         
 ## 分类设备统计  [GET]  /equipment/categoryStatistics
@@ -674,34 +698,60 @@
 + Parameters
 
 + ReturnData
-    + id (long) 分类id
-    + enabled (int) 是否使用
-    + creator (long)  创建人  
-    + modifier (long)   修改人
-    + categoryName (string)   分类名称
-    + displayOrder （int） 排序
-    + total （int）数量
-    + created （data）创建时间
-    + modified （data）修改时间
-    + parentId （long）父id
+    + equipmentsum （int） 设备总数
+        + id (long) 分类id
+        + enabled (int) 是否使用
+        + creator (long)  创建人  
+        + modifier (long)   修改人
+        + categoryName (string)   分类名称
+        + displayOrder （int） 排序
+        + total （int）数量
+        + created （data）创建时间
+        + modified （data）修改时间
+        + parentId （long）父id
 
 + Response 200
 
-        {
-          "data": [
-            {
-              "id": 2,
-              "enabled": 1,
-              "creator": 0,
-              "modifier": 0,
-              "created": "2020-10-20 14:09:44",
-              "modified": "2020-10-20 14:09:41",
-              "parentId": 1,
-              "categoryName": "环境传感器",
-              "displayOrder": 100,
-              "total": 1
-            }
-          ]
+         {
+          "data": {
+            "equipmentsum": 3,
+            "categories": [
+              {
+                "id": 1,
+                "enabled": 1,
+                "creator": 0,
+                "modifier": 0,
+                "created": "2020-10-20 14:09:15",
+                "modified": "2020-10-20 14:09:13",
+                "parentId": 0,
+                "categoryName": "传感器",
+                "displayOrder": 100,
+                "total": 1
+              },
+              {
+                "id": 2,
+                "enabled": 1,
+                "creator": 0,
+                "modifier": 0,
+                "created": "2020-10-20 14:09:44",
+                "modified": "2020-10-20 14:09:41",
+                "parentId": 1,
+                "categoryName": "环境传感器",
+                "displayOrder": 100,
+                "total": 2
+              },
+              {
+                "id": 3,
+                "enabled": 1,
+                "creator": 0,
+                "modifier": 0,
+                "created": "2020-10-27 11:02:40",
+                "categoryName": "灯",
+                "displayOrder": 100,
+                "total": 0
+              }
+            ]
+          }
         }
 
 ## 健康状况  [GET]  /GatewayManagement

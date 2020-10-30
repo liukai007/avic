@@ -25,6 +25,11 @@
     + Email配置详情
     + Email配置添加
     + Email配置修改
++ 2020年10月30日
+    + 系统日志列表
+    + 设备日志列表
+    + 智能场景列表
+    + 智能场景日志列表
 
 
 ## 网关基本信息
@@ -997,5 +1002,227 @@
         + smtpPort (int) smtp端口
     
 + Response 200
+
+
+
+## 系统日志列表  [GET]  /logSystem
+
++ Description
+
+
++ Parameters
+    + dateMinStr (string)  开始日期 格式：yyyy-MM-dd HH:mm:ss
+    + dateMaxStr （string）结束日期 格式：yyyy-MM-dd HH:mm:ss
+    + eventContent （string）事件内容
+    + filter[userId] （long）用户id
+    + page[number] （int）页码
+    + page[size] （int）条数
+    + sort （Array[string]） 排序
+
++ ReturnData
+    + id (long) 系统日志id
+    + enabled (int) 是否启用
+    + creator (Long)  创建人  
+    + created (datetime)   创建时间
+    + eventContent (string)   日志内容
+
++ Response 200
+
+        {
+          "data": [
+            {
+              "id": 1,
+              "enabled": 1,
+              "creator": 0,
+              "created": "2020-10-29 11:53:30",
+              "eventContent": "$2a$04$Xsk3KBc.yHjysEUBOZO7WO7HgUy70OMf34n/N/Imo0YcpJBtkd5rW用户--用户名或密码错误！"
+            },
+            {
+              "id": 2,
+              "enabled": 1,
+              "creator": 0,
+              "created": "2020-10-29 11:59:40",
+              "eventContent": "admin用户--用户名或密码错误！"
+            }
+          ]
+        }
     
     
+## 设备日志列表  [GET]  /logEquipment
+
++ Description
+
+
++ Parameters
+    + dateMinStr (string)  开始日期 格式：yyyy-MM-dd HH:mm:ss 必填
+    + dateMaxStr （string）结束日期 格式：yyyy-MM-dd HH:mm:ss 必填
+    + eventContent （string）事件内容
+    + eventResult (int) 执行结果
+    + filter[equipmentId] （long）设备id
+    + filter[logLevel] （int）日志级别 0:错误 1:警告 2:信息 3:调试
+    + filter[userId] （long）用户id
+    + page[number] （int）页码
+    + page[size] （int）条数
+    + sort （Array[string]） 排序
+
++ ReturnData
+    + id (long) 设备日志id
+    + enabled (int) 是否启用
+    + creator (Long)  创建人  
+    + created (datetime)   创建时间
+    + eventContent (string)  事件内容
+    + logLevel （int）日志级别   0:错误       1:警告    2:信息    3:调试
+    + operateType （int）0 常规操作 1是场景操作 2是计划任务
+    + operateId （long）实际操作id就是场景日志的id或者计划任务的ID
+    + eventResult （int） 1执行成功，0执行失败
+    + malfunctionTimes （int）防止出现大量错误日志，把表填满
+    + analyzed （int）是否被统计 0未被分析，1已经被分析
+    + readed （int）0未读，1已读'
+    + upload （int）0未上传，1已经上传        日志是否上传的标志位.'
+    + userName （string）用户名
+    + equipmentModel （string）设备型号
+    + equipmentName （string）设备名称
+
++ Response 200
+
+        {
+          "data": [
+            {
+              "id": 2,
+              "enabled": 1,
+              "creator": 1,
+              "modifier": 0,
+              "created": "2020-10-23 10:23:11",
+              "modified": "2020-10-23 10:23:11",
+              "logLevel": 1,
+              "operateType": 0,
+              "operateId": 0,
+              "eventContent": "没有电量设备，可以进行电量统计",
+              "eventResult": 0,
+              "malfunctionTimes": 0,
+              "analyzed": 0,
+              "readed": 0,
+              "upload": 0,
+              "userName": "admin"
+            }
+            {
+              "id": 6,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2020-10-23 11:53:12",
+              "modified": "2020-10-23 11:53:12",
+              "logLevel": 0,
+              "equipmentId": 3,
+              "operateType": 0,
+              "operateId": 0,
+              "eventContent": "电量值异常不可能为0或者是第一次使用",
+              "eventResult": 0,
+              "malfunctionTimes": 0,
+              "analyzed": 0,
+              "readed": 0,
+              "upload": 0,
+              "equipmentModel": "sw010",
+              "equipmentName": "中会智能电表"
+            }
+          ]
+        }
+
+
+## 智能场景列表  [GET]  /intelligentScene
+
++ Description
+
+
++ Parameters
+    + filter[sceneName] (string)  场景名称
+    + filter[sceneType] （int）场景类型 0为触发类型，1为条件类型
+    + page[number] （int）页码
+    + page[size] （int）条数
+    + sort （Array[string]） 排序
+
++ ReturnData
+    + id (long) 设备日志id
+    + enabled (int) 是否启用
+    + creator (Long)  创建人  
+    + created (datetime)   创建时间
+    + sceneName (string)  场景名称
+    + sceneType （int）0为触发类型，1为条件类型
+    + opened （int）1表示开启，0表示关闭
+    + running （int）是否运行
+
++ Response 200
+
+        {
+          "data": [
+            {
+              "id": 1,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2020-10-28 17:14:01",
+              "modified": "2020-10-28 17:14:04",
+              "sceneName": "关闭会议",
+              "sceneType": 0,
+              "opened": 1,
+              "running": 1
+            }
+          ]
+        }
+
+## 智能场景日志列表  [GET]  /intelligentScene/sceneLog
+
++ Description
+
+
++ Parameters
+    + dateMinStr (string)  开始日期 格式：yyyy-MM-dd HH:mm:ss 必填
+    + dateMaxStr （string）结束日期 格式：yyyy-MM-dd HH:mm:ss 必填
+    + eventContent （string）事件内容
+    + eventResult (int) 执行结果
+    + filter[userId] （long）用户id
+    + sceneName (string)  场景名称
+    + sceneType （int）0为触发类型，1为条件类型
+    + page[number] （int）页码
+    + page[size] （int）条数
+    + sort （Array[string]） 排序
+
++ ReturnData
+    + id (long) 设备日志id
+    + creator (Long)  创建人  
+    + created (datetime)   创建时间
+    + operateType (int)  0 常规操作 1是场景操作 2是计划任务
+    + sceneTaskId （long）智能场景id
+    + eventContent （string） 事件内容
+    + eventResult （int）1成功 0失败
+    + sceneName （string）智能场景名称
+    + userName （string）用户名称
+
++ Response 200
+
+        {
+          "data": [
+            {
+              "id": 1,
+              "creator": 1,
+              "created": "2020-10-28 17:19:12",
+              "operateType": 1,
+              "sceneTaskId": 1,
+              "eventContent": "执行关闭会议",
+              "eventResult": 1,
+              "sceneName": "关闭会议",
+              "userName": "admin"
+            },
+            {
+              "id": 2,
+              "creator": 1,
+              "created": "2020-10-28 17:20:08",
+              "operateType": 1,
+              "sceneTaskId": 1,
+              "eventContent": "执行关闭会议",
+              "eventResult": 1,
+              "sceneName": "关闭会议",
+              "userName": "admin"
+            }
+          ]
+        }

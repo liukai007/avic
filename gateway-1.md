@@ -30,6 +30,12 @@
     + 设备日志列表
     + 智能场景列表
     + 智能场景日志列表
++ 2020年11月2日
+    + 设备链路添加
+    + 设备链路详情
+    + 设备链路删除
+    + 设备链路修改
+    + 设备列表
 
 
 ## 网关基本信息
@@ -1223,6 +1229,179 @@
               "eventResult": 1,
               "sceneName": "关闭会议",
               "userName": "admin"
+            }
+          ]
+        }
+
+
+## 设备链路添加  [post]  /equipmentLink
+
++ Description
+
+
++ Parameters
+    + data
+        + communicationMode (string)  通讯方式（0 音频 1 视频 2 网络 .......）
+        + leftEquipmentId （long）左端设备id
+        + linkClassify （int） 1 单向 2 双向（连接分类）
+        + linkName (string) 设备链路名
+        + rightEquipmentId （long）右端设备id
+
++ ReturnData
+
+
++ Response 201
+
+        {
+            "data": {
+                "id": 3,
+                "type": "equipmentLink"
+            }
+        }
+
+## 设备链路详情  [GET]  /equipmentLink/{id}
+
++ Description
+
+
++ Parameters
+    + id (long)  设备链路id
+ 
+
++ ReturnData
+    + id (long) 设备日志id
+    + creator (Long)  创建人  
+    + created (datetime)   创建时间
+    + linkName (string)  链路名称
+    + linkClassify （int）通讯方式（0 音频 1 视频 2 网络 .......）
+    + communicationMode （int） 连接分类（1 单向 2 双向）
+    + leftEquipmentId （long）左端设备id
+    + rightEquipmentId （long）右端设备id
+    + leftEquipmentName （string）左端设备名
+    + rightEquipmentName （string）右端设备名
+
++ Response 200
+
+        {
+          "data": {
+            "id": 1,
+            "enabled": 1,
+            "creator": 0,
+            "modifier": 0,
+            "created": "2020-11-02 16:45:30",
+            "modified": "2020-11-02 16:45:30",
+            "linkName": "传感器",
+            "linkClassify": 0,
+            "communicationMode": 1,
+            "leftEquipmentId": 1,
+            "rightEquipmentId": 2,
+            "leftEquipmentName": "中会中控",
+            "rightEquipmentName": "七合一环境传感器"
+          }
+        }
+
+## 设备链路删除  [DELETE]  /equipmentLink/{id}
+
++ Description
+
+
++ Parameters
+    + id (long)  设备链路id
+ 
+
++ ReturnData
+
++ Response 204
+
+## 设备链路修改  [PATCH]  /equipmentLink/{id}
+
++ Description
+
+
++ Parameters
+    + data
+        + communicationMode (string)  通讯方式（0 音频 1 视频 2 网络 .......）
+        + leftEquipmentId （long）左端设备id
+        + linkClassify （int） 1 单向 2 双向（连接分类）
+        + linkName (string) 设备链路名
+        + rightEquipmentId （long）右端设备id
+    + id （long）链路id
++ ReturnData
+
+
++ Response 200
+
+### 设备列表 [GET] /equipment
++ Description
+
++ ReturnData
+    + id （long） 端口类型id
+    + enabled （int）是否启用
+    + creator （long）创建人
+    + modifier （long）修改人
+    + updateVersionId （long）跟云端同步使用
+    + cloudEquipmentId （long）云端id
+    + equipmentName （string） 设备名
+    + equipmentNameEn （string）自动生成唯一号
+    + online （int） 是否在线：0 离线 1在线 2未知
+    + runningStatus （int）运行状态 0关闭 1运行 2警告    3故障  4其他
+    + serialNumber （string）设备序列号
+    + purchaseDate （data）采购日期
+    + maintenanceTelephone （string）维修电话
+    + gatewayId （long）网关id
+    + driveId （long） 驱动id
+    + ispdu （int）0 非pdu 1是pdu
+    + controllable （int）是否可控 1 可控  0 不可控
+    + builtIn （int）是否内置 1为内置 0为非内置
+    + fixedAttribute （int）0 无固定属性，1为环境  2 占位 3 能耗
+    + functionCode （int）'0 无功能  1 是次数  2 是电表记录'
+    + maintainData （data）保养日期
+    + brandName （string）品牌名
+    + model （string）型号
+    + categroyName （string）分类名
+        
+        
++ Response 200
+    
+        {
+          "data": [
+            {
+              "id": 1,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2020-10-18 09:18:51",
+              "modified": "2020-10-18 09:18:56",
+              "cloudEquipmentId": 0,
+              "updateVersionId": 0,
+              "equipmentName": "中会中控",
+              "equipmentNameEn": "zhz",
+              "online": 0,
+              "runningStatus": 0,
+              "serialNumber": "122",
+              "purchaseDate": "2020-10-18T01:18:13.000+0000",
+              "maintenanceTelephone": "13126822398",
+              "gatewayId": 1,
+              "driveId": 2,
+              "ispdu": 0,
+              "controllable": 1,
+              "builtIn": 0,
+              "fixedAttribute": 0,
+              "functionCode": 0,
+              "maintainData": "2020-10-21T10:42:01.000+0000",
+              "brandName": "baidu",
+              "model": "sw010",
+              "categroyName": "传感器"
+            }
+          ]
+        }
++ Response 400
+    
+        {
+          "errors": [
+            {
+              "status": "400",
+              "title": "Bad Request"
             }
           ]
         }

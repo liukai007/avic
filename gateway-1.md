@@ -39,6 +39,7 @@
 + 2020年11月3日
     + 计划任务列表
     + 计划任务日志列表
+    + 驱动列表
 
 
 ## 网关基本信息
@@ -1423,6 +1424,10 @@
 ### 计划任务列表 [GET] /scheduledTask
 + Description
 
++ Parameters
+    + filter[sceneName] (string)  计划任务名
+
+
 + ReturnData
     + id （long） 端口类型id
     + enabled （int）是否启用
@@ -1490,6 +1495,15 @@
 ### 计划任务日志列表 [GET] /scheduledTask/scheduledLog
 + Description
 
++ Parameters
+    + dateMinStr (string)  开始日期 格式：yyyy-MM-dd HH:mm:ss 必填
+    + dateMaxStr （string）结束日期 格式：yyyy-MM-dd HH:mm:ss 必填
+    + eventResult (int) 执行结果 （执行成功1  执行失败0）
+    + sceneName (string)  任务名称
+    + page[number] （int）页码
+    + page[size] （int）条数
+    + sort （Array[string]） 排序
+
 + ReturnData
     + id （long） 端口类型id
     + enabled （int）是否启用
@@ -1517,6 +1531,72 @@
               "eventResult": 1,
               "sceneName": "每日定时关闭",
               "userName": "admin"
+            }
+          ]
+        }
++ Response 400
+    
+        {
+          "errors": [
+            {
+              "status": "400",
+              "title": "Bad Request"
+            }
+          ]
+        }
+
+### 驱动列表 [GET] /drive
++ Description
+
++ Parameters
+    + belong (int)  0 本地 1 云端
+    + equipmentName （string）设备名
+    + filter[brandId] (long) 品牌id
+    + filter[categoryId] (long)  分类id
+    + model （string）型号
+    + page[number] （int）页码
+    + page[size] （int）条数
+    + sort （Array[string]） 排序
+
++ ReturnData
+    + id （long） 端口类型id
+    + enabled （int）是否启用
+    + creator （long）创建人
+    + modifier （long）修改人
+    + cloudDriveId （long）云驱动id
+    + updateVersionId （long）更新版本id
+    + equipmentName （string） 设备名称
+    + model （string）型号
+    + categoryId （long） 分类id
+    + brandId （long）品牌id
+    + belong （int）本地 是0   云端是1
+    + operation （int）0 无操作  1已上传  2下载 3 已下载（操作）
+    + brandName （string） 品牌名
+    + categoryName （string）分类名
+    + firmware （string）固件
+        
+        
++ Response 200
+    
+        {
+          "data": [
+            {
+              "id": 3,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2020-10-27 11:01:47",
+              "modified": "2020-10-27 11:01:51",
+              "updateVersionId": 0,
+              "equipmentName": "中控",
+              "model": "W101",
+              "categoryId": 3,
+              "brandId": 3,
+              "firmware": "q101",
+              "belong": 0,
+              "operation": 0,
+              "brandName": "企鹅",
+              "categoryName": "灯"
             }
           ]
         }

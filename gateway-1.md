@@ -36,6 +36,9 @@
     + 设备链路删除
     + 设备链路修改
     + 设备列表
++ 2020年11月3日
+    + 计划任务列表
+    + 计划任务日志列表
 
 
 ## 网关基本信息
@@ -1392,6 +1395,117 @@
               "brandName": "baidu",
               "model": "sw010",
               "categroyName": "传感器"
+            }
+          ]
+        }
++ Response 400
+    
+        {
+          "errors": [
+            {
+              "status": "400",
+              "title": "Bad Request"
+            }
+          ]
+        }
+
+### 计划任务列表 [GET] /scheduledTask
++ Description
+
++ ReturnData
+    + id （long） 端口类型id
+    + enabled （int）是否启用
+    + creator （long）创建人
+    + modifier （long）修改人
+    + taskName （string）计划任务名
+    + taskYear （string）年
+    + taskMonth （string） 月
+    + taskWeekbymonth （string）每月第几周
+    + taskWeek （string） 周
+    + taskDay （string）日
+    + taskHour （string）时
+    + taskMinute （string）分
+    + taskSecond （string）秒
+    + frequency （int）0 日 1周 2月 3年（频率）
+        
+        
++ Response 200
+    
+        {
+          "data": [
+            {
+              "id": 1,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2020-10-29 11:26:17",
+              "modified": "2020-10-29 11:26:19",
+              "taskName": "每日定时关闭",
+              "taskYear": "2020",
+              "taskMonth": "10",
+              "taskWeekbymonth": "25"
+            },
+            {
+              "id": 2,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2020-10-30 11:06:29",
+              "modified": "2020-10-30 11:06:29",
+              "taskName": "关投影",
+              "taskYear": "*",
+              "taskMonth": "*",
+              "taskWeekbymonth": "*",
+              "taskWeek": "?",
+              "taskDay": "*/1",
+              "taskHour": "16",
+              "taskMinute": "00",
+              "taskSecond": "00",
+              "frequency": 0
+            }
+          ]
+        }
++ Response 400
+    
+        {
+          "errors": [
+            {
+              "status": "400",
+              "title": "Bad Request"
+            }
+          ]
+        }
+
+### 计划任务日志列表 [GET] /scheduledTask/scheduledLog
++ Description
+
++ ReturnData
+    + id （long） 端口类型id
+    + enabled （int）是否启用
+    + creator （long）创建人
+    + modifier （long）修改人
+    + operateType （int）0 常规操作 1是场景操作 2是计划任务
+    + sceneTaskId （long）计划任务id
+    + eventContent （string） 事件内容
+    + eventResult （int）执行成功1  执行失败0
+    + sceneName （string） 任务名
+    + userName （string）用户名
+        
+        
++ Response 200
+    
+        {
+          "data": [
+            {
+              "id": 6,
+              "creator": 1,
+              "created": "2020-10-29 11:27:41",
+              "operateType": 2,
+              "sceneTaskId": 1,
+              "eventContent": "执行每日定时关闭",
+              "eventResult": 1,
+              "sceneName": "每日定时关闭",
+              "userName": "admin"
             }
           ]
         }

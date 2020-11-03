@@ -1337,6 +1337,17 @@
 ### 设备列表 [GET] /equipment
 + Description
 
++ Parameters
+    + equipmentName (string)  设备名
+    + filter[brandId] （long）品牌ID
+    + filter[categoryId] （long）分类Id
+    + model (string)型号
+    + online （int）0 离线 1在线 2未知（是否在线）
+    + runningStatus (int)  运行状态（0关闭 1运行 2警告 3故障 4其他）
+    + page[number] （int）页码
+    + page[size] （int）条数
+    + sort （Array[string]） 排序
+
 + ReturnData
     + id （long） 端口类型id
     + enabled （int）是否启用

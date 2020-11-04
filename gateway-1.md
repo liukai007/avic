@@ -1207,6 +1207,7 @@
     + eventResult （int）1成功 0失败
     + sceneName （string）智能场景名称
     + userName （string）用户名称
+    + sceneType （int）0为触发类型，1为条件类型
 
 + Response 200
 

@@ -40,7 +40,11 @@
     + 计划任务列表
     + 计划任务日志列表
     + 驱动列表
-
++ 2020年11月5日
+    + 智能场景添加
+    + 智能场景删除
+    + 智能场景修改
+    + 智能场景详情
 
 ## 网关基本信息
 + Data
@@ -1610,4 +1614,343 @@
               "title": "Bad Request"
             }
           ]
+        }
+
+
+### 智能场景添加 [POST] /intelligentScene
+
++ Description
+    
+
++ Parameters
+    + data
+        + creator (long) 创建人
+        + builtIn （int） 默认是内置的0  1表示内置  0表示非内置
+        + displayOrder （int） 排序
+        + enabled （int）是否启用
+        + isFront （int）是否前台展示 1表示前台展示 0表示非前台展示
+        + opened （int）1表示开启，0表示关闭
+        + running （int）是否运行中
+        + sceneEndTime （date）启用时间
+        + sceneName （string）场景名
+        + sceneStartTime （date）场景到期时间
+        + sceneType （int）0为触发类型，1为条件类型
+        + sceneTaskConditions
+            + conditionalRelation （int）关联条件 0 and  1 or
+            + creator （long）创建人
+            + enabled （int）是否启用
+            + equipmentId （long）设备id
+            + judgeCondition （判断条件）0 ==等于， 1  !=不等于， 2 <小于，  3 >大于，  4  <=小于等于， 5 >=大于等于
+            + operateType （int）1是场景操作 2是计划任务
+            + readTypeId （long）读数类型id
+            + readValue （string）读数值 可以是字符串也可以是具体的类型。根据读数类型进行转换
+        + sceneTaskDetails 
+            + creator （long）创建人
+            + driveCmdId （long）驱动命令id
+            + enabled （int）是否启用
+            + equipmentId （long）设备id
+            + operateType （int）1是场景操作 2是计划任务
+            + parameter （string）参数
+    
++ Request (application/json)
+
+        {
+        	"data": {
+        		"builtIn": 0,
+        		"creator": 0,
+        		"displayOrder": 0,
+        		"enabled": 0,
+        		"isFront": 0,
+        		"opened": 0,
+        		"running": 0,
+        		"sceneEndTime": "2020-11-05 14:13:47",
+        		"sceneName": "string",
+        		"sceneStartTime": "2020-11-05 14:13:47",
+        		"sceneTaskConditions": [{
+        			"conditionalRelation": 0,
+        			"creator": 0,
+        			"enabled": 0,
+        			"equipmentId": 0,
+        			"judgeCondition": 0,
+        			"operateType": 0,
+        			"readTypeId": 0,
+        			"readValue": "string",
+        			"sceneTaskId": 0
+        		}],
+        		"sceneTaskDetails": [{
+        			"creator": 0,
+        			"driveCmdId": 0,
+        			"enabled": 0,
+        			"equipmentId": 0,
+        			"operateType": 0,
+        			"parameter": "string",
+        
+        		}],
+        		"sceneType": 0
+        	}
+        }
++ Response 201
+
+        {
+          "data": {
+            "id": 3,
+            "type": "IntelligentScene"
+          }
+        }
+
+
+### 智能场景删除 [DELETE] /intelligentScene/{id}
+
++ Description
+
+    
++ Parameters
+    + id (long) 场景ID
+    
++ Request (application/json)
+
++ Response 204
+
++ Response 400
+
+            {
+              "errors": [
+                {
+                  "status": "400",
+                  "title": "Bad Request"
+                }
+              ]
+            }
+
+
+### 智能场景修改 [POST] /intelligentScene/{id}
+
++ Description
+    
+
++ Parameters
+    + data
+        + creator (long) 创建人
+        + builtIn （int） 默认是内置的0  1表示内置  0表示非内置
+        + displayOrder （int） 排序
+        + enabled （int）是否启用
+        + isFront （int）是否前台展示 1表示前台展示 0表示非前台展示
+        + opened （int）1表示开启，0表示关闭
+        + running （int）是否运行中
+        + sceneEndTime （date）启用时间
+        + sceneName （string）场景名
+        + sceneStartTime （date）场景到期时间
+        + sceneType （int）0为触发类型，1为条件类型
+        + sceneTaskConditions
+            + id （long）条件id
+            + conditionalRelation （int）关联条件 0 and  1 or
+            + creator （long）创建人
+            + enabled （int）是否启用
+            + equipmentId （long）设备id
+            + judgeCondition （判断条件）0 ==等于， 1  !=不等于， 2 <小于，  3 >大于，  4  <=小于等于， 5 >=大于等于
+            + operateType （int）1是场景操作 2是计划任务
+            + readTypeId （long）读数类型id
+            + readValue （string）读数值 可以是字符串也可以是具体的类型。根据读数类型进行转换
+        + sceneTaskDetails 
+            + id (long) 详情表id
+            + creator （long）创建人
+            + driveCmdId （long）驱动命令id
+            + enabled （int）是否启用
+            + equipmentId （long）设备id
+            + operateType （int）1是场景操作 2是计划任务
+            + parameter （string）参数
+    
++ Request (application/json)
+
+        {
+        	"data": {
+        		"builtIn": 0,
+        		"creator": 0,
+        		"displayOrder": 0,
+        		"enabled": 0,
+        		"isFront": 0,
+        		"opened": 0,
+        		"running": 0,
+        		"sceneEndTime": "2020-11-05T06:51:25.601Z",
+        		"sceneName": "string",
+        		"sceneStartTime": "2020-11-05T06:51:25.601Z",
+        		"sceneTaskConditions": [{
+        		    "id": 0,
+        			"conditionalRelation": 0,
+        			"creator": 0,
+        			"enabled": 0,
+        			"equipmentId": 0,
+        			"judgeCondition": 0,
+        			"operateType": 0,
+        			"readTypeId": 0,
+        			"readValue": "string",
+        			"sceneTaskId": 0
+        		},
+        		{
+        			"conditionalRelation": 0,
+        			"creator": 0,
+        			"enabled": 0,
+        			"equipmentId": 0,
+        			"judgeCondition": 0,
+        			"operateType": 0,
+        			"readTypeId": 0,
+        			"readValue": "string",
+        			"sceneTaskId": 0
+        		}
+        		],
+        		"sceneTaskDetails": [{
+        		    "id": 0,
+        			"creator": 0,
+        			"driveCmdId": 0,
+        			"enabled": 0,
+        			"equipmentId": 0,
+        			"operateType": 0,
+        			"parameter": "string",
+        		},
+        		{
+        			"creator": 0,
+        			"driveCmdId": 0,
+        			"enabled": 0,
+        			"equipmentId": 0,
+        			"operateType": 0,
+        			"parameter": "string",
+        		}
+        		],
+        		"sceneType": 0
+        	}
+        }
+
++ Response 200
+
+
+### 智能场景详情 [GET] /intelligentScene/{id}
+
++ Description
+
+    
++ Parameters
+    + id (long) 场景ID
+
++ ReturnData
+
+    + data
+        + id （long）场景id
+        + creator (long) 创建人
+        + builtIn （int） 默认是内置的0  1表示内置  0表示非内置
+        + displayOrder （int） 排序
+        + enabled （int）是否启用
+        + isFront （int）是否前台展示 1表示前台展示 0表示非前台展示
+        + opened （int）1表示开启，0表示关闭
+        + running （int）是否运行中
+        + sceneEndTime （date）启用时间
+        + sceneName （string）场景名
+        + sceneStartTime （date）场景到期时间
+        + sceneType （int）0为触发类型，1为条件类型
+        + sceneTaskConditions
+            + id （long）条件id
+            + conditionalRelation （int）关联条件 0 and  1 or
+            + creator （long）创建人
+            + enabled （int）是否启用
+            + equipmentId （long）设备id
+            + judgeCondition （判断条件）0 ==等于， 1  !=不等于， 2 <小于，  3 >大于，  4  <=小于等于， 5 >=大于等于
+            + operateType （int）1是场景操作 2是计划任务
+            + readTypeId （long）读数类型id
+            + readValue （string）读数值 可以是字符串也可以是具体的类型。根据读数类型进行转换
+            + sceneTaskId （long）场景id
+            + equipmentName （string）设备名
+            + model （string）型号
+        + sceneTaskDetails 
+            + id (long) 详情表id
+            + creator （long）创建人
+            + driveCmdId （long）驱动命令id
+            + enabled （int）是否启用
+            + equipmentId （long）设备id
+            + operateType （int）1是场景操作 2是计划任务
+            + parameter （string）参数
+            + sceneTaskId （long）智能场景id
+            + equipmentName （string）设备名
+            + cmdName （string）命令名
+            + secondCategoryId （long）二级分类
+            + secondCategoryName （string）二级分类名
+            + primaryCategoryId （long）一级分类
+            + primaryCategoryName （string）一级分类名
+            + model （string）型号
+    
++ Request (application/json)
+
+
++ Response 200
+
+        {
+          "data": {
+            "id": 2,
+            "enabled": 1,
+            "creator": 0,
+            "modifier": 0,
+            "created": "2020-10-28 17:14:45",
+            "modified": "2020-10-28 17:14:48",
+            "sceneName": "观影模式",
+            "sceneType": 1,
+            "opened": 1,
+            "running": 1,
+            "displayOrder": 100,
+            "sceneTaskDetails": [
+              {
+                "id": 2,
+                "enabled": 1,
+                "creator": 0,
+                "modifier": 0,
+                "created": "2020-11-04 16:40:55",
+                "modified": "2020-11-04 16:40:58",
+                "operateType": 1,
+                "sceneTaskId": 2,
+                "equipmentId": 1,
+                "driveCmdId": 1,
+                "equipmentName": "中会中控",
+                "cmdName": "查找",
+                "secondCategoryId": 1,
+                "secondCategoryName": "传感器",
+                "model": "sw010"
+              },
+              {
+                "id": 3,
+                "enabled": 1,
+                "creator": 0,
+                "modifier": 0,
+                "created": "2020-11-05 10:24:26",
+                "modified": "2020-11-05 10:24:26",
+                "operateType": 1,
+                "sceneTaskId": 2,
+                "equipmentId": 2,
+                "driveCmdId": 1,
+                "equipmentName": "七合一环境传感器",
+                "cmdName": "查找",
+                "parameter": "28",
+                "secondCategoryId": 2,
+                "secondCategoryName": "环境传感器",
+                "primaryCategoryId": 1,
+                "primaryCategoryName": "传感器",
+                "model": "SM300D2MOD"
+              }
+            ],
+            "sceneTaskConditions": [
+              {
+                "id": 1,
+                "enabled": 1,
+                "creator": 0,
+                "modifier": 0,
+                "created": "2020-11-04 16:39:06",
+                "modified": "2020-11-04 16:39:08",
+                "operateType": 1,
+                "sceneTaskId": 2,
+                "equipmentId": 2,
+                "readTypeId": 1,
+                "conditionalRelation": 0,
+                "judgeCondition": 0,
+                "readValue": "10",
+                "equipmentName": "七合一环境传感器",
+                "model": "SM300D2MOD"
+              }
+            ]
+          }
         }

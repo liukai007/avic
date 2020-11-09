@@ -45,6 +45,11 @@
     + 智能场景删除
     + 智能场景修改
     + 智能场景详情
++ 2020年11月9日
+    + 计划任务添加
+    + 计划任务删除
+    + 计划任务修改
+    + 计划任务详情
 
 ## 网关基本信息
 + Data
@@ -1954,3 +1959,110 @@
             ]
           }
         }
+
+
+
+### 计划任务添加 [POST] /scheduledTask
+
++ Description
+    
+
++ Parameters
+    + data
+        + creator (long) 创建人
+        + builtIn （int） 默认是内置的0  1表示内置  0表示非内置
+        + displayOrder （int） 排序
+        + enabled （int）是否启用
+        + taskDay （string）天
+        + taskHour （string）小时
+        + taskMonth （string）月
+        + taskName （string）任务名
+        + taskSecond （string）秒
+        + taskWeek （string）周
+        + taskYear （string）年
+        + sceneStartTime （date） 启用时间
+        + sceneEndTime （date）计划任务到期时间 必须小于启动时间
+        + sceneTaskConditions
+            + conditionalRelation （int）关联条件 0 and  1 or
+            + creator （long）创建人
+            + enabled （int）是否启用
+            + equipmentId （long）设备id
+            + judgeCondition （判断条件）0 ==等于， 1  !=不等于， 2 <小于，  3 >大于，  4  <=小于等于， 5 >=大于等于
+            + operateType （int）1是场景操作 2是计划任务
+            + readTypeId （long）读数类型id
+            + readValue （string）读数值 可以是字符串也可以是具体的类型。根据读数类型进行转换
+        + sceneTaskDetails 
+            + creator （long）创建人
+            + driveCmdId （long）驱动命令id
+            + enabled （int）是否启用
+            + equipmentId （long）设备id
+            + operateType （int）1是场景操作 2是计划任务
+            + parameter （string）参数
+    
++ Request (application/json)
+
+        {
+          "data": {
+            "sceneTaskConditions": [
+              {
+                "conditionalRelation": 0,
+                "equipmentId": 1,
+                "judgeCondition": 0,
+                "operateType": 2,
+                "readTypeId": 1,
+                "readValue": "5"
+              }
+            ],
+            "sceneTaskDetails": [
+              {
+                "driveCmdId": 2,
+                "equipmentId": 2,
+                "operateType": 2,
+                "parameter": "15"
+              }
+            ],
+            "taskDay": "*/1",
+            "taskHour": "10",
+            "taskMinute": "00",
+            "taskMonth": "*",
+            "taskName": "定时打扫",
+            "taskSecond": "00",
+            "taskWeek": "?",
+            "taskWeekbymonth": "*",
+            "taskYear": "*",
+            "sceneStartTime": "2020-11-05 11:27:06",
+            "sceneEndTime": "2020-11-09 11:27:06"
+          }
+        }
++ Response 201
+
+        {
+          "data": {
+            "id": 3,
+            "type": "ScheduledTask"
+          }
+        }
+
+
+### 计划任务删除 [DELETE] /scheduledTask/{id}
+
++ Description
+
+    
++ Parameters
+    + id (long) 任务ID
+    
++ Request (application/json)
+
++ Response 204
+
++ Response 400
+
+            {
+              "errors": [
+                {
+                  "status": "400",
+                  "title": "Bad Request"
+                }
+              ]
+            }

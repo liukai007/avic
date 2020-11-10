@@ -35,7 +35,7 @@
     + 设备链路详情
     + 设备链路删除
     + 设备链路修改
-    + 设备列表（远程服务台-设备列表）通用
+    + 设备列表
 + 2020年11月3日
     + 计划任务列表
     + 计划任务日志列表
@@ -50,6 +50,8 @@
     + 计划任务删除
     + 计划任务修改
     + 计划任务详情
+    + 远程服务台-设备详情
+    + 远程服务台-设备列表
 
 ## 网关基本信息
 + Data
@@ -2272,3 +2274,417 @@
         }
 
 + Response 200
+
+
+### 远程服务台-设备详情 [GET] /DeviceButtonDetails/{id}
+
++ Description
+    + Author Liukai
+    
++ Parameters
+    + id (long) 设备ID
+
++ ReturnData
+
+    + data
+        + id (long) 设备id
+        + enabled 
+        + creator 
+        + modifier
+        + created
+        + modified
+        + cloudEquipmentId （long）云端id
+        + updateVersionId （long）同步id
+        + equipmentName （string）设备名
+        + anotherName （string）设备别名
+        + equipmentNameEn （string）设备英文名
+        + online （int） 是否在线：0 离线 1在线 2未知
+        + runningStatus （int）运行状态：0关闭 1运行 2警告    3故障  4其他'
+        + serialNumber （string）设备序列号
+        + purchaseDate （date）采购日期
+        + maintenanceTelephone （string）维修电话
+        + gatewayId （long）网关id
+        + driveId （long）驱动id
+        + ispdu （int）0 非pdu 1是pdu
+        + controllable （int ）是否可控 1 可控  0 不可控
+        + builtIn （int）是否内置（1为内置 0为非内置）
+        + fixedAttribute （int）关联空间属性（0 无固定属性，1为环境  2 占位 3 能耗）
+        + functionCode （int）0 无功能  1 是次数  2 是电表记录
+        + maintainData （date）保养日期
+        + brandName （string）品牌名称
+        + model （string）型号
+        + equipmentBtnGroups
+            + id （long） 端口类型id
+            + enabled （int）是否启用
+            + creator （long）创建人
+            + modifier （long）修改人
+            + equipmentId （long）设备id
+            + groupNameAlias （string）组别称
+            + groupName （string） 组名
+            + groupType （int）组类型（1 开关组 2 输入组 3 输出组 4 预设组 5编组组）
+            + groupAndGroup （string） 编组
+            + cmdBtnGroups
+                + id （long）命令按钮组id
+                + enabled
+                + assetBtnGroupId （long）设备按钮组ID
+                + driveCmdId （long）命令id
+                + cmdName （string）命令名
+                + cmdCode （string）命令code
+                + cmdAlias (string) 命令别称 
+                + forbidden （int）1是禁用  0不禁用
+                
+    
++ Request (application/json)
+
+
++ Response 200
+
+        {
+          "data": {
+            "id": 1,
+            "enabled": 1,
+            "creator": 0,
+            "modifier": 0,
+            "created": "2020-10-18 09:18:51",
+            "modified": "2020-10-18 09:18:56",
+            "cloudEquipmentId": 0,
+            "updateVersionId": 0,
+            "equipmentName": "中控",
+            "anotherName": "中会中控",
+            "equipmentNameEn": "zhz",
+            "online": 0,
+            "runningStatus": 0,
+            "serialNumber": "122",
+            "purchaseDate": "2020-10-18 09:18:13",
+            "maintenanceTelephone": "13126822398",
+            "gatewayId": 1,
+            "driveId": 3,
+            "ispdu": 0,
+            "controllable": 1,
+            "builtIn": 0,
+            "fixedAttribute": 0,
+            "functionCode": 0,
+            "maintainData": "2020-10-21 18:42:01",
+            "brandName": "企鹅",
+            "model": "W101",
+            "equipmentBtnGroups": [
+              {
+                "id": 1,
+                "enabled": 1,
+                "creator": 0,
+                "modifier": 0,
+                "created": "2020-10-26 15:12:05",
+                "modified": "2020-10-26 15:12:07",
+                "equipmentId": 1,
+                "groupNameAlias": "开关组",
+                "groupName": "开关组",
+                "groupType": 1,
+                "cmdBtnGroups": [
+                  {
+                    "id": 1,
+                    "enabled": 1,
+                    "creator": 0,
+                    "modifier": 0,
+                    "created": "2020-10-26 15:16:53",
+                    "modified": "2020-10-26 15:16:55",
+                    "assetBtnGroupId": 1,
+                    "driveCmdId": 1,
+                    "cmdName": "开",
+                    "cmdCode": "Btn_Jl_Kai",
+                    "cmdAlias": "on",
+                    "forbidden": 0
+                  }
+                ]
+              },
+              {
+                "id": 2,
+                "enabled": 1,
+                "creator": 0,
+                "modifier": 0,
+                "created": "2020-10-26 15:12:41",
+                "modified": "2020-10-26 15:12:45",
+                "equipmentId": 1,
+                "groupNameAlias": "输入组",
+                "groupName": "输入组",
+                "groupType": 2,
+                "cmdBtnGroups": [
+                  {
+                    "id": 2,
+                    "enabled": 1,
+                    "creator": 0,
+                    "modifier": 0,
+                    "created": "2020-10-26 15:17:13",
+                    "modified": "2020-10-26 15:17:17",
+                    "assetBtnGroupId": 2,
+                    "driveCmdId": 2,
+                    "cmdName": "关",
+                    "cmdCode": "Btn_Jl_Guan",
+                    "cmdAlias": "off",
+                    "forbidden": 1
+                  }
+                ]
+              },
+              {
+                "id": 3,
+                "enabled": 1,
+                "creator": 0,
+                "modifier": 0,
+                "created": "2020-10-26 15:14:36",
+                "modified": "2020-10-26 15:14:39",
+                "equipmentId": 1,
+                "groupNameAlias": "输出组",
+                "groupName": "输出组",
+                "groupType": 3,
+                "cmdBtnGroups": [
+                  {
+                    "id": 3,
+                    "enabled": 1,
+                    "creator": 0,
+                    "modifier": 0,
+                    "created": "2020-10-26 15:17:35",
+                    "modified": "2020-10-26 15:17:42",
+                    "assetBtnGroupId": 3,
+                    "driveCmdId": 2,
+                    "cmdName": "关",
+                    "cmdCode": "Btn_Jl_Guan",
+                    "cmdAlias": "off",
+                    "forbidden": 1
+                  },
+                  {
+                    "id": 4,
+                    "enabled": 1,
+                    "creator": 0,
+                    "modifier": 0,
+                    "created": "2020-10-26 15:33:16",
+                    "modified": "2020-10-26 15:33:23",
+                    "assetBtnGroupId": 3,
+                    "driveCmdId": 1,
+                    "cmdName": "开",
+                    "cmdCode": "Btn_Jl_Kai",
+                    "cmdAlias": "on",
+                    "forbidden": 0
+                  }
+                ]
+              },
+              {
+                "id": 4,
+                "enabled": 1,
+                "creator": 0,
+                "modifier": 0,
+                "created": "2020-10-26 15:15:11",
+                "modified": "2020-10-26 15:15:13",
+                "equipmentId": 1,
+                "groupNameAlias": "编组组",
+                "groupName": "编组组",
+                "groupType": 5,
+                "groupAndGroup": "2,3",
+                "equipmentBtnGroups": [
+                  {
+                    "id": 2,
+                    "enabled": 1,
+                    "creator": 0,
+                    "modifier": 0,
+                    "created": "2020-10-26 15:12:41",
+                    "modified": "2020-10-26 15:12:45",
+                    "equipmentId": 1,
+                    "groupNameAlias": "输入组",
+                    "groupName": "输入组",
+                    "groupType": 2,
+                    "cmdBtnGroups": [
+                      {
+                        "id": 2,
+                        "enabled": 1,
+                        "creator": 0,
+                        "modifier": 0,
+                        "created": "2020-10-26 15:17:13",
+                        "modified": "2020-10-26 15:17:17",
+                        "assetBtnGroupId": 2,
+                        "driveCmdId": 2,
+                        "cmdName": "关",
+                        "cmdCode": "Btn_Jl_Guan",
+                        "cmdAlias": "off",
+                        "forbidden": 1
+                      }
+                    ]
+                  },
+                  {
+                    "id": 3,
+                    "enabled": 1,
+                    "creator": 0,
+                    "modifier": 0,
+                    "created": "2020-10-26 15:14:36",
+                    "modified": "2020-10-26 15:14:39",
+                    "equipmentId": 1,
+                    "groupNameAlias": "输出组",
+                    "groupName": "输出组",
+                    "groupType": 3,
+                    "cmdBtnGroups": [
+                      {
+                        "id": 3,
+                        "enabled": 1,
+                        "creator": 0,
+                        "modifier": 0,
+                        "created": "2020-10-26 15:17:35",
+                        "modified": "2020-10-26 15:17:42",
+                        "assetBtnGroupId": 3,
+                        "driveCmdId": 2,
+                        "cmdName": "关",
+                        "cmdCode": "Btn_Jl_Guan",
+                        "cmdAlias": "off",
+                        "forbidden": 1
+                      },
+                      {
+                        "id": 4,
+                        "enabled": 1,
+                        "creator": 0,
+                        "modifier": 0,
+                        "created": "2020-10-26 15:33:16",
+                        "modified": "2020-10-26 15:33:23",
+                        "assetBtnGroupId": 3,
+                        "driveCmdId": 1,
+                        "cmdName": "开",
+                        "cmdCode": "Btn_Jl_Kai",
+                        "cmdAlias": "on",
+                        "forbidden": 0
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+
+
+### 远程服务台-设备列表 [GET] /equipment/controlledDevice
++ Description
+
++ Parameters
+    + page[number] （int）页码
+    + page[size] （int）条数
+    + sort （Array[string]） 排序
+
++ ReturnData
+    + id （long） 端口类型id
+    + enabled （int）是否启用
+    + creator （long）创建人
+    + modifier （long）修改人
+    + updateVersionId （long）跟云端同步使用
+    + cloudEquipmentId （long）云端id
+    + equipmentName （string） 设备名
+    + equipmentNameEn （string）自动生成唯一号
+    + online （int） 是否在线：0 离线 1在线 2未知
+    + runningStatus （int）运行状态 0关闭 1运行 2警告    3故障  4其他
+    + serialNumber （string）设备序列号
+    + purchaseDate （data）采购日期
+    + maintenanceTelephone （string）维修电话
+    + gatewayId （long）网关id
+    + driveId （long） 驱动id
+    + ispdu （int）0 非pdu 1是pdu
+    + controllable （int）是否可控 1 可控  0 不可控
+    + builtIn （int）是否内置 1为内置 0为非内置
+    + fixedAttribute （int）0 无固定属性，1为环境  2 占位 3 能耗
+    + functionCode （int）'0 无功能  1 是次数  2 是电表记录'
+    + maintainData （data）保养日期
+    + brandName （string）品牌名
+    + model （string）型号
+    + categroyName （string）分类名
+        
+        
++ Response 200
+    
+            {
+              "data": [
+                {
+                  "id": 1,
+                  "enabled": 1,
+                  "creator": 0,
+                  "modifier": 0,
+                  "created": "2020-10-18 09:18:51",
+                  "modified": "2020-10-18 09:18:56",
+                  "cloudEquipmentId": 0,
+                  "updateVersionId": 0,
+                  "equipmentName": "中控",
+                  "anotherName": "中会中控",
+                  "equipmentNameEn": "zhz",
+                  "online": 0,
+                  "runningStatus": 0,
+                  "serialNumber": "122",
+                  "purchaseDate": "2020-10-18 09:18:13",
+                  "maintenanceTelephone": "13126822398",
+                  "gatewayId": 1,
+                  "driveId": 3,
+                  "ispdu": 0,
+                  "controllable": 1,
+                  "builtIn": 0,
+                  "fixedAttribute": 0,
+                  "functionCode": 0,
+                  "maintainData": "2020-10-21 18:42:01",
+                  "brandName": "企鹅"
+                },
+                {
+                  "id": 2,
+                  "enabled": 1,
+                  "creator": 0,
+                  "modifier": 0,
+                  "created": "2020-10-20 14:06:01",
+                  "modified": "2020-10-20 14:06:04",
+                  "cloudEquipmentId": 0,
+                  "updateVersionId": 0,
+                  "equipmentName": "七合一传感器",
+                  "anotherName": "中会七合一传感器",
+                  "equipmentNameEn": "7he1",
+                  "online": 0,
+                  "runningStatus": 0,
+                  "otherStatus": "{\"tvoc\":0.388,\"co2\":1018.0,\"pm10\":0.057,\"ch2o\":0.109,\"pm25\":32.0,\"temperature\":25.7,\"humidity\":19.3}",
+                  "serialNumber": "11",
+                  "purchaseDate": "2020-10-20 14:05:49",
+                  "maintenanceTelephone": "13126822398",
+                  "gatewayId": 1,
+                  "driveId": 1,
+                  "portTypeId": 1,
+                  "portConfigContent": "{\"aa\":\"aa\"}",
+                  "ispdu": 0,
+                  "controllable": 1,
+                  "builtIn": 0,
+                  "fixedAttribute": 1,
+                  "functionCode": 0,
+                  "maintainData": "2020-10-28 18:42:06",
+                  "brandName": "extron"
+                },
+                {
+                  "id": 3,
+                  "enabled": 1,
+                  "creator": 0,
+                  "modifier": 0,
+                  "created": "2020-10-23 11:30:57",
+                  "modified": "2020-10-23 11:30:59",
+                  "cloudEquipmentId": 0,
+                  "updateVersionId": 0,
+                  "equipmentName": "智能电表",
+                  "anotherName": "中会智能电表",
+                  "equipmentNameEn": "sdf",
+                  "online": 0,
+                  "runningStatus": 0,
+                  "gatewayId": 0,
+                  "driveId": 2,
+                  "ispdu": 0,
+                  "controllable": 1,
+                  "builtIn": 0,
+                  "fixedAttribute": 0,
+                  "functionCode": 0,
+                  "maintainData": "2020-10-15 18:42:13",
+                  "brandName": "baidu"
+                }
+              ]
+            }
++ Response 400
+    
+        {
+          "errors": [
+            {
+              "status": "400",
+              "title": "Bad Request"
+            }
+          ]
+        }

@@ -2066,3 +2066,209 @@
                 }
               ]
             }
+
+
+### 计划任务详情 [GET] /intelligentScene/{id}
+
++ Description
+
+    
++ Parameters
+    + id (long) 场景ID
+
++ ReturnData
+
+    + data
+        + id （long）场景id
+        + creator (long) 创建人
+        + builtIn （int） 默认是内置的0  1表示内置  0表示非内置
+        + displayOrder （int） 排序
+        + enabled （int）是否启用
+        + taskName （string）任务名
+        + taskYear （string）年
+        + taskMonth （string）月
+        + taskWeekbymonth （string）每月的第几周(1,2,3,4,5)
+        + taskWeek （string）周
+        + taskDay （string）天
+        + taskHour （string）小时
+        + taskMinute (string) 分
+        + taskSecond （string）秒
+        + sceneTaskConditions
+            + id （long）条件id
+            + conditionalRelation （int）关联条件 0 and  1 or
+            + creator （long）创建人
+            + enabled （int）是否启用
+            + equipmentId （long）设备id
+            + judgeCondition （判断条件）0 ==等于， 1  !=不等于， 2 <小于，  3 >大于，  4  <=小于等于， 5 >=大于等于
+            + operateType （int）1是场景操作 2是计划任务
+            + readTypeId （long）读数类型id
+            + readValue （string）读数值 可以是字符串也可以是具体的类型。根据读数类型进行转换
+            + sceneTaskId （long）场景id
+            + equipmentName （string）设备名
+            + model （string）型号
+        + sceneTaskDetails 
+            + id (long) 详情表id
+            + creator （long）创建人
+            + driveCmdId （long）驱动命令id
+            + enabled （int）是否启用
+            + equipmentId （long）设备id
+            + operateType （int）1是场景操作 2是计划任务
+            + parameter （string）参数
+            + sceneTaskId （long）智能场景id
+            + equipmentName （string）设备名
+            + cmdName （string）命令名
+            + secondCategoryId （long）二级分类
+            + secondCategoryName （string）二级分类名
+            + primaryCategoryId （long）一级分类
+            + primaryCategoryName （string）一级分类名
+            + model （string）型号
+    
++ Request (application/json)
+
+
++ Response 200
+
+        {
+          "data": {
+            "id": 6,
+            "enabled": 1,
+            "creator": 0,
+            "modifier": 0,
+            "created": "2020-11-05 11:27:06",
+            "modified": "2020-11-09 19:13:52",
+            "taskName": "定时打扫",
+            "taskYear": "*",
+            "taskMonth": "*",
+            "taskWeekbymonth": "*",
+            "taskWeek": "?",
+            "taskDay": "*/1",
+            "taskHour": "10",
+            "taskMinute": "00",
+            "taskSecond": "00",
+            "sceneTaskDetails": [
+              {
+                "id": 4,
+                "enabled": 1,
+                "creator": 0,
+                "modifier": 0,
+                "created": "2020-11-05 11:27:20",
+                "modified": "2020-11-09 19:13:52",
+                "operateType": 2,
+                "sceneTaskId": 6,
+                "equipmentId": 2,
+                "driveCmdId": 2,
+                "equipmentName": "七合一传感器",
+                "cmdName": "插入",
+                "parameter": "15",
+                "secondCategoryId": 2,
+                "secondCategoryName": "环境传感器",
+                "primaryCategoryId": 1,
+                "primaryCategoryName": "传感器",
+                "model": "SM300D2MOD"
+              }
+            ],
+            "sceneTaskConditions": [
+              {
+                "id": 3,
+                "enabled": 1,
+                "creator": 0,
+                "modifier": 0,
+                "created": "2020-11-05 11:27:22",
+                "modified": "2020-11-09 19:13:52",
+                "operateType": 2,
+                "sceneTaskId": 6,
+                "equipmentId": 1,
+                "readTypeId": 1,
+                "conditionalRelation": 0,
+                "judgeCondition": 0,
+                "readValue": "5",
+                "equipmentName": "中控",
+                "model": "W101"
+              }
+            ]
+          }
+        }
+
+
+
+### 计划任务修改 [POST] /scheduledTask/{id}
+
++ Description
+    
+
++ Parameters
+    + data
+        + creator (long) 创建人
+        + builtIn （int） 默认是内置的0  1表示内置  0表示非内置
+        + displayOrder （int） 排序
+        + enabled （int）是否启用
+        + taskDay （string）天
+        + taskHour （string）小时
+        + taskMonth （string）月
+        + taskName （string）任务名
+        + taskSecond （string）秒
+        + taskWeek （string）周
+        + taskYear （string）年
+        + sceneStartTime （date） 启用时间
+        + sceneEndTime （date）计划任务到期时间 必须小于启动时间
+        + sceneTaskConditions
+            + id （long）条件id （id也传到后端）
+            + conditionalRelation （int）关联条件 0 and  1 or
+            + creator （long）创建人
+            + enabled （int）是否启用
+            + equipmentId （long）设备id
+            + judgeCondition （判断条件）0 ==等于， 1  !=不等于， 2 <小于，  3 >大于，  4  <=小于等于， 5 >=大于等于
+            + operateType （int）1是场景操作 2是计划任务
+            + readTypeId （long）读数类型id
+            + readValue （string）读数值 可以是字符串也可以是具体的类型。根据读数类型进行转换
+        + sceneTaskDetails 
+            + id （long）任务详情id （id也传到后端）
+            + creator （long）创建人
+            + driveCmdId （long）驱动命令id
+            + enabled （int）是否启用
+            + equipmentId （long）设备id
+            + operateType （int）1是场景操作 2是计划任务
+            + parameter （string）参数
+    
++ Request (application/json)
+
+        {
+          "data": {
+            "enabled": 1,
+            "creator": 0,
+            "modifier": 0,
+            "created": "2020-11-05 11:27:06",
+            "modified": "2020-11-09 19:13:52",
+            "taskName": "打扫机器人",
+            "taskYear": "*",
+            "taskMonth": "*",
+            "taskWeekbymonth": "*",
+            "taskWeek": "?",
+            "taskDay": "*/1",
+            "taskHour": "10",
+            "taskMinute": "00",
+            "taskSecond": "00",
+            "sceneTaskDetails": [
+              {
+                "id": 4,
+                "operateType": 2,
+                "equipmentId": 2,
+                "driveCmdId": 2,
+                "parameter": "20"
+              }
+            ],
+            "sceneTaskConditions": [
+              {
+                "id": 3,
+                "operateType": 2,
+                "equipmentId": 1,
+                "readTypeId": 1,
+                "conditionalRelation": 0,
+                "judgeCondition": 0,
+                "readValue": "10"
+              }
+            ]
+          }
+        }
+
++ Response 200

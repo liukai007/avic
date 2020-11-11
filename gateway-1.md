@@ -55,6 +55,9 @@
 + 2020年11月11日
     + 设备命令别称保存以及修改
     + 设备命令别名列表
+    + 读数类型列表
+    + 一级分类列表
+    + 二级分类列表
     
 
 ## 网关基本信息
@@ -2779,6 +2782,169 @@
     }
   ]
 }
++ Response 400
+    
+        {
+          "errors": [
+            {
+              "status": "400",
+              "title": "Bad Request"
+            }
+          ]
+        }
+
+
+### 读数类型列表 [GET] /readType
++ Description
+
++ Parameters
+
+
++ ReturnData
+    + id （long） 读数类型id
+    + enabled （int）是否启用
+    + creator （long）创建人
+    + modifier （long）修改人
+    + readtypeNameChinese （string）读数类型中文名
+    + readtypeNameEnglish （string）读数类型英文名
+    + readValueType （int） 读数值返回的类型(0 字符串类型 1 整数型 2 float型)
+    + builtIn （int）是否内置 1为内置 0为非内置
+    + readtypeFunction （int） 0 常规属性  1 统计次数  2统计电量   3是否在线  4运行状态
+
+        
+        
++ Response 200
+    
+        {
+          "data": [
+            {
+              "id": 1,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2020-10-21 18:42:11",
+              "modified": "2020-10-21 18:42:14",
+              "readtypeNameChinese": "CO2",
+              "readtypeNameEnglish": "co2",
+              "readValueType": 2,
+              "builtIn": 1,
+              "readtypeFunction": 0
+            },
+            {
+              "id": 2,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2020-10-21 18:45:13",
+              "modified": "2020-10-21 18:45:16",
+              "readtypeNameChinese": "PM2.5",
+              "readtypeNameEnglish": "pm25",
+              "readValueType": 2,
+              "builtIn": 1,
+              "readtypeFunction": 0
+            }
+          ]
+        }
++ Response 400
+    
+        {
+          "errors": [
+            {
+              "status": "400",
+              "title": "Bad Request"
+            }
+          ]
+        }
+
+### 一级分类列表 [GET] /category
++ Description
+
++ Parameters
+
+
++ ReturnData
+    + id （long） 读数类型id
+    + enabled （int）是否启用
+    + creator （long）创建人
+    + modifier （long）修改人
+    + parentId （long）父id
+    + categoryName （string）分类名
+    + displayOrder （int） 排序
+
+        
+        
++ Response 200
+    
+        {
+          "data": [
+            {
+              "id": 1,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2020-10-20 14:09:15",
+              "modified": "2020-10-20 14:09:13",
+              "parentId": 0,
+              "categoryName": "传感器",
+              "displayOrder": 100
+            },
+            {
+              "id": 3,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2020-10-27 11:02:40",
+              "parentId": 0,
+              "categoryName": "灯",
+              "displayOrder": 100
+            }
+          ]
+        }
++ Response 400
+    
+        {
+          "errors": [
+            {
+              "status": "400",
+              "title": "Bad Request"
+            }
+          ]
+        }
+
+### 二级分类列表 [GET] /category/secondCategory
++ Description
+
++ Parameters
+
+
++ ReturnData
+    + id （long） 读数类型id
+    + enabled （int）是否启用
+    + creator （long）创建人
+    + modifier （long）修改人
+    + parentId （long）父id
+    + categoryName （string）分类名
+    + displayOrder （int） 排序
+
+        
+        
++ Response 200
+    
+        {
+          "data": [
+            {
+              "id": 2,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2020-10-20 14:09:44",
+              "modified": "2020-10-20 14:09:41",
+              "parentId": 1,
+              "categoryName": "环境传感器",
+              "displayOrder": 100
+            }
+          ]
+        }
 + Response 400
     
         {

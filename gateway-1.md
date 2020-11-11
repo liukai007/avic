@@ -52,6 +52,10 @@
     + 计划任务详情
     + 远程服务台-设备详情
     + 远程服务台-设备列表
++ 2020年11月11日
+    + 设备命令别称保存以及修改
+    + 设备命令别名列表
+    
 
 ## 网关基本信息
 + Data
@@ -2678,6 +2682,103 @@
                 }
               ]
             }
++ Response 400
+    
+        {
+          "errors": [
+            {
+              "status": "400",
+              "title": "Bad Request"
+            }
+          ]
+        }
+
+
+### 设备命令别称保存以及修改 [PATCH] /equipmentCmdAlias/saveOrUpdate
+
++ Description
+    
+
++ Parameters
+    + data
+        + cmdAlias (string) 设备命令别称
+        + driveCmdId （int）驱动命令id
+        + equipmentId （long） 设备id
+        + forbidden （int）是否禁用 1表示禁用 0表示不禁用，默认为0
+
+    
++ Request (application/json)
+
+            {
+              "data": [
+                {
+                  "cmdAlias": "开",
+                  "driveCmdId": 1,
+                  "equipmentId": 2,
+                  "forbidden": 0
+                },
+                    {
+                  "cmdAlias": "关",
+                  "driveCmdId": 2,
+                  "equipmentId": 2,
+                  "forbidden": 0
+                }
+              ]
+            }
+            
++ Response 200
+
+### 设备命令别名列表 [GET] /equipmentCmdAlias/asset/{id}
++ Description
+
++ Parameters
+
+
++ ReturnData
+    + id （long） 端口类型id
+    + enabled （int）是否启用
+    + creator （long）创建人
+    + modifier （long）修改人
+    + equipmentId （long）设备id
+    + driveCmdId （long）驱动命令id
+    + cmdAlias （string） 设备命令别称
+    + forbidden （int）是否禁用 1表示禁用 0表示不禁用，默认为0
+    + command （string） 命令名
+
+        
+        
++ Response 200
+    
+{
+  "data": [
+    {
+      "id": 3,
+      "enabled": 1,
+      "creator": 0,
+      "modifier": 0,
+      "created": "2020-11-11 10:39:15",
+      "modified": "2020-11-11 10:39:15",
+      "equipmentId": 2,
+      "driveCmdId": 1,
+      "cmdAlias": "开",
+      "forbidden": 0,
+      "command": "on"
+    },
+    {
+      "id": 4,
+      "enabled": 1,
+      "creator": 0,
+      "modifier": 0,
+      "created": "2020-11-11 10:39:19",
+      "modified": "2020-11-11 10:39:19",
+      "equipmentId": 2,
+      "driveCmdId": 2,
+      "cmdAlias": "关",
+      "forbidden": 0,
+      "command": "off"
+    }
+  ]
+}
 + Response 400
     
         {

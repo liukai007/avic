@@ -55,10 +55,10 @@
 + 2020年11月11日
     + 设备命令别称保存以及修改
     + 设备命令别名列表
-    + 读数类型列表
-    + 一级分类列表
-    + 二级分类列表
-    
++ 2020年11月13日
+    + 设备按钮组添加/修改
+    + 按钮组详情
+    + 组和按钮添加、修改
 
 ## 网关基本信息
 + Data
@@ -2955,3 +2955,231 @@
             }
           ]
         }
+
+
+### 按钮组详情 [GET] /equipmentBtnGroup/DeviceButtonDetails
+
++ Description
+    
+
++ Parameters
+    + data
+        + id (long) 组ID
+        + equipmentId （long）设备ID
+        + groupNameAlias （string）组别称
+        + groupName （string）组名
+        + groupType （int） 1 开关组 2 输入组 3 输出组 4 预设组 5编组组
+        + groupAndGroup （string）编组 用逗号隔开
+        + cmdBtnGroups
+            + id （long）命令按钮组ID
+            + assetBtnGroupId （long）设备按钮组ID
+            + driveCmdId （long）驱动命令ID
+            + cmdName （string）命令名
+            + cmdCode （string） 命令core
+
+    
++ Request (application/json)
+
+        {
+          "data": [
+            {
+              "id": 1,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2020-10-26 15:12:05",
+              "modified": "2020-10-26 15:12:07",
+              "equipmentId": 1,
+              "groupNameAlias": "开关组",
+              "groupName": "开关组",
+              "groupType": 1,
+              "cmdBtnGroups": [
+                {
+                  "id": 1,
+                  "enabled": 1,
+                  "creator": 0,
+                  "modifier": 0,
+                  "created": "2020-10-26 15:16:53",
+                  "modified": "2020-10-26 15:16:55",
+                  "assetBtnGroupId": 1,
+                  "driveCmdId": 1,
+                  "cmdName": "on",
+                  "cmdCode": "Btn_Jl_Kai"
+                }
+              ]
+            },
+            {
+              "id": 2,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2020-10-26 15:12:41",
+              "modified": "2020-10-26 15:12:45",
+              "equipmentId": 1,
+              "groupNameAlias": "输入组",
+              "groupName": "输入组",
+              "groupType": 2,
+              "cmdBtnGroups": [
+                {
+                  "id": 2,
+                  "enabled": 1,
+                  "creator": 0,
+                  "modifier": 0,
+                  "created": "2020-10-26 15:17:13",
+                  "modified": "2020-10-26 15:17:17",
+                  "assetBtnGroupId": 2,
+                  "driveCmdId": 2,
+                  "cmdName": "off",
+                  "cmdCode": "Btn_Jl_Guan"
+                }
+              ]
+            },
+            {
+              "id": 3,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2020-10-26 15:14:36",
+              "modified": "2020-10-26 15:14:39",
+              "equipmentId": 1,
+              "groupNameAlias": "输出组",
+              "groupName": "输出组",
+              "groupType": 3,
+              "cmdBtnGroups": [
+                {
+                  "id": 3,
+                  "enabled": 1,
+                  "creator": 0,
+                  "modifier": 0,
+                  "created": "2020-10-26 15:17:35",
+                  "modified": "2020-10-26 15:17:42",
+                  "assetBtnGroupId": 3,
+                  "driveCmdId": 2,
+                  "cmdName": "off",
+                  "cmdCode": "Btn_Jl_Guan"
+                },
+                {
+                  "id": 4,
+                  "enabled": 1,
+                  "creator": 0,
+                  "modifier": 0,
+                  "created": "2020-10-26 15:33:16",
+                  "modified": "2020-10-26 15:33:23",
+                  "assetBtnGroupId": 3,
+                  "driveCmdId": 1,
+                  "cmdName": "on",
+                  "cmdCode": "Btn_Jl_Kai"
+                }
+              ]
+            },
+            {
+              "id": 4,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2020-10-26 15:15:11",
+              "modified": "2020-10-26 15:15:13",
+              "equipmentId": 1,
+              "groupNameAlias": "编组组",
+              "groupName": "编组组",
+              "groupType": 5,
+              "groupAndGroup": "2,3",
+              "equipmentBtnGroups": [
+                {
+                  "id": 2,
+                  "enabled": 1,
+                  "creator": 0,
+                  "modifier": 0,
+                  "created": "2020-10-26 15:12:41",
+                  "modified": "2020-10-26 15:12:45",
+                  "equipmentId": 1,
+                  "groupNameAlias": "输入组",
+                  "groupName": "输入组",
+                  "groupType": 2
+                },
+                {
+                  "id": 3,
+                  "enabled": 1,
+                  "creator": 0,
+                  "modifier": 0,
+                  "created": "2020-10-26 15:14:36",
+                  "modified": "2020-10-26 15:14:39",
+                  "equipmentId": 1,
+                  "groupNameAlias": "输出组",
+                  "groupName": "输出组",
+                  "groupType": 3
+                }
+              ]
+            }
+          ]
+        }
+            
++ Response 200
+
+
+### 组和按钮添加、修改 [POST] /equipmentBtnGroup/DisplayGroup
+
++ Description
+    
+
++ Parameters
+    + data
+        + id (long) 组id （修改传id）
+        + equipmentId （long） 设备id
+        + groupName （string） 组名
+        + groupNameAlias （string）组别名
+        + groupType （int）1 开关组 2 输入组 3 输出组 4 预设组 5编组组
+        + cmdBtnGroups
+            + id （long）命令按钮组ID （修改传id）
+            + driveCmdId  （long）驱动命令id
+    
++ Request (application/json)
+
+        {
+          "data": [
+            {
+              "cmdBtnGroups": [
+                {
+                  "driveCmdId": 1
+                },{
+                 "driveCmdId": 2
+                }
+              ],
+              "equipmentId": 1,
+              "groupName": "开关组",
+              "groupNameAlias": "灯光开关组",
+              "groupType": 1
+            }
+          ]
+        }
++ Response 200
+
+### 设备按钮组添加/修改 [POST] /equipmentBtnGroup
+
++ Description
+    
+
++ Parameters
+    + data
+        + id (long) 组id （修改传id）
+        + equipmentId （long） 设备id
+        + groupName （string） 组名
+        + groupNameAlias （string）组别名
+        + groupType （int）1 开关组 2 输入组 3 输出组 4 预设组 5编组组
+        + groupAndGroup （string）这个是编组，不同的编组默认使用逗号隔开
+
+    
++ Request (application/json)
+
+        {
+          "data": [
+            {
+              "equipmentId": 2,
+              "groupAndGroup": "1,5",
+              "groupName": "编组组",
+              "groupNameAlias": "灯光编组组",
+              "groupType": 5
+            }
+          ]
+        }
++ Response 200

@@ -2752,36 +2752,36 @@
         
 + Response 200
     
-{
-  "data": [
-    {
-      "id": 3,
-      "enabled": 1,
-      "creator": 0,
-      "modifier": 0,
-      "created": "2020-11-11 10:39:15",
-      "modified": "2020-11-11 10:39:15",
-      "equipmentId": 2,
-      "driveCmdId": 1,
-      "cmdAlias": "开",
-      "forbidden": 0,
-      "command": "on"
-    },
-    {
-      "id": 4,
-      "enabled": 1,
-      "creator": 0,
-      "modifier": 0,
-      "created": "2020-11-11 10:39:19",
-      "modified": "2020-11-11 10:39:19",
-      "equipmentId": 2,
-      "driveCmdId": 2,
-      "cmdAlias": "关",
-      "forbidden": 0,
-      "command": "off"
-    }
-  ]
-}
+        {
+          "data": [
+            {
+              "id": 3,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2020-11-11 10:39:15",
+              "modified": "2020-11-11 10:39:15",
+              "equipmentId": 2,
+              "driveCmdId": 1,
+              "cmdAlias": "开",
+              "forbidden": 0,
+              "command": "on"
+            },
+            {
+              "id": 4,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2020-11-11 10:39:19",
+              "modified": "2020-11-11 10:39:19",
+              "equipmentId": 2,
+              "driveCmdId": 2,
+              "cmdAlias": "关",
+              "forbidden": 0,
+              "command": "off"
+            }
+          ]
+        }
 + Response 400
     
         {

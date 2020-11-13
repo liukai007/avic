@@ -59,6 +59,7 @@
     + 设备按钮组添加/修改
     + 按钮组详情
     + 组和按钮添加、修改
+    + 设备按钮组删除
 
 ## 网关基本信息
 + Data
@@ -3183,3 +3184,30 @@
           ]
         }
 + Response 200
+
+### 设备按钮组删除 [DELETE] /equipmentBtnGroup/delete
++ Parameters
+    + assetId(long) 资产id (必填) 
+    + id (long) 资产按钮组id (必填)
+
+如：http://192.168.2.10:8989/equipmentBtnGroup/delete?eqId=1&id=1
+
+
++ ReturnData
+ 
+
++ Request (application/json)
+               
++ Response 204
+
++ Response 400
+
+        {
+          "errors": [
+            {
+              "status": "400",
+              "title": "Bad Request",
+              "detail": "资产按钮组已经关联了编组组,请先删除"
+            }
+          ]
+        }

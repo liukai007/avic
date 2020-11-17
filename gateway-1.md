@@ -60,6 +60,9 @@
     + 按钮组详情
     + 组和按钮添加、修改
     + 设备按钮组删除
++ 2020年11月17日
+    + 品牌列表
+
 
 ## 网关基本信息
 + Data
@@ -3208,6 +3211,81 @@
               "status": "400",
               "title": "Bad Request",
               "detail": "资产按钮组已经关联了编组组,请先删除"
+            }
+          ]
+        }
+
+
+### 品牌列表 [GET] /brand
++ Description
+    + Author Liukai
+
++ ReturnData
+
+    + data
+        + id (long) 品牌id
+        + brandName （string） 品牌名称
+        + logo （string）logo
+        + description （string）描述
+        + website （string）网站
+        + displayOrder （int）排序
+
++ Response 200
+    
+            {
+              "meta": {
+                "totalPages": 1,
+                "totalElements": 3,
+                "size": 10,
+                "number": 1,
+                "numberOfElements": 3,
+                "first": true,
+                "last": true,
+                "sort": null
+              },
+              "links": {
+                "self": "/brand?page[number]=1&page[size]=10",
+                "first": "/brand?page[number]=1&page[size]=10",
+                "last": "/brand?page[number]=1&page[size]=10"
+              },
+              "data": [
+                {
+                  "id": 1,
+                  "enabled": 1,
+                  "creator": 0,
+                  "modifier": 0,
+                  "brandName": "extron",
+                  "website": "www。",
+                  "displayOrder": 100
+                },
+                {
+                  "id": 2,
+                  "enabled": 1,
+                  "creator": 0,
+                  "modifier": 0,
+                  "brandName": "baidu",
+                  "website": "www.baidu.com",
+                  "displayOrder": 100
+                },
+                {
+                  "id": 3,
+                  "enabled": 1,
+                  "creator": 0,
+                  "modifier": 0,
+                  "brandName": "企鹅",
+                  "website": "www.qie",
+                  "displayOrder": 100
+                }
+              ]
+            }
+
++ Response 400
+    
+        {
+          "errors": [
+            {
+              "status": "400",
+              "title": "Bad Request"
             }
           ]
         }

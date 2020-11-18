@@ -3339,7 +3339,7 @@
             + joinEquipmentId （long）接入设备id
             + onOffState （int）'开关状态 1为开 0为关  2为未知状态
             + power （float）功率
-            + sequenceNumber （string）序列号
+            + pduPortNo （int）端口号
             + voltage （float）电压
 
 + ReturnData
@@ -3382,7 +3382,7 @@
                 "modifier": 0,
                 "onOffState": 0,
                 "power": 0,
-                "sequenceNumber": 0,
+                "pduPortNo": 0,
                 "voltage": 0
               }
             ],

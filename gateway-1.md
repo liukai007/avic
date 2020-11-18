@@ -65,6 +65,7 @@
     + 设备添加
     + 设备详情
     + 端口属性查询
+    + 驱动详情
 
 
 ## 网关基本信息
@@ -3618,4 +3619,69 @@
               "builtIn": 1
             }
           ]
+        }
+
+
+### 驱动详情 [GET] /physicalPort/{id}
+
++ Description
+
+    
++ Parameters
+    + id (long) 驱动ID
+
++ ReturnData
+
+    + data
+        + id (long) 驱动id
+        + updateVersionId （long） 版本更新id
+        + equipmentNameEn （string）英文名
+        + equipmentName （string）驱动名/设备名
+        + model （string）型号
+        + categoryId （long）分类id
+        + brandId （long）品牌id
+        + firmware （string）固件组
+        + picture （string）图片
+        + webLink （string）网页链接
+        + cmdDrive （text）驱动文件
+        + belong （int）本地 是0   云端是1
+        + officialCertification （int）官方认证是1  非官方认证是0
+        + operation （int） 0 未上传  1已上传  2下载 3 已下载
+        + brandName （string）品牌名
+        + secondCategoryName （string）二级分类名
+        + primaryCategoryName （string）一级分类名
+        + ispdu （int） 0 非pdu 1是pdu
+        + severalPdu (int) pdu口的数量
+    
++ Request (application/json)
+
+
++ Response 200
+
+        {
+          "data": {
+            "id": 9,
+            "enabled": 1,
+            "creator": 0,
+            "modifier": 0,
+            "modified": "2020-11-18 16:13:16",
+            "updateVersionId": 0,
+            "equipmentNameEn": "XY-G10-485-4port",
+            "equipmentName": "4口PDU",
+            "model": "XY-G10-485",
+            "categoryId": 2,
+            "brandId": 1,
+            "firmware": "001",
+            "picture": "http://static.mifanxing.com/wx/image/119/27/1800035.jpg?w=320&h=180",
+            "webLink": "www.baidu.com",
+            "cmdDrive": "{\"name\":\"XY-G10-485-4port\",\"nameChinese\":\"4口PD}",
+            "belong": 0,
+            "officialCertification": 0,
+            "operation": 0,
+            "brandName": "extron",
+            "secondCategoryName": "环境传感器",
+            "primaryCategoryName": "传感器",
+            "ispdu": 1,
+            "severalPdu": 4
+          }
         }

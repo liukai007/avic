@@ -64,6 +64,7 @@
     + 品牌列表
     + 设备添加
     + 设备详情
+    + 端口属性查询
 
 
 ## 网关基本信息
@@ -3461,74 +3462,160 @@
             + sequenceNumber （string）序列号
             + voltage （float）电压
             + equipmentName （string）接入设备名
+        + portTypes
+            + id （long）端口id
+            + updateVersionId （long）云同步id
+            + typeName （string）端口类型名或属性名
+            + parentId （long）父id
+            + description （string）描述
+            + defaultValue （string）端口值
+            + builtIn （int）是否内置 1内置 0非内置
 
 + Request (application/json)
 
 
 + Response 200
 
-            {
-              "data": {
-                "id": 6,
+        {
+          "data": {
+            "id": 6,
+            "enabled": 1,
+            "creator": 0,
+            "modifier": 0,
+            "created": "2020-11-17 16:52:33",
+            "modified": "2020-11-17 16:52:33",
+            "cloudEquipmentId": 0,
+            "updateVersionId": 0,
+            "equipmentName": "Pdu1",
+            "anotherName": "大会中控",
+            "equipmentNameEn": "XY-G10-485-4port",
+            "picture": "www",
+            "online": 0,
+            "runningStatus": 0,
+            "otherStatus": "",
+            "serialNumber": "string",
+            "purchaseDate": "2020-11-16 14:10:52",
+            "serviceDate": "2020-11-16 14:10:52",
+            "supplier": "腾讯",
+            "maintenanceTelephone": "123456",
+            "gatewayId": 1,
+            "categoryId": 2,
+            "brandId": 1,
+            "driveId": 9,
+            "portTypeId": 6,
+            "portTypeName": "HTTP",
+            "portConfigContent": "{'IpAddress':'192.168.1.2','IpPort':'8080'}",
+            "pduEquipmentId": 0,
+            "pduPortName": "string",
+            "pduPortNo": 0,
+            "pduInterval": 0,
+            "ispdu": 1,
+            "controllable": 0,
+            "builtIn": 0,
+            "fixedAttribute": 0,
+            "functionCode": 0,
+            "maintainData": "2020-11-16 14:10:52",
+            "brandName": "extron",
+            "secondCategoryName": "环境传感器",
+            "pdus": [
+              {
+                "id": 2,
                 "enabled": 1,
                 "creator": 0,
                 "modifier": 0,
-                "created": "2020-11-17 16:52:33",
-                "modified": "2020-11-17 16:52:33",
-                "cloudEquipmentId": 0,
-                "updateVersionId": 0,
-                "equipmentName": "Pdu1",
-                "anotherName": "大会中控",
-                "equipmentNameEn": "XY-G10-485-4port",
-                "picture": "www",
-                "online": 0,
-                "runningStatus": 0,
-                "otherStatus": "",
-                "serialNumber": "string",
-                "purchaseDate": "2020-11-16 14:10:52",
-                "serviceDate": "2020-11-16 14:10:52",
-                "supplier": "腾讯",
-                "maintenanceTelephone": "123456",
-                "gatewayId": 1,
-                "categoryId": 2,
-                "brandId": 1,
-                "driveId": 9,
-                "portTypeId": 6,
-                "portConfigContent": "{'HTTP':'192.168.1.2'}",
-                "pduEquipmentId": 0,
-                "pduPortName": "string",
-                "pduPort": 0,
-                "pduInterval": 0,
-                "ispdu": 1,
-                "controllable": 0,
-                "builtIn": 0,
-                "fixedAttribute": 0,
-                "functionCode": 0,
-                "maintainData": "2020-11-16 14:10:52",
-                "brandName": "extron",
-                "secondCategoryName": "环境传感器",
-                "pdus": [
-                  {
-                    "id": 2,
-                    "enabled": 1,
-                    "creator": 0,
-                    "modifier": 0,
-                    "created": "2020-11-17 16:52:38",
-                    "modified": "2020-11-17 16:52:38",
-                    "equipmentId": 6,
-                    "sequenceNumber": 0,
-                    "joinEquipmentId": 1,
-                    "anotherName": "pdu端口1",
-                    "intervalValue": 10,
-                    "voltage": 0,
-                    "electricCurrent": 10,
-                    "power": 100,
-                    "onOffState": 0,
-                    "cmdCodeOn": "on",
-                    "cmdCodeOff": "off",
-                     "equipmentName": "中控"
-                  }
-                ],
-                "primaryCategoryName": "传感器"
+                "created": "2020-11-17 16:52:38",
+                "modified": "2020-11-17 16:52:38",
+                "equipmentId": 6,
+                "pduPortNo": 1,
+                "joinEquipmentId": 1,
+                "anotherName": "pdu端口1",
+                "intervalValue": 10,
+                "voltage": 0,
+                "electricCurrent": 10,
+                "power": 100,
+                "onOffState": 0,
+                "cmdCodeOn": "on",
+                "cmdCodeOff": "off",
+                "equipmentName": "中控"
               }
+            ],
+            "primaryCategoryName": "传感器",
+            "portTypes": [
+              {
+                "id": 32,
+                "enabled": 1,
+                "creator": 0,
+                "modifier": 0,
+                "updateVersionId": 0,
+                "typeName": "IpAddress",
+                "parentId": 6,
+                "description": "IP地址",
+                "defaultValue": "192.168.1.2",
+                "builtIn": 1
+              },
+              {
+                "id": 33,
+                "enabled": 1,
+                "creator": 0,
+                "modifier": 0,
+                "updateVersionId": 0,
+                "typeName": "IpPort",
+                "parentId": 6,
+                "description": "IP端口",
+                "defaultValue": "8080",
+                "builtIn": 1
+              }
+            ]
+          }
+        }
+
+
+### 端口属性查询 [GET] /portType/port/{id}
+
++ Description
+
+    
++ Parameters
+    + id (long) 端口ID
+
++ ReturnData
+
+    + data
+        + id (long) 端口id
+        + updateVersionId （long） 云同步id
+        + typeName （string）端口名或属性名
+        + parentId （long）父id
+        + description （string）描述
+        + builtIn （int）是否内置 （1内置 0非内置 ）
+
++ Request (application/json)
+
+
++ Response 200
+
+        {
+          "data": [
+            {
+              "id": 32,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "updateVersionId": 0,
+              "typeName": "IpAddress",
+              "parentId": 6,
+              "description": "IP地址",
+              "builtIn": 1
+            },
+            {
+              "id": 33,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "updateVersionId": 0,
+              "typeName": "IpPort",
+              "parentId": 6,
+              "description": "IP端口",
+              "builtIn": 1
             }
+          ]
+        }

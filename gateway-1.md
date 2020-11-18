@@ -63,6 +63,7 @@
 + 2020年11月17日
     + 品牌列表
     + 设备添加
+    + 设备详情
 
 
 ## 网关基本信息
@@ -3403,3 +3404,131 @@
                 "type": "equipment"
             }
         }
+
+
+
+### 设备详情 [GET] /equipment/{id}
+
++ Description
+
+    
++ Parameters
+    + id (long) 设备ID
+
++ ReturnData
+
+    + data
+        + anotherName (string)  别名
+        + brandId （long）品牌id
+        + builtIn （int） 是否内置 1为内置 0为非内置
+        + categoryId (long) 分类id
+        + cloudEquipmentId （long）云端id
+        + controllable （int）是否可控 1 可控  0 不可控
+        + driveId （long）驱动id
+        + equipmentName （string）中文名
+        + equipmentNameEn （string）英文名
+        + primaryCategoryName （string）一级分类
+        + secondCategoryName （string）二级分类
+        + brandName （string）品牌名
+        + fixedAttribute （int）关联空间属性（0 无固定属性，1为环境  2 占位 3 能耗）
+        + functionCode （int）0 无功能  1 是次数  2 是电表记录'
+        + gatewayId （long）网关id（如果当前设备是网关则这个值为0）
+        + ispdu （int）0 非pdu 1是pdu
+        + maintainData （date）保养日期
+        + maintenanceTelephone （string）维修电话
+        + online （int）是否在线：0 离线 1在线 2未知
+        + otherStatus （string）其他数据 json格式
+        + pduPort （int）物理端口（1 第一口 2 第二口 以此类推）
+        + pduPortName （string）物理端口名
+        + picture (string) 图片
+        + portConfigContent （string）示例("{'HTTP':'192.168.1.2'}")
+        + portTypeId （long）端口类型id
+        + purchaseDate （date）采购日期
+        + runningStatus （int）运行状态0关闭 1运行 2警告    3故障  4其他',
+        + serialNumber （string）设备序列号
+        + serviceDate （date）投入使用日期
+        + supplier （string）供应商
+        + updateVersionId （long）同步id（同步云端id）
+        + pdus
+            + anotherName （string）别名
+            + cmdCodeOff （string）关命令core
+            + cmdCodeOn （string）开命令core
+            + electricCurrent （float）电流
+            + intervalValue （long） 时间间隔
+            + joinEquipmentId （long）接入设备id
+            + onOffState （int）'开关状态 1为开 0为关  2为未知状态
+            + power （float）功率
+            + sequenceNumber （string）序列号
+            + voltage （float）电压
+            + equipmentName （string）接入设备名
+
++ Request (application/json)
+
+
++ Response 200
+
+            {
+              "data": {
+                "id": 6,
+                "enabled": 1,
+                "creator": 0,
+                "modifier": 0,
+                "created": "2020-11-17 16:52:33",
+                "modified": "2020-11-17 16:52:33",
+                "cloudEquipmentId": 0,
+                "updateVersionId": 0,
+                "equipmentName": "Pdu1",
+                "anotherName": "大会中控",
+                "equipmentNameEn": "XY-G10-485-4port",
+                "picture": "www",
+                "online": 0,
+                "runningStatus": 0,
+                "otherStatus": "",
+                "serialNumber": "string",
+                "purchaseDate": "2020-11-16 14:10:52",
+                "serviceDate": "2020-11-16 14:10:52",
+                "supplier": "腾讯",
+                "maintenanceTelephone": "123456",
+                "gatewayId": 1,
+                "categoryId": 2,
+                "brandId": 1,
+                "driveId": 9,
+                "portTypeId": 6,
+                "portConfigContent": "{'HTTP':'192.168.1.2'}",
+                "pduEquipmentId": 0,
+                "pduPortName": "string",
+                "pduPort": 0,
+                "pduInterval": 0,
+                "ispdu": 1,
+                "controllable": 0,
+                "builtIn": 0,
+                "fixedAttribute": 0,
+                "functionCode": 0,
+                "maintainData": "2020-11-16 14:10:52",
+                "brandName": "extron",
+                "secondCategoryName": "环境传感器",
+                "pdus": [
+                  {
+                    "id": 2,
+                    "enabled": 1,
+                    "creator": 0,
+                    "modifier": 0,
+                    "created": "2020-11-17 16:52:38",
+                    "modified": "2020-11-17 16:52:38",
+                    "equipmentId": 6,
+                    "sequenceNumber": 0,
+                    "joinEquipmentId": 1,
+                    "anotherName": "pdu端口1",
+                    "intervalValue": 10,
+                    "voltage": 0,
+                    "electricCurrent": 10,
+                    "power": 100,
+                    "onOffState": 0,
+                    "cmdCodeOn": "on",
+                    "cmdCodeOff": "off",
+                     "equipmentName": "中控"
+                  }
+                ],
+                "primaryCategoryName": "传感器"
+              }
+            }

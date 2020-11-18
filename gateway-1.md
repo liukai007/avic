@@ -3622,7 +3622,7 @@
         }
 
 
-### 驱动详情 [GET] /physicalPort/{id}
+### 驱动详情 [GET] /drive/{id}
 
 + Description
 

@@ -66,6 +66,10 @@
     + 设备详情
     + 端口属性查询
     + 驱动详情
++ 2020年11月19日
+    + 设备修改
+    + 设备删除
+
 
 
 ## 网关基本信息
@@ -3686,3 +3690,124 @@
             "severalPdu": 4
           }
         }
+
+
+## 设备修改  [PATCH]  /equipment/{id}
+
++ Description
+
+
++ Parameters
+    + data
+        + anotherName (string)  别名
+        + brandId （long）品牌id
+        + builtIn （int） 是否内置 1为内置 0为非内置
+        + categoryId (long) 分类id
+        + cloudEquipmentId （long）云端id
+        + controllable （int）是否可控 1 可控  0 不可控
+        + driveId （long）驱动id
+        + equipmentName （string）中午名
+        + equipmentNameEn （string）英文名
+        + fixedAttribute （int）关联空间属性（0 无固定属性，1为环境  2 占位 3 能耗）
+        + functionCode （int）0 无功能  1 是次数  2 是电表记录'
+        + gatewayId （long）网关id（如果当前设备是网关则这个值为0）
+        + ispdu （int）0 非pdu 1是pdu
+        + maintainData （date）保养日期
+        + maintenanceTelephone （string）维修电话
+        + online （int）是否在线：0 离线 1在线 2未知
+        + otherStatus （string）其他数据 json格式
+        + pduPort （int）物理端口（1 第一口 2 第二口 以此类推）
+        + pduPortName （string）物理端口名
+        + picture (string) 图片
+        + portConfigContent （string）示例("{'HTTP':'192.168.1.2'}")
+        + portTypeId （long）端口类型id
+        + purchaseDate （date）采购日期
+        + runningStatus （int）运行状态0关闭 1运行 2警告    3故障  4其他',
+        + serialNumber （string）设备序列号
+        + serviceDate （date）投入使用日期
+        + supplier （string）供应商
+        + updateVersionId （long）同步id（同步云端id）
+        + pdus
+            + id（long）pduID（pdu有id的传过来）
+            + anotherName （string）别名
+            + cmdCodeOff （string）关命令core
+            + cmdCodeOn （string）开命令core
+            + electricCurrent （float）电流
+            + intervalValue （long） 时间间隔
+            + joinEquipmentId （long）接入设备id
+            + onOffState （int）'开关状态 1为开 0为关  2为未知状态
+            + power （float）功率
+            + pduPortNo （int）端口号
+            + voltage （float）电压
+
++ ReturnData
+
+        {
+          "data": {
+            "anotherName": "string",
+            "brandId": 0,
+            "builtIn": 0,
+            "categoryId": 0,
+            "cloudEquipmentId": 0,
+            "controllable": 0,
+            "driveId": 0,
+            "equipmentName": "string",
+            "equipmentNameEn": "string",
+            "fixedAttribute": 0,
+            "functionCode": 0,
+            "gatewayId": 0,
+            "ispdu": 0,
+            "maintainData": "2020-11-18T01:58:33.770Z",
+            "maintenanceTelephone": "string",
+            "model": "string",
+            "online": 0,
+            "otherStatus": "string",
+            "pduEquipmentId": 0,
+            "pduInterval": 0,
+            "pduPort": 0,
+            "pduPortName": "string",
+            "pdus": [
+              {
+                "id" : 2
+                "anotherName": "string",
+                "cmdCodeOff": "string",
+                "cmdCodeOn": "string",
+                "created": "2020-11-18T01:58:33.770Z",
+                "creator": 0,
+                "electricCurrent": 0,
+                "intervalValue": 0,
+                "joinEquipmentId": 0,
+                "modified": "2020-11-18T01:58:33.770Z",
+                "modifier": 0,
+                "onOffState": 0,
+                "power": 0,
+                "pduPortNo": 0,
+                "voltage": 0
+              }
+            ],
+            "picture": "string",
+            "portConfigContent": "string",
+            "portTypeId": 0,
+            "purchaseDate": "2020-11-18T01:58:33.770Z",
+            "runningStatus": 0,
+            "serialNumber": "string",
+            "serviceDate": "2020-11-18T01:58:33.770Z",
+            "supplier": "string",
+            "updateVersionId": 0
+          }
+        }
+
+
+
+### 设备删除 [DELETE] /equipment/{id}
+
++ Description
+
+    
++ Parameters
+    + id (long) 设备ID
+    
++ Request (application/json)
+
++ Response 204
+

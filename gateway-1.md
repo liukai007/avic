@@ -3451,6 +3451,7 @@
         + serviceDate （date）投入使用日期
         + supplier （string）供应商
         + updateVersionId （long）同步id（同步云端id）
+        + portTypeName （string）网关端口名
         + pdus
             + anotherName （string）别名
             + cmdCodeOff （string）关命令core

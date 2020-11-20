@@ -69,6 +69,8 @@
 + 2020年11月19日
     + 设备修改
     + 设备删除
++ 2020年11月20日
+    + 个人中心-信息列表
 
 
 
@@ -3811,3 +3813,108 @@
 
 + Response 204
 
+
+## 个人中心-信息列表  [GET]  /logEquipment/information
+
++ Description
+
+
++ Parameters
+    + dateMinStr (string)  开始日期 格式：yyyy-MM-dd HH:mm:ss
+    + dateMaxStr (string)  结束日期 格式：yyyy-MM-dd HH:mm:ss
+    + filter[readed] （int） 0未读，1已读
+    + page[number] （int）页码
+    + page[size] （int）条数
+
++ ReturnData
+    + logLevel (int) 日志级别   0:错误       1:警告    2:信息    3:调试
+    + equipmentId (long) 设备ID
+    + operateType (int)  0 常规操作 1是场景操作 2是计划任务
+    + operateId (long)   场景id/计划任务id
+    + eventContent (string)   事件内容
+    + eventResult (int)   1执行成功，0执行失败
+    + malfunctionTimes (int)   防止重复失败保存到日志
+    + analyzed (int)   是否被统计 0未被分析，1已经被分析
+    + readed (int)   0未读，1已读
+    + upload (int)  0未上传，1已经上传 
+    + equipmentName （string）设备名
+    + userName （string）用户名
+              
++ Response 200
+
+        {
+          "data": [
+            {
+              "id": 1,
+              "enabled": 1,
+              "creator": 1,
+              "modifier": 0,
+              "created": "2020-10-23 10:23:10",
+              "modified": "2020-10-23 10:23:10",
+              "logLevel": 1,
+              "operateType": 0,
+              "operateId": 0,
+              "eventContent": "没有电量设备，可以进行电量统计",
+              "eventResult": 0,
+              "malfunctionTimes": 0,
+              "analyzed": 0,
+              "readed": 0,
+              "upload": 0,
+              "userName": "admin"
+            },
+            {
+              "id": 2,
+              "enabled": 1,
+              "creator": 1,
+              "modifier": 0,
+              "created": "2020-10-23 10:23:11",
+              "modified": "2020-10-23 10:23:11",
+              "logLevel": 1,
+              "operateType": 0,
+              "operateId": 0,
+              "eventContent": "没有电量设备，可以进行电量统计",
+              "eventResult": 0,
+              "malfunctionTimes": 0,
+              "analyzed": 0,
+              "readed": 0,
+              "upload": 0,
+              "userName": "admin"
+            },
+            {
+              "id": 5,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2020-10-23 11:35:22",
+              "modified": "2020-10-23 11:35:22",
+              "logLevel": 1,
+              "operateType": 0,
+              "operateId": 0,
+              "eventContent": "没有电量设备，可以进行电量统计",
+              "eventResult": 0,
+              "malfunctionTimes": 0,
+              "analyzed": 0,
+              "readed": 0,
+              "upload": 0
+            },
+            {
+              "id": 6,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2020-10-23 11:53:12",
+              "modified": "2020-10-23 11:53:12",
+              "logLevel": 0,
+              "equipmentId": 3,
+              "operateType": 0,
+              "operateId": 0,
+              "eventContent": "电量值异常不可能为0或者是第一次使用",
+              "eventResult": 0,
+              "malfunctionTimes": 0,
+              "analyzed": 0,
+              "readed": 0,
+              "upload": 0,
+              "equipmentName": "智能电表"
+            }
+          ]
+        }

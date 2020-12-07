@@ -42,7 +42,6 @@
     + 驱动列表
 + 2020年11月5日
     + 智能场景添加
-    + 智能场景删除
     + 智能场景修改
     + 智能场景详情
 + 2020年11月9日
@@ -625,6 +624,7 @@
     + tvoc (float)   总挥发性有机化合物
     + ch2o (float)   甲醛
     + environmentLevel (int) 环境级别 4表示差，3表示中 2表示良 1表示优  0无评级
+    + promptMessage (string) 提示信息
               
 + Response 200
     
@@ -637,7 +637,8 @@
             "pm10": 0.057,
             "tvoc": 0.388,
             "ch2o": 0.109,
-            "environmentLevel": 3
+            "environmentLevel": 0,
+            "promptMessage": "无环境设备或者没有在网关信息中配置环境设备关联ID"
           }
         }
 

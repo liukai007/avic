@@ -1,4 +1,5 @@
 # AVIC网关 接口文档
+https://github.com/liukai007/avic/edit/master/gateway-1.md
 
 + 2020年10月19日
     + 网关基本信息修改(登录页面使用该接口)
@@ -70,7 +71,12 @@
     + 设备删除
 + 2020年11月20日
     + 个人中心-信息列表
-
++ 2020年12月16日
+    + 驱动新增
+    + 驱动修改
+    + 驱动删除
+    + 驱动详情
+    + 驱动列表
 
 
 ## 网关基本信息
@@ -3919,3 +3925,240 @@
             }
           ]
         }
+
+## 驱动相关接口
++ Data
+    + id (long) ID
+    + enabled (int)  - 使能  0禁止 1启用
+    + creator (long) - 创建人
+    + modifier (long) - 修改人
+    + created (date) - 创建时间
+    + modified (date) - 修改时间
+    + equipmentNameEn (string) -驱动(设备)英文名
+    + equipmentName (string) -驱动(设备)中文名
+    + model (string) -型号
+    + categoryId  (long) -二级分类ID
+    + brandId (long) -品牌ID
+    + firmware (string) -固件版本号
+    + picture (string) -图片字符串
+    + webLink (string) -设备网站地址
+    + cmdDrive (string) -json驱动
+    + belong (int) -属于 本地是0 云端是1
+    + officialCertification (int) -官方认证是1  非官方认证是0
+    + operation (int) -0未上传  1已上传  2下载 3 已下载
+    + recommendedLife (int) -建议寿命 单位:  小时
+    + warrantyPeriod (int) -质保期限 单位: 年
+    + maintenanceFrequency (int) -保养频率，单位：月
+    + brandName (string) -品牌名
+    + secondCategoryName (string) -二级分类名
+    + primaryCategoryName (string) -一级分类名
+    + ispdu (int) -0 非pdu 1是pdu
+    + severalPdu (int)  -几口PDU
+
+  
+### 驱动新增 [POST] /drive
++ Description
+    + Author Liukai
+    
++ Parameters
+    + data
+        + cmdDrive (string) 驱动(json格式)
+    
++ Request (application/json)
+
+        {
+      "data": {
+        "cmdDrive":"{\"name\":\"netio4c1\",\"nameChinese\":\"NETIO-4口PDU\",\"manufacturer\":\"NETIO\",\"model\":\"PowerPDU 4C\",\"ispdu\":1,\"severalPdu\":4,\"brandId\":2224,\"firmware\":\"3.4.0\",\"picture\":\"http://static.mifanxing.com/wx/image/119/27/1800035.jpg?w=320&h=180\",\"webLink\":\"https://www.netio-products.com/en\",\"categoryId\":2,\"labels\":[\"RestfulApi\",\"4 port\"],\"description\":\"Intelligent-PDU \",\"deviceResources\":[{\"name\":\"energyValue\",\"description\":\"get energyValue\",\"attributes\":{\"cmdContent\":\"http://USERNAME:PASSWORD@IPADDRESS:IPPORT/netio.json\",\"handleReturnRules\":\"[{\\\"additiveFactor\\\":0.0,\\\"method\\\":\\\"get\\\"}]\",\"transcoding\":0},\"properties\":{\"value\":{\"type\":\"Float32\",\"readWrite\":\"R\",\"defaultValue\":\"0.00\",\"floatEncoding\":\"eNotation\"},\"units\":{\"type\":\"String\",\"readWrite\":\"R\",\"defaultValue\":\"\"}}},{\"name\":\"power\",\"description\":\"get power\",\"attributes\":{\"cmdContent\":\"http://USERNAME:PASSWORD@IPADDRESS:IPPORT/netio.json\",\"handleReturnRules\":\"[{\\\"additiveFactor\\\":0.0,\\\"method\\\":\\\"get\\\"}]\",\"transcoding\":0},\"properties\":{\"value\":{\"type\":\"Float32\",\"readWrite\":\"R\",\"defaultValue\":\"0.00\",\"floatEncoding\":\"eNotation\"},\"units\":{\"type\":\"String\",\"readWrite\":\"R\",\"defaultValue\":\"\"}}},{\"name\":\"current\",\"description\":\"get current\",\"attributes\":{\"cmdContent\":\"http://USERNAME:PASSWORD@IPADDRESS:IPPORT/netio.json\",\"handleReturnRules\":\"[{\\\"additiveFactor\\\":0.0,\\\"method\\\":\\\"get\\\"}]\",\"transcoding\":0},\"properties\":{\"value\":{\"type\":\"Float32\",\"readWrite\":\"R\",\"defaultValue\":\"0.00\",\"floatEncoding\":\"eNotation\"},\"units\":{\"type\":\"String\",\"readWrite\":\"R\",\"defaultValue\":\"\"}}},{\"name\":\"voltage\",\"description\":\"get voltage\",\"attributes\":{\"cmdContent\":\"http://USERNAME:PASSWORD@IPADDRESS:IPPORT/netio.json\",\"handleReturnRules\":\"[{\\\"additiveFactor\\\":0.0,\\\"method\\\":\\\"get\\\"}]\",\"transcoding\":0},\"properties\":{\"value\":{\"type\":\"Float32\",\"readWrite\":\"R\",\"defaultValue\":\"0.00\",\"floatEncoding\":\"eNotation\"},\"units\":{\"type\":\"String\",\"readWrite\":\"R\",\"defaultValue\":\"\"}}},{\"name\":\"open1way\",\"description\":\"open first way\",\"attributes\":{\"cmdContent\":\"http://USERNAME:PASSWORD@IPADDRESS:IPPORT/netio.json\",\"handleReturnRules\":\"[{\\\"action\\\":1,\\\"additiveFactor\\\":0.0,\\\"method\\\":\\\"post\\\",\\\"way\\\":1}]\",\"transcoding\":0},\"properties\":{\"value\":{\"type\":\"String\",\"readWrite\":\"R\",\"defaultValue\":\"0\"},\"units\":{\"type\":\"String\",\"readWrite\":\"R\",\"defaultValue\":\"\"}}},{\"name\":\"close1way\",\"description\":\"close first way\",\"attributes\":{\"cmdContent\":\"http://USERNAME:PASSWORD@IPADDRESS:IPPORT/netio.json\",\"handleReturnRules\":\"[{\\\"action\\\":0,\\\"additiveFactor\\\":0.0,\\\"method\\\":\\\"post\\\",\\\"way\\\":1}]\",\"transcoding\":0},\"properties\":{\"value\":{\"type\":\"String\",\"readWrite\":\"R\",\"defaultValue\":\"0\"},\"units\":{\"type\":\"String\",\"readWrite\":\"R\",\"defaultValue\":\"\"}}},{\"name\":\"open2way\",\"description\":\"open 2 way\",\"attributes\":{\"cmdContent\":\"http://USERNAME:PASSWORD@IPADDRESS:IPPORT/netio.json\",\"handleReturnRules\":\"[{\\\"action\\\":1,\\\"additiveFactor\\\":0.0,\\\"method\\\":\\\"post\\\",\\\"way\\\":2}]\",\"transcoding\":0},\"properties\":{\"value\":{\"type\":\"String\",\"readWrite\":\"R\",\"defaultValue\":\"0\"},\"units\":{\"type\":\"String\",\"readWrite\":\"R\",\"defaultValue\":\"\"}}},{\"name\":\"close2way\",\"description\":\"close 2 way\",\"attributes\":{\"cmdContent\":\"http://USERNAME:PASSWORD@IPADDRESS:IPPORT/netio.json\",\"handleReturnRules\":\"[{\\\"action\\\":0,\\\"additiveFactor\\\":0.0,\\\"method\\\":\\\"post\\\",\\\"way\\\":2}]\",\"transcoding\":0},\"properties\":{\"value\":{\"type\":\"String\",\"readWrite\":\"R\",\"defaultValue\":\"0\"},\"units\":{\"type\":\"String\",\"readWrite\":\"R\",\"defaultValue\":\"\"}}},{\"name\":\"open3way\",\"description\":\"open 3 way\",\"attributes\":{\"cmdContent\":\"http://USERNAME:PASSWORD@IPADDRESS:IPPORT/netio.json\",\"handleReturnRules\":\"[{\\\"action\\\":1,\\\"additiveFactor\\\":0.0,\\\"method\\\":\\\"post\\\",\\\"way\\\":3}]\",\"transcoding\":0},\"properties\":{\"value\":{\"type\":\"String\",\"readWrite\":\"R\",\"defaultValue\":\"0\"},\"units\":{\"type\":\"String\",\"readWrite\":\"R\",\"defaultValue\":\"\"}}},{\"name\":\"close3way\",\"description\":\"close 3 way\",\"attributes\":{\"cmdContent\":\"http://USERNAME:PASSWORD@IPADDRESS:IPPORT/netio.json\",\"handleReturnRules\":\"[{\\\"action\\\":0,\\\"additiveFactor\\\":0.0,\\\"method\\\":\\\"post\\\",\\\"way\\\":3}]\",\"transcoding\":0},\"properties\":{\"value\":{\"type\":\"String\",\"readWrite\":\"R\",\"defaultValue\":\"0\"},\"units\":{\"type\":\"String\",\"readWrite\":\"R\",\"defaultValue\":\"\"}}},{\"name\":\"open4way\",\"description\":\"open 4 way\",\"attributes\":{\"cmdContent\":\"http://USERNAME:PASSWORD@IPADDRESS:IPPORT/netio.json\",\"handleReturnRules\":\"[{\\\"action\\\":1,\\\"additiveFactor\\\":0.0,\\\"method\\\":\\\"post\\\",\\\"way\\\":4}]\",\"transcoding\":0},\"properties\":{\"value\":{\"type\":\"String\",\"readWrite\":\"R\",\"defaultValue\":\"0\"},\"units\":{\"type\":\"String\",\"readWrite\":\"R\",\"defaultValue\":\"\"}}},{\"name\":\"close4way\",\"description\":\"close 4 way\",\"attributes\":{\"cmdContent\":\"http://USERNAME:PASSWORD@IPADDRESS:IPPORT/netio.json\",\"handleReturnRules\":\"[{\\\"action\\\":0,\\\"additiveFactor\\\":0.0,\\\"method\\\":\\\"post\\\",\\\"way\\\":4}]\",\"transcoding\":0},\"properties\":{\"value\":{\"type\":\"String\",\"readWrite\":\"R\",\"defaultValue\":\"0\"},\"units\":{\"type\":\"String\",\"readWrite\":\"R\",\"defaultValue\":\"\"}}}],\"deviceCommands\":[{\"name\":\"energyValue\",\"get\":[{\"operation\":\"get\",\"object\":\"energyValue\",\"property\":\"value\",\"parameter\":\"energyValue\"}],\"local_CmdCode\":\"Btn_ShiXuDianYuan_Energy\",\"local_Parameter\":\"\",\"local_AssociatedStates\":\"\",\"parameterType\":\"\",\"parameterDescription\":\"\",\"local_ReadType\":[{\"id\":11,\"readtypeNameChinese\":\"总能耗\",\"unitName\":\"kw/h\",\"decimalPlaces\":2}]},{\"name\":\"Power\",\"get\":[{\"operation\":\"get\",\"object\":\"power\",\"property\":\"value\",\"parameter\":\"Power\"}],\"local_CmdCode\":\"Btn_ShiXuDianYuan_DuQuGongLv\",\"local_Parameter\":\"\",\"local_AssociatedStates\":\"\",\"parameterType\":\"\",\"parameterDescription\":\"\",\"local_ReadType\":[{\"id\":14,\"readtypeNameChinese\":\"总功率\",\"unitName\":\"W\",\"decimalPlaces\":2}]},{\"name\":\"Current\",\"get\":[{\"operation\":\"get\",\"object\":\"current\",\"property\":\"value1\",\"parameter\":\"Current\"}],\"local_CmdCode\":\"Btn_ShiXuDianYuan_DuQuDianLiu\",\"local_Parameter\":\"\",\"local_AssociatedStates\":\"\",\"parameterType\":\"\",\"parameterDescription\":\"\",\"local_ReadType\":[{\"id\":13,\"readtypeNameChinese\":\"总电流\",\"unitName\":\"A\",\"decimalPlaces\":2}]},{\"name\":\"Voltage\",\"get\":[{\"operation\":\"get\",\"object\":\"voltage\",\"property\":\"value\",\"parameter\":\"Voltage\"}],\"local_CmdCode\":\"Btn_ShiXuDianYuan_DuQuDianYa\",\"local_Parameter\":\"\",\"local_AssociatedStates\":\"\",\"parameterType\":\"\",\"parameterDescription\":\"\",\"local_ReadType\":[{\"id\":12,\"readtypeNameChinese\":\"电压\",\"unitName\":\"V\",\"decimalPlaces\":2}]},{\"name\":\"open1way\",\"get\":[{\"operation\":\"get\",\"object\":\"open1way\",\"property\":\"value\",\"deviceResource\":\"open1way\"}],\"local_CmdCode\":\"Btn_ShiXuDianYuan_KaiTongDao1\",\"local_Parameter\":\"\",\"local_AssociatedStates\":\"\",\"parameterType\":\"\",\"parameterDescription\":\"\",\"local_ReadType\":[{\"id\":15,\"readtypeNameChinese\":\"第一路开关\"},{\"id\":24,\"readtypeNameChinese\":\"第一路电流\",\"unitName\":\"A\",\"decimalPlaces\":2},{\"id\":32,\"readtypeNameChinese\":\"第一路功率\",\"unitName\":\"W\",\"decimalPlaces\":2},{\"id\":40,\"readtypeNameChinese\":\"第一路能耗\",\"unitName\":\"kw/h\",\"decimalPlaces\":2}]},{\"name\":\"close1way\",\"get\":[{\"operation\":\"get\",\"object\":\"close1way\",\"property\":\"value\",\"deviceResource\":\"close1way\"}],\"local_CmdCode\":\"Btn_ShiXuDianYuan_GuanTongDao1\",\"local_Parameter\":\"\",\"local_AssociatedStates\":\"\",\"parameterType\":\"\",\"parameterDescription\":\"\"},{\"name\":\"open2way\",\"get\":[{\"operation\":\"get\",\"object\":\"open2way\",\"property\":\"value\",\"deviceResource\":\"open2way\"}],\"local_CmdCode\":\"Btn_ShiXuDianYuan_KaiTongDao2\",\"local_Parameter\":\"\",\"local_AssociatedStates\":\"\",\"parameterType\":\"\",\"parameterDescription\":\"\",\"local_ReadType\":[{\"id\":16,\"readtypeNameChinese\":\"第二路开关\"},{\"id\":25,\"readtypeNameChinese\":\"第二路电流\",\"unitName\":\"A\",\"decimalPlaces\":2},{\"id\":33,\"readtypeNameChinese\":\"第二路功率\",\"unitName\":\"W\",\"decimalPlaces\":2},{\"id\":41,\"readtypeNameChinese\":\"第二路能耗\",\"unitName\":\"kw/h\",\"decimalPlaces\":2}]},{\"name\":\"close2way\",\"get\":[{\"operation\":\"get\",\"object\":\"close2way\",\"property\":\"value\",\"deviceResource\":\"close2way\"}],\"local_CmdCode\":\"Btn_ShiXuDianYuan_GuanTongDao2\",\"local_Parameter\":\"\",\"local_AssociatedStates\":\"\",\"parameterType\":\"\",\"parameterDescription\":\"\"},{\"name\":\"open3way\",\"get\":[{\"operation\":\"get\",\"object\":\"open3way\",\"property\":\"value\",\"deviceResource\":\"open3way\"}],\"local_CmdCode\":\"Btn_ShiXuDianYuan_KaiTongDao3\",\"local_Parameter\":\"\",\"local_AssociatedStates\":\"\",\"parameterType\":\"\",\"parameterDescription\":\"\",\"local_ReadType\":[{\"id\":17,\"readtypeNameChinese\":\"第三路开关\"},{\"id\":26,\"readtypeNameChinese\":\"第三路电流\",\"unitName\":\"A\",\"decimalPlaces\":2},{\"id\":34,\"readtypeNameChinese\":\"第三路功率\",\"unitName\":\"W\",\"decimalPlaces\":2},{\"id\":42,\"readtypeNameChinese\":\"第三路能耗\",\"unitName\":\"kw/h\",\"decimalPlaces\":2}]},{\"name\":\"close3way\",\"get\":[{\"operation\":\"get\",\"object\":\"close3way\",\"property\":\"value\",\"deviceResource\":\"close3way\"}],\"local_CmdCode\":\"Btn_ShiXuDianYuan_GuanTongDao3\",\"local_Parameter\":\"\",\"local_AssociatedStates\":\"\",\"parameterType\":\"\",\"parameterDescription\":\"\"},{\"name\":\"open4way\",\"get\":[{\"operation\":\"get\",\"object\":\"open4way\",\"property\":\"value\",\"deviceResource\":\"open4way\"}],\"local_CmdCode\":\"Btn_ShiXuDianYuan_KaiTongDao4\",\"local_Parameter\":\"\",\"local_AssociatedStates\":\"\",\"parameterType\":\"\",\"parameterDescription\":\"\",\"local_ReadType\":[{\"id\":18,\"readtypeNameChinese\":\"第四路开关\"},{\"id\":27,\"readtypeNameChinese\":\"第四路电流\",\"unitName\":\"A\",\"decimalPlaces\":2},{\"id\":35,\"readtypeNameChinese\":\"第四路功率\",\"unitName\":\"W\",\"decimalPlaces\":2},{\"id\":43,\"readtypeNameChinese\":\"第四路能耗\",\"unitName\":\"kw/h\",\"decimalPlaces\":2}]},{\"name\":\"close4way\",\"get\":[{\"operation\":\"get\",\"object\":\"close4way\",\"property\":\"value\",\"deviceResource\":\"close4way\"}],\"local_CmdCode\":\"Btn_ShiXuDianYuan_GuanTongDao4\",\"local_Parameter\":\"\",\"local_AssociatedStates\":\"\",\"parameterType\":\"\",\"parameterDescription\":\"\"}],\"coreCommands\":[{\"name\":\"energyValue\",\"get\":{\"path\":\"/api/v1/device/{deviceId}/energyValue\",\"responses\":[{\"code\":\"200\",\"description\":\"\",\"expectedValues\":[\"energyValue\"]},{\"code\":\"503\",\"description\":\"service unavailable\",\"expectedValues\":[]}]}},{\"name\":\"Power\",\"get\":{\"path\":\"/api/v1/device/{deviceId}/Power\",\"responses\":[{\"code\":\"200\",\"description\":\"\",\"expectedValues\":[\"Power\"]},{\"code\":\"503\",\"description\":\"service unavailable\",\"expectedValues\":[]}]}},{\"name\":\"Current\",\"get\":{\"path\":\"/api/v1/device/{deviceId}/Current\",\"responses\":[{\"code\":\"200\",\"description\":\"\",\"expectedValues\":[\"Current\"]},{\"code\":\"503\",\"description\":\"service unavailable\",\"expectedValues\":[]}]}},{\"name\":\"Voltage\",\"get\":{\"path\":\"/api/v1/device/{deviceId}/Voltage\",\"responses\":[{\"code\":\"200\",\"description\":\"\",\"expectedValues\":[\"Voltage\"]},{\"code\":\"503\",\"description\":\"service unavailable\",\"expectedValues\":[]}]}},{\"name\":\"open1way\",\"get\":{\"path\":\"/api/v1/device/{deviceId}/open1way\",\"responses\":[{\"code\":\"200\",\"description\":\"\",\"expectedValues\":[\"1\"]},{\"code\":\"503\",\"description\":\"service unavailable\",\"expectedValues\":[]}]}},{\"name\":\"close1way\",\"get\":{\"path\":\"/api/v1/device/{deviceId}/close1way\",\"responses\":[{\"code\":\"200\",\"description\":\"\",\"expectedValues\":[\"1\"]},{\"code\":\"503\",\"description\":\"service unavailable\",\"expectedValues\":[]}]}},{\"name\":\"open2way\",\"get\":{\"path\":\"/api/v1/device/{deviceId}/open2way\",\"responses\":[{\"code\":\"200\",\"description\":\"\",\"expectedValues\":[\"1\"]},{\"code\":\"503\",\"description\":\"service unavailable\",\"expectedValues\":[]}]}},{\"name\":\"close2way\",\"get\":{\"path\":\"/api/v1/device/{deviceId}/close2way\",\"responses\":[{\"code\":\"200\",\"description\":\"\",\"expectedValues\":[\"1\"]},{\"code\":\"503\",\"description\":\"service unavailable\",\"expectedValues\":[]}]}},{\"name\":\"open3way\",\"get\":{\"path\":\"/api/v1/device/{deviceId}/open3way\",\"responses\":[{\"code\":\"200\",\"description\":\"\",\"expectedValues\":[\"1\"]},{\"code\":\"503\",\"description\":\"service unavailable\",\"expectedValues\":[]}]}},{\"name\":\"close3way\",\"get\":{\"path\":\"/api/v1/device/{deviceId}/close3way\",\"responses\":[{\"code\":\"200\",\"description\":\"\",\"expectedValues\":[\"1\"]},{\"code\":\"503\",\"description\":\"service unavailable\",\"expectedValues\":[]}]}},{\"name\":\"open4way\",\"get\":{\"path\":\"/api/v1/device/{deviceId}/open4way\",\"responses\":[{\"code\":\"200\",\"description\":\"\",\"expectedValues\":[\"1\"]},{\"code\":\"503\",\"description\":\"service unavailable\",\"expectedValues\":[]}]}},{\"name\":\"close4way\",\"get\":{\"path\":\"/api/v1/device/{deviceId}/close4way\",\"responses\":[{\"code\":\"200\",\"description\":\"\",\"expectedValues\":[\"1\"]},{\"code\":\"503\",\"description\":\"service unavailable\",\"expectedValues\":[]}]}}]}"  }
+    }
++ Response 200
+
+            {
+              "data": {
+                "id": 13,
+                "type": "drive"
+              }
+            }
+
++ Response 400
+
+
+            {
+              "errors": [
+                {
+                  "status": "400",
+                  "title": "Bad Request",
+                  "detail": "驱动分类请使用二级分类，不要使用以及分类"
+                }
+              ]
+            }
+
+            {
+              "errors": [
+                {
+                  "status": "400",
+                  "title": "Bad Request",
+                  "detail": "驱动没有配置分类ID"
+                }
+              ]
+            }
+        
+            {
+              "errors": [
+                {
+                  "status": "400",
+                  "title": "Bad Request",
+                  "detail": "驱动没有配置品牌ID"
+                }
+              ]
+            }
+            {
+              "errors": [
+                {
+                  "status": "400",
+                  "title": "Bad Request",
+                  "detail": "该品牌在数据库中不存在"
+                }
+              ]
+            }
+            
+            {
+              "errors": [
+                {
+                  "status": "400",
+                  "title": "Bad Request",
+                  "detail": "已经存在该驱动，请进行修改，不要添加"
+                }
+              ]
+            }
+
+### 驱动修改 [POST] /drive/{id}
++ Description
+    + Author Liukai
+    
++ Parameters
+    + data 
+        + cmdDrive (string) 驱动(json格式)
+    
++ Request (application/json)
+
+        {
+          "data": {
+            "id": 2,
+            "cmdDrive": ""
+          }
+        }
++ Response 200
+
+### 驱动删除 [DELETE] /drive/{id}
++ Description
+    + Author Liukai
+    
++ Parameters
+    + id (long) 驱动ID
+    
++ Request (application/json)
+
++ Response 204
+
+
+### 驱动详情 [GET]  /drive/{id}
++ Description
+    + Author Liukai
+    
++ Parameters
+    + id (long) 驱动ID
+
++ ReturnData
+    + 见上面
+
++ Request (application/json)
+
++ Response 200
+
+        {
+        "data": {
+                "id": 13,
+                "enabled": 1,
+                "creator": 0,
+                "modifier": 0,
+                "updateVersionId": 0,
+                "equipmentNameEn": "netio12234c",
+                "equipmentName": "NETIO-4口PDU",
+                "model": "PowerPDU 4C",
+                "categoryId": 49,
+                "brandId": 4,
+                "firmware": "3.4.0",
+                "picture": "http://static.mifanxing.com/wx/image/119/27/1800035.jpg?w=320&h=180",
+                "webLink": "https://www.netio-products.com/en",
+                "cmdDrive":"xxxxx省略",
+            "belong": 0,
+            "officialCertification": 0,
+            "operation": 0,
+            "brandName": "NETIO",
+            "secondCategoryName": "时序电源(勿删)",
+            "primaryCategoryName": "其他(勿删)",
+            "ispdu": 1,
+            "severalPdu": 4
+          }
+        }
+
+### 驱动列表 [GET] /drive
++ Description
+    + Author Liukai
++ Parameters
+    + belong (int)  属于 本地是0 云端是1
+    + equipmentName (string) 驱动名字
+    + filter[brandId]  (long) 品牌ID
+    + filter[primaryCategoryId] (long) 一级分类ID
+    + filter[secondCategoryId]  (long) 二级分类ID
+    + firmware  (string) 版本号
+    + model (string) 型号
+    + page[number] (int) 页码
+    + page[size] (int) 条数
+
++ ReturnData
+    + 见上面
+ 
++ Response 200
+
+        {
+          "meta": {
+            "totalPages": 1,
+            "totalElements": 1,
+            "size": 10,
+            "number": 1,
+            "numberOfElements": 1,
+            "first": true,
+            "last": true,
+            "sort": null
+          },
+          "links": {
+            "self": "/drive?belong=1&page[number]=1&page[size]=10",
+            "first": "/drive?belong=1&page[number]=1&page[size]=10",
+            "last": "/drive?belong=1&page[number]=1&page[size]=10"
+          },
+          "data": [
+            {
+              "id": 2,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2020-10-23 11:31:27",
+              "modified": "2020-10-23 11:31:29",
+              "updateVersionId": 0,
+              "equipmentNameEn": "dd",
+              "equipmentName": "智能电表",
+              "model": "sw010",
+              "categoryId": 47,
+              "brandId": 2,
+              "belong": 1,
+              "officialCertification": 1,
+              "operation": 2,
+              "brandName": "Sony",
+              "secondCategoryName": "电量传感器(勿删)",
+              "primaryCategoryName": "传感器",
+              "ispdu": 0,
+              "severalPdu": 0
+            }
+          ]
+        }  

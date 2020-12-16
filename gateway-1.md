@@ -75,7 +75,6 @@ https://github.com/liukai007/avic/edit/master/gateway-1.md
     + 驱动新增
     + 驱动修改
     + 驱动删除
-    + 驱动详情
     + 驱动列表
 
 
@@ -4059,48 +4058,6 @@ https://github.com/liukai007/avic/edit/master/gateway-1.md
 + Request (application/json)
 
 + Response 204
-
-
-### 驱动详情 [GET]  /drive/{id}
-+ Description
-    + Author Liukai
-    
-+ Parameters
-    + id (long) 驱动ID
-
-+ ReturnData
-    + 见上面
-
-+ Request (application/json)
-
-+ Response 200
-
-        {
-        "data": {
-                "id": 13,
-                "enabled": 1,
-                "creator": 0,
-                "modifier": 0,
-                "updateVersionId": 0,
-                "equipmentNameEn": "netio12234c",
-                "equipmentName": "NETIO-4口PDU",
-                "model": "PowerPDU 4C",
-                "categoryId": 49,
-                "brandId": 4,
-                "firmware": "3.4.0",
-                "picture": "http://static.mifanxing.com/wx/image/119/27/1800035.jpg?w=320&h=180",
-                "webLink": "https://www.netio-products.com/en",
-                "cmdDrive":"xxxxx省略",
-            "belong": 0,
-            "officialCertification": 0,
-            "operation": 0,
-            "brandName": "NETIO",
-            "secondCategoryName": "时序电源(勿删)",
-            "primaryCategoryName": "其他(勿删)",
-            "ispdu": 1,
-            "severalPdu": 4
-          }
-        }
 
 ### 驱动列表 [GET] /drive
 + Description

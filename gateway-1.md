@@ -76,6 +76,8 @@ https://github.com/liukai007/avic/edit/master/gateway-1.md
     + 驱动修改
     + 驱动删除
     + 驱动列表
++ 2021年1月12日
+    + 空间使用统计
 
 
 ## 网关基本信息
@@ -4119,3 +4121,52 @@ https://github.com/liukai007/avic/edit/master/gateway-1.md
             }
           ]
         }  
+
+
+## 空间使用统计接口  [GET]  /logUsedTimesElectric/spaceUsage
+
++ Description
+    + Author yhz
+
++ Parameters
+    + dateMinStr (string)  开始日期 格式：yyyy-MM-dd HH:mm:ss
+    + dateMaxStr (string)  结束日期 格式：yyyy-MM-dd HH:mm:ss
+
++ ReturnData
+    + times (Integer) 使用总次数
+    + duration (long) 使用总时长
+    + usageRate (double)  使用率
+    + durationHb (double)   使用时长环比
+    + logUsedTimesElectricList
+        + id （long）id
+        + created （date） 创建时间
+        + times （int） 使用次数
+        + powerConsumption (double) 当日耗电量
+        + duration (double) 使用时长
+              
++ Response 200
+
+        {
+          "data": {
+            "times": 4,
+            "duration": 9,
+            "usageRate": 0.5,
+            "durationHb": 28.57,
+            "logUsedTimesElectricList": [
+              {
+                "id": 1,
+                "created": "2021-01-11 15:50:34",
+                "times": 2,
+                "powerConsumption": 3,
+                "duration": 4
+              },
+              {
+                "id": 6,
+                "created": "2021-01-12 11:06:05",
+                "times": 2,
+                "powerConsumption": 10,
+                "duration": 5
+              }
+            ]
+          }
+        }

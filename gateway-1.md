@@ -4143,6 +4143,7 @@ https://github.com/liukai007/avic/edit/master/gateway-1.md
         + times （int） 使用次数
         + powerConsumption (double) 当日耗电量
         + duration (double) 使用时长
+        + gatewayUsageRate （double）使用率
               
 + Response 200
 
@@ -4166,6 +4167,47 @@ https://github.com/liukai007/avic/edit/master/gateway-1.md
                 "times": 2,
                 "powerConsumption": 10,
                 "duration": 5
+              }
+            ]
+          }
+        }
+
+
+## 使用时长排名(网关)&故障报警排名(网关）接口  [GET]  /timesMalfunction/durationAndMalfunction
+
++ Description
+    + Author yhz
+
++ Parameters
+    + dateMinStr (string)  开始日期 格式：yyyy-MM-dd HH:mm:ss
+    + dateMaxStr (string)  结束日期 格式：yyyy-MM-dd HH:mm:ss
+    + rankId （int）排序:0 次数 1 故障,默认值是次数0
+
++ ReturnData
+    + malfunctionTimes (Integer) 故障次数
+    + duration (double) 使用时长
+    + usageRate (double)  使用率
+    + equipmentName (string)   设备名称
+    + yequipmentId （long）设备id
+              
++ Response 200
+
+        {
+          "data": {
+            "logEquipmentTimesMalfunctiontimesList": [
+              {
+                "malfunctionTimes": 11,
+                "duration": 12,
+                "equipmentName": "云端新增0000",
+                "usageRate": 1.33,
+                "yequipmentId": 1
+              },
+              {
+                "malfunctionTimes": 0,
+                "duration": 0,
+                "equipmentName": "云端新增111",
+                "usageRate": 0,
+                "yequipmentId": 2
               }
             ]
           }

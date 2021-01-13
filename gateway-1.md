@@ -78,6 +78,9 @@ https://github.com/liukai007/avic/edit/master/gateway-1.md
     + 驱动列表
 + 2021年1月12日
     + 空间使用统计
+    + 使用时长排名(网关)&故障报警排名(网关）接口
++ 2021年1月13日
+    + 资产使用情况
 
 
 ## 网关基本信息
@@ -4211,4 +4214,124 @@ https://github.com/liukai007/avic/edit/master/gateway-1.md
               }
             ]
           }
+        }
+
+
+## 资产使用情况接口  [GET]  /equipment/equipmentUse
+
++ Description
+    + Author yhz
+
++ Parameters
+
+
++ ReturnData
+    + id (long) 设备id
+    + cloudCid (long) 云id
+    + flag (int)  同步成功（0，失败 1 成功）
+    + equipmentName (string)   设备名称
+    + equipmentNameEn （string）设备英文名
+    + anotherName （string）设备别名
+    + online （int）是否在线：0 离线 1在线 2未知
+    + runningStatus （int）运行状态：0关闭 1运行 2警告    3故障  4其他
+    + serviceDate （date）投入使用日期
+    + brandName （string）品牌名称
+    + ispdu （int）0 非pdu 1是pdu
+    + controllable （int）是否可控 1 可控  0 不可控
+    + builtIn （int）是否内置 1为内置 0为非内置
+    + fixedAttribute （int）0 无固定属性，1为环境  2 占位 3 能耗
+    + functionCode （int）0 无功能  1 是次数  2 是电表记录
+    + totalTime （int）设备累计运行总时长，单位小时 (每日四舍五入)
+    + readable （int）1 已读 0 未读
+    + model （string）型号
+    + ageLimit (int) 1-6 年
+    + serviceLife （int）1 全新 2 良好 3 一般 4 可用 5 极限 6 更换
+    + lifeType （int）0 是 时间  1是次数
+    + recommendedLife （int）建议寿命 单位:  小时 或者 次
+    + ydriveId （long）驱动id
+              
++ Response 200
+
+        {
+          "meta": {
+            "totalPages": 1,
+            "totalElements": 8,
+            "size": 10,
+            "number": 1,
+            "numberOfElements": 8,
+            "first": true,
+            "last": true,
+            "sort": null
+          },
+          "links": {
+            "self": "/Equipment?page[number]=1&page[size]=10",
+            "first": "/Equipment?page[number]=1&page[size]=10",
+            "last": "/Equipment?page[number]=1&page[size]=10"
+          },
+          "data": [
+            {
+              "id": 1,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2021-01-04 17:40:26",
+              "modified": "2021-01-04 17:40:26",
+              "cloudCid": 43,
+              "flag": 0,
+              "equipmentName": "云端新增0000",
+              "equipmentNameEn": "云端新增0000",
+              "anotherName": "云端新增0000",
+              "online": 0,
+              "runningStatus": 0,
+              "serviceDate": "2020-08-01T08:46:06.000+0000",
+              "brandName": "extron",
+              "ispdu": 0,
+              "controllable": 1,
+              "builtIn": 0,
+              "fixedAttribute": 0,
+              "functionCode": 0,
+              "totalTime": 0,
+              "readable": 0,
+              "model": "SM300D2MOD",
+              "dateUsed": 0,
+              "ageLimit": 1,
+              "serviceLife": 4,
+              "lifeType": 0,
+              "recommendedLife": 5000,
+              "ydriveId": 1,
+              "yequipmentIdGateway": 0
+            },
+            {
+              "id": 2,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2021-01-04 17:41:51",
+              "modified": "2021-01-04 17:41:51",
+              "cloudCid": 44,
+              "flag": 0,
+              "equipmentName": "云端新增111",
+              "equipmentNameEn": "云端新增0sadasds00",
+              "anotherName": "云端新增0000",
+              "online": 0,
+              "runningStatus": 0,
+              "serviceDate": "2020-10-01T09:46:49.000+0000",
+              "brandName": "extron",
+              "ispdu": 0,
+              "controllable": 1,
+              "builtIn": 0,
+              "fixedAttribute": 0,
+              "functionCode": 0,
+              "totalTime": 0,
+              "readable": 0,
+              "model": "BITS108",
+              "dateUsed": 0,
+              "ageLimit": 1,
+              "serviceLife": 1,
+              "lifeType": 1,
+              "recommendedLife": 1500,
+              "ydriveId": 2,
+              "yequipmentIdGateway": 0
+            }
+          ]
         }

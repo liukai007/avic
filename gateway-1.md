@@ -82,6 +82,7 @@ https://github.com/liukai007/avic/edit/master/gateway-1.md
 + 2021年1月13日
     + 资产使用情况
     + 设备开合次数统计
+    + 控制协议统计
 
 
 ## 网关基本信息
@@ -4363,4 +4364,80 @@ https://github.com/liukai007/avic/edit/master/gateway-1.md
               "times": 5
             }
           ]
+        }
+
+
+## 控制协议统计  [GET]  /portType/equipmentProtocolInfo 
+
++ Description
+    + Author yhz
+
++ Parameters
+
+
++ ReturnData
+    + equipmentsum (int) 设备总数
+    + portTypeList
+        + typeName （string）协议名称
+        + parentIdPorttype （long）父id
+        + description （string）描述
+        + builtIn （int）1内置 0非内置   默认值0
+        + total （int）该协议下的设备数
+              
++ Response 200
+
+        {
+          "data": {
+            "equipmentsum": 9,
+            "portTypeList": [
+              {
+                "id": 1,
+                "enabled": 1,
+                "creator": 0,
+                "modifier": 0,
+                "updateVersionId": 0,
+                "typeName": "RS-232",
+                "parentIdPorttype": 0,
+                "description": "串口",
+                "builtIn": 0,
+                "total": 1
+              },
+              {
+                "id": 2,
+                "enabled": 1,
+                "creator": 0,
+                "modifier": 0,
+                "updateVersionId": 0,
+                "typeName": "RS-485",
+                "parentIdPorttype": 0,
+                "description": "串口",
+                "builtIn": 0,
+                "total": 3
+              },
+              {
+                "id": 3,
+                "enabled": 1,
+                "creator": 0,
+                "modifier": 0,
+                "updateVersionId": 0,
+                "typeName": "RS-422",
+                "parentIdPorttype": 0,
+                "description": "串口",
+                "builtIn": 0,
+                "total": 2
+              },
+              {
+                "id": 4,
+                "enabled": 1,
+                "creator": 0,
+                "modifier": 0,
+                "updateVersionId": 0,
+                "typeName": "TCP",
+                "parentIdPorttype": 0,
+                "description": "网口",
+                "builtIn": 0,
+                "total": 2
+              }
+            ]
+          }
         }

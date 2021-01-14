@@ -81,6 +81,7 @@ https://github.com/liukai007/avic/edit/master/gateway-1.md
     + 使用时长排名(网关)&故障报警排名(网关）接口
 + 2021年1月13日
     + 资产使用情况
+    + 设备开合次数统计
 
 
 ## 网关基本信息
@@ -4332,6 +4333,34 @@ https://github.com/liukai007/avic/edit/master/gateway-1.md
               "recommendedLife": 1500,
               "ydriveId": 2,
               "yequipmentIdGateway": 0
+            }
+          ]
+        }
+
+
+## 设备开合次数统计接口  [GET]  /equipment/switchFrequency
+
++ Description
+    + Author yhz
+
++ Parameters
+
+
++ ReturnData
+    + times (int) 次数
+    + equipmentName (string) 设备名称
+              
++ Response 200
+
+        {
+          "data": [
+            {
+              "equipmentName": "云端新增111",
+              "times": 5
+            },
+            {
+              "equipmentName": "云端新增444",
+              "times": 5
             }
           ]
         }

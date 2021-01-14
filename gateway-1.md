@@ -83,6 +83,7 @@ https://github.com/liukai007/avic/edit/master/gateway-1.md
     + 资产使用情况
     + 设备开合次数统计
     + 控制协议统计
+    + 受控情况统计
 
 
 ## 网关基本信息
@@ -4439,5 +4440,27 @@ https://github.com/liukai007/avic/edit/master/gateway-1.md
                 "total": 2
               }
             ]
+          }
+        }
+
+
+## 受控情况统计  [GET]  /portType/equipmentControlled
+
++ Description
+    + Author yhz
+
++ Parameters
+
+
++ ReturnData
+    + controlled (int) 可控
+    + uncontrollable （int）不可控
+              
++ Response 200
+
+        {
+          "data": {
+            "controlled": 6,
+            "uncontrollable": 3
           }
         }

@@ -638,4 +638,65 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
    }
 
 
+## 设备状态监测  [GET]  /equipmentstatusmonitoring
+
++ Description
+    + Author yhz
+
++ Parameters
+
++ ReturnData
+    + runningCount （int）总设备运行数量
+    + closeCount （int）总设备关闭数量
+    + warnCount （int）总设备警告数量
+    + faultCount (int) 总故障设备数量
+    + controlledEquipment （int）可控设备数量
+    + totalEquipment (int) 总设备数
+    + equipmentStatusMonitoringList
+        + runningNumber （int）设备运行数量
+        + closeNumber （int）设备关闭数量
+        + warnNumber （int）设备警告数量
+        + faultNumber (int) 故障设备数量
+        + onLine （int）在线数量
+        + offLine （int）离线数量
+              
++ Response 200
+
+        {
+          "data": {
+            "runningCount": 15,
+            "closeCount": 8,
+            "warnCount": 5,
+            "faultCount": 9,
+            "controlledEquipment": 6,
+            "totalEquipment": 0
+            "equipmentStatusMonitoringList": [
+              {
+                "id": 1,
+                "creator": 0,
+                "created": "2021-01-14 15:25:00",
+                "runningNumber": 10,
+                "closeNumber": 10,
+                "warnNumber": 2,
+                "faultNumber": 3,
+                "onLine": 10,
+                "offLine": 15
+              },
+              {
+                "id": 1,
+                "creator": 0,
+                "created": "2021-01-14 15:25:00",
+                "runningNumber": 10,
+                "closeNumber": 10,
+                "warnNumber": 2,
+                "faultNumber": 3,
+                "onLine": 10,
+                "offLine": 15
+              }
+            ]
+          }
+        }
+
+
+
 

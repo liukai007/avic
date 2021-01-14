@@ -84,6 +84,7 @@ https://github.com/liukai007/avic/edit/master/gateway-1.md
     + 设备开合次数统计
     + 控制协议统计
     + 受控情况统计
+    + 空间能耗统计
 
 
 ## 网关基本信息
@@ -4464,3 +4465,81 @@ https://github.com/liukai007/avic/edit/master/gateway-1.md
             "uncontrollable": 3
           }
         }
+
+## 空间能耗统计接口  [GET]  /logUsedTimesElectric/spaceEnergy
+
++ Description
+    + Author yhz
+
++ Parameters
+    + dateMinStr (string)  开始日期 格式：yyyy-MM-dd HH:mm:ss
+    + dateMaxStr (string)  结束日期 格式：yyyy-MM-dd HH:mm:ss
+
++ ReturnData
+    + powerConsumption (Integer) 总能耗
+    + powerConsumptionHb (double) 能耗环比
+    + totalWorkPowerConsumption (double)  总工作能耗
+    + totalRestPowerConsumption (double)   总非工能耗
+    + logUsedTimesElectricList
+        + id （long）id
+        + created （date） 创建时间
+        + times （int） 使用次数
+        + powerConsumption (double) 当日耗电量
+        + duration (double) 使用时长
+        + restPowerConsumption （double）非工能耗
+        + workPowerConsumption （double）工作能耗
+    + logEnergyGeneralList
+        + voltage （double）电压
+        + current （double）电流
+        + power （double）功率
+        + currentElectricValue （double）耗电量
+        + analyzed （int）是否已经分析 0未分析  1分析
+        + equipmentName （string）设备名称
+        + yequipmentId （long）设备id
+               
++ Response 200
+
+            {
+              "data": {
+                "powerConsumption": 15,
+                "powerConsumptionHb": 200,
+                "totalWorkPowerConsumption": 10,
+                "totalRestPowerConsumption": 5,
+                "logUsedTimesElectricList": [
+                  {
+                    "id": 6,
+                    "created": "2021-01-12 07:06:05",
+                    "times": 2,
+                    "powerConsumption": 10,
+                    "duration": 5,
+                    "groupingDate": "2021-01-12",
+                    "restPowerConsumption": 5,
+                    "workPowerConsumption": 15
+                  }
+                ],
+                "logEnergyGeneralList": [
+                  {
+                    "id": 2,
+                    "created": "2021-01-12 16:46:33",
+                    "voltage": 1,
+                    "current": 1,
+                    "power": 1,
+                    "currentElectricValue": 4,
+                    "analyzed": 0,
+                    "equipmentName": "云端新增0000",
+                    "yequipmentId": 1
+                  },
+                  {
+                    "id": 4,
+                    "created": "2021-01-12 17:48:49",
+                    "voltage": 1,
+                    "current": 1,
+                    "power": 1,
+                    "currentElectricValue": 1,
+                    "analyzed": 0,
+                    "equipmentName": "云端新增0000",
+                    "yequipmentId": 2
+                  }
+                ]
+              }
+            }

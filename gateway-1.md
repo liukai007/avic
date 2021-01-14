@@ -85,6 +85,7 @@ https://github.com/liukai007/avic/edit/master/gateway-1.md
     + 控制协议统计
     + 受控情况统计
     + 空间能耗统计
+    + 设备状态监测
 
 
 ## 网关基本信息
@@ -4543,3 +4544,62 @@ https://github.com/liukai007/avic/edit/master/gateway-1.md
                 ]
               }
             }
+
+
+## 设备状态监测  [GET]  /equipment/equipmentStatus
+
++ Description
+    + Author yhz
+
++ Parameters
+
+
++ ReturnData
+    + runningNumber （int）总设备运行数量
+    + closeNumber （int）总设备关闭数量
+    + warnNumber （int）总设备警告数量
+    + faultNumber (int) 总故障设备数量
+    + controlledEquipment （int）可控设备数量
+    + equipmentStatusMonitoringList
+        + runningNumber （int）设备运行数量
+        + closeNumber （int）设备关闭数量
+        + warnNumber （int）设备警告数量
+        + faultNumber (int) 故障设备数量
+        + onLine （int）在线数量
+        + offLine （int）离线数量
+              
++ Response 200
+
+        {
+          "data": {
+            "runningNumber": 15,
+            "closeNumber": 8,
+            "warnNumber": 5,
+            "faultNumber": 9,
+            "controlledEquipment": 6,
+            "equipmentStatusMonitoringList": [
+              {
+                "id": 1,
+                "creator": 0,
+                "created": "2021-01-14 15:25:00",
+                "runningNumber": 10,
+                "closeNumber": 10,
+                "warnNumber": 2,
+                "faultNumber": 3,
+                "onLine": 10,
+                "offLine": 15
+              },
+              {
+                "id": 2,
+                "creator": 0,
+                "created": "2021-01-14 16:28:27",
+                "runningNumber": 15,
+                "closeNumber": 8,
+                "warnNumber": 5,
+                "faultNumber": 9,
+                "onLine": 15,
+                "offLine": 22
+              }
+            ]
+          }
+        }

@@ -31,7 +31,7 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
     + 机构详情
     + 机构列表
     + 空间能耗统计
-    + 设备使用排行top10
+    + 设备使用排行
     + 空间使用排行
     
 ### 驱动列表 [GET] /drive

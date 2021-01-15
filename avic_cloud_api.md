@@ -46,6 +46,15 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
     + 资产统计-受控状态统计
     + 资产统计-控制协议统计
     + 设备保养信息更已读
+    + 楼层新增
+    + 楼层删除
+    + 楼层更新
+    + 楼层列表
+    + 协作空间增加
+    + 协作空间删除
+    + 协作空间更新
+    + 协作空间详情
+    + 协作空间列表
     
 ### 驱动列表 [GET] /drive
 + Description
@@ -2045,3 +2054,449 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
 + ReturnData
 + Response 200
 
+##  楼层管理
++ Data
+    + id (long)  - ID
+    + floorNum  (int) 楼层号
+    + buildingName  (string) 楼宇名称
+    + buildingId (long)  楼宇ID
+    + enabled (int)  - 使能  0禁止 1启用
+    + creator (long) - 创建人
+    + modifier (long) - 修改人
+    + created (date) - 创建时间
+    + modified (date) - 修改时间
+
+### 楼层新增 [POST] /floor
++ Description
+    + Author Liukai
++ Request (application/json)
+   
+        {
+        	"data": {
+        		"buildingId": 2,
+        		"floorNum": 6
+        	}
+        } 
++ Response 201
+
+        {
+          "data": {
+            "id": 7,
+            "type": "floor"
+          }
+        }
++ Response 400
+
+        {
+          "errors": [
+            {
+              "status": "400",
+              "title": "Bad Request",
+              "detail": "楼宇不存在"
+            }
+          ]
+        }
+
+### 楼层删除 [DELETE] /floor/{id}
++ Description
+    + Author Liukai
++ Parameters
+    + id (long) - id 
++ Response 204 
++ Response 400 
+
+        {
+          "errors": [
+            {
+              "status": "400",
+              "title": "Bad Request",
+              "detail": "无法删除，它是某些协作空间的关联数据！"
+            }
+          ]
+        }
+### 楼层更新  [PATCH] /floor/{id}
++ Description
+    + Author Liukai
++ Parameters
+    + id (long) - id 
++ Request (application/json)
+   
+        {
+        	"data": {
+        		"buildingId": 2,
+        		"floorNum": 6
+        	}
+        } 
++ Response 200 
++ Response 400 
+
+        {
+          "errors": [
+            {
+              "status": "400",
+              "title": "Bad Request",
+              "detail": "楼宇不存在"
+            }
+          ]
+        }
+### 楼层列表 [GET] /floor
++ Description
+    + Author Liukai
++ Parameters
+    + id (long) - id 
++ Response 200 
+
+        {
+          "meta": {
+            "totalPages": 1,
+            "totalElements": 5,
+            "size": 10,
+            "number": 1,
+            "numberOfElements": 5,
+            "first": true,
+            "last": true,
+            "sort": null
+          },
+          "links": {
+            "self": "/floor?page[number]=1&page[size]=10",
+            "first": "/floor?page[number]=1&page[size]=10",
+            "last": "/floor?page[number]=1&page[size]=10"
+          },
+          "data": [
+            {
+              "id": 1,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2021-01-07 14:17:08",
+              "modified": "2021-01-07 14:17:10",
+              "buildingId": 2,
+              "floorNum": 6,
+              "buildingName": "国商控股大厦"
+            },
+            {
+              "id": 2,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2021-01-14 19:30:50",
+              "modified": "2021-01-14 19:30:52",
+              "buildingId": 3,
+              "floorNum": 15,
+              "buildingName": "阿里巴巴2号楼"
+            },
+            {
+              "id": 3,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2021-01-15 15:39:06",
+              "modified": "2021-01-15 15:39:08",
+              "buildingId": 5,
+              "floorNum": 1,
+              "buildingName": "京东望京研发部"
+            },
+            {
+              "id": 6,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2021-01-13 16:06:24",
+              "modified": "2021-01-13 16:06:26",
+              "buildingId": 2,
+              "floorNum": 6,
+              "buildingName": "国商控股大厦"
+            },
+            {
+              "id": 7,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2021-01-15 16:25:28",
+              "modified": "2021-01-15 16:33:19",
+              "buildingId": 2,
+              "floorNum": 16,
+              "buildingName": "国商控股大厦"
+            }
+          ]
+        }
+
+### 协作空间管理
++ Data
+    + id  (long)  - id
+    + spaceName  (string)  -协作空间名字
+    + logo  (string)  - logo 
+    + floorId  (long) - 楼层ID
+    + displayOrder  (int) - 排序 
+    + floorNum  (int) -楼层号码
+    + buildingId  (long) - 楼宇ID
+    + buildingName  (string)  - 楼宇名字
+    + organizationId  (long) - 机构ID
+    + organizationName  (string)  -机构名字
+    + unitPrice  (int) - 会议室单价每小时
+    + seatingCapacity  (int) - 协作空间容量 
+
+## 协作空间增加 [POST] /collaborationspace
++ Description
+    + Author Liukai
++ Parameters 
++ Request (application/json)
+  
+        {
+          "data": {
+            "logo": "logo",
+            "floorId": 2,
+            "spaceName": "中会议室1",
+            "unitPrice": 200,
+            "seatingCapacity": 100
+          }
+        }  
++ Response 201
+
+        {
+          "data": {
+            "id": 11,
+            "type": "collaborationspace"
+          }
+        }
++ Response 400
+
+        {
+          "errors": [
+            {
+              "status": "400",
+              "code": "全称不能为空",
+              "title": "Bad Request",
+              "detail": "全称不能为空",
+              "source": {
+                "pointer": "CollaborationSpace -> spaceName"
+              }
+            }
+          ]
+        }
+
+
+## 协作空间删除 [DELETE] /collaborationspace/{id}
++ Description
+    + Author Liukai
++ Parameters
++ Response 204
++ Response 400
+
+## 协作空间更新  [PATCH] /collaborationspace/{id}
++ Description
+    + Author Liukai
++ Parameters
+    + id (long) - id 
++ Request (application/json)
+    
+        {
+          "data": {
+            "logo": "logo",
+            "floorId": 2,
+            "spaceName": "中会议室1",
+            "unitPrice": 2001,
+            "seatingCapacity": 100
+          }
+        }
+
++ Response 200
++ Response 400
+    
+        {
+          "errors": [
+            {
+              "status": "400",
+              "code": "全称不能为空",
+              "title": "Bad Request",
+              "detail": "全称不能为空",
+              "source": {
+                "pointer": "CollaborationSpace -> spaceName"
+              }
+            }
+          ]
+        }
+
+## 协作空间详情 [GET] /collaborationspace/{id}
++ Description
+    + Author Liukai
++ Parameters
+    + id (long) - id 
++ Response 200
+    
+        {
+          "data": {
+            "id": 4,
+            "spaceName": "协作空间2",
+            "logo": "logo",
+            "floorId": 1,
+            "displayOrder": 0,
+            "floorNum": 6,
+            "buildingId": 2,
+            "buildingName": "国商控股大厦",
+            "organizationId": 2,
+            "organizationName": "北京鼎迪",
+            "unitPrice": 0,
+            "seatingCapacity": 0
+          }
+        }
+
+## 协作空间列表 [GET] /collaborationspace
++ Description
+    + Author Liukai  
++ Parameters
+    +  page[number] (int)  -页码
+    +  page[size] (int)  -条数
+    +  organizationId (long) -机构ID
+    +  buildingId  (long) - 楼宇ID
+    +  floorId  (long) - 楼层ID
+    +  fullName (string) -机构名字
++ Response 200
+    
+        {
+          "meta": {
+            "totalPages": 1,
+            "totalElements": 8,
+            "size": 10,
+            "number": 1,
+            "numberOfElements": 8,
+            "first": true,
+            "last": true,
+            "sort": null
+          },
+          "links": {
+            "self": "/collaborationSpace?page[number]=1&page[size]=10",
+            "first": "/collaborationSpace?page[number]=1&page[size]=10",
+            "last": "/collaborationSpace?page[number]=1&page[size]=10"
+          },
+          "data": [
+            {
+              "id": 3,
+              "spaceName": "协作空间1",
+              "floorId": 7,
+              "displayOrder": 0,
+              "floorNum": 16,
+              "buildingId": 2,
+              "buildingName": "国商控股大厦",
+              "organizationId": 2,
+              "organizationName": "北京鼎迪",
+              "unitPrice": 0,
+              "seatingCapacity": 0,
+              "logo": "logo",
+              "created": "2021-01-14 23:52:23",
+              "modified": "2021-01-14 23:52:23"
+            },
+            {
+              "id": 4,
+              "spaceName": "协作空间2",
+              "floorId": 1,
+              "displayOrder": 0,
+              "floorNum": 6,
+              "buildingId": 2,
+              "buildingName": "国商控股大厦",
+              "organizationId": 2,
+              "organizationName": "北京鼎迪",
+              "unitPrice": 0,
+              "seatingCapacity": 0,
+              "logo": "logo",
+              "created": "2021-01-14 23:52:52",
+              "modified": "2021-01-14 23:52:52"
+            },
+            {
+              "id": 5,
+              "spaceName": "协作空间3",
+              "floorId": 1,
+              "displayOrder": 0,
+              "floorNum": 6,
+              "buildingId": 2,
+              "buildingName": "国商控股大厦",
+              "organizationId": 2,
+              "organizationName": "北京鼎迪",
+              "unitPrice": 0,
+              "seatingCapacity": 0,
+              "logo": "logo",
+              "created": "2021-01-14 23:52:57",
+              "modified": "2021-01-14 23:52:57"
+            },
+            {
+              "id": 6,
+              "spaceName": "协作空间4",
+              "floorId": 1,
+              "displayOrder": 0,
+              "floorNum": 6,
+              "buildingId": 2,
+              "buildingName": "国商控股大厦",
+              "organizationId": 2,
+              "organizationName": "北京鼎迪",
+              "unitPrice": 0,
+              "seatingCapacity": 0,
+              "logo": "logo",
+              "created": "2021-01-14 23:53:01",
+              "modified": "2021-01-14 23:53:01"
+            },
+            {
+              "id": 7,
+              "spaceName": "协作空间5",
+              "floorId": 1,
+              "displayOrder": 0,
+              "floorNum": 6,
+              "buildingId": 2,
+              "buildingName": "国商控股大厦",
+              "organizationId": 2,
+              "organizationName": "北京鼎迪",
+              "unitPrice": 0,
+              "seatingCapacity": 0,
+              "logo": "logo",
+              "created": "2021-01-14 23:53:10",
+              "modified": "2021-01-14 23:53:10"
+            },
+            {
+              "id": 8,
+              "spaceName": "协作空间6",
+              "floorId": 1,
+              "displayOrder": 0,
+              "floorNum": 6,
+              "buildingId": 2,
+              "buildingName": "国商控股大厦",
+              "organizationId": 2,
+              "organizationName": "北京鼎迪",
+              "unitPrice": 0,
+              "seatingCapacity": 0,
+              "logo": "logo",
+              "created": "2021-01-14 23:53:14",
+              "modified": "2021-01-14 23:53:14"
+            },
+            {
+              "id": 9,
+              "spaceName": "协作空间7",
+              "floorId": 1,
+              "displayOrder": 0,
+              "floorNum": 6,
+              "buildingId": 2,
+              "buildingName": "国商控股大厦",
+              "organizationId": 2,
+              "organizationName": "北京鼎迪",
+              "unitPrice": 0,
+              "seatingCapacity": 0,
+              "logo": "logo",
+              "created": "2021-01-14 23:53:19",
+              "modified": "2021-01-14 23:53:19"
+            },
+            {
+              "id": 10,
+              "spaceName": "协作空间8",
+              "floorId": 1,
+              "displayOrder": 0,
+              "floorNum": 6,
+              "buildingId": 2,
+              "buildingName": "国商控股大厦",
+              "organizationId": 2,
+              "organizationName": "北京鼎迪",
+              "unitPrice": 0,
+              "seatingCapacity": 0,
+              "logo": "logo",
+              "created": "2021-01-14 23:53:29",
+              "modified": "2021-01-14 23:53:29"
+            }
+          ]
+        }

@@ -27,7 +27,13 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
     + 设备使用排行top10
     + 设备状态监测
 
-
++ 2020年01月15日
+    + 机构新增
+    + 机构禁用
+    + 机构更新
+    + 机构详情
+    + 机构列表
+    
 ### 驱动列表 [GET] /drive
 + Description
 
@@ -697,6 +703,249 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
           }
         }
 
+## 机构管理
++ Data
+    + ID  (long)  - ID
+    + parentId (long) - 父ID
+    + parentName  (string) -上级机构名称
+    + fullName (string) - 全称
+    + logo (string) - logo
+    + abbreviation  (string) - 简称
+    + park (string) - 位置
+    + address (string) - 地址
+    + contactNumber (string) - 电话号码
+    + displayOrder (int) - 排序 
+    + enabled (int)  - 使能  0禁止 1启用
+    + creator (long) - 创建人
+    + modifier (long) - 修改人
+    + created (date) - 创建时间
+    + modified (date) - 修改时间
+
+###  机构新增 [POST]  /organization
++ Description
+    + Author Liukai
++ Request (application/json)
+
+        {
+          "data": {
+            "parentId": 0,
+            "fullName": "上海新瑞客科技有限公司",
+            "logo": "https://static.mifanxing.com/article/image/31/84/5512991.jpg",
+            "abbreviation": "简写",
+            "park": "测试park",
+            "address": "上海",
+            "contactNumber": "13126822398",
+            "displayOrder": 100
+          }
+        }
+
++ Response 200
+
+    {
+      "data": {
+        "id": 22,
+        "type": "organization"
+      }
+    }
+
++ Response 400
+    
+        {
+          "errors": [
+            {
+              "status": "400",
+              "code": "手机/电话号码格式不正确",
+              "title": "Bad Request",
+              "detail": "手机/电话号码格式不正确",
+              "source": {
+                "pointer": "Organization -> contactNumber"
+              }
+            }
+          ]
+        }
 
 
+        {
+          "errors": [
+            {
+              "status": "400",
+              "code": "全称不能为空",
+              "title": "Bad Request",
+              "detail": "全称不能为空",
+              "source": {
+                "pointer": "Organization -> fullName"
+              }
+            }
+          ]
+        }
+   
+   
+###  机构禁用 [DELETE]  /organization/{id}
++ Description
+    + Author Liukai
++ Parameters
+    + id (long) - id 
++ Response 204 
 
+
+### 机构更新 [PATCH] /organization/{id}   
++ Description
+    + Author Liukai 
++ Parameters
+    + id (long) - id 
++ Response 200
+    
+        {
+          "data": {
+            "parentId": 0,
+            "fullName": "上2海新瑞客科技有限公司",
+            "logo": "https://static.mifanxing.com/article/image/31/84/5512991.jpg",
+            "abbreviation": "简写1",
+            "park": "测试park1",
+            "address": "上海",
+            "contactNumber": "13126822398",
+            "displayOrder": 100
+          }
+        }
+
+###  机构详情 [GET] /organization/{id}  
++ Description
+    + Author Liukai 
++ Parameters
+    + id (long) - id  
++ Response 200
+    
+        {
+          "data": {
+            "id": 22,
+            "enabled": 1,
+            "creator": 0,
+            "modifier": 0,
+            "created": "2021-01-15 11:38:38",
+            "modified": "2021-01-15 11:51:27",
+            "parentId": 0,
+            "fullName": "上2海新瑞客科技有限公司",
+            "logo": "https://static.mifanxing.com/article/image/31/84/5512991.jpg",
+            "abbreviation": "简写1",
+            "park": "测试park1",
+            "address": "上海",
+            "contactNumber": "13126822398",
+            "displayOrder": 100
+          }
+        }
+
+### 机构列表 [GET] /organization
++ Demo
+    + /Organization?sort=displayOrder,-modified&filter[fullName:like]=%公司%&page[number]=1&page[size]=10
++ Description
+    + Author Liukai
++ Parameters
+    + page[number] (int)  -页码
+    + page[size]   (int)  -条数
+    + sort  (string) -排序 例如 sort=displayOrder,-modified
+    + filter[fullName:like] (string) -全名 例如 filter[fullName:like]=%公司%
++ Response 200
+    
+        {
+          "meta": {
+            "totalPages": 3,
+            "totalElements": 12,
+            "size": 5,
+            "number": 1,
+            "numberOfElements": 5,
+            "first": true,
+            "last": false,
+            "sort": null
+          },
+          "links": {
+            "self": "/organization?page[number]=1&page[size]=5",
+            "first": "/organization?page[number]=1&page[size]=5",
+            "next": "/organization?page[number]=2&page[size]=5",
+            "last": "/organization?page[number]=3&page[size]=5"
+          },
+          "data": [
+            {
+              "id": 1,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2021-01-04 13:43:37",
+              "modified": "2021-01-04 13:43:34",
+              "parentId": 0,
+              "fullName": "太平宝迪",
+              "logo": "https://static.mifanxing.com/article/image/31/84/5512991.jpg",
+              "abbreviation": "简写",
+              "park": "测试park",
+              "address": "北京方庄1",
+              "contactNumber": "13126822398",
+              "displayOrder": 100
+            },
+            {
+              "id": 2,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2021-01-04 13:44:19",
+              "modified": "2021-01-04 13:44:22",
+              "parentId": 1,
+              "fullName": "北京鼎迪",
+              "logo": "https://static.mifanxing.com/article/image/31/84/5512991.jpg",
+              "abbreviation": "简写",
+              "park": "测试park",
+              "address": "北京方庄2",
+              "contactNumber": "13126822398",
+              "displayOrder": 100,
+              "parentName": "太平宝迪"
+            },
+            {
+              "id": 3,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2021-01-04 13:45:02",
+              "modified": "2021-01-04 13:45:05",
+              "parentId": 1,
+              "fullName": "杭州办事处",
+              "logo": "https://static.mifanxing.com/article/image/31/84/5512991.jpg",
+              "abbreviation": "简写",
+              "park": "测试park",
+              "address": "北京方庄2",
+              "contactNumber": "13126822398",
+              "displayOrder": 100,
+              "parentName": "太平宝迪"
+            },
+            {
+              "id": 4,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2021-01-04 13:45:23",
+              "modified": "2021-01-04 13:45:26",
+              "parentId": 1,
+              "fullName": "东北办事处",
+              "logo": "https://static.mifanxing.com/article/image/31/84/5512991.jpg",
+              "abbreviation": "简写",
+              "park": "测试park",
+              "address": "北京方庄2",
+              "contactNumber": "13126822398",
+              "displayOrder": 100,
+              "parentName": "太平宝迪"
+            },
+            {
+              "id": 10,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2021-01-14 18:04:23",
+              "modified": "2021-01-15 11:17:16",
+              "parentId": 0,
+              "fullName": "上海银十通科技有限公司221",
+              "logo": "https://static.mifanxing.com/article/image/31/84/5512991.jpg",
+              "abbreviation": "简写",
+              "park": "测试park",
+              "address": "北京方庄2122",
+              "contactNumber": "13126822398",
+              "displayOrder": 100
+            }
+          ]
+        }

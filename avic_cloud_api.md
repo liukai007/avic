@@ -34,6 +34,11 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
     + 设备使用排行
     + 空间使用排行
     + 设备资产排行
+    + 楼宇新增
+    + 楼宇删除
+    + 楼宇更新
+    + 楼宇详情
+    + 楼宇列表
     
 ### 驱动列表 [GET] /drive
 + Description
@@ -740,7 +745,7 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
           }
         }
 
-+ Response 200
++ Response 201
 
     {
       "data": {
@@ -1290,5 +1295,222 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
 }
 
 
+
+### 楼宇管理 
++ Data
+    + id (long)  - ID
+    + buildingName  (string) 楼宇名称
+    + organizationId (long)  机构ID
+    + organizationName (string) 机构名称
+    + displayOrder (int) - 排序 
+    + enabled (int)  - 使能  0禁止 1启用
+    + creator (long) - 创建人
+    + modifier (long) - 修改人
+    + created (date) - 创建时间
+    + modified (date) - 修改时间
+
+  
+### 楼宇新增 [POST] /building
++ Description
+    + Author Liukai
++ Request (application/json)
+    
+        {
+          "data": {
+            "organizationId": 18,
+            "buildingName": "京东望京研发部"
+          }
+        }
+
++ Response 201
+
+        {
+          "data": {
+            "id": 5,
+            "type": "building"
+          }
+        }
+
++ Response 400
+
+        {
+          "errors": [
+            {
+              "status": "400",
+              "code": "名称不能为空",
+              "title": "Bad Request",
+              "detail": "名称不能为空",
+              "source": {
+                "pointer": "Building -> buildingName"
+              }
+            }
+          ]
+        }
+
+### 楼宇删除 [DELETE] /building/{id}
++ Description
+    + Author Liukai
++ Parameters
+    + id (long) - id 
++ Response 204 
++ Response 400
+
+         {
+          "errors": [
+            {
+              "status": "400",
+              "title": "Bad Request",
+              "detail": "无法删除，它是某些楼层的关联数据！"
+            }
+          ]
+        }
+
+### 楼宇更新 [PATCH] /building/{id}
++ Description
+    + Author Liukai
++ Parameters
+    + id (long) - id 
++ Response 200
++ Response 400
+
+        {
+          "errors": [
+            {
+              "status": "400",
+              "code": "名称不能为空",
+              "title": "Bad Request",
+              "detail": "名称不能为空",
+              "source": {
+                "pointer": "Building -> buildingName"
+              }
+            }
+          ]
+        }
+
+### 楼宇详情 [GET] /building/{id}
++ Description
+    + Author Liukai
++ Parameters
+    + id (long) - id 
++ Response 200
+ 
+        {
+          "data": {
+            "id": 6,
+            "enabled": 1,
+            "creator": 0,
+            "modifier": 0,
+            "created": "2021-01-15 15:41:28",
+            "modified": "2021-01-15 15:43:16",
+            "organizationId": 21,
+            "buildingName": "天猫大楼1",
+            "displayOrder": 100,
+            "organizationName": "天猫"
+          }
+        }
+
+
+### 楼宇列表 [GET]  /building
++ Description
+    + Author Liukai
++ Parameters
+    + page[number] (int)  -页码
+    + page[size]   (int)  -条数
+    + sort  (string) -排序 例如 sort=displayOrder,-modified
+    + filter[organizationId] (long) -机构ID 例如 filter[organizationId]=1
+    + filter[buildingName:like] (string) -楼宇名模糊查询 例如filter[buildingName:like]=%杭州%&
++ Response 200
+ 
+        {
+          "meta": {
+            "totalPages": 1,
+            "totalElements": 6,
+            "size": 10,
+            "number": 1,
+            "numberOfElements": 6,
+            "first": true,
+            "last": true,
+            "sort": null
+          },
+          "links": {
+            "self": "/building?page[number]=1&page[size]=10",
+            "first": "/building?page[number]=1&page[size]=10",
+            "last": "/building?page[number]=1&page[size]=10"
+          },
+          "data": [
+            {
+              "id": 1,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2021-01-15 15:09:31",
+              "modified": "2021-01-15 15:09:33",
+              "organizationId": 17,
+              "buildingName": "阿里巴巴1号楼",
+              "displayOrder": 100,
+              "organizationName": "阿里巴巴"
+            },
+            {
+              "id": 2,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2021-01-07 14:16:40",
+              "modified": "2021-01-07 14:16:42",
+              "organizationId": 2,
+              "buildingName": "国商控股大厦",
+              "displayOrder": 100,
+              "organizationName": "北京鼎迪"
+            },
+            {
+              "id": 3,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2021-01-15 15:09:59",
+              "modified": "2021-01-15 15:10:02",
+              "organizationId": 17,
+              "buildingName": "阿里巴巴2号楼",
+              "displayOrder": 100,
+              "organizationName": "阿里巴巴"
+            },
+            {
+              "id": 4,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2021-01-15 15:10:50",
+              "modified": "2021-01-15 15:10:53",
+              "organizationId": 18,
+              "buildingName": "京东亦庄研发部",
+              "displayOrder": 100,
+              "organizationName": "京东商城"
+            },
+            {
+              "id": 5,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2021-01-15 15:13:49",
+              "modified": "2021-01-15 15:31:54",
+              "organizationId": 18,
+              "buildingName": "京东望京研发部",
+              "displayOrder": 100,
+              "organizationName": "京东商城"
+            },
+            {
+              "id": 6,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2021-01-15 15:41:28",
+              "modified": "2021-01-15 15:43:16",
+              "organizationId": 21,
+              "buildingName": "天猫大楼1",
+              "displayOrder": 100,
+              "organizationName": "天猫"
+            }
+          ]
+        }
 
         

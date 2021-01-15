@@ -33,6 +33,7 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
     + 空间能耗统计
     + 设备使用排行
     + 空间使用排行
+    + 设备资产排行
     
 ### 驱动列表 [GET] /drive
 + Description
@@ -1153,6 +1154,140 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
            ]
   }
     }
+
+### 设备资产排行 [GET] /equipment/equipmentrank
++ Description
+    + Author lyf
+
++ Parameters
+    + page[page] (int)  页码
+    + page[size] (int)  分页条数
+    + include （Array[string]）
+    + sort (Array[string]) 
+
++ ReturnData
+    + id （long）设备id
+    + equipmentName （string） 设备名称
+    + anotherName （string） 设备别名
+    + picture (string ) 设备图片
+    + online (int) 是否在线
+    + runningStatus （int）设备状态
+    + purchaseDate （string）采购日期
+    + serviceDate (string) 投入是有时间
+    + supplier （string） 供应商
+    + brandName （string）设备品牌
+    + maintainData （string） 保养日期
+    + model （string） 设备型号
+    + purchasingCount 采购数量
+    + purchasingRate  采购占比
+
++ Response 200
+        
+        {
+        "data": [
+            {
+              "totalPages": 1,
+              "totalElements": 4,
+              "size": 10,
+              "number": 1,
+              "logEnergyGeneralList": null,
+              "equipmentList": [
+                {
+                  "id": 62,
+                  "enabled": 1,
+                  "creator": 0,
+                  "modifier": 0,
+                  "created": "2021-01-15 15:01:00",
+                  "modified": "2021-01-15 15:01:00",
+                  "flag": 0,
+                  "equipmentName": "设备1",
+                  "equipmentNameEn": "string",
+                  "anotherName": "string",
+                  "picture": "string",
+                  "online": 1,
+                  "runningStatus": 2,
+                  "otherStatus": "string",
+                  "serialNumber": "string",
+                  "purchaseDate": "2021-01-14T14:49:33.000+0000",
+                  "serviceDate": "2021-01-14T14:49:33.000+0000",
+                  "supplier": "string",
+                  "maintenanceTelephone": "string",
+                  "brandName": "网关品牌1",
+                  "portConfigContent": "string",
+                  "pduPortName": "string",
+                  "pduPortNo": 0,
+                  "pduInterval": 0,
+                  "ispdu": 0,
+                  "controllable": 1,
+                  "builtIn": 0,
+                  "fixedAttribute": 0,
+                  "functionCode": 0,
+                  "lifetype": 0,
+                  "recommendedLife": 0,
+                  "maintainData": "2021-01-14T14:49:33.000+0000",
+                  "totalTime": 0,
+                  "stateOfLife": 1,
+                  "readable": 0,
+                  "model": "string",
+                  "purchasingCount": 7,
+                  "purchasingRate": 0.33,
+                  "ydriveId": 4,
+                  "ycategoryId": 16,
+                  "ybrandId": 4,
+                  "yporttypeId": 0,
+                  "yequipmentIdGateway": 55,
+                  "ypduId": 0
+                },
+                {
+                  "id": 55,
+                  "enabled": 1,
+                  "creator": 0,
+                  "modifier": 0,
+                  "created": "2021-01-15 15:01:00",
+                  "modified": "2021-01-15 15:01:00",
+                  "flag": 0,
+                  "equipmentName": "网关1",
+                  "equipmentNameEn": "string",
+                  "anotherName": "string",
+                  "picture": "string",
+                  "online": 1,
+                  "runningStatus": 1,
+                  "otherStatus": "string",
+                  "serialNumber": "string",
+                  "purchaseDate": "2021-01-14T14:49:33.000+0000",
+                  "serviceDate": "2021-01-14T14:49:33.000+0000",
+                  "supplier": "string",
+                  "maintenanceTelephone": "string",
+                  "brandName": "网关品牌1",
+                  "portConfigContent": "string",
+                  "pduPortName": "string",
+                  "pduPortNo": 0,
+                  "pduInterval": 0,
+                  "ispdu": 0,
+                  "controllable": 1,
+                  "builtIn": 0,
+                  "fixedAttribute": 0,
+                  "functionCode": 0,
+                  "lifetype": 0,
+                  "recommendedLife": 0,
+                  "maintainData": "2021-01-14T14:49:33.000+0000",
+                  "totalTime": 0,
+                  "stateOfLife": 6,
+                  "readable": 0,
+                  "model": "string",
+                  "purchasingCount": 6,
+                  "purchasingRate": 0.29,
+                  "ydriveId": 3,
+                  "ycategoryId": 16,
+                  "ybrandId": 4,
+                  "yporttypeId": 0,
+                  "yequipmentIdGateway": 0,
+                  "ypduId": 0
+                }
+          ]
+    }
+  ]
+}
 
 
 

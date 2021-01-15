@@ -836,7 +836,7 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
 
 ### 机构列表 [GET] /organization
 + Demo
-    + /Organization?sort=displayOrder,-modified&filter[fullName:like]=%公司%&page[number]=1&page[size]=10
+    + /organization?sort=displayOrder,-modified&filter[fullName:like]=%公司%&page[number]=1&page[size]=10
 + Description
     + Author Liukai
 + Parameters

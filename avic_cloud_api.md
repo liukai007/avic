@@ -39,6 +39,8 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
     + 楼宇更新
     + 楼宇详情
     + 楼宇列表
+    + 资产使用情况-寿命展示
+    + 资产使用情况-使用年限
     
 ### 驱动列表 [GET] /drive
 + Description
@@ -1512,5 +1514,220 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
             }
           ]
         }
+
+  ### 资产使用情况 [GET]
+/equipment/equipmentAssetOrMonitorOrMaintainOrLife
+
+###寿命展示
++ Description
+    + Author lyf
++ Parameters
+    + filter[lifeState] （int）寿命状态（1 ,2,...）
+    + filter[lifeType] (int) 寿命类型  0 时长 1次数
+    + page[page] (int)  页码
+    + page[size] (int)  分页条数
+    + include （Array[string]）
+    + sort (Array[string]) 
+
++ ReturnData
+    + id （long）设备id
+    + equipmentName （string） 设备名称
+    + anotherName （string） 设备别名
+    + picture (string ) 设备图片
+    + online (int) 是否在线
+    + runningStatus （int）设备状态
+    + purchaseDate （string）采购日期
+    + serviceDate (string) 投入使用时间
+    + supplier （string） 供应商
+    + brandName （string）设备品牌
+    + maintainData （string） 保养日期
+    + model （string） 设备型号
+    + readable  (int) 已读未读
+    + stateOfLife （int）寿命状态
+    + lifetype （int） 寿命类型
+    + gatewayName （string） 所属网关名称
+    + ageLimit （int） 使用年限
+
++ Response 200
+       
+        {
+        "data": [
+            "data": [
+                    {
+                      "id": 64,
+                      "enabled": 1,
+                      "creator": 0,
+                      "modifier": 0,
+                      "created": "2021-01-15 16:03:01",
+                      "modified": "2021-01-15 16:03:01",
+                      "flag": 0,
+                      "equipmentName": "设备3",
+                      "equipmentNameEn": "string",
+                      "anotherName": "string",
+                      "picture": "string",
+                      "online": 1,
+                      "runningStatus": 2,
+                      "otherStatus": "string",
+                      "serialNumber": "string",
+                      "purchaseDate": "2021-01-14T14:49:33.000+0000",
+                      "serviceDate": "2012-11-20T14:49:33.000+0000",
+                      "supplier": "string",
+                      "maintenanceTelephone": "string",
+                      "brandName": "品牌1",
+                      "portConfigContent": "string",
+                      "pduPortName": "string",
+                      "pduPortNo": 0,
+                      "pduInterval": 0,
+                      "ispdu": 0,
+                      "controllable": 1,
+                      "builtIn": 0,
+                      "fixedAttribute": 0,
+                      "functionCode": 0,
+                      "lifetype": 0,
+                      "recommendedLife": 0,
+                      "maintainData": "2021-01-14T14:49:33.000+0000",
+                      "totalTime": 0,
+                      "stateOfLife": 1,
+                      "readable": 0,
+                      "driveCmds": [
+                        {
+                          "id": 2,
+                          "enabled": 1,
+                          "creator": 0,
+                          "modifier": 0,
+                          "created": "2021-01-14 23:08:18",
+                          "modified": "2021-01-14 23:08:18",
+                          "flag": 0,
+                          "method": "string",
+                          "cmdName": "string",
+                          "cmdCode": "string",
+                          "parameter": "string",
+                          "parameterType": "string",
+                          "parameterDescription": "string",
+                          "associatedStatus": 0,
+                          "ydriveId": 4
+                        }
+                      ],
+                      "gatewayName": "云网关1",
+                      "model": "string",
+                      "secondCategoryName": "主类1",
+                      "ageLimit": 6,
+                      "yporttypeId": 0,
+                      "ydriveId": 4,
+                      "ycategoryId": 16,
+                      "ybrandId": 4,
+                      "yequipmentIdGateway": 55,
+                      "ypduId": 0
+                    }
+  
+  
+    }
+  ]
+}
+
+###使用年限展示
+
++ Description
+    + Author lyf
++ Parameters
+    + filter[readStaus] （int）已读未读
+    + filter[useYear] (int) 使用的年限（1，2，..,>5）
+    + page[page] (int)  页码
+    + page[size] (int)  分页条数
+    + include （Array[string]）
+    + sort (Array[string]) 
+
++ ReturnData
+    + id （long）设备id
+    + equipmentName （string） 设备名称
+    + anotherName （string） 设备别名
+    + picture (string ) 设备图片
+    + online (int) 是否在线
+    + runningStatus （int）设备状态
+    + purchaseDate （string）采购日期
+    + serviceDate (string) 投入使用时间
+    + supplier （string） 供应商
+    + brandName （string）设备品牌
+    + maintainData （string） 保养日期
+    + model （string） 设备型号
+    + readable  (int) 已读未读
+    + stateOfLife （int）寿命状态
+    + lifetype （int） 寿命类型
+    + gatewayName （string） 所属网关名称
+    + ageLimit （int） 使用年限
+
++ Response 200
+       
+        {
+        "data": [
+                {
+                  "id": 64,
+                  "enabled": 1,
+                  "creator": 0,
+                  "modifier": 0,
+                  "created": "2021-01-15 16:03:01",
+                  "modified": "2021-01-15 16:03:01",
+                  "flag": 0,
+                  "equipmentName": "设备3",
+                  "equipmentNameEn": "string",
+                  "anotherName": "string",
+                  "picture": "string",
+                  "online": 1,
+                  "runningStatus": 2,
+                  "otherStatus": "string",
+                  "serialNumber": "string",
+                  "purchaseDate": "2021-01-14T14:49:33.000+0000",
+                  "serviceDate": "2012-11-20T14:49:33.000+0000",
+                  "supplier": "string",
+                  "maintenanceTelephone": "string",
+                  "brandName": "品牌1",
+                  "portConfigContent": "string",
+                  "pduPortName": "string",
+                  "pduPortNo": 0,
+                  "pduInterval": 0,
+                  "ispdu": 0,
+                  "controllable": 1,
+                  "builtIn": 0,
+                  "fixedAttribute": 0,
+                  "functionCode": 0,
+                  "lifetype": 0,
+                  "recommendedLife": 0,
+                  "maintainData": "2021-01-14T14:49:33.000+0000",
+                  "totalTime": 0,
+                  "stateOfLife": 1,
+                  "readable": 0,
+                  "driveCmds": [
+                    {
+                      "id": 2,
+                      "enabled": 1,
+                      "creator": 0,
+                      "modifier": 0,
+                      "created": "2021-01-14 23:08:18",
+                      "modified": "2021-01-14 23:08:18",
+                      "flag": 0,
+                      "method": "string",
+                      "cmdName": "string",
+                      "cmdCode": "string",
+                      "parameter": "string",
+                      "parameterType": "string",
+                      "parameterDescription": "string",
+                      "associatedStatus": 0,
+                      "ydriveId": 4
+                    }
+                  ],
+                  "gatewayName": "云网关1",
+                  "model": "string",
+                  "secondCategoryName": "主类1",
+                  "ageLimit": 6,
+                  "yporttypeId": 0,
+                  "ydriveId": 4,
+                  "ycategoryId": 16,
+                  "ybrandId": 4,
+                  "yequipmentIdGateway": 55,
+                  "ypduId": 0
+                }
+  
+  ]
+}
 
         

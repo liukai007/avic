@@ -41,6 +41,10 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
     + 楼宇列表
     + 资产使用情况-寿命展示
     + 资产使用情况-使用年限
+    + 资产统计-品牌统计
+    + 资产统计-分类统计
+    + 资产统计-受控状态统计
+    + 资产统计-控制协议统计
     
 ### 驱动列表 [GET] /drive
 + Description
@@ -1730,4 +1734,294 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
   ]
 }
 
+
+### 资产统计 
+
+####      品牌统计 [GET]G/brand/info
++ Description
+    + Author lyf
+    
++ Parameters
+    + page[page] (int)  页码
+    + page[size] (int)  分页条数
+    + include （Array[string]）
+    + sort (Array[string]) 
+    + collaborationSpaceId (long) 协作空间id
+    + id （long） 机构id
++ ReturnData
+
+    + id （long） 品牌id
+    + brandName (string) 品牌名称
+    + logo （string） 品牌logo
+    + description (string) 描述
+    + website (string) 描述
+    + displayOrder （int） 排序
+    + totals （int） 设备资产数量
         
++ Response 200
+
+            {
+        "data": [
+                {
+                  "id": 4,
+                  "enabled": 1,
+                  "creator": 0,
+                  "modifier": 0,
+                  "created": "2021-01-14 22:52:24",
+                  "modified": "2021-01-14 22:52:24",
+                  "brandName": "品牌1",
+                  "logo": "string",
+                  "description": "string",
+                  "website": "string",
+                  "displayOrder": 0,
+                  "totals": 8
+                },
+                {
+                  "id": 5,
+                  "enabled": 1,
+                  "creator": 0,
+                  "modifier": 0,
+                  "created": "2021-01-14 22:53:03",
+                  "modified": "2021-01-14 22:53:03",
+                  "brandName": "品牌2",
+                  "logo": "string",
+                  "description": "string",
+                  "website": "string",
+                  "displayOrder": 0,
+                  "totals": 4
+                },
+                {
+                  "id": 6,
+                  "enabled": 1,
+                  "creator": 0,
+                  "modifier": 0,
+                  "created": "2021-01-14 22:53:09",
+                  "modified": "2021-01-14 22:53:09",
+                  "brandName": "品牌3",
+                  "logo": "string",
+                  "description": "string",
+                  "website": "string",
+                  "displayOrder": 0,
+                  "totals": 4
+                },
+                {
+                  "id": 7,
+                  "enabled": 1,
+                  "creator": 0,
+                  "modifier": 0,
+                  "created": "2021-01-14 22:53:15",
+                  "modified": "2021-01-14 22:53:15",
+                  "brandName": "品牌4",
+                  "logo": "string",
+                  "description": "string",
+                  "website": "string",
+                  "displayOrder": 0,
+                  "totals": 2
+                },
+                {
+                  "id": 8,
+                  "enabled": 1,
+                  "creator": 0,
+                  "modifier": 0,
+                  "created": "2021-01-14 22:53:21",
+                  "modified": "2021-01-14 22:53:21",
+                  "brandName": "品牌5",
+                  "logo": "string",
+                  "description": "string",
+                  "website": "string",
+                  "displayOrder": 0,
+                  "totals": 1
+                }
+  ]
+  
+  ]
+}
+
+
+####      分类统计[GET] GET /category/categorystatistics
++ Description
+    + Author lyf
+    
++ Parameters
++ ReturnData
+
+    + id （long） 类型id
+    + parentIdCategory (long) 父级id
+    + categoryName （string） 类型名称
+    + picture (string) 图片路径
+    + description (string) 描述
+    + displayOrder （int） 排序
+    + equipmentAssetTotal （int） 设备资产数量
+        
++ Response 200
+
+            {
+            "data": [
+            {
+              "id": 12,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2021-01-14 22:59:24",
+              "modified": "2021-01-14 22:59:24",
+              "parentIdCategory": 0,
+              "categoryName": "主类2",
+              "picture": "string",
+              "description": "string",
+              "displayOrder": 0,
+              "equipmentAssetTotal": 0
+            },
+            {
+              "id": 11,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2021-01-14 22:59:06",
+              "modified": "2021-01-14 22:59:06",
+              "parentIdCategory": 0,
+              "categoryName": "主类1",
+              "picture": "string",
+              "description": "string",
+              "displayOrder": 0,
+              "equipmentAssetTotal": 19
+            },
+            {
+              "id": 15,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2021-01-14 22:59:40",
+              "modified": "2021-01-14 22:59:40",
+              "parentIdCategory": 0,
+              "categoryName": "主类5",
+              "picture": "string",
+              "description": "string",
+              "displayOrder": 0,
+              "equipmentAssetTotal": 0
+            },
+            {
+              "id": 13,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2021-01-14 22:59:30",
+              "modified": "2021-01-14 22:59:30",
+              "parentIdCategory": 0,
+              "categoryName": "主类3",
+              "picture": "string",
+              "description": "string",
+              "displayOrder": 0,
+              "equipmentAssetTotal": 0
+            },
+            {
+              "id": 14,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2021-01-14 22:59:35",
+              "modified": "2021-01-14 22:59:35",
+              "parentIdCategory": 0,
+              "categoryName": "主类4",
+              "picture": "string",
+              "description": "string",
+              "displayOrder": 0,
+              "equipmentAssetTotal": 0
+            }
+          ]
+  
+  ]
+}
+
+
+####      控制协议[GET]/drive/controllprotocol
++ Description
+    + Author lyf
+    
++ Parameters
++ ReturnData
+
+    + id （long）驱动id
+    + equipmentName (string) 驱动名称
+    + totals （int） 设备资产数量
+        
++ Response 200
+
+            {
+            "data": [
+                {
+                  "id": 3,
+                  "enabled": 1,
+                  "creator": 0,
+                  "modifier": 0,
+                  "created": "2021-01-14 23:07:19",
+                  "modified": "2021-01-14 23:07:19",
+                  "equipmentName": "驱动1",
+                  "totals": 6
+                },
+                {
+                  "id": 4,
+                  "enabled": 1,
+                  "creator": 0,
+                  "modifier": 0,
+                  "created": "2021-01-14 23:08:18",
+                  "modified": "2021-01-14 23:08:18",
+                  "equipmentName": "驱动2",
+                  "totals": 7
+                },
+                {
+                  "id": 5,
+                  "enabled": 1,
+                  "creator": 0,
+                  "modifier": 0,
+                  "created": "2021-01-14 23:08:29",
+                  "modified": "2021-01-14 23:08:29",
+                  "equipmentName": "驱动3",
+                  "totals": 3
+                },
+                {
+                  "id": 6,
+                  "enabled": 1,
+                  "creator": 0,
+                  "modifier": 0,
+                  "created": "2021-01-14 23:09:02",
+                  "modified": "2021-01-14 23:09:02",
+                  "equipmentName": "驱动4",
+                  "totals": 3
+                }
+              ]
+  
+  ]
+}
+
+
+
+####      受控状态统计[GET] /equipment/equipmentcontrolled
++ Description
+    + Author lyf
+    
++ Parameters
+
++ ReturnData
+
+    + organizationId （long） 机构id
+    + organizationName (string) 机构名称
+    + logo （string） 品牌logo
+    + controlled (int) 可控设备资产数量
+    + uncontrollable (int) 不可控设备资产数量
+
+        
++ Response 200
+
+            {
+                 "data": [
+                {
+                  "organizationId": null,
+                  "organizationName": null,
+                  "controlled": 19,
+                  "uncontrollable": 0
+                }
+            ]
+  
+ 
+}
+

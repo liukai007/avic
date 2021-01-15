@@ -45,6 +45,7 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
     + 资产统计-分类统计
     + 资产统计-受控状态统计
     + 资产统计-控制协议统计
+    + 设备保养信息更已读
     
 ### 驱动列表 [GET] /drive
 + Description
@@ -2024,4 +2025,23 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
   
  
 }
+
+
+####      设备保养信息更新已读[PATCH] /equipment/readOperate
++ Description
+    + Author lyf
+    
++ Parameters
+    +RequestBody
+
+        {
+          "data": {
+        
+            "id": 71,
+            "readable": 1
+          }
+       }
+        
++ ReturnData
++ Response 200
 

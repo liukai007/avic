@@ -21,10 +21,7 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
     + 控制协议统计
     + 受控情况统计
     + 资产使用情况
-    + 空间使用排行
     + 资产排名
-    + 空间能耗统计
-    + 设备使用排行top10
     + 设备状态监测
 
 + 2020年01月15日
@@ -33,6 +30,9 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
     + 机构更新
     + 机构详情
     + 机构列表
+    + 空间能耗统计
+    + 设备使用排行top10
+    + 空间使用排行
     
 ### 驱动列表 [GET] /drive
 + Description
@@ -949,3 +949,211 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
             }
           ]
         }
+        
+        ### 空间能耗统计 [GET] /logUsedTimesElectric/eneryStatistics
++ Description
+    + Author lyf
+
++ Parameters
+    + dateMinStr (string)  开始日期 格式：yyyy-MM-dd HH:mm:ss
+    + dateMaxStr (string)  结束日期 格式：yyyy-MM-dd HH:mm:ss
+
++ ReturnData
+    + powerConsumption (Integer) 总能耗
+    + powerConsumptionHb (double) 能耗环比
+    + totalWorkPowerConsumption (double)  总工作能耗
+    + totalRestPowerConsumption (double)   总非工能耗
+    + logUsedTimesElectricList
+        + id （long）id
+        + created （date） 创建时间
+        + times （int） 使用次数
+        + powerConsumption (double) 当日耗电量
+        + duration (double) 使用时长
+        + restPowerConsumption （double）非工能耗
+        + workPowerConsumption （double）工作能耗
+    + logEnergyGeneralList
+        + voltage （double）电压
+        + current （double）电流
+        + power （double）功率
+        + currentElectricValue （double）耗电量
+        + analyzed （int）是否已经分析 0未分析  1分析
+        + equipmentName （string）设备名称
+        + yequipmentId （long）设备id
+
++ Response 200
+
+            {
+              "data": {
+                "powerConsumption": 15,
+                "powerConsumptionHb": 200,
+                "totalWorkPowerConsumption": 10,
+                "totalRestPowerConsumption": 5,
+                "logUsedTimesElectricList": [
+                  {
+                    "id": 6,
+                    "created": "2021-01-12 07:06:05",
+                    "times": 2,
+                    "powerConsumption": 10,
+                    "duration": 5,
+                    "groupingDate": "2021-01-12",
+                    "restPowerConsumption": 5,
+                    "workPowerConsumption": 15
+                  }
+                ],
+                "logEnergyGeneralList": [
+                  {
+                    "id": 2,
+                    "created": "2021-01-12 16:46:33",
+                    "voltage": 1,
+                    "current": 1,
+                    "power": 1,
+                    "currentElectricValue": 4,
+                    "analyzed": 0,
+                    "equipmentName": "云端新增0000",
+                    "yequipmentId": 1
+                  },
+                  {
+                    "id": 4,
+                    "created": "2021-01-12 17:48:49",
+                    "voltage": 1,
+                    "current": 1,
+                    "power": 1,
+                    "currentElectricValue": 1,
+                    "analyzed": 0,
+                    "equipmentName": "云端新增0000",
+                    "yequipmentId": 2
+                  }
+                ]
+              }
+            }
+
+
+
+### 设备使用排行 [GET]/logEquipmentMalfunction/timesAndMalfunction
++ Description
+    + Author lyf
+
++ Parameters
+    + dateMinStr (string)  开始日期 格式：yyyy-MM-dd HH:mm:ss
+    + dateMaxStr (string)  结束日期 格式：yyyy-MM-dd HH:mm:ss
+    + rankId (int) 0 按使用时长 1  按故障次数
+
++ ReturnData
+    + logEquipmentMalfunctionList
+        + useTimes （long）使用次数
+        + malfunctionTimes （long） 故障次数
+        + duration （double） 使用时长
+        + spaceName (string ) 协作空间名称
+        + categoryId (long) 分类id
+        + equipmentModel （string）设备型号
+        + categoryName （string）分类名称
+        + anotherName (string) 设备别名
+        + usageRate （double） 使用率
+        + yequipmentId （long）设备id
+
++ Response 200
+        
+        {
+          "data": {
+                "logEquipmentMalfunctionList": [
+                      {
+                        "useTimes": 20,
+                        "malfunctionTimes": 5,
+                        "duration": 3.5,
+                        "equipmentName": "网关1",
+                        "categoryId": 16,
+                        "equipmentModel": "string",
+                        "categoryName": "次类1",
+                        "anotherName": "string",
+                        "usageRate": 0.01,
+                        "yequipmentId": 55
+                      },
+                      {
+                        "useTimes": 6,
+                        "malfunctionTimes": 1,
+                        "duration": 3.5,
+                        "equipmentName": "网关3",
+                        "categoryId": 16,
+                        "equipmentModel": "string",
+                        "categoryName": "次类1",
+                        "anotherName": "string",
+                        "usageRate": 0.01,
+                        "yequipmentId": 57
+                      }
+               
+                ]
+         }
+    }
+
+
+### 空间使用排行 [GET]GET /spacegateway/spaceRanking
++ Description
+    + Author lyf
+
++ Parameters
+    + dateMinStr (string)  开始日期 格式：yyyy-MM-dd HH:mm:ss
+    + dateMaxStr (string)  结束日期 格式：yyyy-MM-dd HH:mm:ss
++ ReturnData
+    + logEquipmentMalfunctionList
+        + useTimes （long）使用次数
+        + malfunctionTimes （long） 故障次数
+        + duration （double） 使用时长
+        + spaceName (string ) 协作空间名称
+        + categoryId (long) 分类id
+        + equipmentModel （string）设备型号
+        + categoryName （string）分类名称
+        + anotherName (string) 设备别名
+        + usageRate （double） 使用率
+        + yequipmentId （long）设备id
+
++ Response 200
+        
+        {
+          "data": {
+                "logEquipmentMalfunctionList": [
+                  {
+                    "useTimes": 76,
+                    "malfunctionTimes": 10,
+                    "duration": 7.5,
+                    "spaceName": "协作空间1",
+                    "equipmentName": "网关1",
+                    "categoryId": 16,
+                    "equipmentModel": "string",
+                    "categoryName": "次类1",
+                    "anotherName": "string",
+                    "usageRate": 0.01,
+                    "yequipmentId": 55
+                  },
+                  {
+                    "useTimes": 6,
+                    "malfunctionTimes": 1,
+                    "duration": 3.5,
+                    "spaceName": "协作空间4",
+                    "equipmentName": "网关3",
+                    "categoryId": 16,
+                    "equipmentModel": "string",
+                    "categoryName": "次类1",
+                    "anotherName": "string",
+                    "usageRate": 0,
+                    "yequipmentId": 57
+                  },
+                  {
+                    "useTimes": 34,
+                    "malfunctionTimes": 1,
+                    "duration": 2.4,
+                    "spaceName": "协作空间2",
+                    "equipmentName": "网关2",
+                    "categoryId": 16,
+                    "equipmentModel": "string",
+                    "categoryName": "次类1",
+                    "anotherName": "string",
+                    "usageRate": 0,
+                    "yequipmentId": 56
+                  }
+           ]
+  }
+    }
+
+
+
+        

@@ -471,9 +471,73 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
 
 + ReturnData
 
+        + id (long)  设备id
+        + equipmentName （string）设备名称
+        + equipmentNameEn (string)  自动生成唯一号
+        + anotherName (string)   设备别名
+        + picture  (string) 设备图片url
+        + online (int) 是否在线：0 离线 1在线 2未知
+        + runningStatus (int) 运行状态：0关闭 1运行 2警告    3故障  4其他
+        + otherStatus （string）其他数据，json格式
+        + serialNumber （string）设备序列号
+        + serviceDate （string） 投入使用日期
+        + supplier (string)  供应商
+        + maintenanceTelephone （string）维修电话
+        + brandName (string)  品牌名称
+        + portConfigContent (string)   使用json，map的key是使用端口类型名，易于扩展
+        + pduPortName  (string) 
+        + pduPortNo (int) 
+        + pduInterval (int) 
+        + ispdu （int）0 非pdu 1是pdu
+        + controllable （int）是否可控 1 可控  0 不可控
+        + builtIn （int） 是否内置 1为内置 0为非内置
+        + fixedAttribute （int） 0 无固定属性，1为环境  2 占位 3 能耗
+        + functionCode (int)  0 无功能  1 是次数  2 是电表记录
+        + lifetype （int）寿命类型 0 时长 1 次数 
+        + recommendedLife (int)  建议使用寿命
+        + maintainData (string)   保养日期
+        + totalTime  (int) 累计运行总时长，单位小时 (每日四舍五入)
+        + stateOfLife (int) 寿命状态
+        + readable (int) 1 已读 0 未读
+        + driveCmds 
+            + 
+            + 
+            + 
+            + 
+            + 
+         + pdus 
+            + 
+            + 
+            + 
+            + 
+            + 
+         + equipmentBtnGroups 
+            + 
+            + 
+            + 
+            + 
+            + 
+         + portTypes 
+            + 
+            + 
+            + 
+            + 
+            + 
+        + model （string） 设备品牌
+        + primaryCategoryName （string） 一级分类名
+        + secondCategoryName （string）二级分类名
+        + ageLimit （int） 使用年限
+        + yequipmentIdGateway （int） 所属网关设备id
+        + yporttypeId （int） 设备端口类型id
+        + ydriveId （string）设备驱动id
+        + ycategoryId （int） 设备类型id
+        + ybrandId （int）  设备品牌id
+        + ypduId （int）设备pdu的id
+
+        
 
 
-### 设备状态监测 [GET] /equipment/equipmentAssetOrMonitorOrMaintainOrLife
+### 设备状态监测列表 [GET] /equipment/equipmentAssetOrMonitorOrMaintainOrLife
 
 + Description
 
@@ -485,8 +549,8 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
         + filter[secondCategoryId] (long)   二级分类id
         + filter[equipmentName] 设备名称）
         + filter[driveType] (string) 驱动型号
-        + filter[online] (int)  是否在线
-        + filter[runningStatus] （int）运行状态
+        + filter[online] (int)  是否在线：0 离线 1在线 2未知
+        + filter[runningStatus] （int）运行状态：0关闭 1运行 2警告    3故障  4其他
         + include (Array[string])
         + page[number] （int）页码
         + page[size] （int）条数
@@ -495,7 +559,71 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
 + Request (application/json)
 
 + ReturnData 
-+ 
+
+        + id (long)  设备id
+        + equipmentName （string）设备名称
+        + equipmentNameEn (string)  自动生成唯一号
+        + anotherName (string)   设备别名
+        + picture  (string) 设备图片url
+        + online (int) 是否在线：0 离线 1在线 2未知
+        + runningStatus (int) 运行状态：0关闭 1运行 2警告    3故障  4其他
+        + otherStatus （string）其他数据，json格式
+        + serialNumber （string）设备序列号
+        + serviceDate （string） 投入使用日期
+        + supplier (string)  供应商
+        + maintenanceTelephone （string）维修电话
+        + brandName (string)  品牌名称
+        + portConfigContent (string)   使用json，map的key是使用端口类型名，易于扩展
+        + pduPortName  (string) 
+        + pduPortNo (int) 
+        + pduInterval (int) 
+        + ispdu （int）0 非pdu 1是pdu
+        + controllable （int）是否可控 1 可控  0 不可控
+        + builtIn （int） 是否内置 1为内置 0为非内置
+        + fixedAttribute （int） 0 无固定属性，1为环境  2 占位 3 能耗
+        + functionCode (int)  0 无功能  1 是次数  2 是电表记录
+        + lifetype （int）寿命类型 0 时长 1 次数 
+        + recommendedLife (int)  建议使用寿命
+        + maintainData (string)   保养日期
+        + totalTime  (int) 累计运行总时长，单位小时 (每日四舍五入)
+        + stateOfLife (int) 寿命状态
+        + readable (int) 1 已读 0 未读
+        + driveCmds 
+            + 
+            + 
+            + 
+            + 
+            + 
+         + pdus 
+            + 
+            + 
+            + 
+            + 
+            + 
+         + equipmentBtnGroups 
+            + 
+            + 
+            + 
+            + 
+            + 
+         + portTypes 
+            + 
+            + 
+            + 
+            + 
+            + 
+        + model （string） 设备品牌
+        + primaryCategoryName （string） 一级分类名
+        + secondCategoryName （string）二级分类名
+        + ageLimit （int） 使用年限
+        + yequipmentIdGateway （int） 所属网关设备id
+        + yporttypeId （int） 设备端口类型id
+        + ydriveId （string）设备驱动id
+        + ycategoryId （int） 设备类型id
+        + ybrandId （int）  设备品牌id
+        + ypduId （int）设备pdu的id
+        
+        
        {
           "data":  {
               "id": 1,
@@ -558,7 +686,71 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
 + Request (application/json)
 
 + ReturnData 
-+
+    
+         + id (long)  设备id
+        + equipmentName （string）设备名称
+        + equipmentNameEn (string)  自动生成唯一号
+        + anotherName (string)   设备别名
+        + picture  (string) 设备图片url
+        + online (int) 是否在线：0 离线 1在线 2未知
+        + runningStatus (int) 运行状态：0关闭 1运行 2警告    3故障  4其他
+        + otherStatus （string）其他数据，json格式
+        + serialNumber （string）设备序列号
+        + serviceDate （string） 投入使用日期
+        + supplier (string)  供应商
+        + maintenanceTelephone （string）维修电话
+        + brandName (string)  品牌名称
+        + portConfigContent (string)   使用json，map的key是使用端口类型名，易于扩展
+        + pduPortName  (string) 
+        + pduPortNo (int) 
+        + pduInterval (int) 
+        + ispdu （int）0 非pdu 1是pdu
+        + controllable （int）是否可控 1 可控  0 不可控
+        + builtIn （int） 是否内置 1为内置 0为非内置
+        + fixedAttribute （int） 0 无固定属性，1为环境  2 占位 3 能耗
+        + functionCode (int)  0 无功能  1 是次数  2 是电表记录
+        + lifetype （int）寿命类型 0 时长 1 次数 
+        + recommendedLife (int)  建议使用寿命
+        + maintainData (string)   保养日期
+        + totalTime  (int) 累计运行总时长，单位小时 (每日四舍五入)
+        + stateOfLife (int) 寿命状态
+        + readable (int) 1 已读 0 未读
+        + driveCmds 
+            + 
+            + 
+            + 
+            + 
+            + 
+         + pdus 
+            + 
+            + 
+            + 
+            + 
+            + 
+         + equipmentBtnGroups 
+            + 
+            + 
+            + 
+            + 
+            + 
+         + portTypes 
+            + 
+            + 
+            + 
+            + 
+            + 
+        + model （string） 设备品牌
+        + primaryCategoryName （string） 一级分类名
+        + secondCategoryName （string）二级分类名
+        + ageLimit （int） 使用年限
+        + yequipmentIdGateway （int） 所属网关设备id
+        + yporttypeId （int） 设备端口类型id
+        + ydriveId （string）设备驱动id
+        + ycategoryId （int） 设备类型id
+        + ybrandId （int）  设备品牌id
+        + ypduId （int）设备pdu的id
+        
+        
          {
           "data":  {
               "id": 1,
@@ -610,8 +802,8 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
 
 + Parameters
     + data
-        + filter[lifeState] (int)  寿命状态
-        + filter[lifeType] （int）寿命类型
+        + filter[lifeState] (int)  寿命状态（1,2,3..->差 良 优...）
+        + filter[lifeType] （int）寿命类型(0 时长 1 次)
         + include (Array[string])
         + page[number] （int）页码
         + page[size] （int）条数
@@ -620,7 +812,71 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
 + Request (application/json)
 
 + ReturnData 
-+ 
+    
+         + id (long)  设备id
+        + equipmentName （string）设备名称
+        + equipmentNameEn (string)  自动生成唯一号
+        + anotherName (string)   设备别名
+        + picture  (string) 设备图片url
+        + online (int) 是否在线：0 离线 1在线 2未知
+        + runningStatus (int) 运行状态：0关闭 1运行 2警告    3故障  4其他
+        + otherStatus （string）其他数据，json格式
+        + serialNumber （string）设备序列号
+        + serviceDate （string） 投入使用日期
+        + supplier (string)  供应商
+        + maintenanceTelephone （string）维修电话
+        + brandName (string)  品牌名称
+        + portConfigContent (string)   使用json，map的key是使用端口类型名，易于扩展
+        + pduPortName  (string) 
+        + pduPortNo (int) 
+        + pduInterval (int) 
+        + ispdu （int）0 非pdu 1是pdu
+        + controllable （int）是否可控 1 可控  0 不可控
+        + builtIn （int） 是否内置 1为内置 0为非内置
+        + fixedAttribute （int） 0 无固定属性，1为环境  2 占位 3 能耗
+        + functionCode (int)  0 无功能  1 是次数  2 是电表记录
+        + lifetype （int）寿命类型 0 时长 1 次数 
+        + recommendedLife (int)  建议使用寿命
+        + maintainData (string)   保养日期
+        + totalTime  (int) 累计运行总时长，单位小时 (每日四舍五入)
+        + stateOfLife (int) 寿命状态
+        + readable (int) 1 已读 0 未读
+        + driveCmds 
+            + 
+            + 
+            + 
+            + 
+            + 
+         + pdus 
+            + 
+            + 
+            + 
+            + 
+            + 
+         + equipmentBtnGroups 
+            + 
+            + 
+            + 
+            + 
+            + 
+         + portTypes 
+            + 
+            + 
+            + 
+            + 
+            + 
+        + model （string） 设备品牌
+        + primaryCategoryName （string） 一级分类名
+        + secondCategoryName （string）二级分类名
+        + ageLimit （int） 使用年限
+        + yequipmentIdGateway （int） 所属网关设备id
+        + yporttypeId （int） 设备端口类型id
+        + ydriveId （string）设备驱动id
+        + ycategoryId （int） 设备类型id
+        + ybrandId （int）  设备品牌id
+        + ypduId （int）设备pdu的id
+        
+        
          {
           "data":  {
               "id": 1,
@@ -666,7 +922,7 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
    }
 
 
-## 设备状态监测  [GET]  /equipmentstatusmonitoring
+## 设备状态监测(图表展示)  [GET]  /equipmentstatusmonitoring
 
 + Description
     + Author yhz
@@ -972,7 +1228,7 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
           ]
         }
         
-        ### 空间能耗统计 [GET] /logUsedTimesElectric/eneryStatistics
+### 空间能耗统计 [GET] /logUsedTimesElectric/eneryStatistics
 + Description
     + Author lyf
 
@@ -1108,7 +1364,7 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
     }
 
 
-### 空间使用排行 [GET]GET /spacegateway/spaceRanking
+### 空间使用排行 [GET]/spacegateway/spaceRanking
 + Description
     + Author lyf
 
@@ -1529,10 +1785,10 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
           ]
         }
 
-  ### 资产使用情况 [GET]
-/equipment/equipmentAssetOrMonitorOrMaintainOrLife
+  ### 资产使用情况 
 
-###寿命展示
+
+###寿命展示 [GET] /equipment/equipmentAssetOrMonitorOrMaintainOrLife
 + Description
     + Author lyf
 + Parameters
@@ -1639,7 +1895,7 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
   ]
 }
 
-###使用年限展示
+###使用年限展示 [GET] /equipment/equipmentAssetOrMonitorOrMaintainOrLife
 
 + Description
     + Author lyf

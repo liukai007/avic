@@ -1848,7 +1848,7 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
 }
 
 
-####      分类统计[GET] GET /category/categorystatistics
+####      分类统计[GET]/category/categorystatistics
 + Description
     + Author lyf
     

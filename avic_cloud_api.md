@@ -55,6 +55,8 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
     + 协作空间更新
     + 协作空间详情
     + 协作空间列表
++ 2020年01月18日
+    + email配置添加
     
 ### 驱动列表 [GET] /drive
 + Description
@@ -2755,4 +2757,48 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
               "modified": "2021-01-14 23:53:29"
             }
           ]
+        }
+### Email配置添加 [POST] /emailSmtpConfig
++ Description
+    + Author lyf
++ Data
+    + id  (long)  - id
+    + gatewayGid  (string)  本地网关id
+    + emailAddress  (string)  邮箱地址
+    + emailServerAddress  (string) - 邮箱服务地址
+    + smtpDomain  (string) -  STMP域
+    + smtpPassword  (string) -STMP密码
+    + smtpPort  (int) - STMP端口
+    + smtpUsername  (string)  - STMP用户名
+    + sslSwitch  (int) - STMP SSL 1 开启 0 关闭 
++ Request (application/json)
+   
+        {
+        	"data": {
+        		"cloudCid": 0,
+                "created": "2021-01-18T06:45:28.577Z",
+                "creator": 0,
+                "emailAddress": "string",
+                "emailServerAddress": "string",
+                "enabled": 0,
+                "flag": 0,
+                "gatewayGid": 0,
+                "id": 0,
+                "modified": "2021-01-18T06:45:28.577Z",
+                "modifier": 0,
+                "smtpDomain": "string",
+                "smtpPassword": "string",
+                "smtpPort": 0,
+                "smtpUsername": "string",
+                "sslSwitch": 0,
+                "yequipmentIdGateway": 0
+        	}
+        } 
++ Response 201
+
+        {
+          "data": {
+            "id": 7,
+            "type": "emailSmtpConfig"
+          }
         }

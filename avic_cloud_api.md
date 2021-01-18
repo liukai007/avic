@@ -1747,7 +1747,7 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
 
 ### 资产统计 
 
-####      品牌统计 [GET]G/brand/info
+####      品牌统计 [GET]/brand/info
 + Description
     + Author lyf
     

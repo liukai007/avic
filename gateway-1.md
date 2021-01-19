@@ -91,7 +91,7 @@ https://github.com/liukai007/avic/edit/master/gateway-1.md
 ## 网关基本信息
 + Data
     + id (long) ID
-    + yEquipmentId (long) ==设备ID==
+    + yequipmentId (long) ==设备ID==
     + onlyCode (string)  设备序列号
     + ipAddress (string) 网关IP地址
     + gatewayName (string) 网关名字
@@ -216,11 +216,11 @@ https://github.com/liukai007/avic/edit/master/gateway-1.md
         + address (string) 物理地址
         + builtIn （int） 默认是内置的0  1表示内置  0表示非内置
         + creator （long） 创建人
-        + ==yEquipmentId== （long）==设备id==
+        + ==yequipmentId== （long）==设备id==
         + modifier （long）修改人
         + occupy （int）占用空闲（0空闲 1占用）
         + portName （string）物理端口名 com1 com2
-        + ==yPorttypeId== （long）==端口类型id==
+        + ==yporttypeId== （long）==端口类型id==
     
 + Request (application/json)
 
@@ -332,11 +332,11 @@ https://github.com/liukai007/avic/edit/master/gateway-1.md
         + address (string) 物理地址
         + builtIn （int） 默认是内置的0  1表示内置  0表示非内置
         + creator （long） 创建人
-        + ==yEquipmentId== （long）==设备id==
+        + ==yequipmentId== （long）==设备id==
         + modifier （long）修改人
         + occupy （int）占用空闲（0空闲 1占用）
         + portName （string）物理端口名 com1 com2
-        + ==yPorttypeId== （long）==端口类型id==
+        + ==yporttypeId== （long）==端口类型id==
     
 + Request (application/json)
 
@@ -365,8 +365,8 @@ https://github.com/liukai007/avic/edit/master/gateway-1.md
         + id (long) 物理端口id
         + portName （string） 物理端口名 com1 com2
         + address （string）物理地址
-        + ==yEquipmentId== （long）==设备id==
-        + ==yPorttypeId== （long）==端口类型id==
+        + ==yequipmentId== （long）==设备id==
+        + ==yporttypeId== （long）==端口类型id==
         + occupy （int）使用空闲（0 空闲 1使用）
         + builtIn （int）是否内置（1内置 0非内置）
         + portType
@@ -392,8 +392,8 @@ https://github.com/liukai007/avic/edit/master/gateway-1.md
             + serialNumber （string）设备序列号
             + purchaseDate （datatime） 采购日期
             + maintenanceTelephone （string） 维修电话
-            + ==yEquipmentIdGateway== （long）网关id 如果当前设备是网关则这个值为0
-            + ==yDriveId== （long）驱动id
+            + ==yequipmentIdGateway== （long）网关id 如果当前设备是网关则这个值为0
+            + ==ydriveId== （long）驱动id
             + ispdu （int）0 非pdu 1是pdu
             + controllable （int）是否可控 1 可控  0 不可控
             + builtIn （int）是否内置 1为内置 0为非内置
@@ -666,7 +666,7 @@ https://github.com/liukai007/avic/edit/master/gateway-1.md
     + dateMinStr (string)  开始日期 格式：yyyy-MM-dd HH:mm:ss
 
 + ReturnData
-    + ==yEquipmentId== (long) 设备id
+    + ==yequipmentId== (long) 设备id
     + useTimes (int) 使用次数
     + malfunctionTimes (int)  故障次数  
     + equipmentName (string)   设备名称
@@ -957,7 +957,7 @@ https://github.com/liukai007/avic/edit/master/gateway-1.md
     + dateMinStr (string)  开始日期 格式：yyyy-MM-dd HH:mm:ss
 
 + ReturnData
-    + ==yEquipmentId== (long) ==设备id==
+    + ==yequipmentId== (long) ==设备id==
     + electricValueSum (Double) 耗电量
     + equipmentName (string)   设备名称
     + model (string)   设备型号
@@ -968,7 +968,7 @@ https://github.com/liukai007/avic/edit/master/gateway-1.md
         {
           "data": [
             {
-              "equipmentId": 2,
+              "yequipmentId": 2,
               "equipentName": "七合一环境传感器",
               "electricValueSum": 2.2,
               "eneryValueHb": -12,
@@ -1295,10 +1295,10 @@ https://github.com/liukai007/avic/edit/master/gateway-1.md
 + Parameters
     + data
         + communicationMode (string)  通讯方式（0 音频 1 视频 2 网络 .......）
-        + ==yEquipmentIdLeft== （long）左端设备id
+        + ==yequipmentIdLeft== （long）左端设备id
         + linkClassify （int） 1 单向 2 双向（连接分类）
         + linkName (string) 设备链路名
-        + ==yEquipmentIdRight== （long）右端设备id
+        + ==yequipmentIdRight== （long）右端设备id
 
 + ReturnData
 
@@ -1328,8 +1328,8 @@ https://github.com/liukai007/avic/edit/master/gateway-1.md
     + linkName (string)  链路名称
     + linkClassify （int）通讯方式（0 音频 1 视频 2 网络 .......）
     + communicationMode （int） 连接分类（1 单向 2 双向）
-    + ==yEquipmentIdLeft== （long）左端设备id
-    + ==yEquipmentIdRight== （long）右端设备id
+    + ==yequipmentIdLeft== （long）左端设备id
+    + ==yequipmentIdRight== （long）右端设备id
     + leftEquipmentName （string）左端设备名
     + rightEquipmentName （string）右端设备名
 
@@ -1374,10 +1374,10 @@ https://github.com/liukai007/avic/edit/master/gateway-1.md
 + Parameters
     + data
         + communicationMode (string)  通讯方式（0 音频 1 视频 2 网络 .......）
-        + ==yEquipmentIdLeft== （long）左端设备id
+        + ==yequipmentIdLeft== （long）左端设备id
         + linkClassify （int） 1 单向 2 双向（连接分类）
         + linkName (string) 设备链路名
-        + ==yEquipmentIdRight== （long）右端设备id
+        + ==yequipmentIdRight== （long）右端设备id
     + id （long）链路id
 + ReturnData
 
@@ -1412,8 +1412,8 @@ https://github.com/liukai007/avic/edit/master/gateway-1.md
     + serialNumber （string）设备序列号
     + purchaseDate （data）采购日期
     + maintenanceTelephone （string）维修电话
-    + ==yEquipmentIdGateway== （long）网关id
-    + ==yDriveId== （long） 驱动id
+    + ==yequipmentIdGateway== （long）网关id
+    + ==ydriveId== （long） 驱动id
     + ispdu （int）0 非pdu 1是pdu
     + controllable （int）是否可控 1 可控  0 不可控
     + builtIn （int）是否内置 1为内置 0为非内置
@@ -1559,7 +1559,7 @@ https://github.com/liukai007/avic/edit/master/gateway-1.md
     + creator （long）创建人
     + modifier （long）修改人
     + operateType （int）0 常规操作 1是场景操作 2是计划任务
-    + ==yScheduledtaskIntelligentsceneId== （long）计划任务id
+    + ==yscheduledtaskIntelligentsceneId== （long）计划任务id
     + eventContent （string） 事件内容
     + eventResult （int）执行成功1  执行失败0
     + sceneName （string） 任务名
@@ -1616,8 +1616,8 @@ https://github.com/liukai007/avic/edit/master/gateway-1.md
     + updateVersionId （long）更新版本id
     + equipmentName （string） 设备名称
     + model （string）型号
-    + ==yCategoryId== （long） 分类id
-    + ==yBrandId== （long）品牌id
+    + ==ycategoryId== （long） 分类id
+    + ==ybrandId== （long）品牌id
     + belong （int）本地 是0   云端是1
     + operation （int）0 无操作  1已上传  2下载 3 已下载（操作）
     + brandName （string） 品牌名
@@ -1627,28 +1627,75 @@ https://github.com/liukai007/avic/edit/master/gateway-1.md
         
 + Response 200
     
-        {
-          "data": [
-            {
-              "id": 3,
-              "enabled": 1,
-              "creator": 0,
-              "modifier": 0,
-              "created": "2020-10-27 11:01:47",
-              "modified": "2020-10-27 11:01:51",
-              "updateVersionId": 0,
-              "equipmentName": "中控",
-              "model": "W101",
-              "categoryId": 3,
-              "brandId": 3,
-              "firmware": "q101",
-              "belong": 0,
-              "operation": 0,
-              "brandName": "企鹅",
-              "categoryName": "灯"
-            }
-          ]
-        }
+{
+  "meta": {
+    "totalPages": 1,
+    "totalElements": 7,
+    "size": 10,
+    "number": 1,
+    "numberOfElements": 7,
+    "first": true,
+    "last": true,
+    "sort": null
+  },
+  "links": {
+    "self": "/drive?page[number]=1&page[size]=10",
+    "first": "/drive?page[number]=1&page[size]=10",
+    "last": "/drive?page[number]=1&page[size]=10"
+  },
+  "data": [
+    {
+      "id": 1,
+      "enabled": 1,
+      "creator": 0,
+      "modifier": 0,
+      "created": "2020-10-23 11:31:46",
+      "modified": "2020-12-14 14:34:00",
+      "equipmentNameEn": "Seven-in-one-environment-sensor",
+      "equipmentName": "七合一环境传感器",
+      "model": "SM300D2MOD",
+      "ispdu": 0,
+      "severalPdu": 0,
+      "firmware": "001",
+      "picture": "http://static.mifanxing.com/wx/image/119/27/1800035.jpg?w=320&h=180",
+      "webLink": "http://www.budee.com/",
+      "cmdDrive": "{\"name\":\"Seven-in-one-environment-sensor\",\"nameChinese\":\"七合一环境传感器\",\"manufacturer\":\"DingDee\",\"model\":\"SM300D2MOD\",\"ispdu\":0,\"severalPdu\":0,\"brandId\":14,\"firmware\":\"001\",\"picture\":\"http://static.mifanxing.com/wx/image/119/27/1800035.jpg?w=320&h=180\",\"webLink\":\"http://www.budee.com/\",\"categoryId\":22,\"labels\":[\"Serial\",\"environmental monitoring\"],\"description\":\"Seven-in-one-environment-sensor\",\"deviceResources\":[{\"name\":\"get7And1Data\",\"description\":\"get7And1Data\",\"attributes\":{\"cmdContent\":\"\",\"handleReturnRules\":\"[{\\\"additiveFactor\\\":0.0,\\\"getSomeArray\\\":\\\"2 3\\\",\\\"isArrayType\\\":1,\\\"readTypeName\\\":\\\"co2\\\",\\\"returnType\\\":1,\\\"transcoding\\\":2,\\\"wholeOrseparate\\\":1},{\\\"additiveFactor\\\":0.0,\\\"getSomeArray\\\":\\\"4 5\\\",\\\"isArrayType\\\":1,\\\"readTypeName\\\":\\\"ch2o\\\",\\\"returnType\\\":1,\\\"transcoding\\\":2,\\\"wholeOrseparate\\\":1},{\\\"additiveFactor\\\":0.0,\\\"getSomeArray\\\":\\\"6 7\\\",\\\"isArrayType\\\":1,\\\"readTypeName\\\":\\\"tvoc\\\",\\\"returnType\\\":1,\\\"transcoding\\\":2,\\\"wholeOrseparate\\\":1},{\\\"additiveFactor\\\":0.0,\\\"getSomeArray\\\":\\\"8 9\\\",\\\"isArrayType\\\":1,\\\"readTypeName\\\":\\\"pm25\\\",\\\"returnType\\\":1,\\\"transcoding\\\":2,\\\"wholeOrseparate\\\":1},{\\\"additiveFactor\\\":0.0,\\\"getSomeArray\\\":\\\"10 11\\\",\\\"isArrayType\\\":1,\\\"readTypeName\\\":\\\"pm10\\\",\\\"returnType\\\":1,\\\"transcoding\\\":2,\\\"wholeOrseparate\\\":1},{\\\"additiveFactor\\\":0.0,\\\"getSomeArray\\\":\\\"12 13\\\",\\\"isArrayType\\\":1,\\\"readTypeName\\\":\\\"temperature\\\",\\\"returnType\\\":1,\\\"scale\\\":\\\"0.01\\\",\\\"transcoding\\\":2,\\\"wholeOrseparate\\\":1},{\\\"additiveFactor\\\":0.0,\\\"getSomeArray\\\":\\\"14 15\\\",\\\"isArrayType\\\":1,\\\"readTypeName\\\":\\\"humidity\\\",\\\"returnType\\\":1,\\\"transcoding\\\":2,\\\"wholeOrseparate\\\":1}]\",\"regularExpression\":\"3C {1,}02( {1,}[(0-9)|(A-F)]{2}){2}( {1,}[(0-9)|(A-F)]{2}){2}( {1,}[(0-9)|(A-F)]{2}){2}( {1,}[(0-9)|(A-F)]{2}){2}( {1,}[(0-9)|(A-F)]{2}){2}( {1,}[(0-9)|(A-F)]{2}){2}( {1,}[(0-9)|(A-F)]{2}){2} {1,}[(0-9)|(A-F)]{2}\",\"transcoding\":1},\"properties\":{\"value\":{\"type\":\"Float32\",\"readWrite\":\"R\",\"defaultValue\":\"0.00\",\"floatEncoding\":\"eNotation\"},\"units\":{\"type\":\"String\",\"readWrite\":\"R\",\"defaultValue\":\"\"}}}],\"deviceCommands\":[{\"name\":\"get7And1Data\",\"get\":[{\"operation\":\"get\",\"object\":\"get7And1Data\",\"property\":\"value\",\"parameter\":\"get7And1Data\"}],\"local_CmdCode\":\"Btn_HuanJingChuanGanQi_7In1\",\"local_Parameter\":\"\",\"local_AssociatedStates\":\"\",\"parameterType\":\"\",\"parameterDescription\":\"\",\"local_ReadType\":[{\"id\":1,\"readtypeNameChinese\":\"CO2\",\"unitName\":\"ppm\",\"decimalPlaces\":0},{\"id\":2,\"readtypeNameChinese\":\"PM2.5\",\"unitName\":\"ug/m3\",\"decimalPlaces\":0},{\"id\":3,\"readtypeNameChinese\":\"PM10\",\"unitName\":\"ug/m3\",\"decimalPlaces\":0},{\"id\":4,\"readtypeNameChinese\":\"TVOC\",\"unitName\":\"mg/m3\",\"decimalPlaces\":1},{\"id\":5,\"readtypeNameChinese\":\"甲醛\",\"unitName\":\"mg/m3\",\"decimalPlaces\":1},{\"id\":6,\"readtypeNameChinese\":\"温度\",\"unitName\":\"℃\",\"decimalPlaces\":0},{\"id\":7,\"readtypeNameChinese\":\"湿度\",\"unitName\":\"%\",\"decimalPlaces\":0}]}],\"coreCommands\":[{\"name\":\"get7And1Data\",\"get\":{\"path\":\"/api/v1/device/{deviceId}/get7And1Data\",\"responses\":[{\"code\":\"200\",\"description\":\"\",\"expectedValues\":[\"get7And1Data\"]},{\"code\":\"503\",\"description\":\"service unavailable\",\"expectedValues\":[]}]}}]}",
+      "belong": 0,
+      "officialCertification": 1,
+      "operation": 1,
+      "lifeType": 0,
+      "communicationMode": 1,
+      "brandName": "DingDee",
+      "secondCategoryName": "环境传感器(勿删)",
+      "primaryCategoryName": "传感器",
+      "ybrandId": 14,
+      "ycategoryId": 22
+    },
+    {
+      "id": 2,
+      "enabled": 1,
+      "creator": 0,
+      "modifier": 0,
+      "created": "2020-10-23 11:31:27",
+      "modified": "2020-10-23 11:31:29",
+      "equipmentNameEn": "dd",
+      "equipmentName": "智能电表",
+      "model": "sw010",
+      "ispdu": 0,
+      "severalPdu": 0,
+      "belong": 1,
+      "officialCertification": 1,
+      "operation": 2,
+      "lifeType": 0,
+      "communicationMode": 1,
+      "brandName": "Sony",
+      "secondCategoryName": "电量传感器(勿删)",
+      "primaryCategoryName": "传感器",
+      "ybrandId": 2,
+      "ycategoryId": 47
+    }
+  ]
+}
 + Response 400
     
         {
@@ -1683,15 +1730,15 @@ https://github.com/liukai007/avic/edit/master/gateway-1.md
             + conditionalRelation （int）关联条件 0 and  1 or
             + creator （long）创建人
             + enabled （int）是否启用
-            + ==yEquipmentId== （long）设备id
+            + ==yequipmentId== （long）设备id
             + judgeCondition （判断条件）0 ==等于， 1  !=不等于， 2 <小于，  3 >大于，  4  <=小于等于， 5 >=大于等于
-            + ==yReadtypeId== （long）读数类型id
+            + ==yreadtypeId== （long）读数类型id
             + readValue （string）读数值 可以是字符串也可以是具体的类型。根据读数类型进行转换
         + intelligentSceneDetails 
             + creator （long）创建人
-            + ==yDrivecmdId== （long）驱动命令id
+            + ==ydrivecmdId== （long）驱动命令id
             + enabled （int）是否启用
-            + ==yEquipmentId== （long）设备id
+            + ==yequipmentId== （long）设备id
             + parameter （string）参数
     
 + Request (application/json)
@@ -1788,16 +1835,16 @@ https://github.com/liukai007/avic/edit/master/gateway-1.md
             + conditionalRelation （int）关联条件 0 and  1 or
             + creator （long）创建人
             + enabled （int）是否启用
-            + ==yEquipmentId== （long）设备id
+            + ==yequipmentId== （long）设备id
             + judgeCondition （判断条件）0 ==等于， 1  !=不等于， 2 <小于，  3 >大于，  4  <=小于等于， 5 >=大于等于
-            + ==yReadtypeId== （long）读数类型id
+            + ==yreadtypeId== （long）读数类型id
             + readValue （string）读数值 可以是字符串也可以是具体的类型。根据读数类型进行转换
         + sceneTaskDetails 
             + id (long) 详情表id
             + creator （long）创建人
-            + ==yEquipmentId== （long）驱动命令id
+            + ==yequipmentId== （long）驱动命令id
             + enabled （int）是否启用
-            + ==yDrivecmdId== （long）设备id
+            + ==ydrivecmdId== （long）设备id
             + parameter （string）参数
     
 + Request (application/json)
@@ -1891,22 +1938,22 @@ https://github.com/liukai007/avic/edit/master/gateway-1.md
             + conditionalRelation （int）关联条件 0 and  1 or
             + creator （long）创建人
             + enabled （int）是否启用
-            + ==yEquipmentId== （long）设备id
+            + ==yequipmentId== （long）设备id
             + judgeCondition （判断条件）0 ==等于， 1  !=不等于， 2 <小于，  3 >大于，  4  <=小于等于， 5 >=大于等于
-            + ==yReadtypeId== （long）读数类型id
+            + ==yreadtypeId== （long）读数类型id
             + readValue （string）读数值 可以是字符串也可以是具体的类型。根据读数类型进行转换
-            + ==yIntelligentsceneId== （long）场景id
+            + ==yintelligentsceneId== （long）场景id
             + equipmentName （string）设备名
             + model （string）型号
         + intelligentSceneDetails 
             + id (long) 详情表id
             + creator （long）创建人
-            + ==yDrivecmdId== （long）驱动命令id
+            + ==ydrivecmdId== （long）驱动命令id
             + enabled （int）是否启用
-            + ==yEquipmentId== （long）设备id
+            + ==yequipmentId== （long）设备id
             + operateType （int）1是场景操作 2是计划任务
             + parameter （string）参数
-            + ==yIntelligentsceneId== （long）智能场景id
+            + ==yintelligentsceneId== （long）智能场景id
             + equipmentName （string）设备名
             + cmdName （string）命令名
             + secondCategoryId （long）二级分类
@@ -2016,19 +2063,19 @@ https://github.com/liukai007/avic/edit/master/gateway-1.md
         + taskYear （string）年
         + sceneStartTime （date） 启用时间
         + sceneEndTime （date）计划任务到期时间 必须小于启动时间
-        + sceneTaskConditions
+        + scheduledTaskConditionList
             + conditionalRelation （int）关联条件 0 and  1 or
             + creator （long）创建人
             + enabled （int）是否启用
-            + ==yEquipmentId== （long）设备id
+            + ==yequipmentId== （long）设备id
             + judgeCondition （判断条件）0 ==等于， 1  !=不等于， 2 <小于，  3 >大于，  4  <=小于等于， 5 >=大于等于
-            + ==yReadtypeId== （long）读数类型id
+            + ==yreadtypeId== （long）读数类型id
             + readValue （string）读数值 可以是字符串也可以是具体的类型。根据读数类型进行转换
-        + sceneTaskDetails 
+        + scheduledTaskDetailsList 
             + creator （long）创建人
-            + ==yDrivecmdId== （long）驱动命令id
+            + ==ydrivecmdId== （long）驱动命令id
             + enabled （int）是否启用
-            + ==yEquipmentId== （long）设备id
+            + ==yequipmentId== （long）设备id
             + parameter （string）参数
     
 + Request (application/json)
@@ -2125,28 +2172,28 @@ https://github.com/liukai007/avic/edit/master/gateway-1.md
         + taskHour （string）小时
         + taskMinute (string) 分
         + taskSecond （string）秒
-        + sceneTaskConditions
+        + scheduledTaskConditionList
             + id （long）条件id
             + conditionalRelation （int）关联条件 0 and  1 or
             + creator （long）创建人
             + enabled （int）是否启用
-            + ==yEquipmentId== （long）设备id
+            + ==yequipmentId== （long）设备id
             + judgeCondition （判断条件）0 ==等于， 1  !=不等于， 2 <小于，  3 >大于，  4  <=小于等于， 5 >=大于等于
             + operateType （int）1是场景操作 2是计划任务
-            + ==yReadtypeId== （long）读数类型id
+            + ==yreadtypeId== （long）读数类型id
             + readValue （string）读数值 可以是字符串也可以是具体的类型。根据读数类型进行转换
-            + ==yScheduledtaskId== （long）场景id
+            + ==yscheduledtaskId== （long）场景id
             + equipmentName （string）设备名
             + model （string）型号
         + sceneTaskDetails 
             + id (long) 详情表id
             + creator （long）创建人
-            + ==yDrivecmdId== （long）驱动命令id
+            + ==ydrivecmdId== （long）驱动命令id
             + enabled （int）是否启用
-            + ==yEquipmentId== （long）设备id
+            + ==yequipmentId== （long）设备id
             + operateType （int）1是场景操作 2是计划任务
             + parameter （string）参数
-            + ==yScheduledtaskId== （long）计划任务id
+            + ==yscheduledtaskId== （long）计划任务id
             + equipmentName （string）设备名
             + cmdName （string）命令名
             + secondCategoryId （long）二级分类
@@ -2243,21 +2290,21 @@ https://github.com/liukai007/avic/edit/master/gateway-1.md
         + taskYear （string）年
         + sceneStartTime （date） 启用时间
         + sceneEndTime （date）计划任务到期时间 必须小于启动时间
-        + sceneTaskConditions
+        + scheduledTaskConditionList
             + id （long）条件id （id也传到后端）
             + conditionalRelation （int）关联条件 0 and  1 or
             + creator （long）创建人
             + enabled （int）是否启用
-            + ==yEquipmentId== （long）设备id
+            + ==yequipmentId== （long）设备id
             + judgeCondition （判断条件）0 ==等于， 1  !=不等于， 2 <小于，  3 >大于，  4  <=小于等于， 5 >=大于等于
-            + ==yReadtypeId== （long）读数类型id
+            + ==yreadtypeId== （long）读数类型id
             + readValue （string）读数值 可以是字符串也可以是具体的类型。根据读数类型进行转换
-        + sceneTaskDetails 
+        + scheduledTaskDetailsList 
             + id （long）任务详情id （id也传到后端）
             + creator （long）创建人
-            + ==yDrivecmdId== （long）驱动命令id
+            + ==ydrivecmdId== （long）驱动命令id
             + enabled （int）是否启用
-            + ==yEquipmentId== （long）设备id
+            + ==yequipmentId== （long）设备id
             + operateType （int）1是场景操作 2是计划任务
             + parameter （string）参数
     
@@ -2332,8 +2379,8 @@ https://github.com/liukai007/avic/edit/master/gateway-1.md
         + serialNumber （string）设备序列号
         + purchaseDate （date）采购日期
         + maintenanceTelephone （string）维修电话
-        + ==yEquipmentIdGateway== （long）网关id
-        + ==yDriveId== （long）驱动id
+        + ==yequipmentIdGateway== （long）网关id
+        + ==ydriveId== （long）驱动id
         + ispdu （int）0 非pdu 1是pdu
         + controllable （int ）是否可控 1 可控  0 不可控
         + builtIn （int）是否内置（1为内置 0为非内置）
@@ -2347,7 +2394,7 @@ https://github.com/liukai007/avic/edit/master/gateway-1.md
             + enabled （int）是否启用
             + creator （long）创建人
             + modifier （long）修改人
-            + ==yEquipmentId== （long）设备id
+            + ==yequipmentId== （long）设备id
             + groupNameAlias （string）组别称
             + groupName （string） 组名
             + groupType （int）组类型（1 开关组 2 输入组 3 输出组 4 预设组 5编组组）
@@ -2355,8 +2402,8 @@ https://github.com/liukai007/avic/edit/master/gateway-1.md
             + cmdBtnGroups
                 + id （long）命令按钮组id
                 + enabled
-                + ==yEquipmentbtngroupId== （long）设备按钮组ID
-                + ==yDrivecmdId== （long）命令id
+                + ==yequipmentbtngroupId== （long）设备按钮组ID
+                + ==ydrivecmdId== （long）命令id
                 + cmdName （string）命令名
                 + cmdCode （string）命令code
                 + cmdAlias (string) 命令别称 
@@ -2607,8 +2654,8 @@ https://github.com/liukai007/avic/edit/master/gateway-1.md
     + serialNumber （string）设备序列号
     + purchaseDate （data）采购日期
     + maintenanceTelephone （string）维修电话
-    + ==yEquipmentIdGateway== （long）网关id
-    + ==yDriveId== （long） 驱动id
+    + ==yequipmentIdGateway== （long）网关id
+    + ==ydriveId== （long） 驱动id
     + ispdu （int）0 非pdu 1是pdu
     + controllable （int）是否可控 1 可控  0 不可控
     + builtIn （int）是否内置 1为内置 0为非内置
@@ -2727,8 +2774,8 @@ https://github.com/liukai007/avic/edit/master/gateway-1.md
 + Parameters
     + data
         + cmdAlias (string) 设备命令别称
-        + ==yDrivecmdId== （int）驱动命令id
-        + ==yEquipmentId== （long） 设备id
+        + ==ydrivecmdId== （int）驱动命令id
+        + ==yequipmentId== （long） 设备id
         + forbidden （int）是否禁用 1表示禁用 0表示不禁用，默认为0
 
     
@@ -2764,8 +2811,8 @@ https://github.com/liukai007/avic/edit/master/gateway-1.md
     + enabled （int）是否启用
     + creator （long）创建人
     + modifier （long）修改人
-    + ==yEquipmentId== （long）设备id
-    + ==yDrivecmdId== （long）驱动命令id
+    + ==yequipmentId== （long）设备id
+    + ==ydrivecmdId== （long）驱动命令id
     + cmdAlias （string） 设备命令别称
     + forbidden （int）是否禁用 1表示禁用 0表示不禁用，默认为0
     + command （string） 命令名
@@ -2987,15 +3034,15 @@ https://github.com/liukai007/avic/edit/master/gateway-1.md
 + Parameters
     + data
         + id (long) 组ID
-        + ==yEquipmentId== （long）设备ID
+        + ==yequipmentId== （long）设备ID
         + groupNameAlias （string）组别称
         + groupName （string）组名
         + groupType （int） 1 开关组 2 输入组 3 输出组 4 预设组 5编组组
         + groupAndGroup （string）编组 用逗号隔开
         + cmdBtnGroups
             + id （long）命令按钮组ID
-            + ==yEquipmentbtngroupId== （long）设备按钮组ID
-            + ==yDrivecmdId== （long）驱动命令ID
+            + ==yequipmentbtngroupId== （long）设备按钮组ID
+            + ==ydrivecmdId== （long）驱动命令ID
             + cmdName （string）命令名
             + cmdCode （string） 命令core
 
@@ -3147,13 +3194,13 @@ https://github.com/liukai007/avic/edit/master/gateway-1.md
 + Parameters
     + data
         + id (long) 组id （修改传id）
-        + ==yEquipmentId== （long） 设备id
+        + ==yequipmentId== （long） 设备id
         + groupName （string） 组名
         + groupNameAlias （string）组别名
         + groupType （int）1 开关组 2 输入组 3 输出组 4 预设组 5编组组
         + cmdBtnGroups
             + id （long）命令按钮组ID （修改传id）
-            + ==yDrivecmdId==  （long）驱动命令id
+            + ==ydrivecmdId==  （long）驱动命令id
     
 + Request (application/json)
 
@@ -3184,7 +3231,7 @@ https://github.com/liukai007/avic/edit/master/gateway-1.md
 + Parameters
     + data
         + id (long) 组id （修改传id）
-        + ==yEquipmentId== （long） 设备id
+        + ==yequipmentId== （long） 设备id
         + groupName （string） 组名
         + groupNameAlias （string）组别名
         + groupType （int）1 开关组 2 输入组 3 输出组 4 预设组 5编组组
@@ -3317,17 +3364,17 @@ https://github.com/liukai007/avic/edit/master/gateway-1.md
 + Parameters
     + data
         + anotherName (string)  别名
-        + ==yBrandId== （long）品牌id
+        + ==ybrandId== （long）品牌id
         + builtIn （int） 是否内置 1为内置 0为非内置
-        + ==yCategoryId== (long) 分类id
+        + ==ycategoryId== (long) 分类id
         + ==cloudCid== （long）云端id
         + controllable （int）是否可控 1 可控  0 不可控
-        + ==yDriveId== （long）驱动id
+        + ==ydriveId== （long）驱动id
         + equipmentName （string）中午名
         + equipmentNameEn （string）英文名
         + fixedAttribute （int）关联空间属性（0 无固定属性，1为环境  2 占位 3 能耗）
         + functionCode （int）0 无功能  1 是次数  2 是电表记录'
-        + ==yEquipmentIdGateway== （long）网关id（如果当前设备是网关则这个值为0）
+        + ==yequipmentIdGateway== （long）网关id（如果当前设备是网关则这个值为0）
         + ispdu （int）0 非pdu 1是pdu
         + maintainData （date）保养日期
         + maintenanceTelephone （string）维修电话
@@ -3337,7 +3384,7 @@ https://github.com/liukai007/avic/edit/master/gateway-1.md
         + pduPortName （string）物理端口名
         + picture (string) 图片
         + portConfigContent （string）示例("{'HTTP':'192.168.1.2'}")
-        + ==yPorttypeId== （long）端口类型id
+        + ==yporttypeId== （long）端口类型id
         + purchaseDate （date）采购日期
         + runningStatus （int）运行状态0关闭 1运行 2警告    3故障  4其他',
         + serialNumber （string）设备序列号
@@ -3350,7 +3397,7 @@ https://github.com/liukai007/avic/edit/master/gateway-1.md
             + cmdCodeOn （string）开命令core
             + electricCurrent （float）电流
             + intervalValue （long） 时间间隔
-            + ==yEquipmentIdJoin== （long）接入设备id
+            + ==yequipmentIdJoin== （long）接入设备id
             + onOffState （int）'开关状态 1为开 0为关  2为未知状态
             + power （float）功率
             + pduPortNo （int）端口号
@@ -3435,12 +3482,12 @@ https://github.com/liukai007/avic/edit/master/gateway-1.md
 
     + data
         + anotherName (string)  别名
-        + ==yBrandId== （long）品牌id
+        + ==ybrandId== （long）品牌id
         + builtIn （int） 是否内置 1为内置 0为非内置
-        + ==yCategoryId== (long) 分类id
+        + ==ycategoryId== (long) 分类id
         + ==cloudCid== （long）云端id
         + controllable （int）是否可控 1 可控  0 不可控
-        + ==yDriveId== （long）驱动id
+        + ==ydriveId== （long）驱动id
         + equipmentName （string）中文名
         + equipmentNameEn （string）英文名
         + primaryCategoryName （string）一级分类
@@ -3448,7 +3495,7 @@ https://github.com/liukai007/avic/edit/master/gateway-1.md
         + brandName （string）品牌名
         + fixedAttribute （int）关联空间属性（0 无固定属性，1为环境  2 占位 3 能耗）
         + functionCode （int）0 无功能  1 是次数  2 是电表记录'
-        + ==yEquipmentIdGateway== （long）网关id（如果当前设备是网关则这个值为0）
+        + ==yequipmentIdGateway== （long）网关id（如果当前设备是网关则这个值为0）
         + ispdu （int）0 非pdu 1是pdu
         + maintainData （date）保养日期
         + maintenanceTelephone （string）维修电话
@@ -3458,7 +3505,7 @@ https://github.com/liukai007/avic/edit/master/gateway-1.md
         + pduPortName （string）物理端口名
         + picture (string) 图片
         + portConfigContent （string）示例("{'HTTP':'192.168.1.2'}")
-        + ==yPorttypeId== （long）端口类型id
+        + ==yporttypeId== （long）端口类型id
         + purchaseDate （date）采购日期
         + runningStatus （int）运行状态0关闭 1运行 2警告    3故障  4其他',
         + serialNumber （string）设备序列号
@@ -3472,7 +3519,7 @@ https://github.com/liukai007/avic/edit/master/gateway-1.md
             + cmdCodeOn （string）开命令core
             + electricCurrent （float）电流
             + intervalValue （long） 时间间隔
-            + ==yEquipmentIdJoin== （long）接入设备id
+            + ==yequipmentIdJoin== （long）接入设备id
             + onOffState （int）'开关状态 1为开 0为关  2为未知状态
             + power （float）功率
             + sequenceNumber （string）序列号
@@ -3653,8 +3700,8 @@ https://github.com/liukai007/avic/edit/master/gateway-1.md
         + equipmentNameEn （string）英文名
         + equipmentName （string）驱动名/设备名
         + model （string）型号
-        + ==yCategoryId== （long）分类id
-        + ==yBrandId== （long）品牌id
+        + ==ycategoryId== （long）分类id
+        + ==ybrandId== （long）品牌id
         + firmware （string）固件组
         + picture （string）图片
         + webLink （string）网页链接
@@ -3710,17 +3757,17 @@ https://github.com/liukai007/avic/edit/master/gateway-1.md
 + Parameters
     + data
         + anotherName (string)  别名
-        + ==yBrandId== （long）品牌id
+        + ==ybrandId== （long）品牌id
         + builtIn （int） 是否内置 1为内置 0为非内置
-        + ==yCategoryId== (long) 分类id
+        + ==ycategoryId== (long) 分类id
         + ==cloudCid== （long）云端id
         + controllable （int）是否可控 1 可控  0 不可控
-        + ==yDriveId== （long）驱动id
+        + ==ydriveId== （long）驱动id
         + equipmentName （string）中午名
         + equipmentNameEn （string）英文名
         + fixedAttribute （int）关联空间属性（0 无固定属性，1为环境  2 占位 3 能耗）
         + functionCode （int）0 无功能  1 是次数  2 是电表记录'
-        + ==yEquipmentIdGateway== （long）网关id（如果当前设备是网关则这个值为0）
+        + ==yequipmentIdGateway== （long）网关id（如果当前设备是网关则这个值为0）
         + ispdu （int）0 非pdu 1是pdu
         + maintainData （date）保养日期
         + maintenanceTelephone （string）维修电话
@@ -3730,7 +3777,7 @@ https://github.com/liukai007/avic/edit/master/gateway-1.md
         + pduPortName （string）物理端口名
         + picture (string) 图片
         + portConfigContent （string）示例("{'HTTP':'192.168.1.2'}")
-        + ==yPorttypeId== （long）端口类型id
+        + ==yporttypeId== （long）端口类型id
         + purchaseDate （date）采购日期
         + runningStatus （int）运行状态0关闭 1运行 2警告    3故障  4其他',
         + serialNumber （string）设备序列号
@@ -3744,7 +3791,7 @@ https://github.com/liukai007/avic/edit/master/gateway-1.md
             + cmdCodeOn （string）开命令core
             + electricCurrent （float）电流
             + intervalValue （long） 时间间隔
-            + ==yEquipmentIdJoin== （long）接入设备id
+            + ==yequipmentIdJoin== （long）接入设备id
             + onOffState （int）'开关状态 1为开 0为关  2为未知状态
             + power （float）功率
             + pduPortNo （int）端口号
@@ -3836,7 +3883,7 @@ https://github.com/liukai007/avic/edit/master/gateway-1.md
 
 + ReturnData
     + logLevel (int) 日志级别   0:错误       1:警告    2:信息    3:调试
-    + ==yEquipmentId== (long) 设备ID
+    + ==yequipmentId== (long) 设备ID
     + operateType (int)  0 常规操作 1是场景操作 2是计划任务
     + operateId (long)   场景id/计划任务id
     + eventContent (string)   事件内容
@@ -3938,8 +3985,8 @@ https://github.com/liukai007/avic/edit/master/gateway-1.md
     + equipmentNameEn (string) -驱动(设备)英文名
     + equipmentName (string) -驱动(设备)中文名
     + model (string) -型号
-    + ==yCategoryId==  (long) -二级分类ID
-    + ==yBrandId== (long) -品牌ID
+    + ==ycategoryId==  (long) -二级分类ID
+    + ==ybrandId== (long) -品牌ID
     + firmware (string) -固件版本号
     + picture (string) -图片字符串
     + webLink (string) -设备网站地址
@@ -4473,6 +4520,7 @@ https://github.com/liukai007/avic/edit/master/gateway-1.md
     + powerConsumptionHb (double) 能耗环比
     + totalWorkPowerConsumption (double)  总工作能耗
     + totalRestPowerConsumption (double)   总非工能耗
+    + durationHb （double）环比
     + logUsedTimesElectricList
         + id （long）id
         + created （date） 创建时间
@@ -4595,265 +4643,3 @@ https://github.com/liukai007/avic/edit/master/gateway-1.md
             ]
           }
         }
-1是pdu
-        + severalPdu (int) pdu口的数量
-    
-+ Request (application/json)
-
-
-+ Response 200
-
-        {
-          "data": {
-            "id": 9,
-            "enabled": 1,
-            "creator": 0,
-            "modifier": 0,
-            "modified": "2020-11-18 16:13:16",
-            "updateVersionId": 0,
-            "equipmentNameEn": "XY-G10-485-4port",
-            "equipmentName": "4口PDU",
-            "model": "XY-G10-485",
-            "categoryId": 2,
-            "brandId": 1,
-            "firmware": "001",
-            "picture": "http://static.mifanxing.com/wx/image/119/27/1800035.jpg?w=320&h=180",
-            "webLink": "www.baidu.com",
-            "cmdDrive": "{\"name\":\"XY-G10-485-4port\",\"nameChinese\":\"4口PD}",
-            "belong": 0,
-            "officialCertification": 0,
-            "operation": 0,
-            "brandName": "extron",
-            "secondCategoryName": "环境传感器",
-            "primaryCategoryName": "传感器",
-            "ispdu": 1,
-            "severalPdu": 4
-          }
-        }
-
-
-## 设备修改  [PATCH]  /equipment/{id}
-
-+ Description
-
-
-+ Parameters
-    + data
-        + anotherName (string)  别名
-        + ==ybrandId== （long）品牌id
-        + builtIn （int） 是否内置 1为内置 0为非内置
-        + ==ycategoryId== (long) 分类id
-        + ==cloudcId== （long）云端id
-        + controllable （int）是否可控 1 可控  0 不可控
-        + ==ydriveId== （long）驱动id
-        + equipmentName （string）中午名
-        + equipmentNameEn （string）英文名
-        + fixedAttribute （int）关联空间属性（0 无固定属性，1为环境  2 占位 3 能耗）
-        + functionCode （int）0 无功能  1 是次数  2 是电表记录'
-        + ==yEquipmentidgateway== （long）网关id（如果当前设备是网关则这个值为0）
-        + ispdu （int）0 非pdu 1是pdu
-        + maintainData （date）保养日期
-        + maintenanceTelephone （string）维修电话
-        + online （int）是否在线：0 离线 1在线 2未知
-        + otherStatus （string）其他数据 json格式
-        + pduPort （int）物理端口（1 第一口 2 第二口 以此类推）
-        + pduPortName （string）物理端口名
-        + picture (string) 图片
-        + portConfigContent （string）示例("{'HTTP':'192.168.1.2'}")
-        + ==yportTypeId== （long）端口类型id
-        + purchaseDate （date）采购日期
-        + runningStatus （int）运行状态0关闭 1运行 2警告    3故障  4其他',
-        + serialNumber （string）设备序列号
-        + serviceDate （date）投入使用日期
-        + supplier （string）供应商
-        + updateVersionId （long）同步id（同步云端id）
-        + pdus
-            + id（long）pduID（pdu有id的传过来）
-            + anotherName （string）别名
-            + cmdCodeOff （string）关命令core
-            + cmdCodeOn （string）开命令core
-            + electricCurrent （float）电流
-            + intervalValue （long） 时间间隔
-            + ==yEquipmentidjoin== （long）接入设备id
-            + onOffState （int）'开关状态 1为开 0为关  2为未知状态
-            + power （float）功率
-            + pduPortNo （int）端口号
-            + voltage （float）电压
-
-+ ReturnData
-
-        {
-          "data": {
-            "anotherName": "string",
-            "brandId": 0,
-            "builtIn": 0,
-            "categoryId": 0,
-            "cloudEquipmentId": 0,
-            "controllable": 0,
-            "driveId": 0,
-            "equipmentName": "string",
-            "equipmentNameEn": "string",
-            "fixedAttribute": 0,
-            "functionCode": 0,
-            "gatewayId": 0,
-            "ispdu": 0,
-            "maintainData": "2020-11-18T01:58:33.770Z",
-            "maintenanceTelephone": "string",
-            "model": "string",
-            "online": 0,
-            "otherStatus": "string",
-            "pduEquipmentId": 0,
-            "pduInterval": 0,
-            "pduPort": 0,
-            "pduPortName": "string",
-            "pdus": [
-              {
-                "id" : 2
-                "anotherName": "string",
-                "cmdCodeOff": "string",
-                "cmdCodeOn": "string",
-                "created": "2020-11-18T01:58:33.770Z",
-                "creator": 0,
-                "electricCurrent": 0,
-                "intervalValue": 0,
-                "joinEquipmentId": 0,
-                "modified": "2020-11-18T01:58:33.770Z",
-                "modifier": 0,
-                "onOffState": 0,
-                "power": 0,
-                "pduPortNo": 0,
-                "voltage": 0
-              }
-            ],
-            "picture": "string",
-            "portConfigContent": "string",
-            "portTypeId": 0,
-            "purchaseDate": "2020-11-18T01:58:33.770Z",
-            "runningStatus": 0,
-            "serialNumber": "string",
-            "serviceDate": "2020-11-18T01:58:33.770Z",
-            "supplier": "string",
-            "updateVersionId": 0
-          }
-        }
-
-
-
-### 设备删除 [DELETE] /equipment/{id}
-
-+ Description
-
-    
-+ Parameters
-    + id (long) 设备ID
-    
-+ Request (application/json)
-
-+ Response 204
-
-
-## 个人中心-信息列表  [GET]  /logEquipment/information
-
-+ Description
-
-
-+ Parameters
-    + dateMinStr (string)  开始日期 格式：yyyy-MM-dd HH:mm:ss
-    + dateMaxStr (string)  结束日期 格式：yyyy-MM-dd HH:mm:ss
-    + filter[readed] （int） 0未读，1已读
-    + page[number] （int）页码
-    + page[size] （int）条数
-
-+ ReturnData
-    + logLevel (int) 日志级别   0:错误       1:警告    2:信息    3:调试
-    + ==yequipmentId== (long) 设备ID
-    + operateType (int)  0 常规操作 1是场景操作 2是计划任务
-    + operateId (long)   场景id/计划任务id
-    + eventContent (string)   事件内容
-    + eventResult (int)   1执行成功，0执行失败
-    + malfunctionTimes (int)   防止重复失败保存到日志
-    + analyzed (int)   是否被统计 0未被分析，1已经被分析
-    + readed (int)   0未读，1已读
-    + upload (int)  0未上传，1已经上传 
-    + equipmentName （string）设备名
-    + userName （string）用户名
-              
-+ Response 200
-
-        {
-          "data": [
-            {
-              "id": 1,
-              "enabled": 1,
-              "creator": 1,
-              "modifier": 0,
-              "created": "2020-10-23 10:23:10",
-              "modified": "2020-10-23 10:23:10",
-              "logLevel": 1,
-              "operateType": 0,
-              "operateId": 0,
-              "eventContent": "没有电量设备，可以进行电量统计",
-              "eventResult": 0,
-              "malfunctionTimes": 0,
-              "analyzed": 0,
-              "readed": 0,
-              "upload": 0,
-              "userName": "admin"
-            },
-            {
-              "id": 2,
-              "enabled": 1,
-              "creator": 1,
-              "modifier": 0,
-              "created": "2020-10-23 10:23:11",
-              "modified": "2020-10-23 10:23:11",
-              "logLevel": 1,
-              "operateType": 0,
-              "operateId": 0,
-              "eventContent": "没有电量设备，可以进行电量统计",
-              "eventResult": 0,
-              "malfunctionTimes": 0,
-              "analyzed": 0,
-              "readed": 0,
-              "upload": 0,
-              "userName": "admin"
-            },
-            {
-              "id": 5,
-              "enabled": 1,
-              "creator": 0,
-              "modifier": 0,
-              "created": "2020-10-23 11:35:22",
-              "modified": "2020-10-23 11:35:22",
-              "logLevel": 1,
-              "operateType": 0,
-              "operateId": 0,
-              "eventContent": "没有电量设备，可以进行电量统计",
-              "eventResult": 0,
-              "malfunctionTimes": 0,
-              "analyzed": 0,
-              "readed": 0,
-              "upload": 0
-            },
-            {
-              "id": 6,
-              "enabled": 1,
-              "creator": 0,
-              "modifier": 0,
-              "created": "2020-10-23 11:53:12",
-              "modified": "2020-10-23 11:53:12",
-              "logLevel": 0,
-              "equipmentId": 3,
-              "operateType": 0,
-              "operateId": 0,
-              "eventContent": "电量值异常不可能为0或者是第一次使用",
-              "eventResult": 0,
-              "malfunctionTimes": 0,
-              "analyzed": 0,
-              "readed": 0,
-              "upload": 0,
-              "equipmentName": "智能电表"
-            }
-          ]
-        }
-

@@ -10,7 +10,10 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
     + 网关注册
     + 网关删除
     + 设备添加
-    + 设备资产列表
+    + 设备修改
+    + 设备删除
+    + 设备详情
+    + 设备列表
     + 设备状态监测
     + 设备保养列表
     + 设备寿命列表
@@ -56,7 +59,7 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
     + 协作空间详情
     + 协作空间列表
 + 2020年01月18日
-    + email配置添加
+    + Email配置添加
     
 ### 驱动列表 [GET] /drive
 + Description
@@ -388,43 +391,133 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
 
 + Parameters
     + data
-        + anotherName (string)  别名
-        + builtIn （int） 是否内置 1为内置 0为非内置
-        + ycategoryId (long) 分类id
-        + yequipmentIdGateway （long）网关ID
-        + yporttypeId （long）端口类型id
-        + ydriveId （long）驱动id
-        + ypduId
-        + ybrandId
-        + controllable （int）是否可控 1 可控  0 不可控
-        + equipmentName （string）中午名
-        + equipmentNameEn （string）英文名
-        + fixedAttribute （int）关联空间属性（0 无固定属性，1为环境  2 占位 3 能耗）
-        + functionCode （int）0 无功能  1 是次数  2 是电表记录'
-        + ispdu （int）0 非pdu 1是pdu
-        + maintainData （date）保养日期
-        + maintenanceTelephone （string）维修电话
-        + online （int）是否在线：0 离线 1在线 2未知
-        + otherStatus （string）其他数据 json格式
-        + pduPortName （string）物理端口名
-        + picture (string) 图片
-        + portConfigContent （string）示例("{'HTTP':'192.168.1.2'}")
-        + purchaseDate （date）采购日期
-        + runningStatus （int）运行状态0关闭 1运行 2警告    3故障  4其他',
+        + id (long)  设备id
+        + equipmentName （string）设备名称
+        + equipmentNameEn (string)  自动生成唯一号
+        + anotherName (string)   设备别名
+        + picture  (string) 设备图片url
+        + online (int) 是否在线：0 离线 1在线 2未知
+        + runningStatus (int) 运行状态：0关闭 1运行 2警告    3故障  4其他
+        + otherStatus （string）其他数据，json格式
         + serialNumber （string）设备序列号
-        + serviceDate （date）投入使用日期
-        + supplier （string）供应商
+        + serviceDate （string） 投入使用日期
+        + supplier (string)  供应商
+        + maintenanceTelephone （string）维修电话
+        + brandName (string)  品牌名称
+        + portConfigContent (string)   使用json，map的key是使用端口类型名，易于扩展
+        + pduPortName  (string) 
+        + pduPortNo (int) 
+        + pduInterval (int) 
+        + ispdu （int）0 非pdu 1是pdu
+        + controllable （int）是否可控 1 可控  0 不可控
+        + builtIn （int） 是否内置 1为内置 0为非内置
+        + fixedAttribute （int） 0 无固定属性，1为环境  2 占位 3 能耗
+        + functionCode (int)  0 无功能  1 是次数  2 是电表记录
+        + lifetype （int）寿命类型 0 时长 1 次数 
+        + recommendedLife (int)  建议使用寿命
+        + maintainData (string)   保养日期
+        + totalTime  (int) 累计运行总时长，单位小时 (每日四舍五入)
+        + stateOfLife (int) 寿命状态(1 全新 2 良好 3 一般 4 可用 5 极好 6更换)
+        + readable (int) 1 已读 0 未读
+        + driveCmds 
+            + associatedStatus  (int) 
+            + cloudCid  (int) 云端id
+            + cmdAlias (string)  cmd别名
+            + cmdCode (string) 前端页面可以识别的code
+            + cmdName (string) 命令的名字
+            + created (string) 
+            + creator (string)
+            + enabled (int) 
+            + flag (int) 
+            + gatewayGid (int) 网关id
+            + id (int)  自增主键
+            + method (string) get put post delete
+            + modified (string)  
+            + modifier (int)
+            + parameter (string)  参数,使用逗号进行隔开,如果3个参数
+            + parameterDescription (string)
+            + parameterType (string) 参数的类型
+            + ydriveId (int) 本地驱动id
         + pdus
-            + anotherName （string）别名
-            + cmdCodeOff （string）关命令core
-            + cmdCodeOn （string）开命令core
-            + electricCurrent （float）电流
-            + intervalValue （long） 时间间隔
-            + onOffState （int）'开关状态 1为开 0为关  2为未知状态
-            + power （float）功率
-            + pduPortNo （int）端口号
-            + voltage （float）电压
-            
+            + anotherName  (string) 
+            + cloudCid  (int) 云端id
+            + cmdCodeOff (string)  开命令CODE
+            + cmdCodeOn (string) 关命令CODE
+            + created (string) 
+            + creator (string) 
+            + electricCurrent (int) 电流
+            + enabled (int) 
+            + flag (int) 
+            + gatewayGid (int) 网关id
+            + id (int)  自增主键
+            + intervalValue (int) 前端的按钮 时间间隔
+            + modified (string)  
+            + modifier (int)
+            + onOffState (int)  开关状态 1为开 0为关  2为未知状态（如果设备连线断掉即为未知状态）
+            + pduPortNo (int) 和设备用这个序列号是绑定的。（1端口- 2端口）
+            + power (int)  功率
+            + voltage (int) 电压
+            + yequipmentId (int) PDU的设备的ID
+            + yequipmentIdJoin (int) 连入的设备ID
+        + equipmentBtnGroups 
+            + cloudCid  (int) 云端id
+            + cmdBtnGroups
+                + cloudCid  (int) 云端id
+                + cmdAlias  (string) 命令的名字
+                + cmdCode  (string) 命令的Code
+                + cmdName  (string) 命令的名字
+                + created  (string) 
+                + creator  (int) 
+                + enabled  (int) 
+                + flag  (int) 云端id
+                + forbidden  (int) 是否禁用
+                + id  (int) 云端id
+                + modified  (string) 
+                + modifier  (int) 
+                + ydrivecmdId  (int) 驱动cmd的ID
+                + yequipmentbtngroupId  (int) 设备组ID
+            + created (string) 
+            + creator (int) 
+            + enabled (int) 
+            + flag (int) 
+            + equipmentBtnGroups
+                +
+            + gatewayGid (int) 网关id
+            + groupAndGroup (string)  这个是编组，不同的编组默认使用逗号隔开。（目前只支持2个组编组，同时出发的第二个组才触发命令）
+            + groupName (string) 组名
+            + groupNameAlias (string)   组别称
+            + groupType (int) 1 开关组 2 输入组 3 输出组 4 预设组 5编组组
+            + id (int)  自增主键id
+            + modified (string)
+            + modifier (int)  
+         + portTypes 
+            + builtIn (int)
+            + cloudCid (int)  云端id
+            + created (string)
+            + creator (int)
+            + defaultValue (string) 默认值  如果没有配置就是使用这个默认值，减少配置。
+            + description (string) 描述
+            + enabled (int)
+            + flag (int)
+            + gatewayGid (int) 网关id用于数据同步
+            + id (int) 自增主键ID
+            + modified (string)
+            + modifier (int)
+            + parentIdPorttype (int) 如果是本身就是父ID，则为0
+            + probableValueList (string) 返回值使用英文（英文可以避免乱码），字符串用逗号隔开  on,off,on-off,等等
+            + typeName (string) 端口类型名/属性名 类型名字：串口
+            属性名：属性名比如波特率
+            + valueType (int)  0 字符串类型 1 整数型 2 FLOAT型 等多种类型，可以写成枚举类放到代码中。
+        + model （string） 设备品牌
+        + primaryCategoryName （string） 一级分类名
+        + secondCategoryName （string）二级分类名
+        + ageLimit （int） 使用年限（1-6年）
+        + yequipmentIdGateway （int） 所属网关设备id
+        + yporttypeId （int） 设备端口类型id
+        + ydriveId （string）设备驱动id
+        + ycategoryId （int） 设备类型id
+        + ybrandId （int）  设备品牌id
+        + ypduId （int）设备pdu的id
         
 + Request (application/json)
 
@@ -452,7 +545,216 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
 
 
 
-### 设备资产列表 [GET] /equipment/equipmentAssetOrMonitorOrMaintainOrLife
+### 设备编辑 [PATCH] /equipment/{id}
++ Description
+
++ Parameters
+    + data
+        + id (long)  设备id
+        + equipmentName （string）设备名称
+        + equipmentNameEn (string)  自动生成唯一号
+        + anotherName (string)   设备别名
+        + picture  (string) 设备图片url
+        + online (int) 是否在线：0 离线 1在线 2未知
+        + runningStatus (int) 运行状态：0关闭 1运行 2警告    3故障  4其他
+        + otherStatus （string）其他数据，json格式
+        + serialNumber （string）设备序列号
+        + serviceDate （string） 投入使用日期
+        + supplier (string)  供应商
+        + maintenanceTelephone （string）维修电话
+        + brandName (string)  品牌名称
+        + portConfigContent (string)   使用json，map的key是使用端口类型名，易于扩展
+        + pduPortName  (string) 
+        + pduPortNo (int) 
+        + pduInterval (int) 
+        + ispdu （int）0 非pdu 1是pdu
+        + controllable （int）是否可控 1 可控  0 不可控
+        + builtIn （int） 是否内置 1为内置 0为非内置
+        + fixedAttribute （int） 0 无固定属性，1为环境  2 占位 3 能耗
+        + functionCode (int)  0 无功能  1 是次数  2 是电表记录
+        + lifetype （int）寿命类型 0 时长 1 次数 
+        + recommendedLife (int)  建议使用寿命
+        + maintainData (string)   保养日期
+        + totalTime  (int) 累计运行总时长，单位小时 (每日四舍五入)
+        + stateOfLife (int) 寿命状态(1 全新 2 良好 3 一般 4 可用 5 极好 6更换)
+        + readable (int) 1 已读 0 未读
+        + driveCmds 
+            + associatedStatus  (int) 
+            + cloudCid  (int) 云端id
+            + cmdAlias (string)  cmd别名
+            + cmdCode (string) 前端页面可以识别的code
+            + cmdName (string) 命令的名字
+            + created (string) 
+            + creator (string)
+            + enabled (int) 
+            + flag (int) 
+            + gatewayGid (int) 网关id
+            + id (int)  自增主键
+            + method (string) get put post delete
+            + modified (string)  
+            + modifier (int)
+            + parameter (string)  参数,使用逗号进行隔开,如果3个参数
+            + parameterDescription (string)
+            + parameterType (string) 参数的类型
+            + ydriveId (int) 本地驱动id
+        + pdus
+            + anotherName  (string) 
+            + cloudCid  (int) 云端id
+            + cmdCodeOff (string)  开命令CODE
+            + cmdCodeOn (string) 关命令CODE
+            + created (string) 
+            + creator (string) 
+            + electricCurrent (int) 电流
+            + enabled (int) 
+            + flag (int) 
+            + gatewayGid (int) 网关id
+            + id (int)  自增主键
+            + intervalValue (int) 前端的按钮 时间间隔
+            + modified (string)  
+            + modifier (int)
+            + onOffState (int)  开关状态 1为开 0为关  2为未知状态（如果设备连线断掉即为未知状态）
+            + pduPortNo (int) 和设备用这个序列号是绑定的。（1端口- 2端口）
+            + power (int)  功率
+            + voltage (int) 电压
+            + yequipmentId (int) PDU的设备的ID
+            + yequipmentIdJoin (int) 连入的设备ID
+        + equipmentBtnGroups 
+            + cloudCid  (int) 云端id
+            + cmdBtnGroups
+                + cloudCid  (int) 云端id
+                + cmdAlias  (string) 命令的名字
+                + cmdCode  (string) 命令的Code
+                + cmdName  (string) 命令的名字
+                + created  (string) 
+                + creator  (int) 
+                + enabled  (int) 
+                + flag  (int) 云端id
+                + forbidden  (int) 是否禁用
+                + id  (int) 云端id
+                + modified  (string) 
+                + modifier  (int) 
+                + ydrivecmdId  (int) 驱动cmd的ID
+                + yequipmentbtngroupId  (int) 设备组ID
+            + created (string) 
+            + creator (int) 
+            + enabled (int) 
+            + flag (int) 
+            + equipmentBtnGroups
+                +
+            + gatewayGid (int) 网关id
+            + groupAndGroup (string)  这个是编组，不同的编组默认使用逗号隔开。（目前只支持2个组编组，同时出发的第二个组才触发命令）
+            + groupName (string) 组名
+            + groupNameAlias (string)   组别称
+            + groupType (int) 1 开关组 2 输入组 3 输出组 4 预设组 5编组组
+            + id (int)  自增主键id
+            + modified (string)
+            + modifier (int)  
+         + portTypes 
+            + builtIn (int)
+            + cloudCid (int)  云端id
+            + created (string)
+            + creator (int)
+            + defaultValue (string) 默认值  如果没有配置就是使用这个默认值，减少配置。
+            + description (string) 描述
+            + enabled (int)
+            + flag (int)
+            + gatewayGid (int) 网关id用于数据同步
+            + id (int) 自增主键ID
+            + modified (string)
+            + modifier (int)
+            + parentIdPorttype (int) 如果是本身就是父ID，则为0
+            + probableValueList (string) 返回值使用英文（英文可以避免乱码），字符串用逗号隔开  on,off,on-off,等等
+            + typeName (string) 端口类型名/属性名 类型名字：串口
+            属性名：属性名比如波特率
+            + valueType (int)  0 字符串类型 1 整数型 2 FLOAT型 等多种类型，可以写成枚举类放到代码中。
+        + driveReadtypes
+            + decimalPlaces (int)
+            + cloudCid (int)  云端id
+            + created (string)
+            + creator (int)
+            + ifLog (int)  1 加入日志  0 不加入日志
+            + multiply (int) 数据矫正  相乘
+            + enabled (int)
+            + flag (int)
+            + gatewayGid (int) 网关id用于数据同步
+            + id (int) 自增主键ID
+            + modified (string)
+            + modifier (int)
+            + plus (float) 数据矫正 相加或相减
+            + readTypeAlias (string)  
+            + unitName (string) 单位名称
+            + ydriveId (int) 驱动ID
+            + yreadtypeId (int) 读数类型ID
+      
+     
+        + model （string） 设备品牌
+        + primaryCategoryName （string） 一级分类名
+        + secondCategoryName （string）二级分类名
+        + ageLimit （int） 使用年限（1-6年）
+        + yequipmentIdGateway （int） 所属网关设备id
+        + yporttypeId （int） 设备端口类型id
+        + ydriveId （string）设备驱动id
+        + ycategoryId （int） 设备类型id
+        + ybrandId （int）  设备品牌id
+        + ypduId （int）设备pdu的id
+        
++ Request (application/json)
+
++ ReturnData
+
+        {
+          "data": {
+            "id": 4,
+            "type": "equipment"
+          }
+        }
+        
++ Response 200
+       
++ Response 400
+    
+        {
+          "errors": [
+            {
+              "status": "400",
+              "title": "Bad Request"
+            }
+          ]
+        } 
+
+
+### 设备编辑 [DELETE] /equipment/{id}
++ Description
+
++ Parameters
+    + id (long) 设备ID
++ Request (application/json)
+
++ ReturnData
+
+        {
+          "data": {
+            "id": 4,
+            "type": "equipment"
+          }
+        }
+        
++ Response 204
+       
++ Response 400
+    
+        {
+          "errors": [
+            {
+              "status": "400",
+              "title": "Bad Request"
+            }
+          ]
+        } 
+
+
+
+### 设备列表 [GET] /equipment/equipmentAssetOrMonitorOrMaintainOrLife
 
 + Description
 
@@ -502,29 +804,114 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
         + stateOfLife (int) 寿命状态(1 全新 2 良好 3 一般 4 可用 5 极好 6更换)
         + readable (int) 1 已读 0 未读
         + driveCmds 
-            + 
-            + 
-            + 
-            + 
-            + 
-         + pdus 
-            + 
-            + 
-            + 
-            + 
-            + 
-         + equipmentBtnGroups 
-            + 
-            + 
-            + 
-            + 
-            + 
+            + associatedStatus  (int) 
+            + cloudCid  (int) 云端id
+            + cmdAlias (string)  cmd别名
+            + cmdCode (string) 前端页面可以识别的code
+            + cmdName (string) 命令的名字
+            + created (string) 
+            + creator (string)
+            + enabled (int) 
+            + flag (int) 
+            + gatewayGid (int) 网关id
+            + id (int)  自增主键
+            + method (string) get put post delete
+            + modified (string)  
+            + modifier (int)
+            + parameter (string)  参数,使用逗号进行隔开,如果3个参数
+            + parameterDescription (string)
+            + parameterType (string) 参数的类型
+            + ydriveId (int) 本地驱动id
+        + pdus
+            + anotherName  (string) 
+            + cloudCid  (int) 云端id
+            + cmdCodeOff (string)  开命令CODE
+            + cmdCodeOn (string) 关命令CODE
+            + created (string) 
+            + creator (string) 
+            + electricCurrent (int) 电流
+            + enabled (int) 
+            + flag (int) 
+            + gatewayGid (int) 网关id
+            + id (int)  自增主键
+            + intervalValue (int) 前端的按钮 时间间隔
+            + modified (string)  
+            + modifier (int)
+            + onOffState (int)  开关状态 1为开 0为关  2为未知状态（如果设备连线断掉即为未知状态）
+            + pduPortNo (int) 和设备用这个序列号是绑定的。（1端口- 2端口）
+            + power (int)  功率
+            + voltage (int) 电压
+            + yequipmentId (int) PDU的设备的ID
+            + yequipmentIdJoin (int) 连入的设备ID
+        + equipmentBtnGroups 
+            + cloudCid  (int) 云端id
+            + cmdBtnGroups
+                + cloudCid  (int) 云端id
+                + cmdAlias  (string) 命令的名字
+                + cmdCode  (string) 命令的Code
+                + cmdName  (string) 命令的名字
+                + created  (string) 
+                + creator  (int) 
+                + enabled  (int) 
+                + flag  (int) 云端id
+                + forbidden  (int) 是否禁用
+                + id  (int) 云端id
+                + modified  (string) 
+                + modifier  (int) 
+                + ydrivecmdId  (int) 驱动cmd的ID
+                + yequipmentbtngroupId  (int) 设备组ID
+            + created (string) 
+            + creator (int) 
+            + enabled (int) 
+            + flag (int) 
+            + equipmentBtnGroups
+                +
+            + gatewayGid (int) 网关id
+            + groupAndGroup (string)  这个是编组，不同的编组默认使用逗号隔开。（目前只支持2个组编组，同时出发的第二个组才触发命令）
+            + groupName (string) 组名
+            + groupNameAlias (string)   组别称
+            + groupType (int) 1 开关组 2 输入组 3 输出组 4 预设组 5编组组
+            + id (int)  自增主键id
+            + modified (string)
+            + modifier (int)  
          + portTypes 
-            + 
-            + 
-            + 
-            + 
-            + 
+            + builtIn (int)
+            + cloudCid (int)  云端id
+            + created (string)
+            + creator (int)
+            + defaultValue (string) 默认值  如果没有配置就是使用这个默认值，减少配置。
+            + description (string) 描述
+            + enabled (int)
+            + flag (int)
+            + gatewayGid (int) 网关id用于数据同步
+            + id (int) 自增主键ID
+            + modified (string)
+            + modifier (int)
+            + parentIdPorttype (int) 如果是本身就是父ID，则为0
+            + probableValueList (string) 返回值使用英文（英文可以避免乱码），字符串用逗号隔开  on,off,on-off,等等
+            + typeName (string) 端口类型名/属性名 类型名字：串口
+            属性名：属性名比如波特率
+            + valueType (int)  0 字符串类型 1 整数型 2 FLOAT型 等多种类型，可以写成枚举类放到代码中。
+        + driveReadtypes
+            + decimalPlaces (int)
+            + cloudCid (int)  云端id
+            + created (string)
+            + creator (int)
+            + ifLog (int)  1 加入日志  0 不加入日志
+            + multiply (int) 数据矫正  相乘
+            + enabled (int)
+            + flag (int)
+            + gatewayGid (int) 网关id用于数据同步
+            + id (int) 自增主键ID
+            + modified (string)
+            + modifier (int)
+            + plus (float) 数据矫正 相加或相减
+            + readTypeAlias (string)  
+            + unitName (string) 单位名称
+            + ydriveId (int) 驱动ID
+            + yreadtypeId (int) 读数类型ID
+      
+     
         + model （string） 设备品牌
         + primaryCategoryName （string） 一级分类名
         + secondCategoryName （string）二级分类名
@@ -591,29 +978,114 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
         + stateOfLife (int) 寿命状态(1 全新 2 良好 3 一般 4 可用 5 极好 6更换)
         + readable (int) 1 已读 0 未读
         + driveCmds 
-            + 
-            + 
-            + 
-            + 
-            + 
-         + pdus 
-            + 
-            + 
-            + 
-            + 
-            + 
-         + equipmentBtnGroups 
-            + 
-            + 
-            + 
-            + 
-            + 
+            + associatedStatus  (int) 
+            + cloudCid  (int) 云端id
+            + cmdAlias (string)  cmd别名
+            + cmdCode (string) 前端页面可以识别的code
+            + cmdName (string) 命令的名字
+            + created (string) 
+            + creator (string)
+            + enabled (int) 
+            + flag (int) 
+            + gatewayGid (int) 网关id
+            + id (int)  自增主键
+            + method (string) get put post delete
+            + modified (string)  
+            + modifier (int)
+            + parameter (string)  参数,使用逗号进行隔开,如果3个参数
+            + parameterDescription (string)
+            + parameterType (string) 参数的类型
+            + ydriveId (int) 本地驱动id
+        + pdus
+            + anotherName  (string) 
+            + cloudCid  (int) 云端id
+            + cmdCodeOff (string)  开命令CODE
+            + cmdCodeOn (string) 关命令CODE
+            + created (string) 
+            + creator (string) 
+            + electricCurrent (int) 电流
+            + enabled (int) 
+            + flag (int) 
+            + gatewayGid (int) 网关id
+            + id (int)  自增主键
+            + intervalValue (int) 前端的按钮 时间间隔
+            + modified (string)  
+            + modifier (int)
+            + onOffState (int)  开关状态 1为开 0为关  2为未知状态（如果设备连线断掉即为未知状态）
+            + pduPortNo (int) 和设备用这个序列号是绑定的。（1端口- 2端口）
+            + power (int)  功率
+            + voltage (int) 电压
+            + yequipmentId (int) PDU的设备的ID
+            + yequipmentIdJoin (int) 连入的设备ID
+        + equipmentBtnGroups 
+            + cloudCid  (int) 云端id
+            + cmdBtnGroups
+                + cloudCid  (int) 云端id
+                + cmdAlias  (string) 命令的名字
+                + cmdCode  (string) 命令的Code
+                + cmdName  (string) 命令的名字
+                + created  (string) 
+                + creator  (int) 
+                + enabled  (int) 
+                + flag  (int) 云端id
+                + forbidden  (int) 是否禁用
+                + id  (int) 云端id
+                + modified  (string) 
+                + modifier  (int) 
+                + ydrivecmdId  (int) 驱动cmd的ID
+                + yequipmentbtngroupId  (int) 设备组ID
+            + created (string) 
+            + creator (int) 
+            + enabled (int) 
+            + flag (int) 
+            + equipmentBtnGroups
+                +
+            + gatewayGid (int) 网关id
+            + groupAndGroup (string)  这个是编组，不同的编组默认使用逗号隔开。（目前只支持2个组编组，同时出发的第二个组才触发命令）
+            + groupName (string) 组名
+            + groupNameAlias (string)   组别称
+            + groupType (int) 1 开关组 2 输入组 3 输出组 4 预设组 5编组组
+            + id (int)  自增主键id
+            + modified (string)
+            + modifier (int)  
          + portTypes 
-            + 
-            + 
-            + 
-            + 
-            + 
+            + builtIn (int)
+            + cloudCid (int)  云端id
+            + created (string)
+            + creator (int)
+            + defaultValue (string) 默认值  如果没有配置就是使用这个默认值，减少配置。
+            + description (string) 描述
+            + enabled (int)
+            + flag (int)
+            + gatewayGid (int) 网关id用于数据同步
+            + id (int) 自增主键ID
+            + modified (string)
+            + modifier (int)
+            + parentIdPorttype (int) 如果是本身就是父ID，则为0
+            + probableValueList (string) 返回值使用英文（英文可以避免乱码），字符串用逗号隔开  on,off,on-off,等等
+            + typeName (string) 端口类型名/属性名 类型名字：串口
+            属性名：属性名比如波特率
+            + valueType (int)  0 字符串类型 1 整数型 2 FLOAT型 等多种类型，可以写成枚举类放到代码中。
+        + driveReadtypes
+            + decimalPlaces (int)
+            + cloudCid (int)  云端id
+            + created (string)
+            + creator (int)
+            + ifLog (int)  1 加入日志  0 不加入日志
+            + multiply (int) 数据矫正  相乘
+            + enabled (int)
+            + flag (int)
+            + gatewayGid (int) 网关id用于数据同步
+            + id (int) 自增主键ID
+            + modified (string)
+            + modifier (int)
+            + plus (float) 数据矫正 相加或相减
+            + readTypeAlias (string)  
+            + unitName (string) 单位名称
+            + ydriveId (int) 驱动ID
+            + yreadtypeId (int) 读数类型ID
+      
+     
         + model （string） 设备品牌
         + primaryCategoryName （string） 一级分类名
         + secondCategoryName （string）二级分类名
@@ -624,51 +1096,6 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
         + ycategoryId （int） 设备类型id
         + ybrandId （int）  设备品牌id
         + ypduId （int）设备pdu的id
-        
-        
-       {
-          "data":  {
-              "id": 1,
-              "enabled": 1,
-              "creator": 0,
-              "modifier": 0,
-              "created": "2021-01-14 17:01:00",
-              "modified": "2021-01-14 17:01:00",
-              "gatewayGid": 1,
-              "flag": 0,
-              "equipmentName": "网关",
-              "equipmentNameEn": "网关",
-              "anotherName": "网关",
-              "online": 1,
-              "runningStatus": 1,
-              "otherStatus": "1",
-              "purchaseDate": "2021-01-01T02:48:40.000+0000",
-              "serviceDate": "2020-12-01T09:15:48.000+0000",
-              "brandName": "DingDee",
-              "portConfigContent": "1",
-              "ispdu": 0,
-              "controllable": 1,
-              "builtIn": 0,
-              "fixedAttribute": 0,
-              "functionCode": 0,
-              "lifetype": 1,
-              "recommendedLife": 1,
-              "totalTime": 0,
-              "stateOfLife": 1,
-              "readable": 0,
-              "driveCmds": [],
-              "gatewayName": "小会议室网关",
-              "model": "485-RTU",
-              "secondCategoryName": "音频",
-              "ageLimit": 1,
-              "yporttypeId": 1,
-              "ydriveId": 1,
-              "ycategoryId": 5,
-              "ybrandId": 1,
-              "yequipmentIdGateway": 2,
-              "ypduId": 1
-           }
-   }
 
 ### 设备保养列表 [GET] /equipment/equipmentAssetOrMonitorOrMaintainOrLife
 
@@ -689,7 +1116,7 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
 
 + ReturnData 
     
-         + id (long)  设备id
+        + id (long)  设备id
         + equipmentName （string）设备名称
         + equipmentNameEn (string)  自动生成唯一号
         + anotherName (string)   设备别名
@@ -718,29 +1145,114 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
         + stateOfLife (int) 寿命状态(1 全新 2 良好 3 一般 4 可用 5 极好 6更换)
         + readable (int) 1 已读 0 未读
         + driveCmds 
-            + 
-            + 
-            + 
-            + 
-            + 
-         + pdus 
-            + 
-            + 
-            + 
-            + 
-            + 
-         + equipmentBtnGroups 
-            + 
-            + 
-            + 
-            + 
-            + 
+            + associatedStatus  (int) 
+            + cloudCid  (int) 云端id
+            + cmdAlias (string)  cmd别名
+            + cmdCode (string) 前端页面可以识别的code
+            + cmdName (string) 命令的名字
+            + created (string) 
+            + creator (string)
+            + enabled (int) 
+            + flag (int) 
+            + gatewayGid (int) 网关id
+            + id (int)  自增主键
+            + method (string) get put post delete
+            + modified (string)  
+            + modifier (int)
+            + parameter (string)  参数,使用逗号进行隔开,如果3个参数
+            + parameterDescription (string)
+            + parameterType (string) 参数的类型
+            + ydriveId (int) 本地驱动id
+        + pdus
+            + anotherName  (string) 
+            + cloudCid  (int) 云端id
+            + cmdCodeOff (string)  开命令CODE
+            + cmdCodeOn (string) 关命令CODE
+            + created (string) 
+            + creator (string) 
+            + electricCurrent (int) 电流
+            + enabled (int) 
+            + flag (int) 
+            + gatewayGid (int) 网关id
+            + id (int)  自增主键
+            + intervalValue (int) 前端的按钮 时间间隔
+            + modified (string)  
+            + modifier (int)
+            + onOffState (int)  开关状态 1为开 0为关  2为未知状态（如果设备连线断掉即为未知状态）
+            + pduPortNo (int) 和设备用这个序列号是绑定的。（1端口- 2端口）
+            + power (int)  功率
+            + voltage (int) 电压
+            + yequipmentId (int) PDU的设备的ID
+            + yequipmentIdJoin (int) 连入的设备ID
+        + equipmentBtnGroups 
+            + cloudCid  (int) 云端id
+            + cmdBtnGroups
+                + cloudCid  (int) 云端id
+                + cmdAlias  (string) 命令的名字
+                + cmdCode  (string) 命令的Code
+                + cmdName  (string) 命令的名字
+                + created  (string) 
+                + creator  (int) 
+                + enabled  (int) 
+                + flag  (int) 云端id
+                + forbidden  (int) 是否禁用
+                + id  (int) 云端id
+                + modified  (string) 
+                + modifier  (int) 
+                + ydrivecmdId  (int) 驱动cmd的ID
+                + yequipmentbtngroupId  (int) 设备组ID
+            + created (string) 
+            + creator (int) 
+            + enabled (int) 
+            + flag (int) 
+            + equipmentBtnGroups
+                +
+            + gatewayGid (int) 网关id
+            + groupAndGroup (string)  这个是编组，不同的编组默认使用逗号隔开。（目前只支持2个组编组，同时出发的第二个组才触发命令）
+            + groupName (string) 组名
+            + groupNameAlias (string)   组别称
+            + groupType (int) 1 开关组 2 输入组 3 输出组 4 预设组 5编组组
+            + id (int)  自增主键id
+            + modified (string)
+            + modifier (int)  
          + portTypes 
-            + 
-            + 
-            + 
-            + 
-            + 
+            + builtIn (int)
+            + cloudCid (int)  云端id
+            + created (string)
+            + creator (int)
+            + defaultValue (string) 默认值  如果没有配置就是使用这个默认值，减少配置。
+            + description (string) 描述
+            + enabled (int)
+            + flag (int)
+            + gatewayGid (int) 网关id用于数据同步
+            + id (int) 自增主键ID
+            + modified (string)
+            + modifier (int)
+            + parentIdPorttype (int) 如果是本身就是父ID，则为0
+            + probableValueList (string) 返回值使用英文（英文可以避免乱码），字符串用逗号隔开  on,off,on-off,等等
+            + typeName (string) 端口类型名/属性名 类型名字：串口
+            属性名：属性名比如波特率
+            + valueType (int)  0 字符串类型 1 整数型 2 FLOAT型 等多种类型，可以写成枚举类放到代码中。
+        + driveReadtypes
+            + decimalPlaces (int)
+            + cloudCid (int)  云端id
+            + created (string)
+            + creator (int)
+            + ifLog (int)  1 加入日志  0 不加入日志
+            + multiply (int) 数据矫正  相乘
+            + enabled (int)
+            + flag (int)
+            + gatewayGid (int) 网关id用于数据同步
+            + id (int) 自增主键ID
+            + modified (string)
+            + modifier (int)
+            + plus (float) 数据矫正 相加或相减
+            + readTypeAlias (string)  
+            + unitName (string) 单位名称
+            + ydriveId (int) 驱动ID
+            + yreadtypeId (int) 读数类型ID
+      
+     
         + model （string） 设备品牌
         + primaryCategoryName （string） 一级分类名
         + secondCategoryName （string）二级分类名
@@ -815,7 +1327,7 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
 
 + ReturnData 
     
-         + id (long)  设备id
+        + id (long)  设备id
         + equipmentName （string）设备名称
         + equipmentNameEn (string)  自动生成唯一号
         + anotherName (string)   设备别名
@@ -844,29 +1356,114 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
         + stateOfLife (int) 寿命状态(1 全新 2 良好 3 一般 4 可用 5 极好 6更换)
         + readable (int) 1 已读 0 未读
         + driveCmds 
-            + 
-            + 
-            + 
-            + 
-            + 
-         + pdus 
-            + 
-            + 
-            + 
-            + 
-            + 
-         + equipmentBtnGroups 
-            + 
-            + 
-            + 
-            + 
-            + 
+            + associatedStatus  (int) 
+            + cloudCid  (int) 云端id
+            + cmdAlias (string)  cmd别名
+            + cmdCode (string) 前端页面可以识别的code
+            + cmdName (string) 命令的名字
+            + created (string) 
+            + creator (string)
+            + enabled (int) 
+            + flag (int) 
+            + gatewayGid (int) 网关id
+            + id (int)  自增主键
+            + method (string) get put post delete
+            + modified (string)  
+            + modifier (int)
+            + parameter (string)  参数,使用逗号进行隔开,如果3个参数
+            + parameterDescription (string)
+            + parameterType (string) 参数的类型
+            + ydriveId (int) 本地驱动id
+        + pdus
+            + anotherName  (string) 
+            + cloudCid  (int) 云端id
+            + cmdCodeOff (string)  开命令CODE
+            + cmdCodeOn (string) 关命令CODE
+            + created (string) 
+            + creator (string) 
+            + electricCurrent (int) 电流
+            + enabled (int) 
+            + flag (int) 
+            + gatewayGid (int) 网关id
+            + id (int)  自增主键
+            + intervalValue (int) 前端的按钮 时间间隔
+            + modified (string)  
+            + modifier (int)
+            + onOffState (int)  开关状态 1为开 0为关  2为未知状态（如果设备连线断掉即为未知状态）
+            + pduPortNo (int) 和设备用这个序列号是绑定的。（1端口- 2端口）
+            + power (int)  功率
+            + voltage (int) 电压
+            + yequipmentId (int) PDU的设备的ID
+            + yequipmentIdJoin (int) 连入的设备ID
+        + equipmentBtnGroups 
+            + cloudCid  (int) 云端id
+            + cmdBtnGroups
+                + cloudCid  (int) 云端id
+                + cmdAlias  (string) 命令的名字
+                + cmdCode  (string) 命令的Code
+                + cmdName  (string) 命令的名字
+                + created  (string) 
+                + creator  (int) 
+                + enabled  (int) 
+                + flag  (int) 云端id
+                + forbidden  (int) 是否禁用
+                + id  (int) 云端id
+                + modified  (string) 
+                + modifier  (int) 
+                + ydrivecmdId  (int) 驱动cmd的ID
+                + yequipmentbtngroupId  (int) 设备组ID
+            + created (string) 
+            + creator (int) 
+            + enabled (int) 
+            + flag (int) 
+            + equipmentBtnGroups
+                +
+            + gatewayGid (int) 网关id
+            + groupAndGroup (string)  这个是编组，不同的编组默认使用逗号隔开。（目前只支持2个组编组，同时出发的第二个组才触发命令）
+            + groupName (string) 组名
+            + groupNameAlias (string)   组别称
+            + groupType (int) 1 开关组 2 输入组 3 输出组 4 预设组 5编组组
+            + id (int)  自增主键id
+            + modified (string)
+            + modifier (int)  
          + portTypes 
-            + 
-            + 
-            + 
-            + 
-            + 
+            + builtIn (int)
+            + cloudCid (int)  云端id
+            + created (string)
+            + creator (int)
+            + defaultValue (string) 默认值  如果没有配置就是使用这个默认值，减少配置。
+            + description (string) 描述
+            + enabled (int)
+            + flag (int)
+            + gatewayGid (int) 网关id用于数据同步
+            + id (int) 自增主键ID
+            + modified (string)
+            + modifier (int)
+            + parentIdPorttype (int) 如果是本身就是父ID，则为0
+            + probableValueList (string) 返回值使用英文（英文可以避免乱码），字符串用逗号隔开  on,off,on-off,等等
+            + typeName (string) 端口类型名/属性名 类型名字：串口
+            属性名：属性名比如波特率
+            + valueType (int)  0 字符串类型 1 整数型 2 FLOAT型 等多种类型，可以写成枚举类放到代码中。
+        + driveReadtypes
+            + decimalPlaces (int)
+            + cloudCid (int)  云端id
+            + created (string)
+            + creator (int)
+            + ifLog (int)  1 加入日志  0 不加入日志
+            + multiply (int) 数据矫正  相乘
+            + enabled (int)
+            + flag (int)
+            + gatewayGid (int) 网关id用于数据同步
+            + id (int) 自增主键ID
+            + modified (string)
+            + modifier (int)
+            + plus (float) 数据矫正 相加或相减
+            + readTypeAlias (string)  
+            + unitName (string) 单位名称
+            + ydriveId (int) 驱动ID
+            + yreadtypeId (int) 读数类型ID
+      
+     
         + model （string） 设备品牌
         + primaryCategoryName （string） 一级分类名
         + secondCategoryName （string）二级分类名

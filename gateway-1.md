@@ -4520,7 +4520,7 @@ https://github.com/liukai007/avic/edit/master/gateway-1.md
     + powerConsumptionHb (double) 能耗环比
     + totalWorkPowerConsumption (double)  总工作能耗
     + totalRestPowerConsumption (double)   总非工能耗
-    + durationHb （double）环比
+    + powerConsumptionHb （double）环比
     + logUsedTimesElectricList
         + id （long）id
         + created （date） 创建时间

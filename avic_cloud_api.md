@@ -60,6 +60,15 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
     + 协作空间列表
 + 2020年01月18日
     + Email配置添加
++ 2020年01月20日
+    + 云端用户登录
+    + 云端用户退出登录
+    + 云端用户增加
+    + 云端用户禁用
+    + 云端用户更新
+    + 云端用户详情
+    + 云端用户列表
+    + 云端当前用户
     
 ### 驱动列表 [GET] /drive
 + Description
@@ -3397,5 +3406,431 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
           "data": {
             "id": 7,
             "type": "emailSmtpConfig"
+          }
+        }
+
+
+## 云端用户管理
++ Data
+    + id (long)  - ID
+    + userName (string)  - 用户名
+    + passWord  (string)  - 密码
+    + headPortrait  (string) - 头像
+    + organizationId   (long) -机构ID
+    + company (string) - 公司
+    + department  (string) - 部门
+    + contactNumber (string) - 联系电话
+    + mailbox  (string) - 邮件地址
+    + organizationId   (long) - 机构ID 
+    + roleCloudIds (List<long>) - 角色ID组（里面存放Long型）
+    + roleClouds (List) - 角色对象内容
+        +  id  (long)  -角色ID
+        +  roleName  (string) - 角色名字
+        +  roleDescription (string) - 角色描述
+        +  organizationId   (long) - 机构ID 
+        +  permissionCloudIds (list<Long>) - 权限ID组
+        +  assetIds (Map) - 存放一个map (map存放了角色权限资源)
+            + 0 (key值 设备资产) value类型为
+            + 1 (key值 机构) value类型为
+            + 2 (key值 楼宇) value类型为
+            + 3 (key值 楼层) value类型为
+            + 4 (key值 协作空间) value类型为
+            + 5 (key值 API权限)  value类型为
+            + 6 (key值 页面权限) value类型为
+        +  organizations  --暂时无用
+        +  buildings  --暂时无用
+        +  floors  --暂时无用
+        +  collaborationSpaces --暂时无用
+        +  equipments --暂时无用
+        +  pagePermissions --暂时无用
+        +  apiPermissions --暂时无用
+    + enabled (int)  - 使能  0禁止 1启用
+    + creator (long) - 创建人
+    + modifier (long) - 修改人
+    + created (date) - 创建时间
+    + modified (date) - 修改时间
+
+### 云端用户登录 [POST]  /usercloud/login
++ Description
+    + Author Liukai
+    + 在headers中增加一个key ,key为authorization，value为下面data里面的数据。
++ Request (application/json)
+
+        {
+          "data": {
+            "passWord": "lk123456",
+            "userName": "lk"
+          }
+        }
+
++ Response 200
+
+        {
+          "data": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MTExMjk3NDMsInVzZXJJZCI6ImxrIn0.zyOrpAcq8x1vYyWHMfcjnFnKrhDDHHO320s46Xu524k"
+        }
+
++ Response 400
+        
+        {
+          "errors": [
+            {
+              "status": "400",
+              "title": "Bad Request",
+              "detail": "用户被禁用"
+            }
+          ]
+        }
+
++ Response 403
+
+        {
+          "errors": [
+            {
+              "status": "403",
+              "title": "Forbidden",
+              "detail": "用户名或密码错误！"
+            }
+          ]
+        }
+
+### 云端用户退出登录 [POST] /usercloud/logout
++ Description
+    + Author Liukai
+    + 携带header中的authorization
++ Response 200
+
+
+### 云端用户增加 [POST] /usercloud
++ Description
+    + Author Liukai
++ Request (application/json)
+    
+        {
+          "data": {
+            "id": 18,
+            "userName": "cy",
+            "passWord":"cy123456",
+            "headPortrait": "headPortraitString",
+            "company": "家人公司",
+            "department": "IIT",
+            "contactNumber": "13126122398",
+            "mailbox": "85077@qq.com",
+            "roleCloudIds": [
+              1,
+              14
+            ]
+          }
+        }        
+        
++ Response 201
+
+        {
+          "data": {
+            "id": 18,
+            "type": "usercloud"
+          }
+        }
+
++ Response 400
+    
+
+        {
+          "errors": [
+            {
+              "status": "400",
+              "title": "Bad Request",
+              "detail": "请登录,再新增用户."
+            }
+          ]
+        }
+    
+        {
+          "errors": [
+            {
+              "status": "400",
+              "code": "手机/电话号码格式不正确",
+              "title": "Bad Request",
+              "detail": "手机/电话号码格式不正确",
+              "source": {
+                "pointer": "UserCloud -> contactNumber"
+              }
+            }
+          ]
+        }
+
+###  云端用户禁用  [DELETE] /usercloud/{id}
++ Description
+    + Author Liukai
++ Parameters
+    + id (long) - id 
++ Response 204
++ Response 400
+
+### 云端用户更新 [PATCH] /usercloud/{id}
++ Description
+    + Author Liukai
++ Parameters
+    + id (long) - id 
++ Request (application/json)
+    
+        {
+        	"data": {
+        		"userName": "cy1",
+        		"headPortrait": "headPortraitString",
+        		"company": "家人公司",
+        		"department": "IIT",
+        		"contactNumber": "13126122398",
+        		"mailbox": "85077@qq.com",
+        		"organizationId": 1,
+        		"roleCloudIds": [
+        			1,
+        			14
+        		]
+        	}
+        }
+
++ Response 200
+
++ Response 400
+    
+        {
+          "errors": [
+            {
+              "status": "400",
+              "code": "手机/电话号码格式不正确",
+              "title": "Bad Request",
+              "detail": "手机/电话号码格式不正确",
+              "source": {
+                "pointer": "UserCloud -> contactNumber"
+              }
+            }
+          ]
+        }
+
+
+### 云端用户详情 [GET] /usercloud/{id}
++ Description
+    + Author Liukai
++ Parameters
+    + id (long) - id 
++ Response 200
+
+        {
+          "data": {
+            "id": 18,
+            "userName": "cy1",
+            "headPortrait": "headPortraitString",
+            "company": "家人公司",
+            "department": "IIT",
+            "contactNumber": "13126122398",
+            "mailbox": "85077@qq.com",
+            "organizationId": 1,
+            "roleCloudIds": [
+              1,
+              14
+            ],
+            "roleClouds": [
+              {
+                "id": 1,
+                "roleName": "SUPER_ADMIN",
+                "permissionCloudIds": [],
+                "assetIds": {},
+                "organizations": [],
+                "buildings": [],
+                "floors": [],
+                "collaborationSpaces": [],
+                "equipments": [],
+                "pagePermissions": [],
+                "apiPermissions": {}
+              },
+              {
+                "id": 14,
+                "roleName": "拼多多管理员",
+                "permissionCloudIds": [],
+                "assetIds": {},
+                "organizations": [],
+                "buildings": [],
+                "floors": [],
+                "collaborationSpaces": [],
+                "equipments": [],
+                "pagePermissions": [],
+                "apiPermissions": {}
+              }
+            ]
+          }
+        }
+
+### 云端用户列表 [GET] /usercloud
++ Description
+    + Author Liukai
++ Parameters
+    + page[number] (int)  -页码
+    + page[size] (int)  -条数
+    + sort  (string) -排序 例如 sort=displayOrd1er,-modified
+    + filter[userName:like] (string) -全名 例如 filter[userName:like]=%sdff%
+
++ Request (application/json)
++ Response 200
+    
+        {
+          "meta": {
+            "totalPages": 2,
+            "totalElements": 14,
+            "size": 10,
+            "number": 1,
+            "numberOfElements": 10,
+            "first": true,
+            "last": false,
+            "sort": null
+          },
+          "links": {
+            "self": "/usercloud?page[number]=1&page[size]=10",
+            "first": "/usercloud?page[number]=1&page[size]=10",
+            "next": "/usercloud?page[number]=2&page[size]=10",
+            "last": "/usercloud?page[number]=2&page[size]=10"
+          },
+          "data": [
+            {
+              "id": 1,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2021-01-04 18:40:38",
+              "modified": "2021-01-15 18:38:41",
+              "userName": "admin",
+              "headPortrait": "$2a$04$u7s5wq8J7US4bQLI3bizzOnSvOAs7epeMOwHfRd8BgmoLPx5sdwDe",
+              "company": "budee",
+              "department": "It",
+              "contactNumber": "13126822398",
+              "mailbox": "8507@qq.com",
+              "organizationId": 0
+            },
+            {
+              "id": 5,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2021-01-14 18:04:26",
+              "modified": "2021-01-15 18:38:41",
+              "userName": "628a94cb-aec8-4ee5-9dce-a20024cdc326",
+              "organizationId": 10
+            },
+            {
+              "id": 7,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2021-01-14 18:37:14",
+              "modified": "2021-01-15 18:38:41",
+              "userName": "d314c821-df0c-4c4f-8c70-69ab1e008168",
+              "organizationId": 17
+            },
+            {
+              "id": 8,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2021-01-15 09:49:11",
+              "modified": "2021-01-15 18:38:41",
+              "userName": "b6cff098-1dce-415d-a55f-97af0f110bc4",
+              "organizationId": 18
+            },
+            {
+              "id": 9,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2021-01-15 09:51:06",
+              "modified": "2021-01-15 18:38:41",
+              "userName": "be55a3ef-91c1-478a-b7d6-dddefb8bb268",
+              "organizationId": 19
+            },
+            {
+              "id": 10,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2021-01-15 09:52:55",
+              "modified": "2021-01-15 18:38:41",
+              "userName": "b7084b06-b1cb-4364-877e-83b915ae7495",
+              "organizationId": 20
+            },
+            {
+              "id": 11,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2021-01-15 09:54:10",
+              "modified": "2021-01-15 18:38:41",
+              "userName": "6d62a942-7c14-4e94-9800-1ab9c84643c7",
+              "organizationId": 21
+            },
+            {
+              "id": 12,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2021-01-15 11:38:38",
+              "modified": "2021-01-15 18:38:41",
+              "userName": "3e2288da-3117-48d4-a2eb-87cc6e5fab04",
+              "organizationId": 22
+            },
+            {
+              "id": 13,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2021-01-15 11:42:07",
+              "modified": "2021-01-15 18:38:41",
+              "userName": "f289d8fd-b1c1-48d0-b180-071175379bb4",
+              "organizationId": 23
+            },
+            {
+              "id": 14,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2021-01-18 14:45:29",
+              "modified": "2021-01-18 14:45:29",
+              "userName": "91c4e7a9-ef7a-41a2-ab2f-4b5859f40dfd",
+              "organizationId": 24
+            }
+          ]
+        }
+
+### 云端当前用户 [GET] /usercloud/currentUserInfo
++ Description
+    + Author Liukai
++ Request (application/json)
++ Response 200
+
+        {
+          "data": {
+            "id": 1,
+            "userName": "admin",
+            "headPortrait": "$2a$04$u7s5wq8J7US4bQLI3bizzOnSvOAs7epeMOwHfRd8BgmoLPx5sdwDe",
+            "company": "budee",
+            "department": "It",
+            "contactNumber": "13126822398",
+            "mailbox": "8507@qq.com",
+            "organizationId": 0,
+            "roleCloudIds": [
+              1
+            ],
+            "roleClouds": [
+              {
+                "id": 1,
+                "roleName": "SUPER_ADMIN",
+                "permissionCloudIds": [],
+                "assetIds": {},
+                "organizations": [],
+                "buildings": [],
+                "floors": [],
+                "collaborationSpaces": [],
+                "equipments": [],
+                "pagePermissions": [],
+                "apiPermissions": {}
+              }
+            ]
           }
         }

@@ -73,6 +73,7 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
     + 设备开合统计
     + 用户人数统计
     + Email 发送
+    + 设备日志列表
     
 ### 驱动列表 [GET] /drive
 + Description
@@ -3910,4 +3911,111 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
                   "detail": "Mail server connection failed; nested exception is com.sun.mail.util.MailConnectException: Couldn't connect to host, port: iotadmin001@163.com, 0; timeout -1;\n  nested exception is:\n\tjava.net.UnknownHostException: iotadmin001@163.com. Failed messages: com.sun.mail.util.MailConnectException: Couldn't connect to host, port: iotadmin001@163.com, 0; timeout -1;\n  nested exception is:\n\tjava.net.UnknownHostException: iotadmin001@163.com"
                 }
               ]
+        }
+
+
+### 设备日志列表 [GET] /gatewayinfo
++ Description
+
++ Parameters
+    + data
+        + authorization (string)  令牌
+        + dateMaxStr (string) 结束事件
+        + page[number] （int）页码
+        + page[size] （int）条数
+        + sort （Array[string]） 排序
+        + dateMinStr （string）开始事件
+        + eventContent （string）事件内容
+        + eventResult （int）1执行成功，0执行失败'
+        + filter[equipmentId] （long）设备id
+        + filter[logLevel] （int）日志级别 0:错误 1:警告 2:信息 3:调试
+        + filter[userId] （long）用户id
+        + gatewayId （long）网关id
+        
++ Request (application/json)
+
++ ReturnData
+    + id （long） 端口类型id
+    + enabled （int）是否启用
+    + creator （long）创建人
+    + modifier （long）修改人
+    + gatewayGid （long）本地驱动id
+    + logLevel （int）日志级别   0:错误       1:警告    2:信息    3:调试
+    + operateType （int） 0 常规操作 1是场景操作 2是计划任务
+    + operateId （long）实际操作id就是场景日志的id或者计划任务的ID
+    + eventContent （string） 事件内容
+    + eventResult （int）1执行成功，0执行失败
+    + malfunctionTimes (int) 故障次数
+    + analyzed （int） 是否被统计 0未被分析，1已经被分析
+    + readed (int) 0未读，1已读
+    + upload （int）0未上传，1已经上传
+    + gatewayName （string）网关名
+    + userName （string）用户名称
+    + equipmentModel （string）型号
+    + equipmentName （string）设备名称
+    + yequipmentId （long）设备id
+        
++ Response 200
+    
+        {
+          "data": [
+            {
+              "id": 1,
+              "enabled": 1,
+              "creator": 1,
+              "modifier": 0,
+              "created": "2021-01-20 18:02:25",
+              "modified": "2021-01-20 18:02:25",
+              "gatewayGid": 83968,
+              "flag": 0,
+              "logLevel": 1,
+              "operateType": 0,
+              "operateId": 0,
+              "eventContent": "没有电量设备，可以进行电量统计",
+              "eventResult": 0,
+              "malfunctionTimes": 0,
+              "analyzed": 0,
+              "readed": 1,
+              "upload": 0,
+              "gatewayName": "测试网关",
+              "userName": "用户1",
+              "equipmentModel": "sw010",
+              "equipmentName": "中控",
+              "yequipmentId": 136
+            },
+            {
+              "id": 2,
+              "enabled": 1,
+              "creator": 1,
+              "modifier": 0,
+              "created": "2021-01-20 18:02:28",
+              "modified": "2021-01-20 18:02:28",
+              "gatewayGid": 83969,
+              "flag": 0,
+              "logLevel": 1,
+              "operateType": 0,
+              "operateId": 0,
+              "eventContent": "没有电量设备，可以进行电量统计",
+              "eventResult": 0,
+              "malfunctionTimes": 0,
+              "analyzed": 0,
+              "readed": 1,
+              "upload": 0,
+              "gatewayName": "测试网关",
+              "userName": "用户1",
+              "equipmentModel": "sw010",
+              "equipmentName": "中控",
+              "yequipmentId": 136
+            }
+          ]
+        }
++ Response 400
+    
+        {
+          "errors": [
+            {
+              "status": "400",
+              "title": "Bad Request"
+            }
+          ]
         }

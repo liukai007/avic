@@ -69,6 +69,10 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
     + 云端用户详情
     + 云端用户列表
     + 云端当前用户
++ 2020年01月21日
+    + 设备开合统计
+    + 用户人数统计
+    + Email 发送
     
 ### 驱动列表 [GET] /drive
 + Description
@@ -1106,7 +1110,7 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
         + ybrandId （int）  设备品牌id
         + ypduId （int）设备pdu的id
 
-### 设备保养列表 [GET] /equipment/equipmentAssetOrMonitorOrMaintainOrLife
+### 设备保养列表 [GET] /equipment/equipmenmaintain
 
 + Description
 
@@ -1116,10 +1120,9 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
         + filter[useYear] （int）使用年限
         + filter[maintainStart] (string)  开始保养日期,日期，格式：yyyy-MM-dd
         + filter[maintainEnd] (long)   结束保养日期,日期，格式：yyyy-MM-dd
-        + include (Array[string])
-        + page[number] （int）页码
+        + page[page] （int）页码
         + page[size] （int）条数
-        + sort （Array[string]） 排序
+      
         
 + Request (application/json)
 
@@ -3833,4 +3836,78 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
               }
             ]
           }
+        }
+        
+        
+### 设备开合统计 [GET]/logEquipmentMalfunction/equipmentopenclosestatistics
+
++ Description
+    + Author lyf
++ Data
++ Request (application/json)
+   
++ ReponseData
+     + logEquipmentMalfunctionList
+        + useTimes （long）使用次数
+        + malfunctionTimes （long） 故障次数
+        + duration （double） 使用时长
+        + spaceName (string ) 协作空间名称
+        + categoryId (long) 分类id
+        + equipmentModel （string）设备型号
+        + categoryName （string）分类名称
+        + anotherName (string) 设备别名
+        + usageRate （double） 使用率
+        + yequipmentId （long）设备id
++ Response 200
+
+        {
+              "data": {
+                "logEquipmentTimesMalfunctiontimesList": null
+              }
+        }
+
+### 用户人数统计 [GET]/usercloud/usercountStatistics
+
++ Description
+    + Author lyf
++ Data
++ Request (application/json)
+   
++ ReponseData
+     + userCount （int） 用人数
+     + lastLoginTime (string) 上次登录时间
+       
++ Response 200
+
+        {
+          "data": {
+                "userCount": 3,
+                "lastLoginTime": "2021-01-20 20:15:04"
+        }
+        }
+        
+### Email发送 [POST]/emailSmtpConfig/sendmaill
+
++ Description
+    + Author lyf
++ Data
++ Request (application/json)
+   
+    + mailContent （string）发送的邮箱内容
+    + receiveMail （string） 发送的目的邮箱地址
+
++ Response 201
+
+        "邮件发送成功'"
+
++ Response 400
+
+        {
+              "errors": [
+                {
+                  "status": "400",
+                  "title": "Bad Request",
+                  "detail": "Mail server connection failed; nested exception is com.sun.mail.util.MailConnectException: Couldn't connect to host, port: iotadmin001@163.com, 0; timeout -1;\n  nested exception is:\n\tjava.net.UnknownHostException: iotadmin001@163.com. Failed messages: com.sun.mail.util.MailConnectException: Couldn't connect to host, port: iotadmin001@163.com, 0; timeout -1;\n  nested exception is:\n\tjava.net.UnknownHostException: iotadmin001@163.com"
+                }
+              ]
         }

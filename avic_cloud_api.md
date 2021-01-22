@@ -74,6 +74,7 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
     + 用户人数统计
     + Email 发送
     + 设备日志列表
+    + 系统日志列表
     
 ### 驱动列表 [GET] /drive
 + Description
@@ -3914,17 +3915,17 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
         }
 
 
-### 设备日志列表 [GET] /gatewayinfo
+### 设备日志列表 [GET] /logEquipment
 + Description
 
 + Parameters
     + data
         + authorization (string)  令牌
-        + dateMaxStr (string) 结束事件
+        + dateMaxStr (string) 结束时间
         + page[number] （int）页码
         + page[size] （int）条数
         + sort （Array[string]） 排序
-        + dateMinStr （string）开始事件
+        + dateMinStr （string）开始时间
         + eventContent （string）事件内容
         + eventResult （int）1执行成功，0执行失败'
         + filter[equipmentId] （long）设备id
@@ -4006,6 +4007,163 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
               "equipmentModel": "sw010",
               "equipmentName": "中控",
               "yequipmentId": 136
+            }
+          ]
+        }
++ Response 400
+    
+        {
+          "errors": [
+            {
+              "status": "400",
+              "title": "Bad Request"
+            }
+          ]
+        }
+
+
+### 系统日志列表 [GET] /logSystem
++ Description
+
++ Parameters
+    + data
+        + authorization (string)  令牌
+        + dateMaxStr (string) 结束时间
+        + page[number] （int）页码
+        + page[size] （int）条数
+        + sort （Array[string]） 排序
+        + dateMinStr （string）开始时间
+        + eventContent （string）事件内容
+        + filter[userId] （long）用户id
+        
++ Request (application/json)
+
++ ReturnData
+    + id （long） 端口类型id
+    + enabled （int）是否启用
+    + creator （long）创建人
+    + modifier （long）修改人
+    + eventContent （string） 事件内容
+    + userName （string）用户名称
+    + yequipmentIdGateway （long）中控设备ID
+        
++ Response 200
+    
+        {
+          "data": [
+            {
+              "id": 1036,
+              "enabled": 1,
+              "creator": 1,
+              "created": "2020-12-01 19:41:05",
+              "eventContent": "插入日志",
+              "userName": "用户1",
+              "yequipmentIdGateway": 0
+            },
+            {
+              "id": 1037,
+              "enabled": 1,
+              "creator": 1,
+              "created": "2020-12-01 19:43:00",
+              "eventContent": "插入日志",
+              "userName": "用户1",
+              "yequipmentIdGateway": 0
+            }
+            ]
+        }
++ Response 400
+    
+        {
+          "errors": [
+            {
+              "status": "400",
+              "title": "Bad Request"
+            }
+          ]
+        }
+
+
+### 空间能耗排序 [GET] /logUsedTimesElectric
++ Description
+
++ Parameters
+    + data
+        + authorization (string)  令牌
+        + dateMaxStr (string) 结束时间
+        + page[number] （int）页码
+        + page[size] （int）条数
+        + sort （Array[string]） 排序
+        + dateMinStr （string）开始时间
+        
++ Request (application/json)
+
++ ReturnData
+    + id （long） 端口类型id
+    + enabled （int）是否启用
+    + creator （long）创建人
+    + modifier （long）修改人
+    + gatewayGid （string） 事件内容
+    + gatewayName （string）用户名称
+    + cloudAddress （long）中控设备ID
+    + collaborationSpace
+    + realLocation
+    + serviceConfReg
+    + serviceCoreData
+    + serviceMetadata
+    + serviceCommand
+    + conferenceReservationStatistics
+    + specializedAssetId
+    + activate
+    + eneryValueSum
+    + times
+    + yequipmentId
+        
++ Response 200
+    
+        {
+          "data": [
+            {
+              "id": 16,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2021-01-21 14:22:07",
+              "modified": "2021-01-21 19:23:19",
+              "gatewayGid": 2,
+              "flag": 0,
+              "gatewayName": "中会网关1",
+              "cloudAddress": "",
+              "collaborationSpace": "",
+              "realLocation": "",
+              "serviceConfReg": 0,
+              "serviceCoreData": 0,
+              "serviceMetadata": 0,
+              "serviceCommand": 0,
+              "conferenceReservationStatistics": 0,
+              "specializedAssetId": 0,
+              "activate": 0,
+              "eneryValueSum": 0,
+              "times": 0
+            },
+            {
+              "id": 17,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "modified": "2021-01-21 15:28:30",
+              "gatewayGid": 3,
+              "onlyCode": "YzhjOWNmMmEyMzMxNGU0M2M4OWE3OTMxOWRlZTIyYWU=",
+              "gatewayName": "测试网关",
+              "serviceConfReg": 0,
+              "serviceCoreData": 0,
+              "serviceMetadata": 0,
+              "serviceCommand": 0,
+              "conferenceReservationStatistics": 0,
+              "specializedAssetId": 0,
+              "activate": 0,
+              "eneryValueSum": 0,
+              "times": 0,
+              "yequipmentId": 132
             }
           ]
         }

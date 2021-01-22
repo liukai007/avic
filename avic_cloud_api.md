@@ -75,6 +75,7 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
     + Email 发送
     + 设备日志列表
     + 系统日志列表
+    + 设备保养个数
     
 ### 驱动列表 [GET] /drive
 + Description
@@ -4177,3 +4178,36 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
             }
           ]
         }
+
+### 设备保养个数统计 [get]/equipment/equipmentmaintenancecount
+
++ Description
+    + Author lyf
++ Data
++ Request (application/json)
+   
+ 
++ ReponseData
+    + runningCount 运行个数
+    + offCount 关闭个数
+    + malfunctionCount 故障数
+    + offLineCount 离线个数
+    + equipmentCount 设备总数
+    + warnCount 报警数
+    + maintainCount 设备保养个数
++ Response 201
+
+         
+        {
+          "data": {
+                    "runningCount": 3,
+                    "offCount": "",
+                    "malfunctionCount": 3,
+                    "offLineCount":0
+                    "equipmentCount": 3,
+                    "warnCount":0 ,
+                    "maintainCount": 5
+                }
+        }
+
++ Response 400

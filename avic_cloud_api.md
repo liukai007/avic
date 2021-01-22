@@ -294,7 +294,7 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
 + Request (application/json)
 
 + ReturnData
-    + id （long） 端口类型id
+     + id （long） 端口类型id
     + enabled （int）是否启用
     + creator （long）创建人
     + modifier （long）修改人
@@ -303,10 +303,11 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
     + ipAddress （string） 网关ip地址
     + gatewayName （string）网关名称
     + organizationName （string） 机构名称
-    + runningStatus （int）1 网关运行状态
+    + runningStatus （int）1 网关运行状态 （运行状态：0关闭 1运行 2警告    3故障  4其他）
     + spaceName (int) 协作空间名称
     + activeStartTime （string） 网关激活时间
     + activeEndTime (string) 网关激活截止时间
+    + isSuccess （int） （是否授权成功 0不成功  1成功，默认是0，付钱完毕修改为1）
     + runTime （long）运行时长
     + yequipmentId
         

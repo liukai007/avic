@@ -4094,7 +4094,7 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
         + dateMaxStr (string) 结束时间
         + page[number] （int）页码
         + page[size] （int）条数
-        + sort （Array[string]） 排序
+        + sort （string） 排序 （正序 eneryValueSum 反序 -eneryValueSum）
         + dateMinStr （string）开始时间
         
 + Request (application/json)
@@ -4104,57 +4104,48 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
     + enabled （int）是否启用
     + creator （long）创建人
     + modifier （long）修改人
-    + gatewayGid （string） 事件内容
-    + gatewayName （string）用户名称
-    + cloudAddress （long）中控设备ID
-    + collaborationSpace
-    + realLocation
-    + serviceConfReg
-    + serviceCoreData
-    + serviceMetadata
-    + serviceCommand
-    + conferenceReservationStatistics
-    + specializedAssetId
-    + activate
-    + eneryValueSum
-    + times
-    + yequipmentId
+    + onlyCode （string） 序列号
+    + ipAddress （string）IP地址
+    + publicIpAddress （string）公网ip
+    + location （string）地理位置
+    + organizationName （string）机构
+    + collaborationSpace （string）协作空间
+    + cpuId （string）cpuid
+    + diskId （string）硬盘唯一码
+    + mainboardId （string）主板唯一号
+    + realLocation （string）实时位置
+    + versionNo （string）版本
+    + serviceConfReg （int）1正常 0异常
+    + serviceCoreData （int）1正常 0异常
+    + serviceMetadata （int）1正常 0异常
+    + serviceCommand （int）1正常 0异常
+    + runningStatus （int）运行状态 （1正常 0异常）
+    + environmentEquipmentIds （string）环境设备id
+    + holderEquipmentIds （string）占位器（判断会议室是否有人）
+    + energyEquipmentIds (string) 记录耗能设备的电量
+    + conferenceReservationStatistics （int）0不启用预约系统计数  1使用自带预约系统 2使用第三方预约系统计数
+    + specializedAssetId （long）
+    + activate （int）激活状态（1 激活 0未激活）
+    + eneryValueTb （double）能耗同步
+    + eneryValueHb (Double) 能耗环比
+    + eneryValueSum （double）使用能耗
+    + times （int）使用次数
+    + ranking （int）排名
+    +yequipmentId （long）设备id
         
 + Response 200
     
         {
           "data": [
             {
-              "id": 16,
-              "enabled": 1,
-              "creator": 0,
-              "modifier": 0,
-              "created": "2021-01-21 14:22:07",
-              "modified": "2021-01-21 19:23:19",
-              "gatewayGid": 2,
-              "flag": 0,
-              "gatewayName": "中会网关1",
-              "cloudAddress": "",
-              "collaborationSpace": "",
-              "realLocation": "",
-              "serviceConfReg": 0,
-              "serviceCoreData": 0,
-              "serviceMetadata": 0,
-              "serviceCommand": 0,
-              "conferenceReservationStatistics": 0,
-              "specializedAssetId": 0,
-              "activate": 0,
-              "eneryValueSum": 0,
-              "times": 0
-            },
-            {
               "id": 17,
               "enabled": 1,
               "creator": 0,
               "modifier": 0,
-              "modified": "2021-01-21 15:28:30",
-              "gatewayGid": 3,
-              "onlyCode": "YzhjOWNmMmEyMzMxNGU0M2M4OWE3OTMxOWRlZTIyYWU=",
+              "modified": "2021-01-22 14:46:30",
+              "gatewayGid": 2,
+              "onlyCode": "阿莎",
+              "ipAddress": "阿三哥",
               "gatewayName": "测试网关",
               "serviceConfReg": 0,
               "serviceCoreData": 0,
@@ -4165,7 +4156,48 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
               "activate": 0,
               "eneryValueSum": 0,
               "times": 0,
+              "ranking": 2,
               "yequipmentId": 132
+            },
+            {
+              "id": 16,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2021-01-21 14:22:07",
+              "modified": "2021-01-21 19:23:19",
+              "gatewayGid": 2,
+              "flag": 0,
+              "onlyCode": "YzhjOWNmMmEyMzMxNGU0M2M4OWE3OTMxOWRlZTIyYWU=",
+              "ipAddress": "127.0.0.1",
+              "publicIpAddress": "127.0.0.1",
+              "gatewayName": "中会网关1",
+              "cloudAddress": "127.0.0.1",
+              "location": "太平宝迪",
+              "organizationName": "太平宝迪",
+              "collaborationSpace": "太平宝迪",
+              "cpuId": "1",
+              "diskId": "2",
+              "mainboardId": "2",
+              "realLocation": "3",
+              "versionNo": "4",
+              "serviceConfReg": 4,
+              "serviceCoreData": 0,
+              "serviceMetadata": 0,
+              "serviceCommand": 0,
+              "runningStatus": 1,
+              "environmentEquipmentIds": "1",
+              "holderEquipmentIds": "1",
+              "energyEquipmentIds": "1",
+              "conferenceReservationStatistics": 1,
+              "specializedAssetId": 2,
+              "activate": 0,
+              "eneryValueTb": 277.78,
+              "eneryValueHb": 41.67,
+              "eneryValueSum": 34,
+              "times": 33,
+              "ranking": 1,
+              "yequipmentId": 136
             }
           ]
         }

@@ -288,7 +288,7 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
         + include (Array[string])
         + page[number] （int）页码
         + page[size] （int）条数
-        + sort （Array[string]） 排序
+        + sort string 排序   (运行时长（反序）：-runTime，正序：runTime) 网关注册时间（-activeStartTime，activeStartTime）
         
 + Request (application/json)
 

@@ -294,71 +294,30 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
 + Request (application/json)
 
 + ReturnData
-     + id （long） 端口类型id
-    + enabled （int）是否启用
-    + creator （long）创建人
-    + modifier （long）修改人
-    + gatewayGid （long）本地驱动id
+    + id （long） 端口类型id
     + onlyCode （long）网关sn码
-    + ipAddress （string） 网关ip地址
     + gatewayName （string）网关名称
-    + organizationName （string） 机构名称
     + runningStatus （int）1 网关运行状态 （运行状态：0关闭 1运行 2警告    3故障  4其他）
     + spaceName (int) 协作空间名称
     + activeStartTime （string） 网关激活时间
     + activeEndTime (string) 网关激活截止时间
     + isSuccess （int） （是否授权成功 0不成功  1成功，默认是0，付钱完毕修改为1）
     + runTime （long）运行时长
-    + yequipmentId
-        
+
+   
 + Response 200
     
         {
           "data": [
             {
-                  "id": 1,
-                  "enabled": 1,
-                  "creator": 0,
-                  "modifier": 0,
-                  "created": "2021-01-11 13:52:23",
-                  "modified": "2021-01-11 13:52:26",
-                  "gatewayGid": 1,
-                  "onlyCode": "YYYYEEEEE",
-                  "ipAddress": "192.168.1.1",
-                  "gatewayName": "中会议室网关",
-                  "organizationName": "太平宝迪科技责任有限公司",
-                  "serviceConfReg": 0,
-                  "serviceCoreData": 0,
-                  "serviceMetadata": 0,
-                  "serviceCommand": 0,
-                  "runningStatus": 1,
-                  "conferenceReservationStatistics": 0,
-                  "specializedAssetId": 0,
-                  "activate": 1,
-                  "spaceEntiy": {
-                    "id": 1,
-                    "enabled": 1,
-                    "creator": 0,
-                    "modifier": 0,
-                    "spaceName": "中会",
-                    "floorId": 1,
-                    "displayOrder": 100
-                  },
-                  "gatewayActiveTime": {
-                    "id": 2,
-                    "enabled": 1,
-                    "creator": 0,
-                    "modifier": 0,
-                    "created": "2020-12-30 16:06:21",
-                    "modified": "2021-01-14 14:22:10",
-                    "gatewayEquipmentId": 1,
-                    "activeStartTime": "2020-12-30T08:06:21.000+0000",
-                    "activeEndTime": "2021-01-30T08:06:21.000+0000",
-                    "expire": 0,
-                    "isSuccess": 0
-                  },
-                  "runTime": 744,
-                  "yequipmentId": 1
+             "gatewayName": "中会网关1",
+              "gatewaySn": "YzhjOWNmMmEyMzMxNGU0M2M4OWE3OTMxOWRlZTIyYWU=",
+              "spaceName": "测试空间1",
+              "runStatus": 0,
+              "runTime": 0,
+              "activeStartTime": "2021-01-22T08:54:49.000+0000",
+              "endTime": null,
+              "isSuccess": 1
             }
         
           ]

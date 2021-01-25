@@ -99,11 +99,11 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
 + Request (application/json)
 
 + ReturnData
-    + id （long） 端口类型id
+    + id （long）驱动id
     + enabled （int）是否启用
     + creator （long）创建人
     + modifier （long）修改人
-    + gatewayGid （long）本地驱动id
+    + gatewayGid （long）本地网关id(用于数据同步)
     + updateVersionId （long）更新版本id
     + equipmentName （string） 设备名称
     + model （string）型号

@@ -4419,7 +4419,7 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
         + buildingName (string) 楼宇名
     + floors (list<Floor>)
         + id (long) 楼层ID
-        + floorNum  (int)  楼层(第几次)
+        + floorNum  (int)  楼层(第几层)
     + collaborationSpaces (list<CollaborationSpace>)
         + id (long) -id
         + spaceName (string)  -协作空间名

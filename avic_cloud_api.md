@@ -3898,7 +3898,11 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
     + Author lyf
 + Data
 + Request (application/json)
-   
+    + emailServerAddress （string）邮箱地址
+    + emailAddress （string） 邮件服务地址
+    + smtpUsername （string）STMP用户名
+    + smtpPassword （string） STMP用密码
+    + smtpPort （int） STMP端口
     + mailContent （string）发送的邮箱内容
     + receiveMail （string） 发送的目的邮箱地址
 

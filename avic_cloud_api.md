@@ -87,6 +87,11 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
         + 云端角色修改
         + 云端角色详情
         + 云端角色列表
+    + 云端权限管理
+        + 权限列表
+        + 分组的api权限列表
+        + 当前用户的页面权限列表
+        + 权限组列表  
     
 ### 驱动列表 [GET] /drive
 + Description
@@ -4821,3 +4826,536 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
         }
     
 + Response 400
+
+## 云端权限管理
++ Data
+    + id (long)  - ID
+    + permissionType (int) -权限类型，0：api，1：页面
+    + permissionGroup (int)  -权限组 0：不需要分组，1：品牌，2：分类，3：分类命令，4：设备型号，5：设备资产，6：控制协议，7：机构，8：楼宇，9：楼层，10：协作空间，11：用户，12：角色，13：权限，14：系统日志，15：设备日志，16：邮箱配置，17：采集间隔配置，18：智慧场景  100：其他
+    + permissionName (string) -权限名
+    + permissionDescribe (string)  -权限描述
+    + url (string) -访问路径
+    + enabled (int)  - 使能  0禁止 1启用
+    + creator (long) - 创建人
+    + modifier (long) - 修改人
+    + created (date) - 创建时间
+    + modified (date) - 修改时间
+
+### 权限列表  [GET] /permissionCloud
++ Description
+    + Author Liukai
+    + 得到所有可见权限
++ Parameters
+    + page[number] (int)  -页码
+    + page[size] (int)  -条数
++ Response 200
+
+        {
+          "meta": {
+            "totalPages": 15,
+            "totalElements": 74,
+            "size": 5,
+            "number": 1,
+            "numberOfElements": 5,
+            "first": true,
+            "last": false,
+            "sort": null
+          },
+          "links": {
+            "self": "/permissionCloud?page[number]=1&page[size]=5",
+            "first": "/permissionCloud?page[number]=1&page[size]=5",
+            "next": "/permissionCloud?page[number]=2&page[size]=5",
+            "last": "/permissionCloud?page[number]=15&page[size]=5"
+          },
+          "data": [
+            {
+              "id": 3,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2020-04-16 10:23:47",
+              "modified": "2020-04-16 10:23:50",
+              "permissionType": 1,
+              "permissionGroup": 0,
+              "permissionName": "admin_log",
+              "permissionDescribe": "日志"
+            },
+            {
+              "id": 5,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2020-04-16 10:23:58",
+              "modified": "2020-04-16 10:24:00",
+              "permissionType": 1,
+              "permissionGroup": 0,
+              "permissionName": "admin_info_tips",
+              "permissionDescribe": "信息提示"
+            },
+            {
+              "id": 6,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2020-04-16 10:24:03",
+              "modified": "2020-04-16 10:24:06",
+              "permissionType": 1,
+              "permissionGroup": 0,
+              "permissionName": "admin_rbac",
+              "permissionDescribe": "权限管理"
+            },
+            {
+              "id": 7,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2020-11-06 11:13:24",
+              "modified": "2020-11-06 11:13:24",
+              "permissionType": 0,
+              "permissionGroup": 1,
+              "permissionName": "brand:list",
+              "permissionDescribe": "品牌列表"
+            },
+            {
+              "id": 8,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2020-11-06 11:13:24",
+              "modified": "2020-11-06 11:13:24",
+              "permissionType": 0,
+              "permissionGroup": 1,
+              "permissionName": "brand:details",
+              "permissionDescribe": "品牌详情"
+            }
+          ]
+        }
+
+### 分组的api权限列表 [GET] /permissionCloud/findApiPermissions
++ Description
+    + Author Liukai
++ Parameters
++ Response 200
+        
+        {
+          "data": {
+            "1": [
+              {
+                "id": 7,
+                "permissionType": 0,
+                "permissionGroup": 1,
+                "permissionName": "brand:list",
+                "permissionDescribe": "品牌列表"
+              },
+              {
+                "id": 8,
+                "permissionType": 0,
+                "permissionGroup": 1,
+                "permissionName": "brand:details",
+                "permissionDescribe": "品牌详情"
+              },
+              {
+                "id": 9,
+                "permissionType": 0,
+                "permissionGroup": 1,
+                "permissionName": "brand:add",
+                "permissionDescribe": "品牌添加"
+              },
+              {
+                "id": 10,
+                "permissionType": 0,
+                "permissionGroup": 1,
+                "permissionName": "brand:remove",
+                "permissionDescribe": "品牌删除"
+              },
+              
+              {
+                "id": 35,
+                "permissionType": 0,
+                "permissionGroup": 6,
+                "permissionName": "protocol:remove",
+                "permissionDescribe": "控制协议删除"
+              },
+              {
+                "id": 36,
+                "permissionType": 0,
+                "permissionGroup": 6,
+                "permissionName": "protocol:update",
+                "permissionDescribe": "控制协议修改"
+              }
+            ],
+            "7": [
+              {
+                "id": 57,
+                "permissionType": 0,
+                "permissionGroup": 7,
+                "permissionName": "user:list",
+                "permissionDescribe": "用户列表"
+              },
+              {
+                "id": 58,
+                "permissionType": 0,
+                "permissionGroup": 7,
+                "permissionName": "user:details",
+                "permissionDescribe": "用户详情"
+              },
+              {
+                "id": 59,
+                "permissionType": 0,
+                "permissionGroup": 7,
+                "permissionName": "user:add",
+                "permissionDescribe": "用户添加"
+              },
+              {
+                "id": 60,
+                "permissionType": 0,
+                "permissionGroup": 7,
+                "permissionName": "user:remove",
+                "permissionDescribe": "用户删除"
+              },
+              {
+                "id": 61,
+                "permissionType": 0,
+                "permissionGroup": 7,
+                "permissionName": "user:update",
+                "permissionDescribe": "用户修改"
+              }
+            ],
+            "8": [
+              {
+                "id": 62,
+                "permissionType": 0,
+                "permissionGroup": 8,
+                "permissionName": "role:list",
+                "permissionDescribe": "角色列表"
+              },
+              {
+                "id": 63,
+                "permissionType": 0,
+                "permissionGroup": 8,
+                "permissionName": "role:details",
+                "permissionDescribe": "角色详情"
+              },
+              {
+                "id": 64,
+                "permissionType": 0,
+                "permissionGroup": 8,
+                "permissionName": "role:add",
+                "permissionDescribe": "角色添加"
+              },
+              {
+                "id": 65,
+                "permissionType": 0,
+                "permissionGroup": 8,
+                "permissionName": "role:remove",
+                "permissionDescribe": "角色删除"
+              },
+              {
+                "id": 68,
+                "permissionType": 0,
+                "permissionGroup": 9,
+                "permissionName": "permission:groupapi:list",
+                "permissionDescribe": "分组api列表"
+              }
+            ],
+            "10": [
+              {
+                "id": 69,
+                "permissionType": 0,
+                "permissionGroup": 10,
+                "permissionName": "logsystem:list",
+                "permissionDescribe": "系统日志列表"
+              },
+              {
+                "id": 70,
+                "permissionType": 0,
+                "permissionGroup": 10,
+                "permissionName": "logsystem:export",
+                "permissionDescribe": "系统日志导出"
+              }
+            ],
+            "12": [
+              {
+                "id": 73,
+                "permissionType": 0,
+                "permissionGroup": 12,
+                "permissionName": "emailconfig:details",
+                "permissionDescribe": "邮件配置详情"
+              },
+              {
+                "id": 74,
+                "permissionType": 0,
+                "permissionGroup": 12,
+                "permissionName": "emailconfig:add",
+                "permissionDescribe": "邮件配置增加"
+              },
+              {
+                "id": 75,
+                "permissionType": 0,
+                "permissionGroup": 12,
+                "permissionName": "emailconfig:update",
+                "permissionDescribe": "邮件配置修改"
+              }
+            ],
+            "13": [
+              {
+                "id": 76,
+                "permissionType": 0,
+                "permissionGroup": 13,
+                "permissionName": "collectionintervalconfig:list",
+                "permissionDescribe": "采集间隔配置列表"
+              },
+              {
+                "id": 77,
+                "permissionType": 0,
+                "permissionGroup": 13,
+                "permissionName": "collectionintervalconfig:details",
+                "permissionDescribe": "采集间隔配置详情"
+              },
+              {
+                "id": 78,
+                "permissionType": 0,
+                "permissionGroup": 13,
+                "permissionName": "collectionintervalconfig:add",
+                "permissionDescribe": "采集间隔配置添加"
+              },
+              {
+                "id": 79,
+                "permissionType": 0,
+                "permissionGroup": 13,
+                "permissionName": "collectionintervalconfig:remove",
+                "permissionDescribe": "采集间隔配置删除"
+              },
+              {
+                "id": 80,
+                "permissionType": 0,
+                "permissionGroup": 13,
+                "permissionName": "collectionintervalconfig:update",
+                "permissionDescribe": "采集间隔配置修改"
+              }
+            ],
+            "14": [
+              {
+                "id": 82,
+                "permissionType": 0,
+                "permissionGroup": 14,
+                "permissionName": "intelligentScene:add",
+                "permissionDescribe": "智能场景添加"
+              },
+              {
+                "id": 83,
+                "permissionType": 0,
+                "permissionGroup": 14,
+                "permissionName": "intelligentScene:remove",
+                "permissionDescribe": "智能场景删除"
+              },
+              {
+                "id": 84,
+                "permissionType": 0,
+                "permissionGroup": 14,
+                "permissionName": "intelligentScene:update",
+                "permissionDescribe": "智能场景修改"
+              },
+              {
+                "id": 85,
+                "permissionType": 0,
+                "permissionGroup": 14,
+                "permissionName": "intelligentScene:details",
+                "permissionDescribe": "智能场景详情"
+              },
+              {
+                "id": 86,
+                "permissionType": 0,
+                "permissionGroup": 14,
+                "permissionName": "intelligentScene:list",
+                "permissionDescribe": "智能场景列表"
+              }
+            ],
+            "15": [
+              {
+                "id": 87,
+                "permissionType": 0,
+                "permissionGroup": 15,
+                "permissionName": "readtype:add",
+                "permissionDescribe": "读数类型添加"
+              },
+              {
+                "id": 88,
+                "permissionType": 0,
+                "permissionGroup": 15,
+                "permissionName": "readtype:remove",
+                "permissionDescribe": "读数类型删除"
+              }
+            ],
+            "16": [
+              {
+                "id": 92,
+                "permissionType": 0,
+                "permissionGroup": 16,
+                "permissionName": "videolink:details",
+                "permissionDescribe": "视频链接详情"
+              }
+            ],
+            "17": [
+              {
+                "id": 95,
+                "permissionType": 0,
+                "permissionGroup": 17,
+                "permissionName": "scheduledTask:update",
+                "permissionDescribe": "计划任务修改"
+              },
+              {
+                "id": 96,
+                "permissionType": 0,
+                "permissionGroup": 17,
+                "permissionName": "scheduledTask:list",
+                "permissionDescribe": "计划任务列表"
+              },
+              {
+                "id": 97,
+                "permissionType": 0,
+                "permissionGroup": 17,
+                "permissionName": "scheduledTask:details",
+                "permissionDescribe": "计划任务详情"
+              }
+            ],
+            "18": [],
+            "19": [],
+            "20": [],
+            "21": [],
+            "100": [
+              {
+                "id": 81,
+                "permissionType": 0,
+                "permissionGroup": 100,
+                "permissionName": "file:upload",
+                "permissionDescribe": "文件上传"
+              }
+            ]
+          }
+        }
+
+### 当前用户的页面权限列表 [GET] /permissionCloud/findPagePermissionsByCurrent
++ Description
+    + Author Liukai
++ Parameters
++ Response 200
+
+        {
+          "data": [
+            {
+              "id": 3,
+              "permissionName": "admin_log"
+            },
+            {
+              "id": 5,
+              "permissionName": "admin_info_tips"
+            },
+            {
+              "id": 6,
+              "permissionName": "admin_rbac"
+            }
+          ]
+        }
+
+### 权限组列表 [GET] /permissionCloud/findPermissionsGroup
++ Description
+    + Author Liukai
+    + 得到权限组名
++ Parameters
++ Response 200
+
+        {
+          "data": [
+            {
+              "id": 1,
+              "nameEn": "BRAND",
+              "nameCh": "品牌"
+            },
+            {
+              "id": 2,
+              "nameEn": "CATEGORY",
+              "nameCh": "分类"
+            },
+            {
+              "id": 3,
+              "nameEn": "CATEGORY_COMMAND",
+              "nameCh": "分类命令"
+            },
+            {
+              "id": 4,
+              "nameEn": "EQUIPMENT",
+              "nameCh": "设备型号"
+            },
+            {
+              "id": 5,
+              "nameEn": "EQUIPMENT_ASSET",
+              "nameCh": "设备资产"
+            },
+            {
+              "id": 6,
+              "nameEn": "CONTROL_PROTOCOL",
+              "nameCh": "控制协议"
+            },
+            {
+              "id": 7,
+              "nameEn": "USER",
+              "nameCh": "用户"
+            },
+            {
+              "id": 8,
+              "nameEn": "ROLE",
+              "nameCh": "角色"
+            },
+            {
+              "id": 9,
+              "nameEn": "PERMISSION",
+              "nameCh": "权限"
+            },
+            {
+              "id": 10,
+              "nameEn": "LOG_SYSTEM",
+              "nameCh": "系统日志"
+            },
+            {
+              "id": 11,
+              "nameEn": "LOG_EQUIPMENT",
+              "nameCh": "设备日志"
+            },
+            {
+              "id": 12,
+              "nameEn": "COLLECTION_INTERVAL_",
+              "nameCh": "邮箱配置"
+            },
+            {
+              "id": 13,
+              "nameEn": "EMAIL_CONFIG",
+              "nameCh": "采集间隔配置"
+            },
+            {
+              "id": 14,
+              "nameEn": "INTELLIGENTSCENE",
+              "nameCh": "智能场景"
+            },
+            {
+              "id": 15,
+              "nameEn": "READTYPE",
+              "nameCh": "读数类型"
+            },
+            {
+              "id": 16,
+              "nameEn": "VIDEOLINK",
+              "nameCh": "视频链接"
+            },
+            {
+              "id": 17,
+              "nameEn": "SCHEDULEDTASK",
+              "nameCh": "计划任务"
+            },
+            {
+              "id": 100,
+              "nameEn": "OTHER",
+              "nameCh": "其他"
+            }
+          ]
+        }

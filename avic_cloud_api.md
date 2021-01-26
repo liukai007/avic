@@ -80,6 +80,13 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
     + 设备保养个数
     + 空间能耗排行
     + 设备能耗排行
++ 2021年01月26日
+    + 云端角色管理
+        + 云端角色新增
+        + 云端角色删除
+        + 云端角色修改
+        + 云端角色详情
+        + 云端角色列表
     
 ### 驱动列表 [GET] /drive
 + Description
@@ -4372,3 +4379,445 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
             }
           ]
         }
+
+## 云端角色管理
++ Data
+    + id (long)  - ID
+    + roleName (string) - 角色名
+    + roleDescription (string) -角色描述
+    + organizationId (long)  -机构ID
+    + isAdmin  (int)  -是否是管理员 0 非管理员 1 超管 2租户管理员(系统生成) 
+    + permissionCloudIds (list<long>) -权限id的list
+    + assetIds (Map) - 存放一个map (map存放了角色权限资源)
+        + 0 (key值 设备资产) value类型为Set<String>
+            + 特殊值 
+                + CollaborationSpace_ID_Equipment_1 -协作空间ID下面所有的设备 (中间的ID是数字)
+                + CollaborationSpace_ID_Equipment_0  -协作空间ID下面没有一个设备 (中间的ID是数字)
+        + 1 (key值 机构) value类型为Set<String>
+            + 特殊值 
+                + Organization_ID_Organization_1 -机构ID下面所有子机构 (中间的ID是数字)
+                + Organization_ID_Organization_0 -机构ID下面没有一个机构 (中间的ID是数字)
+        + 2 (key值 楼宇) value类型为Set<String>
+            + 特殊值 
+                + Organization_ID_Building_1 -机构ID下面所有楼宇 (中间的ID是数字)
+                + Organization_ID_Building_0 -机构ID下面没有一个楼宇 (中间的ID是数字)
+        + 3 (key值 楼层) value类型为Set<String>
+            + 特殊值 
+                + Building_ID_Floor_1 -楼宇ID下面所有楼层 (中间的ID是数字)
+                + Building_ID_Floor_0 -楼宇ID下面没有一个楼层 (中间的ID是数字)
+        + 4 (key值 协作空间) value类型为Set<String>
+            + 特殊值 
+                + Floor_ID_CollaborationSpace_1 -楼层ID下面所有协作空间 (中间的ID是数字)
+                + Floor_ID_CollaborationSpace_0 -楼层ID下面没有一个协作空间 (中间的ID是数字)
+        + 5 (key值 API权限)  value类型为Set<String>
+        + 6 (key值 页面权限) value类型为Set<String>
+    + organizations (list<Organization>)
+        + id (long) -id 
+        + fullName (string) 机构全名
+    + buildings (list<Building>)
+        + id  (long) -id
+        + buildingName (string) 楼宇名
+    + floors (list<Floor>)
+        + id (long) 楼层ID
+        + floorNum  (int)  楼层(第几次)
+    + collaborationSpaces (list<CollaborationSpace>)
+        + id (long) -id
+        + spaceName (string)  -协作空间名
+    + equipments (list<Equipment>)
+        + id (long) -id
+        + equipmentName (string) 设备名字
+    + pagePermissions (list<>)
+        + id (long) -id
+        + permissionType (int) 权限类型，0：api，1：页面
+        + permissionGroup (int) 0：不需要分组
+        + permissionName (string)  权限名
+        + permissionDescribe (string) 权限描述
+    + apiPermissions (map<Integer,List<PermissionCloud>>)
+        + key值通过接口 （/permissionCloud/findPermissionsGroup） 进行匹配就可以了
+        + value值
+            + id (long)  -id
+            + permissionType (int) 权限类型，0：api，1：页面
+            + permissionGroup (int)  0：不需要分组，1：品牌，2：分类，3：分类命令，4：设备型号，5：设备资产，6：控制协议，7：机构，8：楼宇，9：楼层，10：协作空间，11：用户，12：角色，13：权限，14：系统日志，15：设备日志，16：邮箱配置，17：采集间隔配置，18：智慧场景  100：其他
+            + permissionName   (string) 权限名
+            + permissionDescribe (string) 权限描述
+    + enabled (int)  - 使能  0禁止 1启用
+    + creator (long) - 创建人
+    + modifier (long) - 修改人
+    + created (date) - 创建时间
+    + modified (date) - 修改时间
+
+### 云端角色新增  [POST] /rolecloud
++ Description
+    + Author Liukai
++ Request (application/json)
+    
+        {
+        	"data": {
+        		"roleName": "公牛空间管理员2",
+        		"roleDescription": "公牛空间管理员权限,有该机构的最大权限2",
+        		"organizationId": 30,
+        		"isAdmin": 0,
+        		"permissionCloudIds": [],
+        		"assetIds": {
+        			"0": [],
+        			"1": [
+        				"30"
+        			],
+        			"2": [
+        				"14",
+        				"15"
+        			],
+        			"3": [
+        				"25",
+        				"26",
+        				"27",
+        				"28"
+        			],
+        			"4": [
+        				"13",
+        				"14"
+        			],
+        			"5": [
+        				"12",
+        				"15"
+        			],
+        			"6": [
+        				"3",
+        				"5"
+        			]
+
+        		}
+        	}
+        }
+
++ Response 201
+    
+        {
+          "data": {
+            "id": 36,
+            "type": "rolecloud"
+          }
+        }
++ Response 400
+
+        {
+          "errors": [
+            {
+              "status": "400",
+              "title": "Bad Request",
+              "detail": "用户登录异常，请重新登录，然后再保存角色"
+            }
+          ]
+        }
+
+       {
+          "errors": [
+            {
+              "status": "400",
+              "title": "Bad Request",
+              "detail": "新角色中机构权限超过授权者的最大权限"
+            }
+          ]
+        }  
+
+### 云端角色删除 [DELETE] /rolecloud/{id}
++ Description
+    + Author Liukai
++ Parameters
+    + id (long) - id  
++ Request (application/json)
++ Response 204
+
+### 云端角色修改  [PATCH] /rolecloud/{id}
++ Description
+    + Author Liukai
++ Parameters
+    + id (long) - id   
++ Request (application/json)
+
+        {
+        	"data": {
+        		"roleName": "公牛空间管理员25",
+        		"roleDescription": "公牛空间管理员权限,有该机构的最大权限2",
+        		"organizationId": 30,
+        		"isAdmin": 0,
+        		"permissionCloudIds": [],
+        		"assetIds": {
+        			"0": [],
+        			"1": [
+        				"30"
+        			],
+        			"2": [
+        				"14",
+        				"15"
+        			],
+        			"3": [
+        				"25",
+        				"26",
+        				"27",
+        				"28"
+        			],
+        			"4": [
+        			]
+        		}
+        	}
+        }
++ Response 200
++ Response 400
+    
+        {
+          "errors": [
+            {
+              "status": "400",
+              "title": "Bad Request",
+              "detail": "角色中机构权限超过授权者的最大权限"
+            }
+          ]
+        }
+
+### 云端角色详情 [GET] /rolecloud/{id}
++ Description
+    + Author Liukai
++ Parameters
+    + id (long) - id   
++ Request (application/json)
++ Response 200
+
+        {
+          "data": {
+            "id": 38,
+            "enabled": 1,
+            "creator": 1,
+            "modifier": 1,
+            "created": "2021-01-26 14:32:15",
+            "modified": "2021-01-26 16:11:19",
+            "roleName": "公牛空间管理员34",
+            "roleDescription": "公牛空间管理员权限,有该机构的最大权限2",
+            "organizationId": 30,
+            "isAdmin": 0,
+            "permissionCloudIds": [],
+            "assetIds": {
+              "0": [
+                "3"
+              ],
+              "1": [
+                "30"
+              ],
+              "2": [
+                "14",
+                "15"
+              ],
+              "3": [
+                "25",
+                "26",
+                "27",
+                "28"
+              ],
+              "4": [
+                "13",
+                "14"
+              ]
+            },
+            "organizations": [
+              {
+                "id": 30,
+                "fullName": "公牛空间"
+              }
+            ],
+            "buildings": [
+              {
+                "id": 14,
+                "buildingName": "大楼1号"
+              },
+              {
+                "id": 15,
+                "buildingName": "大楼2号"
+              }
+            ],
+            "floors": [
+              {
+                "id": 25,
+                "floorNum": 12
+              },
+              {
+                "id": 26,
+                "floorNum": 11
+              },
+              {
+                "id": 27,
+                "floorNum": 11
+              },
+              {
+                "id": 28,
+                "floorNum": 12
+              }
+            ],
+            "collaborationSpaces": [
+              {
+                "id": 13,
+                "spaceName": "报告厅1"
+              },
+              {
+                "id": 14,
+                "spaceName": "报告厅2"
+              }
+            ],
+            "equipments": [
+              {
+                "id": 3,
+                "equipmentName": "七合一（勿删）"
+              }
+            ],
+            "pagePermissions": [
+              {
+                "id": 3,
+                "permissionType": 1,
+                "permissionGroup": 0,
+                "permissionName": "admin_log",
+                "permissionDescribe": "日志"
+              },
+              {
+                "id": 5,
+                "permissionType": 1,
+                "permissionGroup": 0,
+                "permissionName": "admin_info_tips",
+                "permissionDescribe": "信息提示"
+              }
+            ],
+            "apiPermissions": {
+              "1": [
+                {
+                  "id": 7,
+                  "permissionType": 0,
+                  "permissionGroup": 1,
+                  "permissionName": "brand:list",
+                  "permissionDescribe": "品牌列表"
+                },
+                {
+                  "id": 8,
+                  "permissionType": 0,
+                  "permissionGroup": 1,
+                  "permissionName": "brand:details",
+                  "permissionDescribe": "品牌详情"
+                },
+                {
+                  "id": 9,
+                  "permissionType": 0,
+                  "permissionGroup": 1,
+                  "permissionName": "brand:add",
+                  "permissionDescribe": "品牌添加"
+                }
+              ],
+              "2": [
+                {
+                  "id": 12,
+                  "permissionType": 0,
+                  "permissionGroup": 2,
+                  "permissionName": "category:list",
+                  "permissionDescribe": "分类列表"
+                },
+                {
+                  "id": 13,
+                  "permissionType": 0,
+                  "permissionGroup": 2,
+                  "permissionName": "category:details",
+                  "permissionDescribe": "分类详情"
+                }
+              ]
+            }
+          }
+        }
+    
++ Response 400
+
+### 云端角色列表  [GET]  /rolecloud
++ Description
+    + Author Liukai
++ Parameters
+    + page[number] (int)  -页码
+    + page[size] (int)  -条数
+    + sort  (string) -排序 例如 sort=-modified
+    + filter[roleName:like] (string) -全名 例如 filter[roleName:like]=%sdff%  
++ Response 200
+    
+        {
+          "meta": {
+            "totalPages": 3,
+            "totalElements": 13,
+            "size": 5,
+            "number": 1,
+            "numberOfElements": 5,
+            "first": true,
+            "last": false,
+            "sort": null
+          },
+          "links": {
+            "self": "/rolecloud?page[number]=1&page[size]=5",
+            "first": "/rolecloud?page[number]=1&page[size]=5",
+            "next": "/rolecloud?page[number]=2&page[size]=5",
+            "last": "/rolecloud?page[number]=3&page[size]=5"
+          },
+          "data": [
+            {
+              "id": 1,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2021-01-04 14:28:58",
+              "modified": "2021-01-04 14:29:00",
+              "roleName": "SUPER_ADMIN",
+              "roleDescription": "超级管理员，不可删除",
+              "organizationId": 0,
+              "isAdmin": 1
+            },
+            {
+              "id": 2,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2021-01-20 13:55:59",
+              "modified": "2021-01-20 13:56:01",
+              "roleName": "太平宝迪中会议室管理员",
+              "roleDescription": "太平宝迪中会议室管理员",
+              "organizationId": 1,
+              "isAdmin": 0
+            },
+            {
+              "id": 7,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2021-01-14 18:04:26",
+              "modified": "2021-01-14 18:04:26",
+              "roleName": "上海银十通科技有限公司管理员",
+              "organizationId": 10,
+              "isAdmin": 2
+            },
+            {
+              "id": 12,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2021-01-14 18:37:13",
+              "modified": "2021-01-14 18:37:13",
+              "roleName": "阿里巴巴管理员",
+              "roleDescription": "阿里巴巴管理员权限,有该机构的最大权限",
+              "organizationId": 17,
+              "isAdmin": 2
+            },
+            {
+              "id": 13,
+              "enabled": 1,
+              "creator": 0,
+              "modifier": 0,
+              "created": "2021-01-15 09:49:11",
+              "modified": "2021-01-15 09:49:11",
+              "roleName": "京东商城管理员",
+              "roleDescription": "京东商城管理员权限,有该机构的最大权限",
+              "organizationId": 18,
+              "isAdmin": 2
+            }
+          ]
+        }
+    
++ Response 400

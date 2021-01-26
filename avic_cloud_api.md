@@ -4124,7 +4124,7 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
         }
 
 
-### 空间能耗排序 [GET] /logUsedTimesElectric
+### 空间能耗排行 [GET] /logUsedTimesElectric
 + Description
 
 + Parameters
@@ -4170,7 +4170,7 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
     + eneryValueSum （double）使用能耗
     + times （int）使用次数
     + ranking （int）排名
-    +yequipmentId （long）设备id
+    + yequipmentId （long）设备id
         
 + Response 200
     

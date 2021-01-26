@@ -1161,6 +1161,7 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
         + maintainData (string)   保养日期
         + totalTime  (int) 累计运行总时长，单位小时 (每日四舍五入)
         + stateOfLife (int) 寿命状态(1 全新 2 良好 3 一般 4 可用 5 极好 6更换)
+        + thisMaintenanceDate (string) 本次保养时间
         + readable (int) 1 已读 0 未读
         + driveCmds 
             + associatedStatus  (int) 

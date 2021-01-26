@@ -9,6 +9,8 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
     + 网关列表
     + 网关注册
     + 网关删除
+    + 网关详情
+    + 网关编辑
     + 设备添加
     + 设备修改
     + 设备删除
@@ -377,7 +379,7 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
         }
 
  
-### 网关注册/新增 [POST] /spacegateway
+### 网关注册 [POST] /spacegateway
 + Parameters
     + data
         + filter[gatewayName] （string） 网关名称
@@ -394,6 +396,23 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
             "type": "drive"
           }
         }
+### 网关编辑 [PATCH] /spacegateway
++ Parameters
+    + Requestparams
+    
+        + filter[gatewayName] （string） 网关名称
+        + filter[gatewaySn] （string）网关SN码
+        + filter[spaceid] （string） 协作空间id
+       
++ Request (application/json)
+
++ Response 200
+
+        {
+          "data": {
+           
+          }
+        }
 
 ## 网关删除  [DELETE]  /gatewayinfo/{id}
 
@@ -403,6 +422,20 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
 + Request (application/json)
         
 + Response 204        
+
+### 网关详情 [Get] /gatewayinfo
++ Parameters
+   
+        
+       
++ Request (application/json)
+
++ Response 200
+
+
+
+   
++ Request (application/json)       
 
 
 ### 设备添加 [POST] /equipment

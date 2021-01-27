@@ -4319,10 +4319,12 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
     + voltage （double） 电压
     + current （double）电流
     + power （double）当前功率
-    + currentElectricValue （double）当前电表值
+    + currentElectricValue （double）能耗
     + analyzed （int）是否已经分析 0未分析  1分析
     + equipmentName （string）设备名
     + anotherName （string）别名
+    + model （string）型号
+    + gatewayName （string）网关名
     + currentElectricValueHb （double）环比
     + currentElectricValueTb （double）同比
     + yequipmentId （long）设备id
@@ -4339,21 +4341,6 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
               "number": 1,
               "logEnergyGeneralList": [
                 {
-                  "id": 10,
-                  "created": "2021-01-22 17:02:40",
-                  "gatewayGid": 1,
-                  "voltage": 48,
-                  "current": 9,
-                  "power": 2,
-                  "currentElectricValue": 4,
-                  "analyzed": 0,
-                  "equipmentName": "中会音箱",
-                  "anotherName": "中会音箱",
-                  "currentElectricValueHb": 300,
-                  "yequipmentId": 139,
-                  "ranking": 2
-                },
-                {
                   "id": 5,
                   "created": "2021-01-22 14:25:22",
                   "gatewayGid": 1,
@@ -4362,15 +4349,35 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
                   "power": 2,
                   "currentElectricValue": 9,
                   "analyzed": 0,
-                  "equipmentName": "中会音箱",
-                  "anotherName": "中会音箱",
+                  "equipmentName": "七合一环境传感器",
+                  "anotherName": "中会七合一",
+                  "model": "SM300D2MOD",
+                  "gatewayName": "测试中控",
                   "currentElectricValueHb": 350,
                   "currentElectricValueTb": 125,
-                  "yequipmentId": 138,
+                  "yequipmentId": 142,
                   "ranking": 1
+                },
+                {
+                  "id": 10,
+                  "created": "2021-01-22 17:02:40",
+                  "gatewayGid": 1,
+                  "voltage": 48,
+                  "current": 9,
+                  "power": 2,
+                  "currentElectricValue": 4,
+                  "analyzed": 0,
+                  "equipmentName": "七合一环境传感器",
+                  "anotherName": "修改",
+                  "model": "SM300D2MOD",
+                  "gatewayName": "测试中控",
+                  "currentElectricValueHb": 300,
+                  "yequipmentId": 143,
+                  "ranking": 2
                 }
               ],
-              "equipmentList": null
+              "equipmentList": null,
+              "gateInfoListDtoList": null
             }
           ]
         }

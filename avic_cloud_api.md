@@ -92,7 +92,14 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
         + 分组的api权限列表
         + 当前用户的页面权限列表
         + 权限组列表  
-    
++ 2021年02月02日
+    + 内部系统客户管理
+        + 内部系统客户新增
+        + 内部系统客户删除
+        + 内部系统客户修改
+        + 内部系统客户详情
+        + 内部系统客户列表
+        
 ### 驱动列表 [GET] /drive
 + Description
 
@@ -5363,6 +5370,154 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
               "id": 100,
               "nameEn": "OTHER",
               "nameCh": "其他"
+            }
+          ]
+        }
+
+## 内部系统客户管理
++ Data
+    + id (long)  - ID 
+    + customerName (string) 客户名称
+    + userName (string) 初始账户
+    + password (string) 初始密码
+    + created (date) - 创建时间
+    + modified (date) - 修改时间
+
+### 内部系统客户新增 [POST] /organization/addCustomer
++ Description
+    + Author Liukai
++ Request (application/json)
+
+        {
+          "data": {
+            "customerName": "山东黄金",
+            "userName": "sdhj",
+            "password":"admin123456"
+          }
+        }
+
++ Response 201
++ Response 400
+
+        {
+          "errors": [
+            {
+              "status": "400",
+              "title": "Bad Request",
+              "detail": "新增客户名称存在一样的，请修改"
+            }
+          ]
+        }
+        
+        {
+          "errors": [
+            {
+              "status": "400",
+              "code": "初始账户长度应为2-50",
+              "title": "Bad Request",
+              "detail": "初始账户长度应为2-50",
+              "source": {
+                "pointer": "CustomerDto -> userName"
+              }
+            }
+          ]
+        }
+    
+### 内部系统客户删除 [DELETE] /organization/deleteCustomer/{id}
++ Description
+    + Author Liukai
++ Parameters
+    + id (long) - id  
++ Response 204
+
+### 内部系统客户修改 [PATCH] /organization/updateCustomerDto/{id}
++ Description
+    + Author Liukai
++ Parameters
+    + id (long) - id
++ Request (application/json)
+    
+        {
+          "data": {
+            "customerName": "华尔街541",
+            "userName": "hrj541",
+            "password":"admin123456"
+          }
+        }
++ Response 200
++ Response 400
+
+### 内部系统客户详情 [GET] /organization/customer/{id}
++ Description
+    + Author Liukai
++ Parameters
+    + id (long) - id   
++ Request (application/json)
++ Response 200
+
+        {
+          "data": {
+            "id": 54,
+            "customerName": "华尔街",
+            "userName": "hrj"
+          }
+        }
+
+### 内部系统客户列表 [GET] /organization/customerPage
++ Description
+    + Author Liukai
++ Parameters
+    + page[number] (int)  -页码
+    + page[size] (int)  -条数
+    + sort  (string) -排序 例如 sort=-modified 或者created
+    + filter[customerName] (string) -客户名称
++ Request (application/json)
++ Response 200
+
+        {
+          "meta": {
+            "totalPages": 1,
+            "totalElements": 4,
+            "size": 10,
+            "number": 1,
+            "numberOfElements": 4,
+            "first": true,
+            "last": true,
+            "sort": null
+          },
+          "links": {
+            "self": "/organization/customerPage?page[number]=1&page[size]=10",
+            "first": "/organization/customerPage?page[number]=1&page[size]=10",
+            "last": "/organization/customerPage?page[number]=1&page[size]=10"
+          },
+          "data": [
+            {
+              "id": 54,
+              "created": "2021-02-01 19:38:41",
+              "modified": "2021-02-01 19:38:41",
+              "customerName": "华尔街",
+              "userName": "hrj"
+            },
+            {
+              "id": 55,
+              "created": "2021-02-01 19:59:02",
+              "modified": "2021-02-01 19:59:02",
+              "customerName": "华尔街2",
+              "userName": "hrj2"
+            },
+            {
+              "id": 56,
+              "created": "2021-02-02 14:52:58",
+              "modified": "2021-02-02 14:52:58",
+              "customerName": "山东黄金",
+              "userName": "sdhj"
+            },
+            {
+              "id": 57,
+              "created": "2021-02-02 14:57:40",
+              "modified": "2021-02-02 14:57:40",
+              "customerName": "山东黄金1",
+              "userName": "sdhj1"
             }
           ]
         }

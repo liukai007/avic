@@ -86,7 +86,8 @@ https://github.com/liukai007/avic/edit/master/gateway-1.md
     + 受控情况统计
     + 空间能耗统计
     + 设备状态监测
-
++ 2021年2月4日
+    + 网关内核管理
 
 ## 网关基本信息
 + Data
@@ -4642,4 +4643,39 @@ https://github.com/liukai007/avic/edit/master/gateway-1.md
               }
             ]
           }
+        }
+
+## 网关内核管理 [GET] /equipment/gatewayCoreManage/{id}
+
++ Description
+    + Author LiuKai
++ Parameters
+    + id (int) id  1是启动  2是管理 3是开启自启动  4是关闭自启动
++ Response 200
+        
+        {
+          "data": "启动AVIC网关基础服务"
+        }        
+
+        {
+          "data": "停止AVIC网关基础服务"
+        }
+        
+        {
+          "data": "AVIC网关基础服务自启动服务打开"
+        }
+        
+        {
+          "data": "AVIC网关基础服务自启动服务关闭"
+        }
++ Response 400
+    
+        {
+          "errors": [
+            {
+              "status": "400",
+              "title": "Bad Request",
+              "detail": "动作执行失败，请再尝试，如果多次未成功，联系管理员"
+            }
+          ]
         }

@@ -99,6 +99,16 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
         + 内部系统客户修改
         + 内部系统客户详情
         + 内部系统客户列表
++ 2021年02月24日
+    + 内部系统网关管理
+        + 获取网关列表
+        + 新增网关
+        + 编辑网关
+        + 删除网关
+        + 获取网关详情
+     + 内部系统客户管理
+        + 获取当前客户下的所属网关
+        + 获取当前客户下的所属用户
         
 ### 驱动列表 [GET] /drive
 + Description
@@ -5521,3 +5531,79 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
             }
           ]
         }
+        
+        
+### 内部系统网关列表 [GET] /spacegateway/getgatewayList
++ Description
+    + Author LiYuFeng
++ Parameters
+    + page[number] (int)  -页码
+    + page[size] (int)  -条数
+    + sort  (string) -排序 例如 sort=-modified 或者created
+    + filter[customerId] (int) -客户ID
++ Request (application/json)
++ Response 200
+
+
+### 内部系统新增网关 [POST] /spacegateway/addgateway
++ Description
+    + Author LiYuFeng
++ Parameters
+    + filter[gatewaySn] (string)  -网关SN
+    + filter[customerId] (int)  -所属客户ID
+    + filter[endTime]  (string) -截止时间，格式：yyyy-MM-dd HH:mm:ss
+    + customerId (int) 客户ID
++ Request (application/json)
++ Response 200
+
+
+### 内部系统编辑网关 [PATCH] /spacegateway/editgateway/{id}
++ Description
+    + Author LiYuFeng
++ Parameters
+    + filter[gatewaySn] (string)  -网关SN
+    + filter[customerId] (int)  -所属客户ID
+    + filter[endTime]  (string) -截止时间，格式：yyyy-MM-dd HH:mm:ss
++ Request (application/json)
++ Response 200 
+
+
+### 内部系统删除网关 [DELETE] /gatewayinfo/{id}
++ Description
+    + Author LiYuFeng
++ Parameters
++ Request (application/json)
++ Response 200  
+
+
+### 内部系统获取网关详情 [GET] /gatewayinfo/{id}
++ Description
+    + Author LiYuFeng
++ Parameters
++ Request (application/json)
++ Response 200  
+
+
+### 内部系统获取当前客户所属网关
+[GET] /gatewayinfo/getgatelistbycustomerid/{id}
++ Description
+    + Author LiYuFeng
++ Parameters
+    + page[number] (int)  -页码
+    + page[size] (int)  -条数
+    + sort  (string) -排序 例如 sort=-modified 或者created
+    + filter[gatewayname] (string) -w网关名
++ Request (application/json)
++ Response 200 
++ 
+
+
+
+### 内部系统获取当前客户所属用户
+
+
+ 
+
+
+
+

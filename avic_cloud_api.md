@@ -5589,6 +5589,7 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
 + Description
     + Author LiYuFeng
 + Parameters
+    + id (int)  客户id  
     + page[number] (int)  -页码
     + page[size] (int)  -条数
     + sort  (string) -排序 例如 sort=-modified 或者created
@@ -5601,6 +5602,16 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
 
 ### 内部系统获取当前客户所属用户
 
+[GET] /gatewayinfo/getuserlistbycustomerid/{id}
++ Description
+    + Author LiYuFeng
++ Parameters
+    + id (int)  客户id
+    + page[number] (int)  -页码
+    + page[size] (int)  -条数
+    + sort  (string) -排序 例如 sort=-modified 或者created
++ Request (application/json)
++ Response 200 
 
  
 

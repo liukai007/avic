@@ -153,6 +153,8 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
     + secondCategoryName  （string) 二级类名
     + builtIn (int) 1内置  1内置的必须超级管理员才能修改
     + firmware （string）固件号
+    + organization
+        + fullName (string) 所属客户名称
         
         
 + Response 200

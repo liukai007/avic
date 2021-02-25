@@ -126,6 +126,7 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
         + page[number] （int）页码
         + page[size] （int）条数
         + sort （Array[string]） 排序
+        + isAdmin (int) 0 内部系统 1 云客户系统
         
 + Request (application/json)
 
@@ -235,6 +236,7 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
         + maintenanceFrequency （int）保养频率（月）
         + cmd_drive （json字符串） 驱动文件,例如:{'name':'xxx'} 
         + picture （string） 型号图片
+        + isAdmin (int) 0 内部系统 1 云客户系统
 + Request (application/json)
 
         {

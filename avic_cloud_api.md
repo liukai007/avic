@@ -5616,6 +5616,56 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
     + sort  (string) -排序 例如 sort=-modified 或者created
 + Request (application/json)
 + Response 200 
++ 
+
+
+
+### 内部系统网关申请列表
+
+[GET] /gatewayActiveTime
++ Description
+    + Author LiYuFeng
+    
++ Parameters
+
+    + dateMinStr (string) -开始日期
+    + dateMaxStr (string) -结束日期 
+    + page[number] (int)  -页码
+    + page[size] (int)  -条数
+    + sort  (string) -排序 例如 sort=-modified 或者created
++ Request (application/json)
++ Response 200 
++ isSuccess: 是否授权成功 0不成功  1成功，默认是0，付钱完毕修改为1
+
+
+
+### 内部系统网关申请详情
+
+[GET] /gatewayActiveTime/gatewaydeatil/id
++ Description
+    + Author LiYuFeng
++ Parameters
+
+    + id (int) -网关申请id
+
++ Request (application/json)
++ Response 200 
++ 
+
+
+### 内部系统网关申请授权
+
+[GET] /gatewayActiveTime/gatewayauthorization/id
++ Description
+    + Author LiYuFeng
++ Parameters
+
+    + id (int) -网关申请id
+    + flag (int) -是否同意 0 失败 1 成功
+
++ Request (application/json)
++ Response 200 
+
 
  
 

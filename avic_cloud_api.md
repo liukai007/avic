@@ -5661,6 +5661,7 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
 + Parameters
 
     + id (int) -网关申请id
+    + activeEndTime (string)  截止时间
     + flag (int) -是否同意 0 失败 1 成功
 
 + Request (application/json)

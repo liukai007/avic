@@ -88,6 +88,8 @@ https://github.com/liukai007/avic/edit/master/gateway-1.md
     + 设备状态监测
 + 2021年2月4日
     + 网关内核管理
++ 2021年3月4日
+    + 云驱动下载
 
 ## 网关基本信息
 + Data
@@ -4678,4 +4680,29 @@ https://github.com/liukai007/avic/edit/master/gateway-1.md
               "detail": "动作执行失败，请再尝试，如果多次未成功，联系管理员"
             }
           ]
+        }
+
+
+## 云驱动下载 [GET] /drive/cloudDriveDownload
+
++ Description
+
++ Parameters
+    + id (long) id  云驱动id
++ Response 200
+        
+        {
+          "data": "您不是云用户，不能下载驱动"
+        }        
+
+        {
+          "data": "该驱动已下载"
+        }
+        
+        {
+          "data": "驱动下载失败"
+        }
+        
+        {
+          "data": "驱动下载成功"
         }

@@ -4692,17 +4692,17 @@ https://github.com/liukai007/avic/edit/master/gateway-1.md
 + Response 200
         
         {
-          "data": "您不是云用户，不能下载驱动"
+          "data":0 ("您不是云用户，不能下载驱动")
         }        
 
         {
-          "data": "该驱动已下载"
+          "data":1 ("该驱动已下载")
         }
         
         {
-          "data": "驱动下载失败"
+          "data":2 ("驱动下载失败")
         }
         
         {
-          "data": "驱动下载成功"
+          "data":3 ("驱动下载成功")
         }

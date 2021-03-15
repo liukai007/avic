@@ -496,7 +496,9 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
         + ispdu （int）0 非pdu 1是pdu
         + controllable （int）是否可控 1 可控  0 不可控
         + builtIn （int） 是否内置 1为内置 0为非内置
-        + fixedAttribute （int） 0 无固定属性，1为环境  2 占位 3 能耗
+        + fixedAttribute （int） 0 无固定属性，1为环境  2 占位 3 能耗  4视频流
+        + insideVideoAddress  （string） 内部视频流地址  （当fixedAttribute=4）
+        + externalVideoAddress （string） 外部视频流地址 （当fixedAttribute=4）
         + functionCode (int)  0 无功能  1 是次数  2 是电表记录
         + lifetype （int）寿命类型 0 时长 1 次数 
         + recommendedLife (int)  建议使用寿命
@@ -655,7 +657,9 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
         + ispdu （int）0 非pdu 1是pdu
         + controllable （int）是否可控 1 可控  0 不可控
         + builtIn （int） 是否内置 1为内置 0为非内置
-        + fixedAttribute （int） 0 无固定属性，1为环境  2 占位 3 能耗
+        + fixedAttribute （int） 0 无固定属性，1为环境  2 占位 3 能耗 4视频流
+         + insideVideoAddress  （string） 内部视频流地址  （当fixedAttribute=4）
+        + externalVideoAddress （string） 外部视频流地址 （当fixedAttribute=4）
         + functionCode (int)  0 无功能  1 是次数  2 是电表记录
         + lifetype （int）寿命类型 0 时长 1 次数 
         + recommendedLife (int)  建议使用寿命
@@ -880,7 +884,9 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
         + ispdu （int）0 非pdu 1是pdu
         + controllable （int）是否可控 1 可控  0 不可控
         + builtIn （int） 是否内置 1为内置 0为非内置
-        + fixedAttribute （int） 0 无固定属性，1为环境  2 占位 3 能耗
+        + fixedAttribute （int） 0 无固定属性，1为环境  2 占位 3 能耗 4视频流
+        + insideVideoAddress  （string） 内部视频流地址  （当fixedAttribute=4）
+        + externalVideoAddress （string） 外部视频流地址 （当fixedAttribute=4）
         + functionCode (int)  0 无功能  1 是次数  2 是电表记录
         + lifetype （int）寿命类型 0 时长 1 次数 
         + recommendedLife (int)  建议使用寿命
@@ -1054,7 +1060,9 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
         + ispdu （int）0 非pdu 1是pdu
         + controllable （int）是否可控 1 可控  0 不可控
         + builtIn （int） 是否内置 1为内置 0为非内置
-        + fixedAttribute （int） 0 无固定属性，1为环境  2 占位 3 能耗
+        + fixedAttribute （int） 0 无固定属性，1为环境  2 占位 3 能耗 4视频流
+        + insideVideoAddress  （string） 内部视频流地址  （当fixedAttribute=4）
+        + externalVideoAddress （string） 外部视频流地址 （当fixedAttribute=4）
         + functionCode (int)  0 无功能  1 是次数  2 是电表记录
         + lifetype （int）寿命类型 0 时长 1 次数 
         + recommendedLife (int)  建议使用寿命

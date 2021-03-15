@@ -3375,7 +3375,9 @@ https://github.com/liukai007/avic/edit/master/gateway-1.md
         + ==ydriveId== （long）驱动id
         + equipmentName （string）中午名
         + equipmentNameEn （string）英文名
-        + fixedAttribute （int）关联空间属性（0 无固定属性，1为环境  2 占位 3 能耗）
+        + fixedAttribute （int）关联空间属性（0 无固定属性，1为环境  2 占位 3 能耗 4视频流）
+        + insideVideoAddress  （string） 内部视频流地址  （当fixedAttribute=4）
+        + externalVideoAddress （string） 外部视频流地址 （当fixedAttribute=4）
         + functionCode （int）0 无功能  1 是次数  2 是电表记录'
         + ==yequipmentIdGateway== （long）网关id（如果当前设备是网关则这个值为0）
         + ispdu （int）0 非pdu 1是pdu

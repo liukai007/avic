@@ -4007,7 +4007,7 @@ https://github.com/liukai007/avic/edit/master/gateway-1.md
     + brandName (string) -品牌名
     + secondCategoryName (string) -二级分类名
     + primaryCategoryName (string) -一级分类名
-    + ispdu (int) -0 非pdu 1是pdu
+    + ispdu (int) -0 非pdu 1是pdu 2是relay(继电器)
     + severalPdu (int)  -几口PDU
 
   

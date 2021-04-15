@@ -528,6 +528,7 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
         + pdus
             + anotherName  (string) 
             + cloudCid  (int) 云端id
+            + customCmdCode (string) 关联设备的命令（只是当isPdu==2的时候显示）
             + cmdCodeOff (string)  开命令CODE
             + cmdCodeOn (string) 关命令CODE
             + created (string) 
@@ -689,6 +690,7 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
         + pdus
             + anotherName  (string) 
             + cloudCid  (int) 云端id
+            + customCmdCode (string) 关联设备的命令（只是当isPdu==2的时候显示）
             + cmdCodeOff (string)  开命令CODE
             + cmdCodeOn (string) 关命令CODE
             + created (string) 
@@ -774,8 +776,6 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
             + unitName (string) 单位名称
             + ydriveId (int) 驱动ID
             + yreadtypeId (int) 读数类型ID
-      
-     
         + model （string） 设备品牌
         + primaryCategoryName （string） 一级分类名
         + secondCategoryName （string）二级分类名
@@ -916,6 +916,7 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
         + pdus
             + anotherName  (string) 
             + cloudCid  (int) 云端id
+            + customCmdCode (string) 关联设备的命令（只是当isPdu==2的时候显示）
             + cmdCodeOff (string)  开命令CODE
             + cmdCodeOn (string) 关命令CODE
             + created (string) 
@@ -1092,6 +1093,7 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
         + pdus
             + anotherName  (string) 
             + cloudCid  (int) 云端id
+            + customCmdCode (string) 关联设备的命令（只是当isPdu==2的时候显示）
             + cmdCodeOff (string)  开命令CODE
             + cmdCodeOn (string) 关命令CODE
             + created (string) 
@@ -1259,6 +1261,7 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
         + pdus
             + anotherName  (string) 
             + cloudCid  (int) 云端id
+            + customCmdCode (string) 关联设备的命令（只是当isPdu==2的时候显示）
             + cmdCodeOff (string)  开命令CODE
             + cmdCodeOn (string) 关命令CODE
             + created (string) 
@@ -1469,6 +1472,7 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
         + pdus
             + anotherName  (string) 
             + cloudCid  (int) 云端id
+            + customCmdCode (string) 关联设备的命令（只是当isPdu==2的时候显示）
             + cmdCodeOff (string)  开命令CODE
             + cmdCodeOn (string) 关命令CODE
             + created (string) 

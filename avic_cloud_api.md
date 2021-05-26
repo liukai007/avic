@@ -64,6 +64,7 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
     + Email配置添加
 + 2020年01月20日
     + 云端用户登录
+    + 云端用户刷新Token
     + 云端用户退出登录
     + 云端用户增加
     + 云端用户禁用
@@ -3553,7 +3554,10 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
 + Response 200
 
         {
-          "data": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MTExMjk3NDMsInVzZXJJZCI6ImxrIn0.zyOrpAcq8x1vYyWHMfcjnFnKrhDDHHO320s46Xu524k"
+         "data": {
+            "expire_time": 1622023697878,
+            "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MjIwMjM2OTcsInVzZXJJZCI6ImFkbWluIn0._P2HXWzaDER79O74pB-Jp-YGZF0627EPZAEpTzDw_X0"
+          }
         }
 
 + Response 400
@@ -3579,6 +3583,38 @@ https://github.com/liukai007/avic/edit/master/avic_cloud_api.md
             }
           ]
         }
+
+### 云端用户刷新Token
+
++ Description
+    + Author Liukai
+    + 携带header中的authorization
+
++ Request (application/json)
+
+        {"data":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MjIwMjM3NjgsInVzZXJJZCI6ImFkbWluIn0.gaPxLtuIsSALz_CQ6dtymEVBLaxZcNB3gQ-LWaipgj0"}
+
++ Response 200
+    
+        {
+          "data": {
+            "expire_time": 1622023804634,
+            "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MjIwMjM4MDQsInVzZXJJZCI6ImFkbWluIn0.SNIN99dXLQyEvL9PzGcHQ_HHe9Aysz4vn-n5bshZqAg"
+          }
+        }
+
++ Response 400
+
+        {
+            "errors": [
+            {
+              "status": "403",
+              "title": "Forbidden",
+              "detail": "已经过期了，请再次登录验证"
+            }
+          ]
+        }
+
 
 ### 云端用户退出登录 [POST] /usercloud/logout
 + Description
